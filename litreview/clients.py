@@ -9,6 +9,8 @@ import urllib.request
 from dataclasses import dataclass, field
 from typing import Protocol
 
+from .config import PROJECT_ENV, read_dotenv
+
 
 @dataclass
 class Completion:
@@ -47,16 +49,21 @@ class DeepSeekBackend:
                 or parsed.password or parsed.query or parsed.fragment):
             raise ValueError("Base URL must be an HTTPS URL without credentials, query or fragment.")
         if not self.api_key.strip():
-            raise ValueError("Set DEEPSEEK_API_KEY in your local environment first.")
+            raise ValueError("Set DEEPSEEK_API_KEY in the project .env file or local environment first.")
         if not self.model.strip() or self.timeout <= 0 or self.max_tokens < 1:
             raise ValueError("Invalid model, timeout or max_tokens.")
 
     @classmethod
-    def from_env(cls):
+    def from_env(cls, env_path=None):
+        values = read_dotenv(PROJECT_ENV if env_path is None else env_path)
+        # Explicit process environment variables take priority; do not mutate os.environ.
+        def setting(key, default):
+            return os.environ.get(key, values.get(key, default))
+
         return cls(
-            api_key=os.environ.get("DEEPSEEK_API_KEY", ""),
-            base_url=os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
-            model=os.environ.get("DEEPSEEK_MODEL", "deepseek-flash"),
+            api_key=setting("DEEPSEEK_API_KEY", ""),
+            base_url=setting("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
+            model=setting("DEEPSEEK_MODEL", "deepseek-flash"),
         )
 
     def complete(self, role: str, instruction: str, payload: dict) -> Completion:

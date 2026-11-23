@@ -217,6 +217,7 @@ class CliTests(unittest.TestCase):
 
     def test_missing_key_makes_no_network_call(self):
         with tempfile.TemporaryDirectory() as folder, patch.dict("os.environ", {}, clear=True), \
+                patch("litreview.clients.read_dotenv", return_value={}), \
                 patch("litreview.clients.urllib.request.build_opener") as build, redirect_stderr(io.StringIO()):
             self.assertEqual(main(self.args(Path(folder) / "run") + ["--backend", "deepseek"]), 1)
             build.assert_not_called()

@@ -25,14 +25,27 @@ python -m litreview --backend demo --corpus examples/demo_papers.json --query "r
 ## 接入 deepseek-flash
 
 默认使用官方地址 `https://api.deepseek.com`，模型为 `deepseek-flash`。
-在本地设置 `DEEPSEEK_API_KEY` 后，重新打开终端使环境变量生效。不要把密钥写入代码或提交到 Git。
-程序读取环境变量，不自动加载 `.env` 文件。
-如果使用第三方网关，需要自行设置 `DEEPSEEK_BASE_URL` 和必要时的 `DEEPSEEK_MODEL`；接口须兼容所用请求参数。
+推荐在项目根目录使用 `.env` 文件配置。从模板复制（已有 `.env` 时不要覆盖）：
 
 ```powershell
-# 可选：显式指定模型和地址，不包含密钥。
-$env:DEEPSEEK_MODEL = "deepseek-flash"
-$env:DEEPSEEK_BASE_URL = "https://api.deepseek.com"
+Copy-Item .env.example .env
+```
+
+编辑 `.env`，将 `DEEPSEEK_API_KEY=` 后面填入你的真实密钥：
+
+```dotenv
+DEEPSEEK_API_KEY=你的真实API密钥
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+DEEPSEEK_MODEL=deepseek-flash
+```
+
+`.env` 已被 Git 忽略，`.env.example` 只保存不含密钥的模板。
+每次启动 DeepSeek 后端时自动读取项目根目录 `.env`，修改后重新运行命令即可，不需要设置系统环境变量或重启终端。
+已有的进程环境变量优先于 `.env`，然后才使用默认地址和模型；曾设置同名环境变量时应注意这一优先级。
+配置支持单行 `KEY=value`、可选的成对单/双引号、注释和 `export` 前缀；不执行变量替换、反斜杠转义或多行值。
+如果使用第三方网关，在 `.env` 中调整地址及模型名；接口须兼容所用请求参数。
+
+```powershell
 python -m litreview --backend deepseek --corpus examples/demo_papers.json --query "Compare scheduling and evidence checking in literature review systems" --top-k 2 --output outputs/deepseek-001
 ```
 
@@ -79,4 +92,5 @@ python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
 自动测试不调用付费 API，覆盖四角色流程、数据与证据校验、未知引用、校验拒绝、截断和异常响应、token 统计、接口请求格式及 CLI 成功/失败输出。
+配置测试覆盖 `.env` 加载、环境变量优先级、格式错误提示和输出文件不泄漏密钥。
 真实 API 联调需要本地密钥和网络，不能用自动测试通过代替。
