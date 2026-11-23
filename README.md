@@ -49,7 +49,8 @@ DEEPSEEK_MODEL=deepseek-flash
 python -m litreview --backend deepseek --corpus examples/demo_papers.json --query "Compare scheduling and evidence checking in literature review systems" --top-k 2 --output outputs/deepseek-001
 ```
 
-一次正常流程调用四次 API，会产生服务商计费。请求不自动重试，单次最大输出 4096 token，超时 120 秒；截断、空响应、格式错误或校验拒绝会中止流程。
+一次正常流程调用四次 API，会产生服务商计费。摘要阶段如遇输出校验错误，会带着错误反馈修正一次；最多五次调用，全部尝试的用量都会计入轨迹。
+网络及 HTTP 错误不自动重试，其他阶段不自动修正。单次最大输出 4096 token，超时 120 秒；仍不合格的输出会中止流程。
 token 统计直接采用接口返回值，不使用字符数冒充 token 数；缺失用量保留为 `null`。
 
 接口参考：[首次调用](https://api-docs.deepseek.com/)、[Chat Completions](https://api-docs.deepseek.com/api/create-chat-completion/)、[JSON 输出](https://api-docs.deepseek.com/guides/json_mode/)。
@@ -69,6 +70,14 @@ token 统计直接采用接口返回值，不使用字符数冒充 token 数；�
 
 程序检查字段、重复编号和引用范围，但不会联网核实论文真实性。真实数据应保留来源与采集记录，切勿将演示数据标记为真实论文。
 当前检索会把整个给定集合发送给模型，适合先用少量论文验证流程；大规模语料的索引、分批处理和上下文预算属于后续工作。
+
+已整理用户提供的五篇真实论文和五个初始综述任务，数据来源、版本及运行方法见 [data/README.md](data/README.md)。可直接运行：
+
+```powershell
+python -m litreview --backend deepseek --corpus data/agent_skill_papers.json --task-file data/review_tasks.json --task-id review-001 --output outputs/real-review-001
+```
+
+也可通过 `python -m litreview.import_arxiv` 从官方元数据 API 导入新的论文列表，保存可核验的原始 Atom 返回。
 
 固定流程为：检索角色筛选论文 → 总结角色为每篇生成摘要和原文证据 → 撰写角色生成正文 → 校验角色对照原摘要审查摘要和正文。
 四个角色共享同一底层模型，通过不同提示词承担不同工作。检索无结果时中止。

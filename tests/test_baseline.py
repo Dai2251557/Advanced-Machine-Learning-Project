@@ -102,9 +102,49 @@ class PipelineTests(unittest.TestCase):
                 pipeline = FixedRulePipeline(ControlledBackend(role, json.dumps(output)))
                 with self.assertRaises(ValueError):
                     pipeline.run(self.corpus, "scheduling", top_k=1)
-                self.assertEqual(len(pipeline.events), order.index(role) + 1)
+                self.assertEqual(len(pipeline.events), order.index(role) + 1 + (role == "summarize"))
                 self.assertEqual(pipeline.events[-1]["status"], "error")
                 self.assertEqual(pipeline.events[-1]["output"], output)
+
+    def test_summary_case_error_is_repaired_once_and_both_calls_are_billed(self):
+        class RepairingBackend(ControlledBackend):
+            def __init__(self):
+                super().__init__(tokens=True)
+                self.summary_calls = 0
+                self.feedback = None
+
+            def complete(self, role, instruction, payload):
+                result = super().complete(role, instruction, payload)
+                if role == "summarize":
+                    self.summary_calls += 1
+                    if self.summary_calls == 1:
+                        value = json.loads(result.content)
+                        value["items"][0]["evidence"] = value["items"][0]["evidence"].lower()
+                        result.content = json.dumps(value)
+                    else:
+                        self.feedback = payload["validation_feedback"]
+                return result
+
+        backend = RepairingBackend()
+        pipeline = FixedRulePipeline(backend)
+        result = pipeline.run(self.corpus, "scheduling", top_k=1)
+        self.assertEqual(backend.summary_calls, 2)
+        self.assertIn("demo-001", backend.feedback)
+        attempts = [event for event in pipeline.events if event["role"] == "summarize"]
+        self.assertEqual([event["attempt"] for event in attempts], [1, 2])
+        self.assertEqual([event["status"] for event in attempts], ["error", "ok"])
+        self.assertEqual(pipeline.trace()["usage"], {"prompt_tokens": 50, "completion_tokens": 25})
+        self.assertEqual(result["summaries"][0]["evidence"], self.corpus["papers"][0]["abstract"])
+
+    def test_summary_repair_is_bounded_and_does_not_publish_unmatched_evidence(self):
+        wrong = json.dumps({"items": [{"paper_id": "demo-001", "summary": "Claim",
+                                       "evidence": "Paraphrased evidence"}]})
+        pipeline = FixedRulePipeline(ControlledBackend("summarize", wrong))
+        with self.assertRaises(ValueError):
+            pipeline.run(self.corpus, "scheduling", top_k=1)
+        self.assertEqual([event["role"] for event in pipeline.events],
+                         ["retrieve", "summarize", "summarize"])
+        self.assertTrue(all(event["status"] == "error" for event in pipeline.events[1:]))
 
     def test_empty_malformed_and_truncated_response(self):
         for content, reason in [(" ", "stop"), ("{bad", "stop"), ("[]", "stop"),

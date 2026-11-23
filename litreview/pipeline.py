@@ -44,6 +44,24 @@ def validate_ids(value, allowed, limit=None):
     require(limit is None or len(value) <= limit, "Agent exceeded top_k.")
 
 
+def load_task(path: Path, task_id: str, corpus: dict) -> dict:
+    data = json.loads(path.read_text(encoding="utf-8-sig"))
+    require(isinstance(data, dict) and isinstance(data.get("tasks"), list)
+            and bool(data["tasks"]), "Task file must contain a nonempty tasks list.")
+    seen = {}
+    for task in data["tasks"]:
+        require(isinstance(task, dict) and nonempty_text(task.get("id")), "Invalid task ID.")
+        require(task["id"] not in seen, "Duplicate task ID.")
+        require(nonempty_text(task.get("query")), "Task query must be nonempty text.")
+        require(type(task.get("top_k")) is int and task["top_k"] > 0,
+                "Task top_k must be a positive integer.")
+        if "expected_paper_ids" in task:
+            validate_ids(task["expected_paper_ids"], [paper["id"] for paper in corpus["papers"]])
+        seen[task["id"]] = task
+    require(task_id in seen, "Task ID was not found in the task file.")
+    return seen[task_id]
+
+
 @dataclass
 class FixedRulePipeline:
     backend: Backend
@@ -52,6 +70,7 @@ class FixedRulePipeline:
     def invoke(self, role, instruction, payload, validator):
         event = {
             "role": role, "agent_id": role + ":" + self.backend.model,
+            "attempt": 1 + sum(previous["role"] == role for previous in self.events),
             "input_chars": len(json.dumps(payload, ensure_ascii=False)),
             "prompt_tokens": None, "completion_tokens": None, "status": "error",
         }
@@ -95,14 +114,27 @@ class FixedRulePipeline:
                 require(nonempty_text(item.get("summary")), "Missing summary text.")
                 evidence = item.get("evidence")
                 require(nonempty_text(evidence) and evidence in selected[item["paper_id"]]["abstract"],
-                        "Summary evidence must be an exact excerpt from its abstract.")
+                        f'Summary evidence for {item["paper_id"]} must be an exact excerpt '
+                        'from its abstract, including capitalization and punctuation.')
 
-        summaries = self.invoke(
-            "summarize", 'Summarize each paper in Chinese without inferring missing details. '
+        summary_instruction = (
+            'Summarize each paper in Chinese without inferring missing details. '
             'Return JSON {"items":[{"paper_id":"id","summary":"text",'
-            '"evidence":"exact nonempty excerpt from the abstract"}]}. Cover each supplied paper once.',
-            {"query": query, "papers": list(selected.values())}, validate_summaries,
+            '"evidence":"exact nonempty excerpt from the abstract"}]}. Cover each supplied paper once. '
+            'Copy evidence character-for-character, preserving capitalization and punctuation; '
+            'do not lowercase sentence beginnings, paraphrase, or insert ellipses.'
         )
+        summary_payload = {"query": query, "papers": list(selected.values())}
+        try:
+            summaries = self.invoke("summarize", summary_instruction, summary_payload, validate_summaries)
+        except ValueError as exc:
+            # One bounded output repair, preserving both attempts and their billing in the trace.
+            summaries = self.invoke(
+                "summarize", summary_instruction + ' Repair the invalid previous output using '
+                'the validation feedback. All evidence must still be copied from the original abstracts.',
+                {**summary_payload, "previous_output": self.events[-1].get("output"),
+                 "validation_feedback": str(exc)}, validate_summaries,
+            )
 
         def validate_sections(obj):
             sections = obj.get("sections")

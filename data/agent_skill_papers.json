@@ -1,0 +1,135 @@
+{
+  "dataset_kind": "arxiv_abstracts",
+  "purpose": "pilot_only",
+  "retrieved_at": "2026-11-23T07:14:19.515960+00:00",
+  "metadata_api_url": "https://export.arxiv.org/api/query?id_list=2605.23904%2C2606.03143%2C2604.16778%2C2610.21348%2C2607.21361&max_results=5",
+  "abstract_processing": "Original wording with whitespace normalized; no translation or rewriting.",
+  "raw_metadata_file": "agent_skill_papers.atom.xml",
+  "raw_metadata_sha256": "e59e6cd7d62b6797c2363870779db1bb904a242d209ab6e5b13afb981ec7ac19",
+  "papers": [
+    {
+      "id": "2605.23904",
+      "version": 2,
+      "title": "SkillOpt: Executive Strategy for Self-Evolving Agent Skills",
+      "abstract": "Agent skills today are hand-crafted, generated one-shot, or evolved through loosely controlled self-revision, none of which behaves like a deep-learning optimizer for the skill, and none of which reliably improves over its starting point under feedback. We argue the skill should instead be trained as the external state of a frozen agent, with the same discipline that makes weight-space optimization reproducible. SkillOpt is, to our knowledge, the first systematic controllable text-space optimizer for agent skills: a separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a single skill document, and an edit is accepted only when it strictly improves a held-out validation score. A textual learning-rate budget, rejected-edit buffer, and epoch-wise slow/meta update make skill training stable while adding zero inference-time model calls at deployment. Across six benchmarks, seven target models, and three execution harnesses (direct chat, Codex, Claude Code), SkillOpt is best or tied on all 52 evaluated (model, benchmark, harness) cells and beats every per-cell competitor among human, one-shot LLM, Trace2Skill, TextGrad, GEPA, and EvoSkill skills. On GPT-5.5 it lifts the average no-skill accuracy by +23.5 points in direct chat, by +24.8 inside the Codex agentic loop, and by +19.1 inside Claude Code. Transfer experiments further show that optimized skill artifacts retain value when moved across model scales, between Codex and Claude Code execution environments, and to a nearby math benchmark without further optimization. Code: https://aka.ms/skillopt",
+      "authors": [
+        "Yifan Yang",
+        "Ziyang Gong",
+        "Weiquan Huang",
+        "Qihao Yang",
+        "Ziwei Zhou",
+        "Zisu Huang",
+        "Yan Li",
+        "Xuemei Gao",
+        "Qi Dai",
+        "Bei Liu",
+        "Kai Qiu",
+        "Yuqing Yang",
+        "Dongdong Chen",
+        "Xue Yang",
+        "Chong Luo"
+      ],
+      "published": "2026-05-22T17:59:50Z",
+      "updated": "2026-05-25T17:58:16Z",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "source_url": "https://arxiv.org/abs/2605.23904v2",
+      "pdf_url": "https://arxiv.org/pdf/2605.23904v2",
+      "abstract_sha256": "79b71a5af6d21796fd12a9824d9c7c0c75c46ab430bd6fe1044056136f5328ff",
+      "requested_source": "https://arxiv.org/pdf/2605.23904"
+    },
+    {
+      "id": "2606.03143",
+      "version": 1,
+      "title": "FederatedSkill: Federated Learning for Agentic Skill Evolution",
+      "abstract": "Modern LLM agents increasingly rely on skill libraries to handle complex tasks, making skill evolution a primary driver of self-improvement. However, isolated single-user task streams lack the diversity required to build comprehensive skills. While cross-user collaboration can overcome this data bottleneck, current trajectory-sharing approaches compromise user privacy and impose a uniform global library that fails to accommodate client heterogeneity. We introduce FederatedSkill, a privacy-preserving framework for collaborative agent evolution. Moving beyond raw trajectory sharing, FederatedSkill utilizes semantic skill diffs, structured patches over local libraries, as the fundamental unit of communication. On the server side, an evolution agent aggregates these patches to dynamically model client-specific capability boundaries, facilitating strictly personalized skill evolution rather than a suboptimal global average. Evaluated across 20 distinct agent task families, FederatedSkill demonstrates substantial gains over self-evolving baselines, achieving up to a 44.4% increase in success rate and a 37.5% reduction in computational cost.",
+      "authors": [
+        "Jingbo Yang",
+        "Guanyu Yao",
+        "Yang Zhang",
+        "Ramana Rao Kompella",
+        "Gaowen Liu",
+        "Shiyu Chang"
+      ],
+      "published": "2026-06-02T04:38:05Z",
+      "updated": "2026-06-02T04:38:05Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "source_url": "https://arxiv.org/abs/2606.03143v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.03143v1",
+      "abstract_sha256": "ba585804db6d1bd7d8fed77ffd9582bf4b3917a66496d0e82af5d8f55d00b6fb",
+      "requested_source": "https://arxiv.org/pdf/2606.03143"
+    },
+    {
+      "id": "2604.16778",
+      "version": 3,
+      "title": "Federation over Text: Insight Sharing for Multi-Agent Reasoning",
+      "abstract": "Modern agents specialize in varying domains while there is no clear approach combining different domain skills. We propose a federated learning-like framework, Federation over Text (FoT), that enables multiple clients solving different tasks to collectively generate a shared library of metacognitive insights by iteratively federating their local reasoning processes without sharing actual problem instances. Instead of federation over gradients (e.g., as in distributed training), FoT operates at the semantic level without any gradient optimization or supervision signal. At each round, client LLM agents independently apply arbitrary local reasoning and self-improvement procedures to their own tasks and share the resulting reasoning traces with a central server. The server then aggregates, distills, and consolidates knowledge across tasks and domains into a shared insight library, which can be reused by current and future agents to improve their reasoning. Experiments show that FoT improves reasoning effectiveness and efficiency across real-world daily tasks, cross-domain collaboration, and research insight discovery, achieving an average performance gain of 11.9 absolute percentage points while reducing client-generated task-completion tokens by 5.5%.",
+      "authors": [
+        "Dixi Yao",
+        "Tahseen Rabbani",
+        "Manzil Zaheer",
+        "Tian Li"
+      ],
+      "published": "2026-04-18T01:57:42Z",
+      "updated": "2026-09-30T01:53:04Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "source_url": "https://arxiv.org/abs/2604.16778v3",
+      "pdf_url": "https://arxiv.org/pdf/2604.16778v3",
+      "abstract_sha256": "ade97b80f9c63743481417ea42f0c239626f96f22920737b3a84acb628103639",
+      "requested_source": "https://arxiv.org/pdf/2604.16778"
+    },
+    {
+      "id": "2610.21348",
+      "version": 1,
+      "title": "FedSkillGit: Federated Skill Evolution via Version Control",
+      "abstract": "Large language model agents can improve their capabilities by evolving reusable natural-language skills from execution experience. In real-world deployments, this experience is distributed across data owners who cannot pool their raw data, which motivates federated skill evolution. The natural first design lets each client evolve the whole skill document and upload the result for server-side aggregation. That design is poorly matched to skill evolution for three reasons. An evolved document can still carry client-specific content distilled from private traces, repeated transmission of a nearly unchanged document spends communication on knowledge that the population already holds and the contribution of a single client is buried in a document that the server cannot meaningfully attribute. We propose FedSkillGit, a federated skill evolution framework that replaces full-document updates with commits. Each participating client submits a bounded set of patches over named rules together with its local experience, which summarizes what the round taught it, and the pair passes a two-stage privacy filter before it leaves the client. The server deduplicates the submitted patches and the local experience of all participants, updates a global experience document that only the optimizers read, and merges the surviving patches into a candidate skill. The candidate is distributed to the clients, which score it on their own validation sets and report the results, and it is published only when the reported scores improve on the current version. Experiments on three datasets and three language model families show that FedSkillGit outperforms state-of-the-art baselines by up to 22% and approaches centralized evolution without sharing raw client data.",
+      "authors": [
+        "Boxun Lan",
+        "Jiamei Li",
+        "Weijian Li",
+        "Chengyu Yang",
+        "Zhuang Qi",
+        "Chengcheng Wan",
+        "Xiaohong Chen",
+        "Ming Hu"
+      ],
+      "published": "2026-10-15T06:29:57Z",
+      "updated": "2026-10-15T06:29:57Z",
+      "categories": [
+        "cs.AI"
+      ],
+      "source_url": "https://arxiv.org/abs/2610.21348v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.21348v1",
+      "abstract_sha256": "78eb0c79929d2c102eb4a05dcbf0b96b7e553cb9004d317a6f140a3505502e8f",
+      "requested_source": "https://arxiv.org/pdf/2610.21348"
+    },
+    {
+      "id": "2607.21361",
+      "version": 1,
+      "title": "FedAgentKE: Federated Semantic Knowledge Evolution for Heterogeneous Agents",
+      "abstract": "Large language model (LLM)-based agents increasingly rely on reasoning, tool use, and iterative execution, yet existing agent frameworks still operate largely in isolation. While recent memory-based agent systems improve individual agents through local retrieval and workflow reuse, local experiences remain fragmented across isolated agent frameworks, limiting cross-framework knowledge transfer and collaborative reasoning evolution. We propose FedAgentKE, a lightweight framework for Federated Semantic Knowledge Evolution across heterogeneous agents. FedAgentKE enables distributed agent frameworks to collaboratively evolve transferable reasoning abstractions through iterative semantic knowledge distillation, aggregation, and adaptation without sharing raw reasoning trajectories. Experiments demonstrate consistent improvements under both cross-framework and cross-task settings, highlighting the potential of federated semantic knowledge evolution for future collaborative agent ecosystems.",
+      "authors": [
+        "Weihao Li",
+        "Jun Bai",
+        "Ziyang Song"
+      ],
+      "published": "2026-07-23T14:24:02Z",
+      "updated": "2026-07-23T14:24:02Z",
+      "categories": [
+        "cs.MA"
+      ],
+      "source_url": "https://arxiv.org/abs/2607.21361v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21361v1",
+      "abstract_sha256": "f250b654f062a06ec2e445acabb229f900a68a38bceeedd17b2797deea800eb5",
+      "requested_source": "https://arxiv.org/pdf/2607.21361"
+    }
+  ]
+}
