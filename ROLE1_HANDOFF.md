@@ -82,7 +82,7 @@ class MyScheduler:
 - 缓存默认关闭。启用时只在当前 Episode 中复用相同模型/档位/Prompt/输入的成功响应；跨 Episode 清空，避免两策略执行顺序影响成本。缓存命中新增计费为零。
 - `input_tokens/output_tokens` 仅含动作调用，`verifier_tokens` 包含校验输入与输出；三者合计为当前步骤 `total_workflow_tokens`。校验成本归触发动作，重试成本全计入。
 - Mock 的 0 Token 是明确标记的合成成本；不能用于标定或实验结论。真实返回缺失用量时为 `null`，未终止的 Episode 以 `usage_unknown` 停止，Token 占比也为 `null`，禁止当成零编码。建议二号将此类失败轨迹隔离，不用于成本标定。
-- 预算在调用之间检查，不能预知 API 实际输入及思考 Token，因此不是精确的计费硬上限，最后一个调用可能超过预算。预算耗尽时不再修复或调用 Verifier；终稿已成功写出时按成功结束。
+- 预算在调用之间检查，不能预知 API 实际输入及思考 Token，因此不是精确的计费硬上限，最后一个调用可能超过预算。预算耗尽时不再修复或调用 Verifier；达到或超过预算（或用量未知）即使已生成候选终稿也失败终止，不发布正式报告，候选响应保留在日志。
 - 输出目录下每次创建唯一 `episode-*` 子目录；包括 `episode.json`、`workspace.json`、每步 `before/after` 与完整调用日志，以及成功时的 `report.md`。不指定 `output_dir` 时只返回内存记录，引用字段为 `None`。
 
 ## 固定规则与三号交接
@@ -107,4 +107,6 @@ git diff --check
 python -m core --backend deepseek --corpus data/samples/agent_skill/agent_skill_papers.json --task examples/runner_task.json --output outputs/pilot/role1-delivery
 ```
 
-当前交付验证范围：自动测试与 Mock 联调；真实 API 联调曾被本机网络权限/自动审批阻断，不能声明真实五动作已验收。获得具体语料发送授权后，继续运行真实固定策略及两个深度动作的冒烟验证。
+当前交付验证范围：67 项自动测试、Mock 联调、获授权后的真实五动作与两次端到端 pilot 均通过；详见 [ROLE1_ACCEPTANCE.md](ROLE1_ACCEPTANCE.md)。正式数据标定、三方评分冻结、实际 DQN 接入尚未完成。
+
+评分口径及预算边界的待确认草案见 [SCORING_PROTOCOL.md](SCORING_PROTOCOL.md)。

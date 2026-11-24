@@ -160,13 +160,16 @@ class Runner:
         self.action_tokens[action_id] = total((self.action_tokens[action_id], step_tokens))
         self.state["workflow_tokens_used"] = total(self.action_tokens.values())
         used = self.state["workflow_tokens_used"]
-        if not self.state["terminal"]:
-            if used is None:
-                self._terminate("usage_unknown")
-            elif used >= self.config.workflow_tokens_budget:
-                self._terminate("token_budget")
-            elif self.state["step_count"] >= self.config.max_steps:
-                self._terminate("max_steps")
+        # Cost eligibility takes precedence over a generated candidate report.
+        # Raw write responses remain in calls even if the candidate is rejected.
+        if used is None or used >= self.config.workflow_tokens_budget:
+            self._terminate("usage_unknown" if used is None else "token_budget")
+            if is_write:
+                self.final_text = None
+                success = False
+                error = "Candidate report rejected: " + self.state["terminal_reason"]
+        elif not self.state["terminal"] and self.state["step_count"] >= self.config.max_steps:
+            self._terminate("max_steps")
         after = self.observe()
         delta = comparable_delta(before, after) if success and not is_write else None
         history["last_verifier_delta"] = delta

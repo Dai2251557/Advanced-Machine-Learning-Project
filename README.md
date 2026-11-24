@@ -2,7 +2,7 @@
 
 **一号位新接口**：已新增统一五动作 Runner、Workspace、四维 Verifier 和可替换策略接口。
 二号请从 [ROLE1_HANDOFF.md](ROLE1_HANDOFF.md) 的单步示例接入；`python -m core` 为新入口。
-下文 `python -m litreview` 描述保留的旧四角色流水线。新接口真实 API 联调尚待具体语料发送授权，当前自动测试与 Mock 验证不代表真实模型验收。
+下文 `python -m litreview` 描述保留的旧四角色流水线。新接口已获样例发送授权并完成真实固定规则 pilot 运行；验收范围见 [ROLE1_ACCEPTANCE.md](ROLE1_ACCEPTANCE.md)，不代表正式数据实验或独立质量评测完成。
 
 目标：在相同 Agent 和数据条件下，比较固定规则调度与 DQN 调度的综述质量、token 消耗和任务错配情况。
 

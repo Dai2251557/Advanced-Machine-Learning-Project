@@ -5,6 +5,7 @@ import json
 import tempfile
 import unittest
 import urllib.error
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
@@ -20,6 +21,15 @@ TASK = ReviewTask("audit", "scheduling")
 
 
 class AuditTests(unittest.TestCase):
+    def test_pilot_acceptance_entry_point(self):
+        from core.acceptance import main
+        with tempfile.TemporaryDirectory() as folder, redirect_stdout(io.StringIO()):
+            self.assertEqual(main(["--backend", "mock", "--output", folder]), 0)
+            result = json.loads(next(Path(folder).glob("*/episode.json")).read_text(encoding="utf-8"))
+            self.assertEqual([s["action_id"] for s in result["transitions"]],
+                             ["retrieve_more", "summarize_fast", "summarize_deep", "write_deep"])
+            self.assertEqual(result["split"], "pilot")
+
     def corpus(self):
         return load_corpus(ROOT / "examples/demo_papers.json")
 
@@ -39,6 +49,33 @@ class AuditTests(unittest.TestCase):
     def test_unknown_backend_is_not_mislabelled_as_real(self):
         with self.assertRaises(ValueError):
             Runner(self.corpus(), DemoBackend())
+
+    def test_write_budget_boundary_and_unknown_usage_do_not_publish_report(self):
+        for budget, unknown, expected in ((31, False, "final_written"),
+                                          (30, False, "token_budget"),
+                                          (29, False, "token_budget"),
+                                          (31, True, "usage_unknown")):
+            class Billed(MockBackend):
+                def complete(self, role, instruction, payload):
+                    result = super().complete(role, instruction, payload)
+                    result.prompt_tokens = None if unknown and role == "write" else 10
+                    result.completion_tokens = 5
+                    return result
+            with self.subTest(budget=budget, unknown=unknown), tempfile.TemporaryDirectory() as folder:
+                runner = Runner(self.corpus(), Billed(), RunnerConfig(
+                    workflow_tokens_budget=budget, max_steps=2), folder)
+                runner.reset(TASK)
+                runner.step("retrieve_more")
+                step = runner.step("write_fast")
+                result = runner.result()
+                self.assertEqual(result["terminal_reason"], expected)
+                self.assertEqual(result["success"], expected == "final_written")
+                self.assertEqual(step["success"], result["success"])
+                self.assertEqual((runner.episode_dir / "report.md").exists(), result["success"])
+                if not result["success"]:
+                    self.assertIsNone(result["final_text"])
+                    self.assertIn("sections", step["calls"][0]["output"])
+                self.assertEqual(runner.valid_actions(), [False] * 5)
 
     def test_extra_nonfinite_output_does_not_crash_trace_persistence(self):
         class ExtraNan(MockBackend):
