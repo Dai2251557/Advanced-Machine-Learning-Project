@@ -18,6 +18,7 @@ class Completion:
     prompt_tokens: int | None = None
     completion_tokens: int | None = None
     finish_reason: str = "stop"
+    model: str | None = None
 
 
 class Backend(Protocol):
@@ -41,6 +42,7 @@ class DeepSeekBackend:
     model: str = "deepseek-flash"
     timeout: float = 120
     max_tokens: int = 4096
+    reasoning_effort: str | None = None
     name: str = field(default="deepseek", init=False)
 
     def __post_init__(self):
@@ -52,6 +54,8 @@ class DeepSeekBackend:
             raise ValueError("Set DEEPSEEK_API_KEY in the project .env file or local environment first.")
         if not self.model.strip() or self.timeout <= 0 or self.max_tokens < 1:
             raise ValueError("Invalid model, timeout or max_tokens.")
+        if self.reasoning_effort not in (None, "low", "high"):
+            raise ValueError("reasoning_effort must be low or high.")
 
     @classmethod
     def from_env(cls, env_path=None):
@@ -84,6 +88,10 @@ class DeepSeekBackend:
             "max_tokens": self.max_tokens,
             "stream": False,
         }
+        if self.reasoning_effort is not None:
+            body["thinking"] = {"type": "enabled"}
+            body["reasoning_effort"] = self.reasoning_effort
+            body.pop("temperature")
         request = urllib.request.Request(
             self.base_url.rstrip("/") + "/chat/completions",
             data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
@@ -110,7 +118,7 @@ class DeepSeekBackend:
             counts = [usage.get("prompt_tokens"), usage.get("completion_tokens")]
             if any(v is not None and (type(v) is not int or v < 0) for v in counts):
                 raise ValueError()
-            return Completion(content, *counts, choice["finish_reason"])
+            return Completion(content, *counts, choice["finish_reason"], result.get("model"))
         except (KeyError, IndexError, TypeError, ValueError):
             raise RuntimeError("DeepSeek response has an invalid completion or usage schema.") from None
 

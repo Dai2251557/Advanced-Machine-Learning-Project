@@ -1,0 +1,8 @@
+{
+  "config_version": 1,
+  "review_id": "pilot-interface-001",
+  "split": "pilot",
+  "survey_instruction": "仅依据给定摘要，用中文比较 SkillOpt 与 FedSkillGit 的技能更新和验证机制。说明更新单位、候选验证位置和接受条件；摘要未说明的信息明确标为未知，每项论述引用论文编号。",
+  "difficulty": "medium",
+  "corpus_scope": "local_arxiv_ai"
+}
