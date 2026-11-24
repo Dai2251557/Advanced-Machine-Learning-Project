@@ -1,0 +1,15 @@
+{
+  "dataset_kind": "illustrative",
+  "papers": [
+    {
+      "id": "demo-001",
+      "title": "Illustrative study: reinforcement learning for task scheduling",
+      "abstract": "This fictional example describes a reinforcement learning scheduler that selects workers using task features and previous worker performance. Quality and execution cost are considered together. No real experimental results are provided."
+    },
+    {
+      "id": "demo-002",
+      "title": "Illustrative study: checking literature review evidence",
+      "abstract": "This fictional example describes checking claims in literature reviews against supplied paper abstracts. Each summary keeps its paper identifier and a verbatim evidence excerpt. Evidence checks alone do not establish that all generated claims are correct."
+    }
+  ]
+}

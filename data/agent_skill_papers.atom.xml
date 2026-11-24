@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/E86Ewe+G0CCgWXIZ0970B2BM9ZM</id>
+  <title>arXiv Query: search_query=&amp;id_list=2605.23904,2606.03143,2604.16778,2610.21348,2607.21361&amp;start=0&amp;max_results=5</title>
+  <updated>2026-11-23T07:14:18Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=5&amp;id_list=2605.23904,2606.03143,2604.16778,2610.21348,2607.21361" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>5</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2605.23904v2</id>
+    <title>SkillOpt: Executive Strategy for Self-Evolving Agent Skills</title>
+    <updated>2026-05-25T17:58:16Z</updated>
+    <link href="https://arxiv.org/abs/2605.23904v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.23904v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent skills today are hand-crafted, generated one-shot, or evolved through loosely controlled self-revision, none of which behaves like a deep-learning optimizer for the skill, and none of which reliably improves over its starting point under feedback. We argue the skill should instead be trained as the external state of a frozen agent, with the same discipline that makes weight-space optimization reproducible. SkillOpt is, to our knowledge, the first systematic controllable text-space optimizer for agent skills: a separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a single skill document, and an edit is accepted only when it strictly improves a held-out validation score. A textual learning-rate budget, rejected-edit buffer, and epoch-wise slow/meta update make skill training stable while adding zero inference-time model calls at deployment. Across six benchmarks, seven target models, and three execution harnesses (direct chat, Codex, Claude Code), SkillOpt is best or tied on all 52 evaluated (model, benchmark, harness) cells and beats every per-cell competitor among human, one-shot LLM, Trace2Skill, TextGrad, GEPA, and EvoSkill skills. On GPT-5.5 it lifts the average no-skill accuracy by +23.5 points in direct chat, by +24.8 inside the Codex agentic loop, and by +19.1 inside Claude Code. Transfer experiments further show that optimized skill artifacts retain value when moved across model scales, between Codex and Claude Code execution environments, and to a nearby math benchmark without further optimization. Code: https://aka.ms/skillopt</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-22T17:59:50Z</published>
+    <arxiv:comment>27 pages, 4 figures, 6 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yifan Yang</name>
+    </author>
+    <author>
+      <name>Ziyang Gong</name>
+    </author>
+    <author>
+      <name>Weiquan Huang</name>
+    </author>
+    <author>
+      <name>Qihao Yang</name>
+    </author>
+    <author>
+      <name>Ziwei Zhou</name>
+    </author>
+    <author>
+      <name>Zisu Huang</name>
+    </author>
+    <author>
+      <name>Yan Li</name>
+    </author>
+    <author>
+      <name>Xuemei Gao</name>
+    </author>
+    <author>
+      <name>Qi Dai</name>
+    </author>
+    <author>
+      <name>Bei Liu</name>
+    </author>
+    <author>
+      <name>Kai Qiu</name>
+    </author>
+    <author>
+      <name>Yuqing Yang</name>
+    </author>
+    <author>
+      <name>Dongdong Chen</name>
+    </author>
+    <author>
+      <name>Xue Yang</name>
+    </author>
+    <author>
+      <name>Chong Luo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.21361v1</id>
+    <title>FedAgentKE: Federated Semantic Knowledge Evolution for Heterogeneous Agents</title>
+    <updated>2026-07-23T14:24:02Z</updated>
+    <link href="https://arxiv.org/abs/2607.21361v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.21361v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model (LLM)-based agents increasingly rely on reasoning, tool use, and iterative execution, yet existing agent frameworks still operate largely in isolation. While recent memory-based agent systems improve individual agents through local retrieval and workflow reuse, local experiences remain fragmented across isolated agent frameworks, limiting cross-framework knowledge transfer and collaborative reasoning evolution. We propose FedAgentKE, a lightweight framework for Federated Semantic Knowledge Evolution across heterogeneous agents. FedAgentKE enables distributed agent frameworks to collaboratively evolve transferable reasoning abstractions through iterative semantic knowledge distillation, aggregation, and adaptation without sharing raw reasoning trajectories. Experiments demonstrate consistent improvements under both cross-framework and cross-task settings, highlighting the potential of federated semantic knowledge evolution for future collaborative agent ecosystems.</summary>
+    <category term="cs.MA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-23T14:24:02Z</published>
+    <arxiv:comment>9 pages (including appendix)</arxiv:comment>
+    <arxiv:primary_category term="cs.MA"/>
+    <author>
+      <name>Weihao Li</name>
+    </author>
+    <author>
+      <name>Jun Bai</name>
+    </author>
+    <author>
+      <name>Ziyang Song</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.03143v1</id>
+    <title>FederatedSkill: Federated Learning for Agentic Skill Evolution</title>
+    <updated>2026-06-02T04:38:05Z</updated>
+    <link href="https://arxiv.org/abs/2606.03143v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.03143v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Modern LLM agents increasingly rely on skill libraries to handle complex tasks, making skill evolution a primary driver of self-improvement. However, isolated single-user task streams lack the diversity required to build comprehensive skills. While cross-user collaboration can overcome this data bottleneck, current trajectory-sharing approaches compromise user privacy and impose a uniform global library that fails to accommodate client heterogeneity. We introduce FederatedSkill, a privacy-preserving framework for collaborative agent evolution. Moving beyond raw trajectory sharing, FederatedSkill utilizes semantic skill diffs, structured patches over local libraries, as the fundamental unit of communication. On the server side, an evolution agent aggregates these patches to dynamically model client-specific capability boundaries, facilitating strictly personalized skill evolution rather than a suboptimal global average. Evaluated across 20 distinct agent task families, FederatedSkill demonstrates substantial gains over self-evolving baselines, achieving up to a 44.4% increase in success rate and a 37.5% reduction in computational cost.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-02T04:38:05Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Jingbo Yang</name>
+    </author>
+    <author>
+      <name>Guanyu Yao</name>
+    </author>
+    <author>
+      <name>Yang Zhang</name>
+    </author>
+    <author>
+      <name>Ramana Rao Kompella</name>
+    </author>
+    <author>
+      <name>Gaowen Liu</name>
+    </author>
+    <author>
+      <name>Shiyu Chang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.16778v3</id>
+    <title>Federation over Text: Insight Sharing for Multi-Agent Reasoning</title>
+    <updated>2026-09-30T01:53:04Z</updated>
+    <link href="https://arxiv.org/abs/2604.16778v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.16778v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Modern agents specialize in varying domains while there is no clear approach combining different domain skills. We propose a federated learning-like framework, Federation over Text (FoT), that enables multiple clients solving different tasks to collectively generate a shared library of metacognitive insights by iteratively federating their local reasoning processes without sharing actual problem instances. Instead of federation over gradients (e.g., as in distributed training), FoT operates at the semantic level without any gradient optimization or supervision signal. At each round, client LLM agents independently apply arbitrary local reasoning and self-improvement procedures to their own tasks and share the resulting reasoning traces with a central server. The server then aggregates, distills, and consolidates knowledge across tasks and domains into a shared insight library, which can be reused by current and future agents to improve their reasoning. Experiments show that FoT improves reasoning effectiveness and efficiency across real-world daily tasks, cross-domain collaboration, and research insight discovery, achieving an average performance gain of 11.9 absolute percentage points while reducing client-generated task-completion tokens by 5.5%.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-18T01:57:42Z</published>
+    <arxiv:comment>48 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Dixi Yao</name>
+    </author>
+    <author>
+      <name>Tahseen Rabbani</name>
+    </author>
+    <author>
+      <name>Manzil Zaheer</name>
+    </author>
+    <author>
+      <name>Tian Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.21348v1</id>
+    <title>FedSkillGit: Federated Skill Evolution via Version Control</title>
+    <updated>2026-10-15T06:29:57Z</updated>
+    <link href="https://arxiv.org/abs/2610.21348v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.21348v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model agents can improve their capabilities by evolving reusable natural-language skills from execution experience. In real-world deployments, this experience is distributed across data owners who cannot pool their raw data, which motivates federated skill evolution. The natural first design lets each client evolve the whole skill document and upload the result for server-side aggregation. That design is poorly matched to skill evolution for three reasons. An evolved document can still carry client-specific content distilled from private traces, repeated transmission of a nearly unchanged document spends communication on knowledge that the population already holds and the contribution of a single client is buried in a document that the server cannot meaningfully attribute. We propose FedSkillGit, a federated skill evolution framework that replaces full-document updates with commits. Each participating client submits a bounded set of patches over named rules together with its local experience, which summarizes what the round taught it, and the pair passes a two-stage privacy filter before it leaves the client. The server deduplicates the submitted patches and the local experience of all participants, updates a global experience document that only the optimizers read, and merges the surviving patches into a candidate skill. The candidate is distributed to the clients, which score it on their own validation sets and report the results, and it is published only when the reported scores improve on the current version. Experiments on three datasets and three language model families show that FedSkillGit outperforms state-of-the-art baselines by up to 22% and approaches centralized evolution without sharing raw client data.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-15T06:29:57Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Boxun Lan</name>
+    </author>
+    <author>
+      <name>Jiamei Li</name>
+    </author>
+    <author>
+      <name>Weijian Li</name>
+    </author>
+    <author>
+      <name>Chengyu Yang</name>
+    </author>
+    <author>
+      <name>Zhuang Qi</name>
+    </author>
+    <author>
+      <name>Chengcheng Wan</name>
+    </author>
+    <author>
+      <name>Xiaohong Chen</name>
+    </author>
+    <author>
+      <name>Ming Hu</name>
+    </author>
+  </entry>
+</feed>
