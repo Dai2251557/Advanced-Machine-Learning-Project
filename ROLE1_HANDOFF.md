@@ -1,5 +1,7 @@
 # 一号位交接：基础 Agent 与统一 Runner
 
+**数据状态：三号位正式数据尚未交付。** 五篇 AgentSkill 论文已归入 `data/samples/agent_skill/`，仅供功能测试。样例任务须使用 `split=pilot`；Runner 拒绝将 `purpose=pilot_only` 的语料用于 `train/validation/test`，日志保留 `data_purpose`。正式数据预留位置与旧产物分类见 `data/README.md`。
+
 适用契约：`CONTRACT.md`，`config_version=1`。旧 `python -m litreview` 仍保留；二号应接入下面的 `core.Runner` 模块接口，不使用旧固定流水线采样。
 
 ## 二号立即接入
@@ -7,7 +9,7 @@
 无需安装第三方依赖，Python 3.10+。在仓库根目录运行：
 
 ```powershell
-python -m core --backend mock --corpus data/agent_skill_papers.json --task examples/runner_task.json --output outputs/mock-handoff
+python -m core --backend mock --corpus data/samples/agent_skill/agent_skill_papers.json --task examples/runner_task.json --output outputs/pilot/mock-handoff
 ```
 
 单步接口（Mock 不联网、无密钥）：
@@ -18,12 +20,12 @@ from core.runner import Runner
 from core.schema import ACTIONS, ReviewTask, RunnerConfig
 from litreview.pipeline import load_corpus
 
-corpus = load_corpus(Path("data/agent_skill_papers.json"))
-runner = Runner(corpus, config=RunnerConfig(), output_dir="outputs/sampling")
+corpus = load_corpus(Path("data/samples/agent_skill/agent_skill_papers.json"))
+runner = Runner(corpus, config=RunnerConfig(), output_dir="outputs/pilot/sampling")
 state = runner.reset(ReviewTask(
     review_id="R001",
     survey_instruction="仅依据摘要比较各论文的技能更新和验证机制。",
-    split="train",
+    split="pilot",
     difficulty="medium",
 ), seed=0)
 mask = runner.valid_actions()  # 初始 [True, False, False, False, False]
@@ -37,7 +39,7 @@ done = transition["done"]
 ```python
 from litreview.clients import DeepSeekBackend
 runner = Runner(corpus, backend=DeepSeekBackend.from_env(),
-                config=RunnerConfig(), output_dir="outputs/sampling")
+                config=RunnerConfig(), output_dir="outputs/pilot/sampling")
 ```
 
 完整调度使用 `runner.run_episode(policy, task, seed=0)`；`policy` 只需实现：
@@ -100,7 +102,7 @@ git diff --check
 真实联调命令（会发送所选论文标题、摘要、任务及中间产物到官方 API）：
 
 ```powershell
-python -m core --backend deepseek --corpus data/agent_skill_papers.json --task examples/runner_task.json --output outputs/role1-delivery
+python -m core --backend deepseek --corpus data/samples/agent_skill/agent_skill_papers.json --task examples/runner_task.json --output outputs/pilot/role1-delivery
 ```
 
 当前交付验证范围：自动测试与 Mock 联调；真实 API 联调曾被本机网络权限/自动审批阻断，不能声明真实五动作已验收。获得具体语料发送授权后，继续运行真实固定策略及两个深度动作的冒烟验证。

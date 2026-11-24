@@ -259,13 +259,36 @@ class RunnerTests(unittest.TestCase):
     def test_cli_handoff_example_runs_without_network(self):
         with tempfile.TemporaryDirectory() as folder, redirect_stdout(io.StringIO()), \
                 patch("litreview.clients.urllib.request.build_opener") as network:
-            self.assertEqual(main(["--backend", "mock", "--corpus", str(ROOT / "data/agent_skill_papers.json"),
+            self.assertEqual(main(["--backend", "mock", "--corpus", str(ROOT / "data/samples/agent_skill/agent_skill_papers.json"),
                                    "--task", str(ROOT / "examples/runner_task.json"), "--output", folder]), 0)
             network.assert_not_called()
             files = list(Path(folder).glob("*/episode.json"))
             self.assertEqual(len(files), 1)
             result = json.loads(files[0].read_text(encoding="utf-8"))
             self.assertTrue(result["success"])
+            self.assertEqual(result["data_purpose"], "pilot_only")
+            self.assertEqual(result["split"], "pilot")
+            self.assertIn("PILOT", result["final_text"])
+
+    def test_pilot_corpus_cannot_be_used_for_formal_splits(self):
+        corpus = load_corpus(ROOT / "data/samples/agent_skill/agent_skill_papers.json")
+        with tempfile.TemporaryDirectory() as folder:
+            runner = Runner(corpus, output_dir=folder)
+            for split in ("train", "validation", "test"):
+                with self.subTest(split=split), self.assertRaisesRegex(ValueError, "pilot_only"):
+                    runner.reset(replace(TASK, split=split))
+            self.assertEqual(list(Path(folder).iterdir()), [])
+            self.assertIsNone(runner.task)
+            self.assertEqual(runner.reset(replace(TASK, split="pilot"))["review_id"], TASK.review_id)
+
+    def test_formal_split_is_not_blocked_for_other_corpora(self):
+        corpus = load_corpus(ROOT / "examples/demo_papers.json")
+        corpus["purpose"] = "formal_experiment"
+        runner = Runner(corpus)
+        for split in ("train", "validation", "test"):
+            runner.reset(replace(TASK, split=split))
+            self.assertEqual(runner.result()["split"], split)
+            self.assertEqual(runner.result()["data_purpose"], "formal_experiment")
 
 
 class TransportAndSchemaTests(unittest.TestCase):

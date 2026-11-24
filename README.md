@@ -75,10 +75,10 @@ token 统计直接采用接口返回值，不使用字符数冒充 token 数；�
 程序检查字段、重复编号和引用范围，但不会联网核实论文真实性。真实数据应保留来源与采集记录，切勿将演示数据标记为真实论文。
 当前检索会把整个给定集合发送给模型，适合先用少量论文验证流程；大规模语料的索引、分批处理和上下文预算属于后续工作。
 
-已整理用户提供的五篇真实论文和五个初始综述任务，数据来源、版本及运行方法见 [data/README.md](data/README.md)。可直接运行：
+现有五篇 AgentSkill 真实论文和五个任务仅供功能测试，不是正式实验数据；三号位尚未交付正式数据。分类与运行方法见 [data/README.md](data/README.md)。可直接运行：
 
 ```powershell
-python -m litreview --backend deepseek --corpus data/agent_skill_papers.json --task-file data/review_tasks.json --task-id review-001 --output outputs/real-review-001
+python -m litreview --backend deepseek --corpus data/samples/agent_skill/agent_skill_papers.json --task-file data/samples/agent_skill/review_tasks.json --task-id review-001 --output outputs/pilot/agent-skill-001
 ```
 
 也可通过 `python -m litreview.import_arxiv` 从官方元数据 API 导入新的论文列表，保存可核验的原始 Atom 返回。

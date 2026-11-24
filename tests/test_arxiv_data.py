@@ -16,8 +16,8 @@ from litreview.pipeline import load_corpus, load_task
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CORPUS = ROOT / "data" / "agent_skill_papers.json"
-TASKS = ROOT / "data" / "review_tasks.json"
+CORPUS = ROOT / "data" / "samples" / "agent_skill" / "agent_skill_papers.json"
+TASKS = ROOT / "data" / "samples" / "agent_skill" / "review_tasks.json"
 IDS = ["2605.23904", "2606.03143", "2604.16778", "2610.21348", "2607.21361"]
 
 
@@ -158,6 +158,8 @@ class DatasetTests(unittest.TestCase):
                 self.assertEqual(len(result["paper_ids"]), expected_count)
                 trace = json.loads((output / "trace.json").read_text(encoding="utf-8"))
                 self.assertEqual(trace["task_id"], "review-001")
+                self.assertEqual(trace["data_purpose"], "pilot_only")
+                self.assertIn("PILOT", result["report"])
                 self.assertEqual(trace["top_k"], expected_count)
                 for payload in backend.payloads:
                     self.assertNotIn("evaluation_points", payload)

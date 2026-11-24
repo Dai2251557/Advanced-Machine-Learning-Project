@@ -26,12 +26,15 @@ class Runner:
                 or any(not isinstance(v, str) or not v.strip() for p in self.papers for v in p.values())):
             raise ValueError("Corpus requires unique IDs and nonempty source texts.")
         self.dataset_kind = corpus.get("dataset_kind", "unknown")
+        self.data_purpose = corpus.get("purpose", "unspecified")
         self.executor = AgentExecutor(backend if backend is not None else MockBackend(), self.config)
         self.output_dir = Path(output_dir) if output_dir is not None else None
         self.task = None
 
     def reset(self, review_task, seed=None):
         task = review_task if isinstance(review_task, ReviewTask) else ReviewTask.from_dict(review_task)
+        if self.data_purpose == "pilot_only" and task.split != "pilot":
+            raise ValueError("pilot_only corpus is for functional testing only; use split=pilot, not train/validation/test.")
         self.task = task
         self.seed = seed
         self.trajectory_id = "episode-" + uuid.uuid4().hex
@@ -133,6 +136,8 @@ class Runner:
                 lines = ["# 文献综述", "", "范围：仅依据提供的论文摘要。", ""]
                 if self.executor.backend.name == "mock":
                     lines += ["> MOCK 合成演示，不是实际模型输出或实验结果。", ""]
+                if self.data_purpose == "pilot_only":
+                    lines += ["> PILOT 功能测试样例，不属于正式训练、标定或独立测试结果。", ""]
                 for section in draft["sections"]:
                     lines += ["## " + section["heading"], "", section["text"] + " " +
                               " ".join("[" + p + "]" for p in section["paper_ids"]), ""]
@@ -211,7 +216,8 @@ class Runner:
             "config_version": self.config.config_version, "review_id": self.task.review_id,
             "trajectory_id": self.trajectory_id, "split": self.task.split, "seed": self.seed,
             "execution_kind": "mock" if self.executor.backend.name == "mock" else "real",
-            "dataset_kind": self.dataset_kind, "config": asdict(self.config),
+            "dataset_kind": self.dataset_kind, "data_purpose": self.data_purpose,
+            "config": asdict(self.config),
             "success": self.state["terminal_reason"] == "final_written",
             "terminal_reason": self.state["terminal_reason"], "final_text": self.final_text,
             "final_text_ref": str((self.episode_dir / "report.md").resolve())

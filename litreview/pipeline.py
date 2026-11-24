@@ -173,6 +173,8 @@ class FixedRulePipeline:
         lines = ["# 文献综述", "", query, "", "范围：仅依据所提供的论文摘要。", ""]
         if self.backend.name == "demo" or corpus["dataset_kind"] == "illustrative":
             lines += ["> 演示输出：含离线流程或虚构示例数据，不能作为正式实验结果。", ""]
+        if corpus.get("purpose") == "pilot_only":
+            lines += ["> PILOT 功能测试样例，不属于正式训练、标定或独立测试结果。", ""]
         for section in draft["sections"]:
             citations = " ".join("[" + pid + "]" for pid in section["paper_ids"])
             lines += ["## " + section["heading"], "", section["text"] + " " + citations, ""]

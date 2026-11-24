@@ -45,6 +45,7 @@ def main(argv=None):
         if pipeline is not None and output_created:
             trace = pipeline.trace()
             trace.update(query=query, dataset_kind=corpus["dataset_kind"], top_k=top_k, task_id=args.task_id,
+                         data_purpose=corpus.get("purpose", "unspecified"),
                          status="success" if exit_code == 0 else "error")
             try:
                 (args.output / "trace.json").write_text(
