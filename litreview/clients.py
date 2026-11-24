@@ -35,6 +35,20 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
         return None
 
 
+class BackendError(RuntimeError):
+    """Transport diagnostics with no response body, URL or credential contents."""
+    def __init__(self, code, http_status=None):
+        self.code = code
+        self.http_status = http_status
+        message = {
+            "http_error": f"DeepSeek HTTP {http_status}; check endpoint, access and quota.",
+            "connection_error": "DeepSeek connection failed or timed out.",
+            "invalid_json": "DeepSeek returned invalid response JSON.",
+            "invalid_schema": "DeepSeek response has an invalid completion or usage schema.",
+        }[code]
+        super().__init__(message)
+
+
 @dataclass
 class DeepSeekBackend:
     api_key: str = field(repr=False)
@@ -104,11 +118,11 @@ class DeepSeekBackend:
             with opener.open(request, timeout=self.timeout) as response:
                 result = json.load(response)
         except urllib.error.HTTPError as exc:
-            raise RuntimeError(f"DeepSeek HTTP {exc.code}; check endpoint, access and quota.") from None
+            raise BackendError("http_error", exc.code) from None
         except (urllib.error.URLError, TimeoutError, OSError):
-            raise RuntimeError("DeepSeek connection failed or timed out.") from None
+            raise BackendError("connection_error") from None
         except (ValueError, UnicodeError):
-            raise RuntimeError("DeepSeek returned invalid response JSON.") from None
+            raise BackendError("invalid_json") from None
         try:
             choice = result["choices"][0]
             content = choice["message"]["content"]
@@ -120,7 +134,7 @@ class DeepSeekBackend:
                 raise ValueError()
             return Completion(content, *counts, choice["finish_reason"], result.get("model"))
         except (KeyError, IndexError, TypeError, ValueError):
-            raise RuntimeError("DeepSeek response has an invalid completion or usage schema.") from None
+            raise BackendError("invalid_schema") from None
 
 
 class DemoBackend:

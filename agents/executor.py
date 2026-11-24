@@ -6,9 +6,10 @@ import json
 import math
 import time
 from dataclasses import replace
+from datetime import datetime, timezone
 
 from core.schema import SCORE_KEYS
-from litreview.clients import Completion, DeepSeekBackend, DemoBackend
+from litreview.clients import BackendError, Completion, DeepSeekBackend, DemoBackend
 from litreview.pipeline import nonempty_text, require, validate_ids
 
 SUMMARY_PROMPT = (
@@ -65,6 +66,8 @@ class MockBackend(DemoBackend):
 
 class AgentExecutor:
     def __init__(self, backend, config):
+        if not isinstance(backend, (DeepSeekBackend, MockBackend)):
+            raise ValueError("Shared Runner accepts only DeepSeekBackend or explicit MockBackend.")
         if isinstance(backend, DeepSeekBackend):
             if backend.base_url.rstrip("/") not in ("https://api.deepseek.com", "https://api.deepseek.com/v1"):
                 raise ValueError("The shared Runner requires the official DeepSeek endpoint.")
@@ -90,6 +93,7 @@ class AgentExecutor:
             if cached is None and not can_call():
                 raise RuntimeError("Workflow budget exhausted before next API call.")
             event = {"role": role, "model_requested": client.model, "model_actual": None,
+                     "started_at": datetime.now(timezone.utc).isoformat(),
                      "reasoning_effort": effort, "attempt": attempt + 1,
                      "prompt": instruction, "payload": copy.deepcopy(request_payload),
                      "cache_key": key, "cache_hit": cached is not None,
@@ -105,6 +109,8 @@ class AgentExecutor:
                              response_text=completion.content)
                 require(completion.finish_reason == "stop", "Output truncated or interrupted.")
                 value = json.loads(completion.content)
+                # Validate all nested fields, including extras ignored by role validators.
+                json.dumps(value, allow_nan=False)
                 require(isinstance(value, dict), "Expected JSON object.")
                 validator(value)
                 event.update(status="ok", output=copy.deepcopy(value))
@@ -118,6 +124,9 @@ class AgentExecutor:
                     raise ValueError(event["error"]) from None
                 request_payload = {**payload, "previous_output": event.get("response_text"),
                                    "validation_feedback": "Repair the JSON schema, exact evidence and citation coverage."}
+            except BackendError as exc:
+                event.update(error=str(exc), error_code=exc.code, http_status=exc.http_status)
+                raise RuntimeError(event["error"]) from None
             except Exception:
                 event["error"] = "Transport or backend failure; " + type(self.backend).__name__
                 raise RuntimeError(event["error"]) from None

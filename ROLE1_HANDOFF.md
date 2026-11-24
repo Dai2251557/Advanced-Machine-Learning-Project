@@ -1,5 +1,7 @@
 # 一号位交接：基础 Agent 与统一 Runner
 
+契约核查结果、已修复问题和剩余验收条件见 [ROLE1_AUDIT.md](ROLE1_AUDIT.md)。共享执行器仅接受 DeepSeekBackend 或显式 MockBackend，避免把离线替身标成真实实验。
+
 **数据状态：三号位正式数据尚未交付。** 五篇 AgentSkill 论文已归入 `data/samples/agent_skill/`，仅供功能测试。样例任务须使用 `split=pilot`；Runner 拒绝将 `purpose=pilot_only` 的语料用于 `train/validation/test`，日志保留 `data_purpose`。正式数据预留位置与旧产物分类见 `data/README.md`。
 
 适用契约：`CONTRACT.md`，`config_version=1`。旧 `python -m litreview` 仍保留；二号应接入下面的 `core.Runner` 模块接口，不使用旧固定流水线采样。
