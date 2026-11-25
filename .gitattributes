@@ -1,0 +1,2 @@
+# Preserve the exact bytes of downloaded metadata for reproducible SHA-256 checks.
+*.atom.xml -text
