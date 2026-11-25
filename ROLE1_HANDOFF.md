@@ -1,5 +1,7 @@
 # 一号位交接：基础 Agent 与统一 Runner
 
+**检索更新**：当前集成分支已改用公开题面的中英术语扩展与 BM25 排序，结果新增 `retrieval` 审计元数据；公共五动作及状态不变。下文早期词项检索说明以 [RETRIEVAL_REVIEW.md](RETRIEVAL_REVIEW.md) 为准。真实训练探针尚待具体外发授权。
+
 契约核查结果、已修复问题和剩余验收条件见 [ROLE1_AUDIT.md](ROLE1_AUDIT.md)。共享执行器仅接受 DeepSeekBackend 或显式 MockBackend，避免把离线替身标成真实实验。
 
 **数据状态：三号冻结数据已接入本地集成分支，入口见 INTEGRATION_HANDOFF.md。** 五篇 AgentSkill 论文已归入 `data/samples/agent_skill/`，仅供功能测试。样例任务须使用 `split=pilot`；Runner 拒绝将 `purpose=pilot_only` 的语料用于 `train/validation/test`，日志保留 `data_purpose`。正式数据预留位置与旧产物分类见 `data/README.md`。
