@@ -1,0 +1,12 @@
+[
+  {"review_id": "T001","split": "test","survey_instruction": "请比较单句声明与长篇新闻的事实核查流程。对单句声明，说明怎样找到相关证据、判断它是否支持声明；对整篇报道，说明怎样借用已有的声明核查模型，以及这样做对新闻标注数据的需求有什么影响。","difficulty": "easy","config_version": 1,"corpus_scope": "local_arxiv_ai"},
+  {"review_id": "T002","split": "test","survey_instruction": "多个目标不能同时达到最优时，怎样找到一组有代表性的折中解？比较两条逼近 Pareto 前沿的路线：一条允许改变每次评估的精度，另一条用粒子群体和路径采样平衡目标。说明它们各自依据什么推进搜索，以及评估成本和前沿形状在各自的实验中扮演什么角色。","difficulty": "hard","config_version": 1,"corpus_scope": "local_arxiv_ai"},
+  {"review_id": "T003","split": "test","survey_instruction": "机器人抓取失败后再试一次，什么时候只会重复同一个错误，什么时候却能弥补模型不准？比较利用以往失败调整抓法和在闭环控制中持续追踪目标这两条路线。再以外部扰动为例，说明为什么偶发异常和持续异常不一定适合用同一种恢复策略。","difficulty": "medium","config_version": 1,"corpus_scope": "local_arxiv_ai"},
+  {"review_id": "T004","split": "test","survey_instruction": "识别日常活动时，“坐着”也是“静止”，而一段加速度记录的前后又可能分别是走路和跑步。比较研究者怎样用类别层次表达前一种关系、怎样用时间序列标注捕捉后一种变化，并说明给整个时间窗口只贴一个标签会漏掉什么。","difficulty": "easy","config_version": 1,"corpus_scope": "local_arxiv_ai"},
+  {"review_id": "T005","split": "test","survey_instruction": "把不同来源的数据都表示成图，就一定能跨来源查询吗？先比较两个实际需求：数据新闻需要不断增删来源，环境监测需要把传感器记录同地方知识对接。说明两者分别要解决什么整合问题，再用开放数据的调查结果解释，来源之间还可能缺少哪些联系。","difficulty": "medium","config_version": 1,"corpus_scope": "local_arxiv_ai"},
+  {"review_id": "T006","split": "test","survey_instruction": "模型按顺序学习多个任务时，有的做法生成旧任务的样本来复习，有的则在学习过程中冻结或剪除部分权重。比较这两条路线，并结合实验讨论两个问题：测试时是否知道当前是哪项任务，会怎样影响对抗遗忘效果的判断？如果训练时间和可用权重都有限，两条路线又分别有哪些开销值得考察？","difficulty": "hard","config_version": 1,"corpus_scope": "local_arxiv_ai"},
+  {"review_id": "T007","split": "test","survey_instruction": "语音通话中的残余回声和机器人运动时发出的机械声都会干扰人声。比较两类系统怎样分别利用双讲检测或电机开关状态来学习。为什么评估前者时不能只看回声压低了多少，而评估后者时研究者会看音素识别错了多少？","difficulty": "medium","config_version": 1,"corpus_scope": "local_arxiv_ai"},
+  {"review_id": "T008","split": "test","survey_instruction": "从表计读数可以研究两类问题：用量在更短的时间间隔内是怎么变的，以及不同设备各用了多少。结合电表和水表研究，比较两类任务各自拿到什么读数、想还原什么量，并解释为什么多台设备同时工作会给后一类任务带来困难。","difficulty": "easy","config_version": 1,"corpus_scope": "local_arxiv_ai"},
+  {"review_id": "T009","split": "test","survey_instruction": "类别概率和数值预测区间都能表示模型有多大把握，却不是同一种输出。比较两种做法：怎样校准过度自信的分类分数，怎样用模型预测之间的差异和验证误差构造单次预测的区间？结合研究者报告的 log-loss 和区间宽度，说明他们各用什么结果判断方法是否有改进，而不要把两种数字放在一起排名。","difficulty": "medium","config_version": 1,"corpus_scope": "local_arxiv_ai"},
+  {"review_id": "T010","split": "test","survey_instruction": "在多智能体无碰撞寻路中，基于冲突的搜索（CBS）要反复处理路径之间的冲突。比较三种改法：改变先处理哪个冲突、一次分支同时处理可预见的后续冲突，以及用逐次加入约束代替分支。说明每种改法动了搜索的哪一步；引用实验结果时，区分搜索树变小、约束变少和运行时间缩短各是相对什么做法而言。","difficulty": "hard","config_version": 1,"corpus_scope": "local_arxiv_ai"}
+]

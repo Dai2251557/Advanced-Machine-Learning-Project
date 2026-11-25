@@ -1,48 +1,24 @@
-# run_judge_example.py
-import os
-from pathlib import Path
-from dotenv import load_dotenv
+"""从仓库根目录执行 python -B -m utils.run_judge_example；只在 stdout 展示合成回执。"""
+
 import json
-from evaluation.judge import judge_final_review, save_judge_result
 
-# 加载.env
-load_dotenv()
-judge_api_key = os.getenv("DEEPSEEK_JUDGE_API_KEY")
-if not judge_api_key:
-    raise SystemExit("错误：未读取到 DEEPSEEK_JUDGE_API_KEY，请检查 .env 文件")
+from evaluation.judge import FIXTURE_MODEL, build_judge_request, finalize_judge_result, prepare_fixture_review
 
-# 这里是测试文本
-review_id = "R001"
-topic = "写一篇DQN在多智能体系统应用的文献综述"
 
-final_text = """
-# DQN多智能体综述
-深度Q网络(DQN)在多智能体强化学习中得到大量应用。
-很多工作针对环境非平稳问题做改进，包括集中式训练分布式执行框架。
-"""
+def main():
+    prepared = prepare_fixture_review(
+        survey_instruction="说明玩具方法的输入与输出。", final_text="输入为色块，输出为其颜色。[toy-A]\n",
+        frozen_papers=[{"id": "toy-A", "title": "虚构的颜色识别", "abstract": "该玩具方法返回输入色块的颜色。"}],
+        review_id="fixture-example", trajectory_id="fixture-example-01", split="train",
+    )
+    # 常量只演示评分 JSON 的协议与均分，并非对文本的实际评价。
+    content = json.dumps({"coverage": 0.8, "factuality": 0.7, "citation_support": 0.9, "consistency": 0.6,
+                          "overall": 0.75, "rationale": "离线协议示例：四个分项均为自造数值。"}, ensure_ascii=False)
+    receipt = {"binding": dict(prepared["binding"]), "request": build_judge_request(prepared),
+               "response": {"model": FIXTURE_MODEL, "choices": [
+        {"finish_reason": "stop", "message": {"content": content}}]}}
+    print(json.dumps(finalize_judge_result(prepared, receipt), indent=2, ensure_ascii=False))
 
-source_papers = [
-    {
-        "paper_id": "2012.13026v1",
-        "title": "Rethink AI‑based Power Grid Control",
-        "abstract": "Recently, deep reinforcement learning (DRL)‑based approach has shown promise solving complex decision ..."
-    }
-]
 
-jr = judge_final_review(
-    topic=topic,
-    final_text=final_text,
-    source_papers=source_papers,
-    review_id=review_id,
-    api_key=judge_api_key
-)
-
-if jr is not None:
-    out_dir = Path("./outputs/judge_labels/train")
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_file = out_dir / f"{review_id}_judge.json"
-    save_judge_result(jr, str(out_file))
-    print("===Judge打分结果===")
-    print(json.dumps(jr, indent=2, ensure_ascii=False))
-else:
-    print("无有效终稿，跳过打分")
+if __name__ == "__main__":
+    main()
