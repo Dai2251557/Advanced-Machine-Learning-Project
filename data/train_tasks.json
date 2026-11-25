@@ -1,0 +1,242 @@
+[
+  {
+    "config_version": 1,
+    "review_id": "R001",
+    "split": "train",
+    "survey_instruction": "用强化学习做交通控制时，看到更多信息和适应新环境是不是同一个问题？结合匝道控制，说明视频与点检测器可观察到什么、实验用什么交通指标评价控制效果；再用城市路口实例说明路口结构或车流改变时的方法与证据。区分观察范围、控制成效与跨环境有效性，不把不同实验合成算法排名。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R002",
+    "split": "train",
+    "survey_instruction": "文本生成研究怎样从生成通顺的句子走向面向用户的内容选择？简述方法路线与质量目标；举例说明缺少训练样本或标注时，如何获得生成模型的学习信号；再说明个性化评论如何决定写什么，以及为何不能用一般生成质量代替个性化评价。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R003",
+    "split": "train",
+    "survey_instruction": "从三个角度评述推荐系统的公平性：按用户活跃度观察时，哪些人可能得到较差的推荐，原因是什么；在协同过滤中，怎样在缺少人口统计信息时兼顾公平与准确性；在面向提供者的重排中，用户偏好起什么作用。说明后两种方法分别以什么为依据讨论公平与准确性的权衡，不做跨研究排名。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R004",
+    "split": "train",
+    "survey_instruction": "比较卷积网络硬件加速中的两类资源问题：FPGA 加速器的资源利用为何可能限制性能，面向图像检索的 ASIC 又为何需要压缩模型。说明 ASIC 案例如何评估量化对检索性能的影响，以及如何在片上缓冲区有限时处理大图。将结论限定在各自的硬件和任务上。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R005",
+    "split": "train",
+    "survey_instruction": "在模式分析的预处理阶段，为什么需要识别无关特征？以回归神经网络为例，说明研究采用什么网络和核函数进行特征选择，以及模拟数据和真实数据分别承担了什么验证任务。",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R006",
+    "split": "train",
+    "survey_instruction": "从防御角度评述深度强化学习策略的安全：区分观测受扰时的行为鲁棒性与策略被复制时的保密性，说明水印可以支持哪种事后核查，以及该水印演示能支持多大范围的结论。只讨论保护目标与验证证据，不描述攻击或触发步骤。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R007",
+    "split": "train",
+    "survey_instruction": "为什么联邦学习中数据留在客户端，还要分别考虑隐私泄露与训练数据受污染？就隐私而言，解释参数共享留下的风险，比较差分隐私和安全多方计算对隐私与模型准确性的作用；就鲁棒性而言，说明局部噪声如何影响联合训练，以及借助可信样本抵抗噪声需要什么前提。区分两项工作的保护目标。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "N008",
+    "split": "train",
+    "survey_instruction": "比较两类三维视觉问题：从单个点云刻画形状，以及从连续点云估计运动。说明不规则点的分布给形状表示带来什么困难，如何利用局部点间关系表示形状；再解释连续点云之间要预测什么，以及缺少逐点运动标注时可以用什么信号检验预测。区分两类方法所利用的几何信息，不比较不同任务上的分数。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R009",
+    "split": "train",
+    "survey_instruction": "抽取式问答既要理解问题与原文的联系，也要划出恰当的答案片段。说明上下文表示与双向注意力在问题和原文的对齐中各起什么作用，再比较处理答案边界的两种时机：解码时怎样协调起止位置，抽取后依据哪些输入核查片段。说明片段校正针对哪类定位错误，与判断问题能否作答有何不同。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R010",
+    "split": "train",
+    "survey_instruction": "对照电网电压控制与多级供应链补货两个案例。先说明电网研究考察了哪些强化学习设计问题、模仿策略如何给出动作，以及论文如何评价这种转变。再说明库存案例的容量与补货时间约束、库存决策如何组织、A2C 使用怎样的动作空间，以及奖励如何体现业务目标。依据这些差别，解释为什么不能用两篇论文的结果判定哪类算法更好。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R011",
+    "split": "train",
+    "survey_instruction": "在多轮对话矛盾检测中，按交谈双方的身份，研究收集了哪两类矛盾对话？比较按话语组织信息与不作这种结构区分的建模方式，说明研究在哪些对话上观察到了稳健性和迁移性的差异。",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R012",
+    "split": "train",
+    "survey_instruction": "为减少强化学习所需的真实交互，有哪几种利用经验提高样本效率的思路？从摘要库挑选至少两条不同路线，比较所选方法依赖的额外信息或假设。说明研究用什么任务和对照验证效率，结论能否推广到真实机器人；不把不同任务报告的效率直接换算成统一排名。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R013",
+    "split": "train",
+    "survey_instruction": "以标注稀缺时的一致性训练为例，说明它要求未标注样本的预测满足什么条件。研究怎样改变输入扰动，又分别用什么文本任务和视觉任务检验这种改变？如果要据此判断模型能否跨模态迁移，这些实验的证据边界在哪里？",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R014",
+    "split": "train",
+    "survey_instruction": "比较两种从许多候选算法配置或流水线中做选择的思路。一方面，说明算法组合的泛化保证联系哪两种性能表现，扩大组合为何既有吸引力又有代价；另一方面，说明自动化流水线搜索如何表示组合搜索空间，又怎样决定在新数据集上优先做哪些实验。区分理论保证约束的对象与经验评估所支持的结论。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R015",
+    "split": "train",
+    "survey_instruction": "对照非配对图文数据上的双向生成与电商知识图谱的构建和使用。说明双向生成如何在没有成对样本时学习，以及两组数据上的实验分别和哪些方法相比；再说明电商案例从什么输入构图、所得知识用于哪些面向用户的文本任务。区分双向循环训练的证据与知识图谱在业务中被使用的证据。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R016",
+    "split": "train",
+    "survey_instruction": "在描述逻辑 ALC 中引入整数特征时，已有的稠密域结果为何不能直接解决一致性判定问题？说明新扩展允许的数值比较，以及一般 TBox 下的一致性判定上界与标准 ALC 的关系。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R017",
+    "split": "train",
+    "survey_instruction": "电商平台如何在规模庞大、不断变化的商品目录中筛查违规图像？举例说明需要识别的违规内容，概括训练数据和类别定义带来的困难，以及系统结合了哪些自动识别与人工参与手段。",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R018",
+    "split": "train",
+    "survey_instruction": "语义分割中的两类错误该怎样区分：训练标注的边缘错位，和预测结果与周围环境的空间关系不符？比较边界学习与本体推理各自从哪里获得纠错依据，以及纠正的是边缘位置还是分类结果。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R019",
+    "split": "train",
+    "survey_instruction": "当稀疏簇和稠密簇并存时，为什么仅凭距离判断相似性会给谱聚类带来困难？以 CAST 为例，梳理系数矩阵的构造与正则化这两个相继的步骤，并说明所得矩阵有哪些与聚类有关的性质。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R020",
+    "split": "train",
+    "survey_instruction": "当查询与候选材料难以直接匹配时，可以怎样补充检索线索？比较用神经模型扩展文档内容与丰富匹配表示两条路线。结合实例，区分三类证据各能支持什么结论：少标注条件下的检索结果、无监督取得的辅助信息，以及检索基准上的性能改善。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R021",
+    "split": "train",
+    "survey_instruction": "人和智能体怎样共同参与设计，而不只是让算法生成成品？以形状共创平台和游戏关卡共创为例，说明共享设计工具与语言的作用，并解释为什么复现既有关卡的质量不能替代对设计者受益情况的考察。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R022",
+    "split": "train",
+    "survey_instruction": "准备把机器人策略从仿真移到真机时，哪些工作可以先在仿真中完成，哪些结论还需要真实数据？综述如何减少真机训练或筛选策略的开销，并结合机器人任务比较三类证据：仿真中学会了任务、根据真实轨迹预测迁移表现、在真机上验证了任务表现。解释为什么仿真成功或迁移指标的相关性不能代替真机任务验证。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R023",
+    "split": "train",
+    "survey_instruction": "一个总体分数可能掩盖医学影像模型的哪些表现差异？结合病变识别与解剖结构分割的研究，举例说明按病情或解剖区域分别评估能看到什么，并区分识别与分割指标各自在评估什么。用实际结果说明，为什么任务与指标不同的分数不能直接用来排名。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R024",
+    "split": "train",
+    "survey_instruction": "为什么符合一个公平指标，不等于组织已经落实了负责任 AI 原则？比较模型层面的偏差缓解与组织层面的评估和治理：两者各自能解决什么问题？结合实例，区分公平指标的适用前提与仍需组织判断或跟踪的事项。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R025",
+    "split": "train",
+    "survey_instruction": "从数据学习因果图时，怎样判断一种改进究竟解决了什么问题？对比整图监督预测与基于条件独立关系的结构恢复，举例说明变量输入次序对结果的影响，以及限制搜索范围带来的收益与代价。结合这些证据，讨论置换等变设计或搜索效率的改进能否充当其他算法的顺序保证。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R026",
+    "split": "train",
+    "survey_instruction": "数字视频档案需要转码以便长期读取，怎样在允许转码的同时核验内容是否被改动？以 ARCHANGEL 为例，说明时间内容哈希应对哪些变化敏感、对哪些变化保持不变，以及独立档案馆用分布式账本保护哪些核验材料。",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R027",
+    "split": "train",
+    "survey_instruction": "自动探索的成果应当用什么衡量？比较液滴实验的无预设优化目标搜索与软体机器人的步态库构建，说明两者如何展示发现了多样行为。再以个体模型的参数校准为对照，解释拟合观测数据的好坏为何不能直接衡量这两种探索的成果。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R028",
+    "split": "train",
+    "survey_instruction": "多智能体策略遇到训练时没见过的另一方，成功“泛化”意味着什么？对比竞争博弈中的未见对手与具身通信中的新协作伙伴，说明高低层策略如何分工、通信协议在什么条件下能够泛化，以及为什么两项研究检验的能力不同。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R029",
+    "split": "train",
+    "survey_instruction": "评估深度强化学习策略是否适合部署时，训练稳健性和安全属性验证分别能说明什么？以 DQN 对受扰观测的适应和机器人决策模型的半形式化验证为例，说明前者考察的训练条件、为什么总奖励不足以衡量安全，以及后者采用的验证方法与计算代价。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai"
+  },
+  {
+    "config_version": 1,
+    "review_id": "R030",
+    "split": "train",
+    "survey_instruction": "汇总公众对伦理困境的道德偏好时，差分隐私可以保护谁的信息，又可以由谁来施加扰动？区分投票人层面与记录层面的保护，说明集中式与分布式扰动在隐私参数的设定和扰动对象上有何不同。",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai"
+  }
+]

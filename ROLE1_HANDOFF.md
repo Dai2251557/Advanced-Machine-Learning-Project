@@ -2,7 +2,7 @@
 
 契约核查结果、已修复问题和剩余验收条件见 [ROLE1_AUDIT.md](ROLE1_AUDIT.md)。共享执行器仅接受 DeepSeekBackend 或显式 MockBackend，避免把离线替身标成真实实验。
 
-**数据状态：三号位正式数据尚未交付。** 五篇 AgentSkill 论文已归入 `data/samples/agent_skill/`，仅供功能测试。样例任务须使用 `split=pilot`；Runner 拒绝将 `purpose=pilot_only` 的语料用于 `train/validation/test`，日志保留 `data_purpose`。正式数据预留位置与旧产物分类见 `data/README.md`。
+**数据状态：三号冻结数据已接入本地集成分支，入口见 INTEGRATION_HANDOFF.md。** 五篇 AgentSkill 论文已归入 `data/samples/agent_skill/`，仅供功能测试。样例任务须使用 `split=pilot`；Runner 拒绝将 `purpose=pilot_only` 的语料用于 `train/validation/test`，日志保留 `data_purpose`。正式数据预留位置与旧产物分类见 `data/README.md`。
 
 适用契约：`CONTRACT.md`，`config_version=1`。旧 `python -m litreview` 仍保留；二号应接入下面的 `core.Runner` 模块接口，不使用旧固定流水线采样。
 
@@ -89,7 +89,7 @@ class MyScheduler:
 
 固定规则：无材料先检索；有材料无总结先 fast 总结；评分有效且综合分达到 0.75 时 fast 写作；覆盖不足且还有论文时补检索，否则 deep 修订；最多调用 3 次总结；剩最后一步时优先写作。参数保存在配置中。正式测试前需完成训练集标定并冻结，不能看测试结果再调。
 
-三号可直接读取 `EpisodeResult.final_text/source_papers/review_id/split` 离线评测。`examples/runner_task.json` 与当前五篇语料仅为 pilot 联调，不冒充三号尚待交付的独立训练/测试集。
+三号可直接读取 `EpisodeResult.final_text/source_papers/review_id/split` 离线评测。`examples/runner_task.json` 与当前五篇语料仅为 pilot 联调，不冒充三号已交付的独立训练/测试集。
 
 Verifier 四维 Prompt 已位于 `agents/executor.py`，等权综合分位于 `core/schema.py`。三方仍需在正式标定前确认具体评分尺度、阈值和 StateEncoder 编码；本次实现不代表完成了标定。
 
