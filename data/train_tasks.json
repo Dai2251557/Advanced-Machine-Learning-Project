@@ -3,7 +3,7 @@
     "config_version": 1,
     "review_id": "R001",
     "split": "train",
-    "survey_instruction": "综述深度强化学习在交通信号控制与匝道控制中的应用进展，重点比较基于视频数据与基于点检测器的方法差异。",
+    "survey_instruction": "综述深度强化学习在交通信号控制与匝道控制中的应用进展，比较基于视频数据与基于点检测器的方法差异。",
     "difficulty": "easy",
     "corpus_scope": "local_arxiv_ai",
     "source_papers": ["2012.12104v1", "1904.12901v1"]
@@ -12,7 +12,7 @@
     "config_version": 1,
     "review_id": "R002",
     "split": "train",
-    "survey_instruction": "综述文本生成技术从模板方法到神经网络方法的演进，并讨论个性化文本生成的研究方向。",
+    "survey_instruction": "综述文本生成技术从模板方法到神经网络方法的演进，讨论个性化文本生成的研究方向。",
     "difficulty": "easy",
     "corpus_scope": "local_arxiv_ai",
     "source_papers": ["1905.01984v1", "1905.02019v1", "1904.08109v1"]
@@ -21,10 +21,10 @@
     "config_version": 1,
     "review_id": "R003",
     "split": "train",
-    "survey_instruction": "综述推荐系统中公平性问题的成因与缓解方法，重点讨论重排序与协同过滤中的偏差处理。",
+    "survey_instruction": "综述推荐系统中公平性问题的成因与缓解方法，讨论协同过滤中的偏差处理。",
     "difficulty": "easy",
     "corpus_scope": "local_arxiv_ai",
-    "source_papers": ["2006.05255v1", "2005.12974v1", "2006.02046v2"]
+    "source_papers": ["2006.05255v1", "2005.12974v1"]
   },
   {
     "config_version": 1,
@@ -57,6 +57,33 @@
     "config_version": 1,
     "review_id": "R007",
     "split": "train",
+    "survey_instruction": "综述隐私保护机器学习中的差分隐私与联邦学习鲁棒训练方法。",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["1905.02941v1", "1906.01562v2", "2012.12718v1"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R008",
+    "split": "train",
+    "survey_instruction": "综述机器视觉中骨架表示与骨架方法在目标检测等任务中的应用。",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["2012.12447v1", "1904.07601v3"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R009",
+    "split": "train",
+    "survey_instruction": "综述问答系统中双向注意力与预训练语言模型结合的方法。",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["1905.02019v1", "1904.08109v1"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R010",
+    "split": "train",
     "survey_instruction": "综述深度强化学习在电力系统电压控制与供应链库存管理中的应用，比较模仿学习与 A2C 等方法的适用边界。",
     "difficulty": "medium",
     "corpus_scope": "local_arxiv_ai",
@@ -64,7 +91,7 @@
   },
   {
     "config_version": 1,
-    "review_id": "R008",
+    "review_id": "R011",
     "split": "train",
     "survey_instruction": "综述对话系统中的一致性、矛盾检测与目标导向对话建模，比较结构化与非结构化方法。",
     "difficulty": "medium",
@@ -73,7 +100,7 @@
   },
   {
     "config_version": 1,
-    "review_id": "R009",
+    "review_id": "R012",
     "split": "train",
     "survey_instruction": "综述基于样本效率的强化学习方法，包括情景记忆、随机化函数逼近与主动推断。",
     "difficulty": "medium",
@@ -82,16 +109,16 @@
   },
   {
     "config_version": 1,
-    "review_id": "R010",
+    "review_id": "R013",
     "split": "train",
     "survey_instruction": "综述半监督与自监督学习中的一致性训练与数据增强策略，讨论文本与视觉任务的迁移。",
     "difficulty": "medium",
     "corpus_scope": "local_arxiv_ai",
-    "source_papers": ["1904.12848v6", "2006.04757v3", "1904.12848v6"]
+    "source_papers": ["1904.12848v6", "2006.04757v3"]
   },
   {
     "config_version": 1,
-    "review_id": "R011",
+    "review_id": "R014",
     "split": "train",
     "survey_instruction": "综述算法选择与 AutoML 流水线搜索方法，比较基于学习理论保证与基于矩阵/张量分解的代理模型。",
     "difficulty": "medium",
@@ -100,16 +127,7 @@
   },
   {
     "config_version": 1,
-    "review_id": "R012",
-    "split": "train",
-    "survey_instruction": "综述联邦学习与隐私保护机器学习中的鲁棒训练与差分隐私方法。",
-    "difficulty": "medium",
-    "corpus_scope": "local_arxiv_ai",
-    "source_papers": ["1905.02941v1", "1906.01562v2", "2012.12718v1"]
-  },
-  {
-    "config_version": 1,
-    "review_id": "R013",
+    "review_id": "R015",
     "split": "train",
     "survey_instruction": "综述图到文本与文本到图的生成方法，重点讨论无监督循环训练与知识图谱结合。",
     "difficulty": "medium",
@@ -118,7 +136,7 @@
   },
   {
     "config_version": 1,
-    "review_id": "R014",
+    "review_id": "R016",
     "split": "train",
     "survey_instruction": "综述描述逻辑与形式化推理在知识表示中的扩展，包括整数域、多偏好语义与归纳定理证明。",
     "difficulty": "medium",
@@ -127,7 +145,52 @@
   },
   {
     "config_version": 1,
-    "review_id": "R015",
+    "review_id": "R017",
+    "split": "train",
+    "survey_instruction": "综述计算机视觉在真实零售场景下的违规内容检测与大规模图像分类挑战，讨论类别不平衡与细粒度标注问题。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["1905.02234v2", "2012.13666v1", "1906.00805v1"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R018",
+    "split": "train",
+    "survey_instruction": "综述语义分割中的标签噪声处理与神经符号监督方法，比较边界学习与本体推理两种纠错路径。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["1904.07934v2", "1904.13196v1", "1904.08177v1"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R019",
+    "split": "train",
+    "survey_instruction": "综述聚类方法在多尺度数据上的适应性改进，比较谱聚类系数矩阵正则化与距离相似度融合。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["2006.04435v1", "1905.02845v1", "2006.04497v1"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R020",
+    "split": "train",
+    "survey_instruction": "综述文档扩展与信息检索中的神经 Seq2Seq 方法，讨论短文本与长文档检索的标签稀缺问题。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["2012.14005v1", "1904.08010v1", "2012.13569v1"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R021",
+    "split": "train",
+    "survey_instruction": "综述面向个性化与人机协同的推荐与设计平台，讨论公平重排序、动态 K 推荐与共同设计语言。",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["2005.12974v1", "2012.13569v1", "1904.13333v1", "2006.02046v2"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R022",
     "split": "train",
     "survey_instruction": "综述强化学习在真实世界部署中的系统性挑战与多智能体扩展，辨析样本效率、泛化与层次化策略的关系。",
     "difficulty": "hard",
@@ -136,7 +199,7 @@
   },
   {
     "config_version": 1,
-    "review_id": "R016",
+    "review_id": "R023",
     "split": "train",
     "survey_instruction": "综述计算机视觉中面向真实场景的检测与分割方法，讨论标签噪声、边界学习与医学影像应用。",
     "difficulty": "hard",
@@ -145,7 +208,7 @@
   },
   {
     "config_version": 1,
-    "review_id": "R017",
+    "review_id": "R024",
     "split": "train",
     "survey_instruction": "综述面向负责任的 AI 从原则到实践的落地路径，结合公平分类、可解释推荐与影响评估框架进行批判性比较。",
     "difficulty": "hard",
@@ -154,7 +217,7 @@
   },
   {
     "config_version": 1,
-    "review_id": "R018",
+    "review_id": "R025",
     "split": "train",
     "survey_instruction": "综述因果发现与概率图模型的结构学习方法，比较监督式全 DAG 学习与 PC 类链图算法的可扩展性与顺序依赖性。",
     "difficulty": "hard",
@@ -163,7 +226,7 @@
   },
   {
     "config_version": 1,
-    "review_id": "R019",
+    "review_id": "R026",
     "split": "train",
     "survey_instruction": "综述生物特征模板保护与视频档案完整性验证中的深度学习方法，讨论熵不足、重建攻击与区块链溯源的交叉风险。",
     "difficulty": "hard",
@@ -172,11 +235,38 @@
   },
   {
     "config_version": 1,
-    "review_id": "R020",
+    "review_id": "R027",
     "split": "train",
     "survey_instruction": "综述面向科学发现的自动化探索系统，比较好奇心驱动、主动推断与进化元启发式在开放搜索空间中的适用性。",
     "difficulty": "hard",
     "corpus_scope": "local_arxiv_ai",
     "source_papers": ["1904.12635v1", "1904.08149v2", "2005.12841v1", "2012.13779v1", "1906.01504v1"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R028",
+    "split": "train",
+    "survey_instruction": "综述多智能体强化学习在复杂任务与博弈中的泛化能力，比较层次化选项、多任务自主学习与集中训练分布式执行框架。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["1906.01470v3", "1906.01374v1", "2006.04037v1", "1906.00744v5"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R029",
+    "split": "train",
+    "survey_instruction": "综述深度强化学习策略的鲁棒性与可信部署，结合对抗训练、策略窃取、水印与智能服务演化风险进行威胁建模。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["1906.01119v1", "1906.01121v1", "1906.01126v1", "2005.13186v1", "1905.02941v1"]
+  },
+  {
+    "config_version": 1,
+    "review_id": "R030",
+    "split": "train",
+    "survey_instruction": "综述 AI 在伦理困境与社交仿真中的建模方法，比较偏好聚合、差分隐私投票与基于社会践行的智能体框架。",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai",
+    "source_papers": ["1906.01562v2", "2012.11903v1", "2006.04707v1", "2006.02359v1"]
   }
 ]

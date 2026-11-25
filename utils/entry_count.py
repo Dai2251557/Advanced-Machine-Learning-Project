@@ -1,5 +1,6 @@
 import json
 
+# FILE_PATH = r".\data\arxiv_corpus.json"
 FILE_PATH = r".\data\train_tasks.json"
 
 with open(FILE_PATH, "r", encoding="utf-8") as f:

@@ -1,0 +1,2229 @@
+[
+  {
+    "paper_id": "2009.08973v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.08973v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.08973v2",
+    "title": "GRAC: Self-Guided and Self-Regularized Actor-Critic",
+    "abstract": "Deep reinforcement learning (DRL) algorithms have successfully been demonstrated on a range of challenging decision making and control tasks. One dominant component of recent deep reinforcement learning algorithms is the target network which mitigates the divergence when learning the Q function. However, target networks can slow down the learning process due to delayed function updates. Our main contribution in this work is a self-regularized TD-learning method to address divergence without requiring a target network. Additionally, we propose a self-guided policy improvement method by combining policy-gradient with zero-order optimization to search for actions associated with higher Q-values in a broad neighborhood. This makes learning more robust to local noise in the Q function approximation and guides the updates of our actor network. Taken together, these components define GRAC, a novel self-guided and self-regularized actor critic algorithm. We evaluate GRAC on the suite of OpenAI gym tasks, achieving or outperforming state of the art in every environment tested.",
+    "authors": [
+      "Lin Shao",
+      "Yifan You",
+      "Mengyuan Yan",
+      "Qingyun Sun",
+      "Jeannette Bohg"
+    ],
+    "published_date": "2020-09-18T17:58:29+00:00",
+    "updated_date": "2020-11-11T02:26:15+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.RO",
+      "eess.SY",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.09009v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.09009v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.09009v1",
+    "title": "Thermal and IR Drop Analysis Using Convolutional Encoder-Decoder Networks",
+    "abstract": "Computationally expensive temperature and power grid analyses are required during the design cycle to guide IC design. This paper employs encoder-decoder based generative (EDGe) networks to map these analyses to fast and accurate image-to-image and sequence-to-sequence translation tasks. The network takes a power map as input and outputs the corresponding temperature or IR drop map. We propose two networks: (i) ThermEDGe: a static and dynamic full-chip temperature estimator and (ii) IREDGe: a full-chip static IR drop predictor based on input power, power grid distribution, and power pad distribution patterns. The models are design-independent and must be trained just once for a particular technology and packaging solution. ThermEDGe and IREDGe are demonstrated to rapidly predict the on-chip temperature and IR drop contours in milliseconds (in contrast with commercial tools that require several hours or more) and provide an average error of 0.6% and 0.008% respectively.",
+    "authors": [
+      "Vidya A. Chhabria",
+      "Vipul Ahuja",
+      "Ashwath Prabhu",
+      "Nikhil Patil",
+      "Palkesh Jain",
+      "Sachin S. Sapatnekar"
+    ],
+    "published_date": "2020-09-18T18:29:24+00:00",
+    "updated_date": "2020-09-18T18:29:24+00:00",
+    "primary_category": "cs.AR",
+    "categories": [
+      "cs.AR",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.09051v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.09051v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.09051v1",
+    "title": "Deep Reinforcement Learning for Closed-Loop Blood Glucose Control",
+    "abstract": "People with type 1 diabetes (T1D) lack the ability to produce the insulin their bodies need. As a result, they must continually make decisions about how much insulin to self-administer to adequately control their blood glucose levels. Longitudinal data streams captured from wearables, like continuous glucose monitors, can help these individuals manage their health, but currently the majority of the decision burden remains on the user. To relieve this burden, researchers are working on closed-loop solutions that combine a continuous glucose monitor and an insulin pump with a control algorithm in an `artificial pancreas.' Such systems aim to estimate and deliver the appropriate amount of insulin. Here, we develop reinforcement learning (RL) techniques for automated blood glucose control. Through a series of experiments, we compare the performance of different deep RL approaches to non-RL approaches. We highlight the flexibility of RL approaches, demonstrating how they can adapt to new individuals with little additional data. On over 2.1 million hours of data from 30 simulated patients, our RL approach outperforms baseline control algorithms: leading to a decrease in median glycemic risk of nearly 50% from 8.34 to 4.24 and a decrease in total time hypoglycemic of 99.8%, from 4,610 days to 6. Moreover, these approaches are able to adapt to predictable meal times (decreasing average risk by an additional 24% as meals increase in predictability). This work demonstrates the potential of deep RL to help people with T1D manage their blood glucose levels without requiring expert knowledge. All of our code is publicly available, allowing for replication and extension.",
+    "authors": [
+      "Ian Fox",
+      "Joyce Lee",
+      "Rodica Pop-Busui",
+      "Jenna Wiens"
+    ],
+    "published_date": "2020-09-18T20:15:02+00:00",
+    "updated_date": "2020-09-18T20:15:02+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.09593v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.09593v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.09593v1",
+    "title": "Dynamic Horizon Value Estimation for Model-based Reinforcement Learning",
+    "abstract": "Existing model-based value expansion methods typically leverage a world model for value estimation with a fixed rollout horizon to assist policy learning. However, the fixed rollout with an inaccurate model has a potential to harm the learning process. In this paper, we investigate the idea of using the model knowledge for value expansion adaptively. We propose a novel method called Dynamic-horizon Model-based Value Expansion (DMVE) to adjust the world model usage with different rollout horizons. Inspired by reconstruction-based techniques that can be applied for visual data novelty detection, we utilize a world model with a reconstruction module for image feature extraction, in order to acquire more precise value estimation. The raw and the reconstructed images are both used to determine the appropriate horizon for adaptive value expansion. On several benchmark visual control tasks, experimental results show that DMVE outperforms all baselines in sample efficiency and final performance, indicating that DMVE can achieve more effective and accurate value estimation than state-of-the-art model-based methods.",
+    "authors": [
+      "Junjie Wang",
+      "Qichao Zhang",
+      "Dongbin Zhao",
+      "Mengchen Zhao",
+      "Jianye Hao"
+    ],
+    "published_date": "2020-09-21T03:09:33+00:00",
+    "updated_date": "2020-09-21T03:09:33+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.09663v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.09663v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.09663v2",
+    "title": "DeepDyve: Dynamic Verification for Deep Neural Networks",
+    "abstract": "Deep neural networks (DNNs) have become one of the enabling technologies in many safety-critical applications, e.g., autonomous driving and medical image analysis. DNN systems, however, suffer from various kinds of threats, such as adversarial example attacks and fault injection attacks. While there are many defense methods proposed against maliciously crafted inputs, solutions against faults presented in the DNN system itself (e.g., parameters and calculations) are far less explored. In this paper, we develop a novel lightweight fault-tolerant solution for DNN-based systems, namely DeepDyve, which employs pre-trained neural networks that are far simpler and smaller than the original DNN for dynamic verification. The key to enabling such lightweight checking is that the smaller neural network only needs to produce approximate results for the initial task without sacrificing fault coverage much. We develop efficient and effective architecture and task exploration techniques to achieve optimized risk/overhead trade-off in DeepDyve. Experimental results show that DeepDyve can reduce 90% of the risks at around 10% overhead.",
+    "authors": [
+      "Yu Li",
+      "Min Li",
+      "Bo Luo",
+      "Ye Tian",
+      "Qiang Xu"
+    ],
+    "published_date": "2020-09-21T07:58:18+00:00",
+    "updated_date": "2020-10-16T03:00:09+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CR",
+      "stat.ML"
+    ],
+    "doi": "10.1145/3372297.3423338",
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.08457v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.08457v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.08457v2",
+    "title": "Online Semi-Supervised Learning in Contextual Bandits with Episodic Reward",
+    "abstract": "We considered a novel practical problem of online learning with episodically revealed rewards, motivated by several real-world applications, where the contexts are nonstationary over different episodes and the reward feedbacks are not always available to the decision making agents. For this online semi-supervised learning setting, we introduced Background Episodic Reward LinUCB (BerlinUCB), a solution that easily incorporates clustering as a self-supervision module to provide useful side information when rewards are not observed. Our experiments on a variety of datasets, both in stationary and nonstationary environments of six different scenarios, demonstrated clear advantages of the proposed approach over the standard contextual bandit. Lastly, we introduced a relevant real-life example where this problem setting is especially useful.",
+    "authors": [
+      "Baihan Lin"
+    ],
+    "published_date": "2020-09-17T20:41:02+00:00",
+    "updated_date": "2020-10-25T03:29:56+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.08776v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.08776v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.08776v1",
+    "title": "Dealing with Incompatibilities among Procedural Goals under Uncertainty",
+    "abstract": "By considering rational agents, we focus on the problem of selecting goals out of a set of incompatible ones. We consider three forms of incompatibility introduced by Castelfranchi and Paglieri, namely the terminal, the instrumental (or based on resources), and the superfluity. We represent the agent's plans by means of structured arguments whose premises are pervaded with uncertainty. We measure the strength of these arguments in order to determine the set of compatible goals. We propose two novel ways for calculating the strength of these arguments, depending on the kind of incompatibility that exists between them. The first one is the logical strength value, it is denoted by a three-dimensional vector, which is calculated from a probabilistic interval associated with each argument. The vector represents the precision of the interval, the location of it, and the combination of precision and location. This type of representation and treatment of the strength of a structured argument has not been defined before by the state of the art. The second way for calculating the strength of the argument is based on the cost of the plans (regarding the necessary resources) and the preference of the goals associated with the plans. Considering our novel approach for measuring the strength of structured arguments, we propose a semantics for the selection of plans and goals that is based on Dung's abstract argumentation theory. Finally, we make a theoretical evaluation of our proposal.",
+    "authors": [
+      "Mariela Morveli-Espinoza",
+      "Juan Carlos Nieves",
+      "Ayslan Trevizan Possebom",
+      "Cesar Augusto Tacla"
+    ],
+    "published_date": "2020-09-17T00:56:45+00:00",
+    "updated_date": "2020-09-17T00:56:45+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": "10.4114/intartif.vol22iss64pp47-62",
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.10073v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.10073v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.10073v2",
+    "title": "Contextual Bandits for adapting to changing User preferences over time",
+    "abstract": "Contextual bandits provide an effective way to model the dynamic data problem in ML by leveraging online (incremental) learning to continuously adjust the predictions based on changing environment. We explore details on contextual bandits, an extension to the traditional reinforcement learning (RL) problem and build a novel algorithm to solve this problem using an array of action-based learners. We apply this approach to model an article recommendation system using an array of stochastic gradient descent (SGD) learners to make predictions on rewards based on actions taken. We then extend the approach to a publicly available MovieLens dataset and explore the findings. First, we make available a simplified simulated dataset showing varying user preferences over time and how this can be evaluated with static and dynamic learning algorithms. This dataset made available as part of this research is intentionally simulated with limited number of features and can be used to evaluate different problem-solving strategies. We will build a classifier using static dataset and evaluate its performance on this dataset. We show limitations of static learner due to fixed context at a point of time and how changing that context brings down the accuracy. Next we develop a novel algorithm for solving the contextual bandit problem. Similar to the linear bandits, this algorithm maps the reward as a function of context vector but uses an array of learners to capture variation between actions/arms. We develop a bandit algorithm using an array of stochastic gradient descent (SGD) learners, with separate learner per arm. Finally, we will apply this contextual bandit algorithm to predicting movie ratings over time by different users from the standard Movie Lens dataset and demonstrate the results.",
+    "authors": [
+      "Dattaraj Rao"
+    ],
+    "published_date": "2020-09-21T12:17:42+00:00",
+    "updated_date": "2020-09-23T06:01:59+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.SI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.09803v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.09803v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.09803v1",
+    "title": "Defending against substitute model black box adversarial attacks with the 01 loss",
+    "abstract": "Substitute model black box attacks can create adversarial examples for a target model just by accessing its output labels. This poses a major challenge to machine learning models in practice, particularly in security sensitive applications. The 01 loss model is known to be more robust to outliers and noise than convex models that are typically used in practice. Motivated by these properties we present 01 loss linear and 01 loss dual layer neural network models as a defense against transfer based substitute model black box attacks. We compare the accuracy of adversarial examples from substitute model black box attacks targeting our 01 loss models and their convex counterparts for binary classification on popular image benchmarks. Our 01 loss dual layer neural network has an adversarial accuracy of 66.2%, 58%, 60.5%, and 57% on MNIST, CIFAR10, STL10, and ImageNet respectively whereas the sigmoid activated logistic loss counterpart has accuracies of 63.5%, 19.3%, 14.9%, and 27.6%. Except for MNIST the convex counterparts have substantially lower adversarial accuracies. We show practical applications of our models to deter traffic sign and facial recognition adversarial attacks. On GTSRB street sign and CelebA facial detection our 01 loss network has 34.6% and 37.1% adversarial accuracy respectively whereas the convex logistic counterpart has accuracy 24% and 1.9%. Finally we show that our 01 loss network can attain robustness on par with simple convolutional neural networks and much higher than its convex counterpart even when attacked with a convolutional network substitute model. Our work shows that 01 loss models offer a powerful defense against substitute model black box attacks.",
+    "authors": [
+      "Yunzhe Xue",
+      "Meiyan Xie",
+      "Usman Roshan"
+    ],
+    "published_date": "2020-09-01T22:32:51+00:00",
+    "updated_date": "2020-09-01T22:32:51+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CR",
+      "cs.CV"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.09826v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.09826v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.09826v1",
+    "title": "Learning Safe Neural Network Controllers with Barrier Certificates",
+    "abstract": "We provide a novel approach to synthesize controllers for nonlinear continuous dynamical systems with control against safety properties. The controllers are based on neural networks (NNs). To certify the safety property we utilize barrier functions, which are represented by NNs as well. We train the controller-NN and barrier-NN simultaneously, achieving a verification-in-the-loop synthesis. We provide a prototype tool nncontroller with a number of case studies. The experiment results confirm the feasibility and efficacy of our approach.",
+    "authors": [
+      "Hengjun Zhao",
+      "Xia Zeng",
+      "Taolue Chen",
+      "Zhiming Liu",
+      "Jim Woodcock"
+    ],
+    "published_date": "2020-09-18T14:55:55+00:00",
+    "updated_date": "2020-09-18T14:55:55+00:00",
+    "primary_category": "eess.SY",
+    "categories": [
+      "eess.SY",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.09870v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.09870v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.09870v2",
+    "title": "Content Planning for Neural Story Generation with Aristotelian Rescoring",
+    "abstract": "Long-form narrative text generated from large language models manages a fluent impersonation of human writing, but only at the local sentence level, and lacks structure or global cohesion. We posit that many of the problems of story generation can be addressed via high-quality content planning, and present a system that focuses on how to learn good plot structures to guide story generation. We utilize a plot-generation language model along with an ensemble of rescoring models that each implement an aspect of good story-writing as detailed in Aristotle's Poetics. We find that stories written with our more principled plot-structure are both more relevant to a given prompt and higher quality than baselines that do not content plan, or that plan in an unprincipled way.",
+    "authors": [
+      "Seraphina Goldfarb-Tarrant",
+      "Tuhin Chakrabarty",
+      "Ralph Weischedel",
+      "Nanyun Peng"
+    ],
+    "published_date": "2020-09-21T13:41:32+00:00",
+    "updated_date": "2020-10-09T16:28:23+00:00",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.09942v3",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.09942v3",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.09942v3",
+    "title": "CMAX++ : Leveraging Experience in Planning and Execution using Inaccurate Models",
+    "abstract": "Given access to accurate dynamical models, modern planning approaches are effective in computing feasible and optimal plans for repetitive robotic tasks. However, it is difficult to model the true dynamics of the real world before execution, especially for tasks requiring interactions with objects whose parameters are unknown. A recent planning approach, CMAX, tackles this problem by adapting the planner online during execution to bias the resulting plans away from inaccurately modeled regions. CMAX, while being provably guaranteed to reach the goal, requires strong assumptions on the accuracy of the model used for planning and fails to improve the quality of the solution over repetitions of the same task. In this paper we propose CMAX++, an approach that leverages real-world experience to improve the quality of resulting plans over successive repetitions of a robotic task. CMAX++ achieves this by integrating model-free learning using acquired experience with model-based planning using the potentially inaccurate model. We provide provable guarantees on the completeness and asymptotic convergence of CMAX++ to the optimal path cost as the number of repetitions increases. CMAX++ is also shown to outperform baselines in simulated robotic tasks including 3D mobile robot navigation where the track friction is incorrectly modeled, and a 7D pick-and-place task where the mass of the object is unknown leading to discrepancy between true and modeled dynamics.",
+    "authors": [
+      "Anirudh Vemula",
+      "J. Andrew Bagnell",
+      "Maxim Likhachev"
+    ],
+    "published_date": "2020-09-21T14:59:31+00:00",
+    "updated_date": "2020-10-15T18:44:52+00:00",
+    "primary_category": "cs.RO",
+    "categories": [
+      "cs.RO",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.08656v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.08656v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.08656v2",
+    "title": "EM-RBR: a reinforced framework for knowledge graph completion from reasoning perspective",
+    "abstract": "Knowledge graph completion aims to predict the new links in given entities among the knowledge graph (KG). Most mainstream embedding methods focus on fact triplets contained in the given KG, however, ignoring the rich background information provided by logic rules driven from knowledge base implicitly. To solve this problem, in this paper, we propose a general framework, named EM-RBR(embedding and rule-based reasoning), capable of combining the advantages of reasoning based on rules and the state-of-the-art models of embedding. EM-RBR aims to utilize relational background knowledge contained in rules to conduct multi-relation reasoning link prediction rather than superficial vector triangle linkage in embedding models. By this way, we can explore relation between two entities in deeper context to achieve higher accuracy. In experiments, we demonstrate that EM-RBR achieves better performance compared with previous models on FB15k, WN18 and our new dataset FB15k-R, especially the new dataset where our model perform futher better than those state-of-the-arts. We make the implementation of EM-RBR available at https://github.com/1173710224/link-prediction-with-rule-based-reasoning.",
+    "authors": [
+      "Zhaochong An",
+      "Bozhou Chen",
+      "Houde Quan",
+      "Qihui Lin",
+      "Hongzhi Wang"
+    ],
+    "published_date": "2020-09-18T07:02:41+00:00",
+    "updated_date": "2020-10-11T17:36:25+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.05524v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.05524v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.05524v2",
+    "title": "Physically Embedded Planning Problems: New Challenges for Reinforcement Learning",
+    "abstract": "Recent work in deep reinforcement learning (RL) has produced algorithms capable of mastering challenging games such as Go, chess, or shogi. In these works the RL agent directly observes the natural state of the game and controls that state directly with its actions. However, when humans play such games, they do not just reason about the moves but also interact with their physical environment. They understand the state of the game by looking at the physical board in front of them and modify it by manipulating pieces using touch and fine-grained motor control. Mastering complicated physical systems with abstract goals is a central challenge for artificial intelligence, but it remains out of reach for existing RL algorithms. To encourage progress towards this goal we introduce a set of physically embedded planning problems and make them publicly available. We embed challenging symbolic tasks (Sokoban, tic-tac-toe, and Go) in a physics engine to produce a set of tasks that require perception, reasoning, and motor control over long time horizons. Although existing RL algorithms can tackle the symbolic versions of these tasks, we find that they struggle to master even the simplest of their physically embedded counterparts. As a first step towards characterizing the space of solution to these tasks, we introduce a strong baseline that uses a pre-trained expert game player to provide hints in the abstract space to an RL agent's policy while training it on the full sensorimotor control task. The resulting agent solves many of the tasks, underlining the need for methods that bridge the gap between abstract planning and embodied control. See illustrating video at https://youtu.be/RwHiHlym_1k.",
+    "authors": [
+      "Mehdi Mirza",
+      "Andrew Jaegle",
+      "Jonathan J. Hunt",
+      "Arthur Guez",
+      "Saran Tunyasuvunakool",
+      "Alistair Muldal",
+      "Théophane Weber",
+      "Peter Karkus",
+      "Sébastien Racanière",
+      "Lars Buesing",
+      "Timothy Lillicrap",
+      "Nicolas Heess"
+    ],
+    "published_date": "2020-09-11T16:56:33+00:00",
+    "updated_date": "2020-10-29T17:28:38+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.05643v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.05643v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.05643v1",
+    "title": "The Design Of \"Stratega\": A General Strategy Games Framework",
+    "abstract": "Stratega, a general strategy games framework, has been designed to foster research on computational intelligence for strategy games. In contrast to other strategy game frameworks, Stratega allows to create a wide variety of turn-based and real-time strategy games using a common API for agent development. While the current version supports the development of turn-based strategy games and agents, we will add support for real-time strategy games in future updates. Flexibility is achieved by utilising YAML-files to configure tiles, units, actions, and levels. Therefore, the user can design and run a variety of games to test developed agents without specifically adjusting it to the game being generated. The framework has been built with a focus of statistical forward planning (SFP) agents. For this purpose, agents can access and modify game-states and use the forward model to simulate the outcome of their actions. While SFP agents have shown great flexibility in general game-playing, their performance is limited in case of complex state and action-spaces. Finally, we hope that the development of this framework and its respective agents helps to better understand the complex decision-making process in strategy games. Stratega can be downloaded at: https://github.research.its.qmul.ac.uk/eecsgameai/Stratega",
+    "authors": [
+      "Diego Perez-Liebana",
+      "Alexander Dockhorn",
+      "Jorge Hurtado Grueso",
+      "Dominik Jeurissen"
+    ],
+    "published_date": "2020-09-11T20:02:00+00:00",
+    "updated_date": "2020-09-11T20:02:00+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.05653v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.05653v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.05653v1",
+    "title": "Teaching Tech to Talk: K-12 Conversational Artificial Intelligence Literacy Curriculum and Development Tools",
+    "abstract": "With children talking to smart-speakers, smart-phones and even smart-microwaves daily, it is increasingly important to educate students on how these agents work-from underlying mechanisms to societal implications. Researchers are developing tools and curriculum to teach K-12 students broadly about artificial intelligence (AI); however, few studies have evaluated these tools with respect to AI-specific learning outcomes, and even fewer have addressed student learning about AI-based conversational agents. We evaluate our Conversational Agent Interface for MIT App Inventor and workshop curriculum with respect to eight AI competencies from the literature. Furthermore, we analyze teacher (n=9) and student (n=47) feedback from workshops with the interface and recommend that future work leverages design considerations from the literature to optimize engagement, collaborates with teachers, and addresses a range of student abilities through pacing and opportunities for extension. We found students struggled most with the concepts of AI ethics and learning, and recommend emphasizing these topics when teaching.   The appendix, including a demo video, can be found here: https://gist.github.com/jessvb/1cd959e32415a6ad4389761c49b54bbf",
+    "authors": [
+      "Jessica Van Brummelen",
+      "Tommy Heng",
+      "Viktoriya Tabunshchyk"
+    ],
+    "published_date": "2020-09-11T20:52:46+00:00",
+    "updated_date": "2020-09-11T20:52:46+00:00",
+    "primary_category": "cs.CY",
+    "categories": [
+      "cs.CY",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.07726v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.07726v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.07726v1",
+    "title": "Leveraging Semantic Parsing for Relation Linking over Knowledge Bases",
+    "abstract": "Knowledgebase question answering systems are heavily dependent on relation extraction and linking modules. However, the task of extracting and linking relations from text to knowledgebases faces two primary challenges; the ambiguity of natural language and lack of training data. To overcome these challenges, we present SLING, a relation linking framework which leverages semantic parsing using Abstract Meaning Representation (AMR) and distant supervision. SLING integrates multiple relation linking approaches that capture complementary signals such as linguistic cues, rich semantic representation, and information from the knowledgebase. The experiments on relation linking using three KBQA datasets; QALD-7, QALD-9, and LC-QuAD 1.0 demonstrate that the proposed approach achieves state-of-the-art performance on all benchmarks.",
+    "authors": [
+      "Nandana Mihindukulasooriya",
+      "Gaetano Rossiello",
+      "Pavan Kapanipathi",
+      "Ibrahim Abdelaziz",
+      "Srinivas Ravishankar",
+      "Mo Yu",
+      "Alfio Gliozzo",
+      "Salim Roukos",
+      "Alexander Gray"
+    ],
+    "published_date": "2020-09-16T14:56:11+00:00",
+    "updated_date": "2020-09-16T14:56:11+00:00",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.AI"
+    ],
+    "doi": "10.1007/978-3-030-62419-4_23",
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.07756v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.07756v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.07756v1",
+    "title": "Exploring Bayesian Surprise to Prevent Overfitting and to Predict Model Performance in Non-Intrusive Load Monitoring",
+    "abstract": "Non-Intrusive Load Monitoring (NILM) is a field of research focused on segregating constituent electrical loads in a system based only on their aggregated signal. Significant computational resources and research time are spent training models, often using as much data as possible, perhaps driven by the preconception that more data equates to more accurate models and better performing algorithms. When has enough prior training been done? When has a NILM algorithm encountered new, unseen data? This work applies the notion of Bayesian surprise to answer these questions which are important for both supervised and unsupervised algorithms. We quantify the degree of surprise between the predictive distribution (termed postdictive surprise), as well as the transitional probabilities (termed transitional surprise), before and after a window of observations. We compare the performance of several benchmark NILM algorithms supported by NILMTK, in order to establish a useful threshold on the two combined measures of surprise. We validate the use of transitional surprise by exploring the performance of a popular Hidden Markov Model as a function of surprise threshold. Finally, we explore the use of a surprise threshold as a regularization technique to avoid overfitting in cross-dataset performance. Although the generality of the specific surprise threshold discussed herein may be suspect without further testing, this work provides clear evidence that a point of diminishing returns of model performance with respect to dataset size exists. This has implications for future model development, dataset acquisition, as well as aiding in model flexibility during deployment.",
+    "authors": [
+      "Richard Jones",
+      "Christoph Klemenjak",
+      "Stephen Makonin",
+      "Ivan V. Bajic"
+    ],
+    "published_date": "2020-09-16T15:39:08+00:00",
+    "updated_date": "2020-09-16T15:39:08+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "eess.SP"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.07238v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.07238v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.07238v2",
+    "title": "Lessons Learned from Applying off-the-shelf BERT: There is no Silver Bullet",
+    "abstract": "One of the challenges in the NLP field is training large classification models, a task that is both difficult and tedious. It is even harder when GPU hardware is unavailable. The increased availability of pre-trained and off-the-shelf word embeddings, models, and modules aim at easing the process of training large models and achieving a competitive performance. We explore the use of off-the-shelf BERT models and share the results of our experiments and compare their results to those of LSTM networks and more simple baselines. We show that the complexity and computational cost of BERT is not a guarantee for enhanced predictive performance in the classification tasks at hand.",
+    "authors": [
+      "Victor Makarenkov",
+      "Lior Rokach"
+    ],
+    "published_date": "2020-09-15T17:24:52+00:00",
+    "updated_date": "2020-09-18T12:58:35+00:00",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.07262v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.07262v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.07262v2",
+    "title": "Report prepared by the Montreal AI Ethics Institute (MAIEI) on Publication Norms for Responsible AI",
+    "abstract": "The history of science and technology shows that seemingly innocuous developments in scientific theories and research have enabled real-world applications with significant negative consequences for humanity. In order to ensure that the science and technology of AI is developed in a humane manner, we must develop research publication norms that are informed by our growing understanding of AI's potential threats and use cases. Unfortunately, it's difficult to create a set of publication norms for responsible AI because the field of AI is currently fragmented in terms of how this technology is researched, developed, funded, etc. To examine this challenge and find solutions, the Montreal AI Ethics Institute (MAIEI) co-hosted two public consultations with the Partnership on AI in May 2020. These meetups examined potential publication norms for responsible AI, with the goal of creating a clear set of recommendations and ways forward for publishers.   In its submission, MAIEI provides six initial recommendations, these include: 1) create tools to navigate publication decisions, 2) offer a page number extension, 3) develop a network of peers, 4) require broad impact statements, 5) require the publication of expected results, and 6) revamp the peer-review process. After considering potential concerns regarding these recommendations, including constraining innovation and creating a \"black market\" for AI research, MAIEI outlines three ways forward for publishers, these include: 1) state clearly and consistently the need for established norms, 2) coordinate and build trust as a community, and 3) change the approach.",
+    "authors": [
+      "Abhishek Gupta",
+      "Camylle Lanteigne",
+      "Victoria Heath"
+    ],
+    "published_date": "2020-09-15T17:51:40+00:00",
+    "updated_date": "2020-10-04T07:50:39+00:00",
+    "primary_category": "cs.CY",
+    "categories": [
+      "cs.CY",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.07563v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.07563v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.07563v1",
+    "title": "Brain tumour segmentation using cascaded 3D densely-connected U-net",
+    "abstract": "Accurate brain tumour segmentation is a crucial step towards improving disease diagnosis and proper treatment planning. In this paper, we propose a deep-learning based method to segment a brain tumour into its subregions: whole tumour, tumour core and enhancing tumour. The proposed architecture is a 3D convolutional neural network based on a variant of the U-Net architecture of Ronneberger et al. [17] with three main modifications: (i) a heavy encoder, light decoder structure using residual blocks (ii) employment of dense blocks instead of skip connections, and (iii) utilization of self-ensembling in the decoder part of the network. The network was trained and tested using two different approaches: a multitask framework to segment all tumour subregions at the same time and a three-stage cascaded framework to segment one sub-region at a time. An ensemble of the results from both frameworks was also computed. To address the class imbalance issue, appropriate patch extraction was employed in a pre-processing step. The connected component analysis was utilized in the post-processing step to reduce false positive predictions. Experimental results on the BraTS20 validation dataset demonstrates that the proposed model achieved average Dice Scores of 0.90, 0.82, and 0.78 for whole tumour, tumour core and enhancing tumour respectively.",
+    "authors": [
+      "Mina Ghaffari",
+      "Arcot Sowmya",
+      "Ruth Oliver"
+    ],
+    "published_date": "2020-09-16T09:14:59+00:00",
+    "updated_date": "2020-09-16T09:14:59+00:00",
+    "primary_category": "eess.IV",
+    "categories": [
+      "eess.IV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.07963v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.07963v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.07963v1",
+    "title": "Optimal Sepsis Patient Treatment using Human-in-the-loop Artificial Intelligence",
+    "abstract": "Sepsis is one of the leading causes of death in Intensive Care Units (ICU). The strategy for treating sepsis involves the infusion of intravenous (IV) fluids and administration of antibiotics. Determining the optimal quantity of IV fluids is a challenging problem due to the complexity of a patient's physiology. In this study, we develop a data-driven optimization solution that derives the optimal quantity of IV fluids for individual patients. The proposed method minimizes the probability of severe outcomes by controlling the prescribed quantity of IV fluids and utilizes human-in-the-loop artificial intelligence. We demonstrate the performance of our model on 1122 ICU patients with sepsis diagnosis extracted from the MIMIC-III dataset. The results show that, on average, our model can reduce mortality by 22%. This study has the potential to help physicians synthesize optimal, patient-specific treatment strategies.",
+    "authors": [
+      "Akash Gupta",
+      "Michael T. Lash",
+      "Senthil K. Nachimuthu"
+    ],
+    "published_date": "2020-09-16T22:34:43+00:00",
+    "updated_date": "2020-09-16T22:34:43+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.08052v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.08052v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.08052v1",
+    "title": "GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning",
+    "abstract": "The heavy traffic congestion problem has always been a concern for modern cities. To alleviate traffic congestion, researchers use reinforcement learning (RL) to develop better traffic signal control (TSC) algorithms in recent years. However, most RL models are trained and tested in the same traffic flow environment, which results in a serious overfitting problem. Since the traffic flow environment in the real world keeps varying, these models can hardly be applied due to the lack of generalization ability. Besides, the limited number of accessible traffic flow data brings extra difficulty in testing the generalization ability of the models. In this paper, we design a novel traffic flow generator based on Wasserstein generative adversarial network to generate sufficient diverse and quality traffic flows and use them to build proper training and testing environments. Then we propose a meta-RL TSC framework GeneraLight to improve the generalization ability of TSC models. GeneraLight boosts the generalization performance by combining the idea of flow clustering and model-agnostic meta-learning. We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows.",
+    "authors": [
+      "Chang Liu",
+      "Huichu Zhang",
+      "Weinan Zhang",
+      "Guanjie Zheng",
+      "Yong Yu"
+    ],
+    "published_date": "2020-09-17T04:14:28+00:00",
+    "updated_date": "2020-09-17T04:14:28+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "doi": "10.1145/3340531.3411859",
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.08123v3",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.08123v3",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.08123v3",
+    "title": "DLBCL-Morph: Morphological features computed using deep learning for an annotated digital DLBCL image set",
+    "abstract": "Diffuse Large B-Cell Lymphoma (DLBCL) is the most common non-Hodgkin lymphoma. Though histologically DLBCL shows varying morphologies, no morphologic features have been consistently demonstrated to correlate with prognosis. We present a morphologic analysis of histology sections from 209 DLBCL cases with associated clinical and cytogenetic data. Duplicate tissue core sections were arranged in tissue microarrays (TMAs), and replicate sections were stained with H&E and immunohistochemical stains for CD10, BCL6, MUM1, BCL2, and MYC. The TMAs are accompanied by pathologist-annotated regions-of-interest (ROIs) that identify areas of tissue representative of DLBCL. We used a deep learning model to segment all tumor nuclei in the ROIs, and computed several geometric features for each segmented nucleus. We fit a Cox proportional hazards model to demonstrate the utility of these geometric features in predicting survival outcome, and found that it achieved a C-index (95% CI) of 0.635 (0.574,0.691). Our finding suggests that geometric features computed from tumor nuclei are of prognostic importance, and should be validated in prospective studies.",
+    "authors": [
+      "Damir Vrabac",
+      "Akshay Smit",
+      "Rebecca Rojansky",
+      "Yasodha Natkunam",
+      "Ranjana H. Advani",
+      "Andrew Y. Ng",
+      "Sebastian Fernandez-Pol",
+      "Pranav Rajpurkar"
+    ],
+    "published_date": "2020-09-17T07:43:42+00:00",
+    "updated_date": "2020-09-24T11:02:28+00:00",
+    "primary_category": "cs.CV",
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.00335v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.00335v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.00335v1",
+    "title": "Landscape of Machine Implemented Ethics",
+    "abstract": "This paper surveys the state-of-the-art in machine ethics, that is, considerations of how to implement ethical behaviour in robots, unmanned autonomous vehicles, or software systems. The emphasis is on covering the breadth of ethical theories being considered by implementors, as well as the implementation techniques being used. There is no consensus on which ethical theory is best suited for any particular domain, nor is there any agreement on which technique is best placed to implement a particular theory. Another unresolved problem in these implementations of ethical theories is how to objectively validate the implementations. The paper discusses the dilemmas being used as validating 'whetstones' and whether any alternative validation mechanism exists. Finally, it speculates that an intermediate step of creating domain-specific ethics might be a possible stepping stone towards creating machines that exhibit ethical behaviour.",
+    "authors": [
+      "Vivek Nallur"
+    ],
+    "published_date": "2020-09-01T10:34:59+00:00",
+    "updated_date": "2020-09-01T10:34:59+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": "10.1007/s11948-020-00236-y",
+    "journal_ref": "Science and Engineering Ethics (2020)"
+  },
+  {
+    "paper_id": "2009.01438v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.01438v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.01438v1",
+    "title": "Tasks Integrated Networks: Joint Detection and Retrieval for Image Search",
+    "abstract": "The traditional object retrieval task aims to learn a discriminative feature representation with intra-similarity and inter-dissimilarity, which supposes that the objects in an image are manually or automatically pre-cropped exactly. However, in many real-world searching scenarios (e.g., video surveillance), the objects (e.g., persons, vehicles, etc.) are seldom accurately detected or annotated. Therefore, object-level retrieval becomes intractable without bounding-box annotation, which leads to a new but challenging topic, i.e. image-level search. In this paper, to address the image search issue, we first introduce an end-to-end Integrated Net (I-Net), which has three merits: 1) A Siamese architecture and an on-line pairing strategy for similar and dissimilar objects in the given images are designed. 2) A novel on-line pairing (OLP) loss is introduced with a dynamic feature dictionary, which alleviates the multi-task training stagnation problem, by automatically generating a number of negative pairs to restrict the positives. 3) A hard example priority (HEP) based softmax loss is proposed to improve the robustness of classification task by selecting hard categories. With the philosophy of divide and conquer, we further propose an improved I-Net, called DC-I-Net, which makes two new contributions: 1) two modules are tailored to handle different tasks separately in the integrated framework, such that the task specification is guaranteed. 2) A class-center guided HEP loss (C2HEP) by exploiting the stored class centers is proposed, such that the intra-similarity and inter-dissimilarity can be captured for ultimate retrieval. Extensive experiments on famous image-level search oriented benchmark datasets demonstrate that the proposed DC-I-Net outperforms the state-of-the-art tasks-integrated and tasks-separated image search models.",
+    "authors": [
+      "Lei Zhang",
+      "Zhenwei He",
+      "Yi Yang",
+      "Liang Wang",
+      "Xinbo Gao"
+    ],
+    "published_date": "2020-09-03T03:57:50+00:00",
+    "updated_date": "2020-09-03T03:57:50+00:00",
+    "primary_category": "cs.CV",
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.04549v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.04549v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.04549v1",
+    "title": "Multimodal Deep Learning for Flaw Detection in Software Programs",
+    "abstract": "We explore the use of multiple deep learning models for detecting flaws in software programs. Current, standard approaches for flaw detection rely on a single representation of a software program (e.g., source code or a program binary). We illustrate that, by using techniques from multimodal deep learning, we can simultaneously leverage multiple representations of software programs to improve flaw detection over single representation analyses. Specifically, we adapt three deep learning models from the multimodal learning literature for use in flaw detection and demonstrate how these models outperform traditional deep learning models. We present results on detecting software flaws using the Juliet Test Suite and Linux Kernel.",
+    "authors": [
+      "Scott Heidbrink",
+      "Kathryn N. Rodhouse",
+      "Daniel M. Dunlavy"
+    ],
+    "published_date": "2020-09-09T20:15:11+00:00",
+    "updated_date": "2020-09-09T20:15:11+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CR",
+      "cs.SE",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.03558v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.03558v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.03558v1",
+    "title": "Region Comparison Network for Interpretable Few-shot Image Classification",
+    "abstract": "While deep learning has been successfully applied to many real-world computer vision tasks, training robust classifiers usually requires a large amount of well-labeled data. However, the annotation is often expensive and time-consuming. Few-shot image classification has thus been proposed to effectively use only a limited number of labeled examples to train models for new classes. Recent works based on transferable metric learning methods have achieved promising classification performance through learning the similarity between the features of samples from the query and support sets. However, rare of them explicitly considers the model interpretability, which can actually be revealed during the training phase.   For that, in this work, we propose a metric learning based method named Region Comparison Network (RCN), which is able to reveal how few-shot learning works as in a neural network as well as to find out specific regions that are related to each other in images coming from the query and support sets. Moreover, we also present a visualization strategy named Region Activation Mapping (RAM) to intuitively explain what our method has learned by visualizing intermediate variables in our network. We also present a new way to generalize the interpretability from the level of tasks to categories, which can also be viewed as a method to find the prototypical parts for supporting the final decision of our RCN. Extensive experiments on four benchmark datasets clearly show the effectiveness of our method over existing baselines.",
+    "authors": [
+      "Zhiyu Xue",
+      "Lixin Duan",
+      "Wen Li",
+      "Lin Chen",
+      "Jiebo Luo"
+    ],
+    "published_date": "2020-09-08T07:29:05+00:00",
+    "updated_date": "2020-09-08T07:29:05+00:00",
+    "primary_category": "cs.CV",
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.03393v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.03393v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.03393v1",
+    "title": "Generative Language Modeling for Automated Theorem Proving",
+    "abstract": "We explore the application of transformer-based language models to automated theorem proving. This work is motivated by the possibility that a major limitation of automated theorem provers compared to humans -- the generation of original mathematical terms -- might be addressable via generation from language models. We present an automated prover and proof assistant, GPT-f, for the Metamath formalization language, and analyze its performance. GPT-f found new short proofs that were accepted into the main Metamath library, which is to our knowledge, the first time a deep-learning based system has contributed proofs that were adopted by a formal mathematics community.",
+    "authors": [
+      "Stanislas Polu",
+      "Ilya Sutskever"
+    ],
+    "published_date": "2020-09-07T19:50:10+00:00",
+    "updated_date": "2020-09-07T19:50:10+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.04743v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.04743v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.04743v2",
+    "title": "TripleTree: A Versatile Interpretable Representation of Black Box Agents and their Environments",
+    "abstract": "In explainable artificial intelligence, there is increasing interest in understanding the behaviour of autonomous agents to build trust and validate performance. Modern agent architectures, such as those trained by deep reinforcement learning, are currently so lacking in interpretable structure as to effectively be black boxes, but insights may still be gained from an external, behaviourist perspective. Inspired by conceptual spaces theory, we suggest that a versatile first step towards general understanding is to discretise the state space into convex regions, jointly capturing similarities over the agent's action, value function and temporal dynamics within a dataset of observations. We create such a representation using a novel variant of the CART decision tree algorithm, and demonstrate how it facilitates practical understanding of black box agents through prediction, visualisation and rule-based explanation.",
+    "authors": [
+      "Tom Bewley",
+      "Jonathan Lawry"
+    ],
+    "published_date": "2020-09-10T09:22:27+00:00",
+    "updated_date": "2020-09-21T16:06:19+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.04336v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.04336v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.04336v1",
+    "title": "Polynomial-Time Computation of Optimal Correlated Equilibria in Two-Player Extensive-Form Games with Public Chance Moves and Beyond",
+    "abstract": "Unlike normal-form games, where correlated equilibria have been studied for more than 45 years, extensive-form correlation is still generally not well understood. Part of the reason for this gap is that the sequential nature of extensive-form games allows for a richness of behaviors and incentives that are not possible in normal-form settings. This richness translates to a significantly different complexity landscape surrounding extensive-form correlated equilibria. As of today, it is known that finding an optimal extensive-form correlated equilibrium (EFCE), extensive-form coarse correlated equilibrium (EFCCE), or normal-form coarse correlated equilibrium (NFCCE) in a two-player extensive-form game is computationally tractable when the game does not include chance moves, and intractable when the game involves chance moves. In this paper we significantly refine this complexity threshold by showing that, in two-player games, an optimal correlated equilibrium can be computed in polynomial time, provided that a certain condition is satisfied. We show that the condition holds, for example, when all chance moves are public, that is, both players observe all chance moves. This implies that an optimal EFCE, EFCCE and NFCCE can be computed in polynomial time in the game size in two-player games with public chance moves, providing the biggest positive complexity result surrounding extensive-form correlation in more than a decade.",
+    "authors": [
+      "Gabriele Farina",
+      "Tuomas Sandholm"
+    ],
+    "published_date": "2020-09-09T14:51:58+00:00",
+    "updated_date": "2020-09-09T14:51:58+00:00",
+    "primary_category": "cs.GT",
+    "categories": [
+      "cs.GT",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.04120v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.04120v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.04120v2",
+    "title": "On the Orthogonality of Knowledge Distillation with Other Techniques: From an Ensemble Perspective",
+    "abstract": "To put a state-of-the-art neural network to practical use, it is necessary to design a model that has a good trade-off between the resource consumption and performance on the test set. Many researchers and engineers are developing methods that enable training or designing a model more efficiently. Developing an efficient model includes several strategies such as network architecture search, pruning, quantization, knowledge distillation, utilizing cheap convolution, regularization, and also includes any craft that leads to a better performance-resource trade-off. When combining these technologies together, it would be ideal if one source of performance improvement does not conflict with others. We call this property as the orthogonality in model efficiency. In this paper, we focus on knowledge distillation and demonstrate that knowledge distillation methods are orthogonal to other efficiency-enhancing methods both analytically and empirically. Analytically, we claim that knowledge distillation functions analogous to a ensemble method, bootstrap aggregating. This analytical explanation is provided from the perspective of implicit data augmentation property of knowledge distillation. Empirically, we verify knowledge distillation as a powerful apparatus for practical deployment of efficient neural network, and also introduce ways to integrate it with other methods effectively.",
+    "authors": [
+      "SeongUk Park",
+      "KiYoon Yoo",
+      "Nojun Kwak"
+    ],
+    "published_date": "2020-09-09T06:14:59+00:00",
+    "updated_date": "2020-09-14T14:52:13+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.11545v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.11545v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.11545v2",
+    "title": "The Effects of Quantum Randomness on a System Exhibiting Computational Creativity",
+    "abstract": "We present experimental results on the effects of using quantum or 'truly' random numbers, as opposed to pseudorandom numbers, in a system that exhibits computational creativity (given its ability to compose original chess problems). The results indicate that using quantum random numbers too often or too seldom in the composing process does not have any positive effect on the output generated. Interestingly, there is a 'sweet spot' of using quantum random numbers 15% of the time that results in fewer statistical outliers. Overall, it would appear that there may indeed be a slight advantage to using quantum random numbers in such a system and this may also be true in other systems that exhibit computational creativity. The benefits of doing so should, however, be weighed against the overhead of obtaining quantum random numbers in contrast to a pseudorandom number generator that is likely more convenient to incorporate.",
+    "authors": [
+      "Azlan Iqbal"
+    ],
+    "published_date": "2020-08-22T04:34:17+00:00",
+    "updated_date": "2020-08-28T03:35:11+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.NE",
+      "quant-ph"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.12615v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.12615v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.12615v1",
+    "title": "An Impact Model of AI on the Principles of Justice: Encompassing the Autonomous Levels of AI Legal Reasoning",
+    "abstract": "Efforts furthering the advancement of Artificial Intelligence (AI) will increasingly encompass AI Legal Reasoning (AILR) as a crucial element in the practice of law. It is argued in this research paper that the infusion of AI into existing and future legal activities and the judicial structure needs to be undertaken by mindfully observing an alignment with the core principles of justice. As such, the adoption of AI has a profound twofold possibility of either usurping the principles of justice, doing so in a Dystopian manner, and yet also capable to bolster the principles of justice, doing so in a Utopian way. By examining the principles of justice across the Levels of Autonomy (LoA) of AI Legal Reasoning, the case is made that there is an ongoing tension underlying the efforts to develop and deploy AI that can demonstrably determine the impacts and sway upon each core principle of justice and the collective set.",
+    "authors": [
+      "Lance Eliot"
+    ],
+    "published_date": "2020-08-26T22:56:41+00:00",
+    "updated_date": "2020-08-26T22:56:41+00:00",
+    "primary_category": "cs.CY",
+    "categories": [
+      "cs.CY",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.12210v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.12210v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.12210v1",
+    "title": "Biomechanic Posture Stabilisation via Iterative Training of Multi-policy Deep Reinforcement Learning Agents",
+    "abstract": "It is not until we become senior citizens do we recognise how much we took maintaining a simple standing posture for granted. It is truly fascinating to observe the magnitude of control the human brain exercises, in real time, to activate and deactivate the lower body muscles and solve a multi-link 3D inverted pendulum problem in order to maintain a stable standing posture. This realisation is even more apparent when training an artificial intelligence (AI) agent to maintain a standing posture of a digital musculoskeletal avatar due to the error propagation problem. In this work we address the error propagation problem by introducing an iterative training procedure for deep reinforcement learning which allows the agent to learn a finite set of actions and how to coordinate between them in order to achieve a stable standing posture. The proposed training approach allowed the agent to increase standing duration from 4 seconds using the traditional training method to 348 seconds using the proposed method. The proposed training method allowed the agent to generalise and accommodate perception and actuation noise for almost 108 seconds.",
+    "authors": [
+      "Mohammed Hossny",
+      "Julie Iskander"
+    ],
+    "published_date": "2020-08-21T05:58:10+00:00",
+    "updated_date": "2020-08-21T05:58:10+00:00",
+    "primary_category": "cs.RO",
+    "categories": [
+      "cs.RO",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.12228v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.12228v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.12228v1",
+    "title": "Towards General and Autonomous Learning of Core Skills: A Case Study in Locomotion",
+    "abstract": "Modern Reinforcement Learning (RL) algorithms promise to solve difficult motor control problems directly from raw sensory inputs. Their attraction is due in part to the fact that they can represent a general class of methods that allow to learn a solution with a reasonably set reward and minimal prior knowledge, even in situations where it is difficult or expensive for a human expert. For RL to truly make good on this promise, however, we need algorithms and learning setups that can work across a broad range of problems with minimal problem specific adjustments or engineering. In this paper, we study this idea of generality in the locomotion domain. We develop a learning framework that can learn sophisticated locomotion behavior for a wide spectrum of legged robots, such as bipeds, tripeds, quadrupeds and hexapods, including wheeled variants. Our learning framework relies on a data-efficient, off-policy multi-task RL algorithm and a small set of reward functions that are semantically identical across robots. To underline the general applicability of the method, we keep the hyper-parameter settings and reward definitions constant across experiments and rely exclusively on on-board sensing. For nine different types of robots, including a real-world quadruped robot, we demonstrate that the same algorithm can rapidly learn diverse and reusable locomotion skills without any platform specific adjustments or additional instrumentation of the learning setup.",
+    "authors": [
+      "Roland Hafner",
+      "Tim Hertweck",
+      "Philipp Klöppner",
+      "Michael Bloesch",
+      "Michael Neunert",
+      "Markus Wulfmeier",
+      "Saran Tunyasuvunakool",
+      "Nicolas Heess",
+      "Martin Riedmiller"
+    ],
+    "published_date": "2020-08-06T08:23:55+00:00",
+    "updated_date": "2020-08-06T08:23:55+00:00",
+    "primary_category": "cs.RO",
+    "categories": [
+      "cs.RO",
+      "cs.AI",
+      "cs.LG",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.12708v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.12708v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.12708v2",
+    "title": "Disturbances in Influence of a Shepherding Agent is More Impactful than Sensorial Noise During Swarm Guidance",
+    "abstract": "The guidance of a large swarm is a challenging control problem. Shepherding offers one approach to guide a large swarm using a few shepherding agents (sheepdogs). While noise is an inherent characteristic in many real-world problems, the impact of noise on shepherding is not a well-studied problem. We study two forms of noise. First, we evaluate noise in the sensorial information received by the shepherd about the location of sheep. Second, we evaluate noise in the ability of the sheepdog to influence sheep due to disturbance forces occurring during actuation. We study both types of noise in this paper, and investigate the performance of Strömbom's approach under these actuation and perception noises. To ensure that the parameterisation of the algorithm creates a stable performance, we need to run a large number of simulations, while increasing the number of random episodes until stability is achieved. We then systematically study the impact of sensorial and actuation noise on performance. Strömbom's approach is found to be more sensitive to actuation noise than perception noise. This implies that it is more important for the shepherding agent to influence the sheep more accurately by reducing actuation noise than attempting to reduce noise in its sensors. Moreover, different levels of noise required different parameterisation for the shepherding agent, where the threshold needed by an agent to decide whether or not to collect astray sheep is different for different noise levels.",
+    "authors": [
+      "Hung The Nguyen",
+      "Matthew Garratt",
+      "Lam Thu Bui",
+      "Hussein Abbass"
+    ],
+    "published_date": "2020-08-28T15:40:40+00:00",
+    "updated_date": "2020-10-03T05:33:03+00:00",
+    "primary_category": "cs.MA",
+    "categories": [
+      "cs.MA",
+      "cs.AI"
+    ],
+    "doi": "10.1109/MCI.2020.2998307",
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.12763v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.12763v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.12763v1",
+    "title": "Relational Data Synthesis using Generative Adversarial Networks: A Design Space Exploration",
+    "abstract": "The proliferation of big data has brought an urgent demand for privacy-preserving data publishing. Traditional solutions to this demand have limitations on effectively balancing the tradeoff between privacy and utility of the released data. Thus, the database community and machine learning community have recently studied a new problem of relational data synthesis using generative adversarial networks (GAN) and proposed various algorithms. However, these algorithms are not compared under the same framework and thus it is hard for practitioners to understand GAN's benefits and limitations. To bridge the gaps, we conduct so far the most comprehensive experimental study that investigates applying GAN to relational data synthesis. We introduce a unified GAN-based framework and define a space of design solutions for each component in the framework, including neural network architectures and training strategies. We conduct extensive experiments to explore the design space and compare with traditional data synthesis approaches. Through extensive experiments, we find that GAN is very promising for relational data synthesis, and provide guidance for selecting appropriate design solutions. We also point out limitations of GAN and identify future research directions.",
+    "authors": [
+      "Ju Fan",
+      "Tongyu Liu",
+      "Guoliang Li",
+      "Junyou Chen",
+      "Yuwei Shen",
+      "Xiaoyong Du"
+    ],
+    "published_date": "2020-08-28T17:41:11+00:00",
+    "updated_date": "2020-08-28T17:41:11+00:00",
+    "primary_category": "cs.DB",
+    "categories": [
+      "cs.DB",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.13548v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.13548v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.13548v1",
+    "title": "Towards Game Design via Creative Machine Learning (GDCML)",
+    "abstract": "In recent years, machine learning (ML) systems have been increasingly applied for performing creative tasks. Such creative ML approaches have seen wide use in the domains of visual art and music for applications such as image and music generation and style transfer. However, similar creative ML techniques have not been as widely adopted in the domain of game design despite the emergence of ML-based methods for generating game content. In this paper, we argue for leveraging and repurposing such creative techniques for designing content for games, referring to these as approaches for Game Design via Creative ML (GDCML). We highlight existing systems that enable GDCML and illustrate how creative ML can inform new systems via example applications and a proposed system.",
+    "authors": [
+      "Anurag Sarkar",
+      "Seth Cooper"
+    ],
+    "published_date": "2020-07-25T21:15:55+00:00",
+    "updated_date": "2020-07-25T21:15:55+00:00",
+    "primary_category": "cs.CY",
+    "categories": [
+      "cs.CY",
+      "cs.AI",
+      "cs.LG",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.13600v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.13600v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.13600v2",
+    "title": "$β$-Cores: Robust Large-Scale Bayesian Data Summarization in the Presence of Outliers",
+    "abstract": "Modern machine learning applications should be able to address the intrinsic challenges arising over inference on massive real-world datasets, including scalability and robustness to outliers. Despite the multiple benefits of Bayesian methods (such as uncertainty-aware predictions, incorporation of experts knowledge, and hierarchical modeling), the quality of classic Bayesian inference depends critically on whether observations conform with the assumed data generating model, which is impossible to guarantee in practice. In this work, we propose a variational inference method that, in a principled way, can simultaneously scale to large datasets, and robustify the inferred posterior with respect to the existence of outliers in the observed data. Reformulating Bayes theorem via the $β$-divergence, we posit a robustified pseudo-Bayesian posterior as the target of inference. Moreover, relying on the recent formulations of Riemannian coresets for scalable Bayesian inference, we propose a sparse variational approximation of the robustified posterior and an efficient stochastic black-box algorithm to construct it. Overall our method allows releasing cleansed data summaries that can be applied broadly in scenarios including structured data corruption. We illustrate the applicability of our approach in diverse simulated and real datasets, and various statistical models, including Gaussian mean inference, logistic and neural linear regression, demonstrating its superiority to existing Bayesian summarization methods in the presence of outliers.",
+    "authors": [
+      "Dionysis Manousakas",
+      "Cecilia Mascolo"
+    ],
+    "published_date": "2020-08-31T13:47:12+00:00",
+    "updated_date": "2020-11-09T10:25:11+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.AP",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.13115v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.13115v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.13115v1",
+    "title": "Corruption and Audit in Strategic Argumentation",
+    "abstract": "Strategic argumentation provides a simple model of disputation and negotiation among agents. Although agents might be expected to act in our best interests, there is little that enforces such behaviour. (Maher, 2016) introduced a model of corruption and resistance to corruption within strategic argumentation. In this paper we identify corrupt behaviours that are not detected in that formulation. We strengthen the model to detect such behaviours, and show that, under the strengthened model, all the strategic aims in (Maher, 2016) are resistant to corruption.",
+    "authors": [
+      "Michael J. Maher"
+    ],
+    "published_date": "2020-08-30T08:08:26+00:00",
+    "updated_date": "2020-08-30T08:08:26+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.CR",
+      "cs.MA"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.13024v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.13024v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.13024v1",
+    "title": "Dual Attention GANs for Semantic Image Synthesis",
+    "abstract": "In this paper, we focus on the semantic image synthesis task that aims at transferring semantic label maps to photo-realistic images. Existing methods lack effective semantic constraints to preserve the semantic information and ignore the structural correlations in both spatial and channel dimensions, leading to unsatisfactory blurry and artifact-prone results. To address these limitations, we propose a novel Dual Attention GAN (DAGAN) to synthesize photo-realistic and semantically-consistent images with fine details from the input layouts without imposing extra training overhead or modifying the network architectures of existing methods. We also propose two novel modules, i.e., position-wise Spatial Attention Module (SAM) and scale-wise Channel Attention Module (CAM), to capture semantic structure attention in spatial and channel dimensions, respectively. Specifically, SAM selectively correlates the pixels at each position by a spatial attention map, leading to pixels with the same semantic label being related to each other regardless of their spatial distances. Meanwhile, CAM selectively emphasizes the scale-wise features at each channel by a channel attention map, which integrates associated features among all channel maps regardless of their scales. We finally sum the outputs of SAM and CAM to further improve feature representation. Extensive experiments on four challenging datasets show that DAGAN achieves remarkably better results than state-of-the-art methods, while using fewer model parameters. The source code and trained models are available at https://github.com/Ha0Tang/DAGAN.",
+    "authors": [
+      "Hao Tang",
+      "Song Bai",
+      "Nicu Sebe"
+    ],
+    "published_date": "2020-08-29T17:49:01+00:00",
+    "updated_date": "2020-08-29T17:49:01+00:00",
+    "primary_category": "cs.CV",
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG",
+      "cs.MM"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.13261v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.13261v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.13261v1",
+    "title": "Benchmarking adversarial attacks and defenses for time-series data",
+    "abstract": "The adversarial vulnerability of deep networks has spurred the interest of researchers worldwide. Unsurprisingly, like images, adversarial examples also translate to time-series data as they are an inherent weakness of the model itself rather than the modality. Several attempts have been made to defend against these adversarial attacks, particularly for the visual modality. In this paper, we perform detailed benchmarking of well-proven adversarial defense methodologies on time-series data. We restrict ourselves to the $L_{\\infty}$ threat model. We also explore the trade-off between smoothness and clean accuracy for regularization-based defenses to better understand the trade-offs that they offer. Our analysis shows that the explored adversarial defenses offer robustness against both strong white-box as well as black-box attacks. This paves the way for future research in the direction of adversarial attacks and defenses, particularly for time-series data.",
+    "authors": [
+      "Shoaib Ahmed Siddiqui",
+      "Andreas Dengel",
+      "Sheraz Ahmed"
+    ],
+    "published_date": "2020-08-30T20:03:35+00:00",
+    "updated_date": "2020-08-30T20:03:35+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.13377v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.13377v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.13377v1",
+    "title": "Evaluating Single Image Dehazing Methods Under Realistic Sunlight Haze",
+    "abstract": "Haze can degrade the visibility and the image quality drastically, thus degrading the performance of computer vision tasks such as object detection. Single image dehazing is a challenging and ill-posed problem, despite being widely studied. Most existing methods assume that haze has a uniform/homogeneous distribution and haze can have a single color, i.e. grayish white color similar to smoke, while in reality haze can be distributed non-uniformly with different patterns and colors. In this paper, we focus on haze created by sunlight as it is one of the most prevalent type of haze in the wild. Sunlight can generate non-uniformly distributed haze with drastic density changes due to sun rays and also a spectrum of haze color due to sunlight color changes during the day. This presents a new challenge to image dehazing methods. For these methods to be practical, this problem needs to be addressed. To quantify the challenges and assess the performance of these methods, we present a sunlight haze benchmark dataset, Sun-Haze, containing 107 hazy images with different types of haze created by sunlight having a variety of intensity and color. We evaluate a representative set of state-of-the-art image dehazing methods on this benchmark dataset in terms of standard metrics such as PSNR, SSIM, CIEDE2000, PI and NIQE. This uncovers the limitation of the current methods, and questions their underlying assumptions as well as their practicality.",
+    "authors": [
+      "Zahra Anvari",
+      "Vassilis Athitsos"
+    ],
+    "published_date": "2020-08-31T05:53:26+00:00",
+    "updated_date": "2020-08-31T05:53:26+00:00",
+    "primary_category": "cs.CV",
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.10845v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.10845v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.10845v1",
+    "title": "CnGAN: Generative Adversarial Networks for Cross-network user preference generation for non-overlapped users",
+    "abstract": "A major drawback of cross-network recommender solutions is that they can only be applied to users that are overlapped across networks. Thus, the non-overlapped users, which form the majority of users are ignored. As a solution, we propose CnGAN, a novel multi-task learning based, encoder-GAN-recommender architecture. The proposed model synthetically generates source network user preferences for non-overlapped users by learning the mapping from target to source network preference manifolds. The resultant user preferences are used in a Siamese network based neural recommender architecture. Furthermore, we propose a novel user based pairwise loss function for recommendations using implicit interactions to better guide the generation process in the multi-task learning environment.We illustrate our solution by generating user preferences on the Twitter source network for recommendations on the YouTube target network. Extensive experiments show that the generated preferences can be used to improve recommendations for non-overlapped users. The resultant recommendations achieve superior performance compared to the state-of-the-art cross-network recommender solutions in terms of accuracy, novelty and diversity.",
+    "authors": [
+      "Dilruk Perera",
+      "Roger Zimmermann"
+    ],
+    "published_date": "2020-08-25T06:47:44+00:00",
+    "updated_date": "2020-08-25T06:47:44+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.IR",
+      "stat.ML"
+    ],
+    "doi": "10.1145/3308558.3313733",
+    "journal_ref": "The World Wide Web Conference, 2019 (WWW'19)"
+  },
+  {
+    "paper_id": "2009.06082v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.06082v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.06082v1",
+    "title": "Receptivity of an AI Cognitive Assistant by the Radiology Community: A Report on Data Collected at RSNA",
+    "abstract": "Due to advances in machine learning and artificial intelligence (AI), a new role is emerging for machines as intelligent assistants to radiologists in their clinical workflows. But what systematic clinical thought processes are these machines using? Are they similar enough to those of radiologists to be trusted as assistants? A live demonstration of such a technology was conducted at the 2016 Scientific Assembly and Annual Meeting of the Radiological Society of North America (RSNA). The demonstration was presented in the form of a question-answering system that took a radiology multiple choice question and a medical image as inputs. The AI system then demonstrated a cognitive workflow, involving text analysis, image analysis, and reasoning, to process the question and generate the most probable answer. A post demonstration survey was made available to the participants who experienced the demo and tested the question answering system. Of the reported 54,037 meeting registrants, 2,927 visited the demonstration booth, 1,991 experienced the demo, and 1,025 completed a post-demonstration survey. In this paper, the methodology of the survey is shown and a summary of its results are presented. The results of the survey show a very high level of receptiveness to cognitive computing technology and artificial intelligence among radiologists.",
+    "authors": [
+      "Karina Kanjaria",
+      "Anup Pillai",
+      "Chaitanya Shivade",
+      "Marina Bendersky",
+      "Ashutosh Jadhav",
+      "Vandana Mukherjee",
+      "Tanveer Syeda-Mahmood"
+    ],
+    "published_date": "2020-09-13T20:40:30+00:00",
+    "updated_date": "2020-09-13T20:40:30+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": "10.5220/0008984901780186",
+    "journal_ref": "Proceedings of the 13th International Joint Conference on Biomedical Engineering Systems and Technologies - Volume 5: HEALTHINF, ISBN 978-989-758-398-8, pages 178-186. 2020"
+  },
+  {
+    "paper_id": "2009.06114v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.06114v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.06114v1",
+    "title": "Towards the Quantification of Safety Risks in Deep Neural Networks",
+    "abstract": "Safety concerns on the deep neural networks (DNNs) have been raised when they are applied to critical sectors. In this paper, we define safety risks by requesting the alignment of the network's decision with human perception. To enable a general methodology for quantifying safety risks, we define a generic safety property and instantiate it to express various safety risks. For the quantification of risks, we take the maximum radius of safe norm balls, in which no safety risk exists. The computation of the maximum safe radius is reduced to the computation of their respective Lipschitz metrics - the quantities to be computed. In addition to the known adversarial example, reachability example, and invariant example, in this paper we identify a new class of risk - uncertainty example - on which humans can tell easily but the network is unsure. We develop an algorithm, inspired by derivative-free optimization techniques and accelerated by tensor-based parallelization on GPUs, to support efficient computation of the metrics. We perform evaluations on several benchmark neural networks, including ACSC-Xu, MNIST, CIFAR-10, and ImageNet networks. The experiments show that, our method can achieve competitive performance on safety quantification in terms of the tightness and the efficiency of computation. Importantly, as a generic approach, our method can work with a broad class of safety risks and without restrictions on the structure of neural networks.",
+    "authors": [
+      "Peipei Xu",
+      "Wenjie Ruan",
+      "Xiaowei Huang"
+    ],
+    "published_date": "2020-09-13T23:30:09+00:00",
+    "updated_date": "2020-09-13T23:30:09+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CV",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.06131v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.06131v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.06131v1",
+    "title": "An Argumentation-based Approach for Explaining Goal Selection in Intelligent Agents",
+    "abstract": "During the first step of practical reasoning, i.e. deliberation or goals selection, an intelligent agent generates a set of pursuable goals and then selects which of them he commits to achieve. Explainable Artificial Intelligence (XAI) systems, including intelligent agents, must be able to explain their internal decisions. In the context of goals selection, agents should be able to explain the reasoning path that leads them to select (or not) a certain goal. In this article, we use an argumentation-based approach for generating explanations about that reasoning path. Besides, we aim to enrich the explanations with information about emerging conflicts during the selection process and how such conflicts were resolved. We propose two types of explanations: the partial one and the complete one and a set of explanatory schemes to generate pseudo-natural explanations. Finally, we apply our proposal to the cleaner world scenario.",
+    "authors": [
+      "Mariela Morveli-Espinoza",
+      "Cesar Augusto Tacla",
+      "Henrique Jasinski"
+    ],
+    "published_date": "2020-09-14T01:10:13+00:00",
+    "updated_date": "2020-09-14T01:10:13+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.06215v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.06215v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.06215v1",
+    "title": "A Deep Framework for Cross-Domain and Cross-System Recommendations",
+    "abstract": "Cross-Domain Recommendation (CDR) and Cross-System Recommendations (CSR) are two of the promising solutions to address the long-standing data sparsity problem in recommender systems. They leverage the relatively richer information, e.g., ratings, from the source domain or system to improve the recommendation accuracy in the target domain or system. Therefore, finding an accurate mapping of the latent factors across domains or systems is crucial to enhancing recommendation accuracy. However, this is a very challenging task because of the complex relationships between the latent factors of the source and target domains or systems. To this end, in this paper, we propose a Deep framework for both Cross-Domain and Cross-System Recommendations, called DCDCSR, based on Matrix Factorization (MF) models and a fully connected Deep Neural Network (DNN). Specifically, DCDCSR first employs the MF models to generate user and item latent factors and then employs the DNN to map the latent factors across domains or systems. More importantly, we take into account the rating sparsity degrees of individual users and items in different domains or systems and use them to guide the DNN training process for utilizing the rating data more effectively. Extensive experiments conducted on three real-world datasets demonstrate that DCDCSR framework outperforms the state-of-the-art CDR and CSR approaches in terms of recommendation accuracy.",
+    "authors": [
+      "Feng Zhu",
+      "Yan Wang",
+      "Chaochao Chen",
+      "Guanfeng Liu",
+      "Mehmet Orgun",
+      "Jia Wu"
+    ],
+    "published_date": "2020-09-14T06:11:17+00:00",
+    "updated_date": "2020-09-14T06:11:17+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.05282v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.05282v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.05282v1",
+    "title": "Results of multi-agent system and ontology to manage ideas and represent knowledge in a challenge of creativity",
+    "abstract": "This article is about an intelligent system to support ideas management as a result of a multi-agent system used in a distributed system with heterogeneous information as ideas and knowledge, after the results about an ontology to describe the meaning of these ideas. The intelligent system assists participants of the creativity workshop to manage their ideas and consequently proposing an ontology dedicated to ideas. During the creative workshop many creative activities and collaborative creative methods are used by roles immersed in this creativity workshop event where they share knowledge. The collaboration of these roles is physically distant, their interactions might be synchrony or asynchrony, and the information of the ideas are heterogeneous, so we can say that the process is distributed. Those ideas are writing in natural language by participants which have a role and the ideas are heterogeneous since some of them are described by schema, text or scenario of use. This paper presents first, our MAS and second our Ontology design.",
+    "authors": [
+      "Pedro Barrios",
+      "Davy Monticolo",
+      "Sahbi Sidhom"
+    ],
+    "published_date": "2020-09-11T08:31:30+00:00",
+    "updated_date": "2020-09-11T08:31:30+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.MA"
+    ],
+    "doi": null,
+    "journal_ref": "International Multi-Conference OCTA'2019 on Organization of Knowledge and Advanced Technologies, University of Tunis (Tunisia) & International scholarly society ISKO Maghreb, Feb 2020, Tunis (ALECSO), Tunisia. pp.6-17"
+  },
+  {
+    "paper_id": "2009.05161v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.05161v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.05161v1",
+    "title": "Multi-Goal Multi-Agent Path Finding via Decoupled and Integrated Goal Vertex Ordering",
+    "abstract": "We introduce multi-goal multi agent path finding (MAPF$^{MG}$) which generalizes the standard discrete multi-agent path finding (MAPF) problem. While the task in MAPF is to navigate agents in an undirected graph from their starting vertices to one individual goal vertex per agent, MAPF$^{MG}$ assigns each agent multiple goal vertices and the task is to visit each of them at least once. Solving MAPF$^{MG}$ not only requires finding collision free paths for individual agents but also determining the order of visiting agent's goal vertices so that common objectives like the sum-of-costs are optimized. We suggest two novel algorithms using different paradigms to address MAPF$^{MG}$: a heuristic search-based search algorithm called Hamiltonian-CBS (HCBS) and a compilation-based algorithm built using the SMT paradigm, called SMT-Hamiltonian-CBS (SMT-HCBS). Experimental comparison suggests limitations of compilation-based approach.",
+    "authors": [
+      "Pavel Surynek"
+    ],
+    "published_date": "2020-09-10T22:27:18+00:00",
+    "updated_date": "2020-09-10T22:27:18+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.06368v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.06368v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.06368v2",
+    "title": "Searching for a Search Method: Benchmarking Search Algorithms for Generating NLP Adversarial Examples",
+    "abstract": "We study the behavior of several black-box search algorithms used for generating adversarial examples for natural language processing (NLP) tasks. We perform a fine-grained analysis of three elements relevant to search: search algorithm, search space, and search budget. When new search algorithms are proposed in past work, the attack search space is often modified alongside the search algorithm. Without ablation studies benchmarking the search algorithm change with the search space held constant, one cannot tell if an increase in attack success rate is a result of an improved search algorithm or a less restrictive search space. Additionally, many previous studies fail to properly consider the search algorithms' run-time cost, which is essential for downstream tasks like adversarial training. Our experiments provide a reproducible benchmark of search algorithms across a variety of search spaces and query budgets to guide future research in adversarial NLP. Based on our experiments, we recommend greedy attacks with word importance ranking when under a time constraint or attacking long inputs, and either beam search or particle swarm optimization otherwise. Code implementation shared via https://github.com/QData/TextAttack-Search-Benchmark",
+    "authors": [
+      "Jin Yong Yoo",
+      "John X. Morris",
+      "Eli Lifland",
+      "Yanjun Qi"
+    ],
+    "published_date": "2020-09-09T17:04:42+00:00",
+    "updated_date": "2020-10-12T19:46:36+00:00",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.CR",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.06433v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.06433v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.06433v1",
+    "title": "Should We Trust (X)AI? Design Dimensions for Structured Experimental Evaluations",
+    "abstract": "This paper systematically derives design dimensions for the structured evaluation of explainable artificial intelligence (XAI) approaches. These dimensions enable a descriptive characterization, facilitating comparisons between different study designs. They further structure the design space of XAI, converging towards a precise terminology required for a rigorous study of XAI. Our literature review differentiates between comparative studies and application papers, revealing methodological differences between the fields of machine learning, human-computer interaction, and visual analytics. Generally, each of these disciplines targets specific parts of the XAI process. Bridging the resulting gaps enables a holistic evaluation of XAI in real-world scenarios, as proposed by our conceptual model characterizing bias sources and trust-building. Furthermore, we identify and discuss the potential for future work based on observed research gaps that should lead to better coverage of the proposed model.",
+    "authors": [
+      "Fabian Sperrle",
+      "Mennatallah El-Assady",
+      "Grace Guo",
+      "Duen Horng Chau",
+      "Alex Endert",
+      "Daniel Keim"
+    ],
+    "published_date": "2020-09-14T13:40:51+00:00",
+    "updated_date": "2020-09-14T13:40:51+00:00",
+    "primary_category": "cs.HC",
+    "categories": [
+      "cs.HC",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.06489v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.06489v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.06489v2",
+    "title": "The Hardware Lottery",
+    "abstract": "Hardware, systems and algorithms research communities have historically had different incentive structures and fluctuating motivation to engage with each other explicitly. This historical treatment is odd given that hardware and software have frequently determined which research ideas succeed (and fail). This essay introduces the term hardware lottery to describe when a research idea wins because it is suited to the available software and hardware and not because the idea is superior to alternative research directions. Examples from early computer science history illustrate how hardware lotteries can delay research progress by casting successful ideas as failures. These lessons are particularly salient given the advent of domain specialized hardware which make it increasingly costly to stray off of the beaten path of research ideas. This essay posits that the gains from progress in computing are likely to become even more uneven, with certain research directions moving into the fast-lane while progress on others is further obstructed.",
+    "authors": [
+      "Sara Hooker"
+    ],
+    "published_date": "2020-09-14T14:49:10+00:00",
+    "updated_date": "2020-09-21T22:58:12+00:00",
+    "primary_category": "cs.CY",
+    "categories": [
+      "cs.CY",
+      "cs.AI",
+      "cs.AR",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.05700v3",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.05700v3",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.05700v3",
+    "title": "Information-Theoretic Multi-Objective Bayesian Optimization with Continuous Approximations",
+    "abstract": "Many real-world applications involve black-box optimization of multiple objectives using continuous function approximations that trade-off accuracy and resource cost of evaluation. For example, in rocket launching research, we need to find designs that trade-off return-time and angular distance using continuous-fidelity simulators (e.g., varying tolerance parameter to trade-off simulation time and accuracy) for design evaluations. The goal is to approximate the optimal Pareto set by minimizing the cost for evaluations. In this paper, we propose a novel approach referred to as information-Theoretic Multi-Objective Bayesian Optimization with Continuous Approximations (iMOCA)} to solve this problem. The key idea is to select the sequence of input and function approximations for multiple objectives which maximize the information gain per unit cost for the optimal Pareto front. Our experiments on diverse synthetic and real-world benchmarks show that iMOCA significantly improves over existing single-fidelity methods.",
+    "authors": [
+      "Syrine Belakaria",
+      "Aryan Deshwal",
+      "Janardhan Rao Doppa"
+    ],
+    "published_date": "2020-09-12T01:46:03+00:00",
+    "updated_date": "2020-11-23T01:46:09+00:00",
+    "primary_category": "stat.ML",
+    "categories": [
+      "stat.ML",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": "Workshop on machine learning for engineering modeling, simulation and design @ NeurIPS 2020"
+  },
+  {
+    "paper_id": "2009.05863v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.05863v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.05863v1",
+    "title": "Tracking disease outbreaks from sparse data with Bayesian inference",
+    "abstract": "The COVID-19 pandemic provides new motivation for a classic problem in epidemiology: estimating the empirical rate of transmission during an outbreak (formally, the time-varying reproduction number) from case counts. While standard methods exist, they work best at coarse-grained national or state scales with abundant data, and struggle to accommodate the partial observability and sparse data common at finer scales (e.g., individual schools or towns). For example, case counts may be sparse when only a small fraction of infections are caught by a testing program. Or, whether an infected individual tests positive may depend on the kind of test and the point in time when they are tested. We propose a Bayesian framework which accommodates partial observability in a principled manner. Our model places a Gaussian process prior over the unknown reproduction number at each time step and models observations sampled from the distribution of a specific testing program. For example, our framework can accommodate a variety of kinds of tests (viral RNA, antibody, antigen, etc.) and sampling schemes (e.g., longitudinal or cross-sectional screening). Inference in this framework is complicated by the presence of tens or hundreds of thousands of discrete latent variables. To address this challenge, we propose an efficient stochastic variational inference method which relies on a novel gradient estimator for the variational objective. Experimental results for an example motivated by COVID-19 show that our method produces an accurate and well-calibrated posterior, while standard methods for estimating the reproduction number can fail badly.",
+    "authors": [
+      "Bryan Wilder",
+      "Michael J. Mina",
+      "Milind Tambe"
+    ],
+    "published_date": "2020-09-12T20:37:33+00:00",
+    "updated_date": "2020-09-12T20:37:33+00:00",
+    "primary_category": "stat.ME",
+    "categories": [
+      "stat.ME",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.05898v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.05898v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.05898v1",
+    "title": "Resolving Resource Incompatibilities in Intelligent Agents",
+    "abstract": "An intelligent agent may in general pursue multiple procedural goals simultaneously, which may lead to arise some conflicts (incompatibilities) among them. In this paper, we focus on the incompatibilities that emerge due to resources limitations. Thus, the contribution of this article is twofold. On one hand, we give an algorithm for identifying resource incompatibilities from a set of pursued goals and, on the other hand, we propose two ways for selecting those goals that will continue to be pursued: (i) the first is based on abstract argumentation theory, and (ii) the second based on two algorithms developed by us. We illustrate our proposal using examples throughout the article.",
+    "authors": [
+      "Mariela Morveli-Espinoza",
+      "Ayslan Possebom",
+      "Cesar Augusto Tacla"
+    ],
+    "published_date": "2020-09-13T02:09:04+00:00",
+    "updated_date": "2020-09-13T02:09:04+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": "10.1109/BRACIS.2017.28",
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.06592v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.06592v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.06592v1",
+    "title": "Analogy-Making as a Core Primitive in the Software Engineering Toolbox",
+    "abstract": "An analogy is an identification of structural similarities and correspondences between two objects. Computational models of analogy making have been studied extensively in the field of cognitive science to better understand high-level human cognition. For instance, Melanie Mitchell and Douglas Hofstadter sought to better understand high-level perception by developing the Copycat algorithm for completing analogies between letter sequences. In this paper, we argue that analogy making should be seen as a core primitive in software engineering. We motivate this argument by showing how complex software engineering problems such as program understanding and source-code transformation learning can be reduced to an instance of the analogy-making problem. We demonstrate this idea using Sifter, a new analogy-making algorithm suitable for software engineering applications that adapts and extends ideas from Copycat. In particular, Sifter reduces analogy-making to searching for a sequence of update rule applications. Sifter uses a novel representation for mathematical structures capable of effectively representing the wide variety of information embedded in software. We conclude by listing major areas of future work for Sifter and analogy-making in software engineering.",
+    "authors": [
+      "Matthew Sotoudeh",
+      "Aditya V. Thakur"
+    ],
+    "published_date": "2020-09-14T17:24:15+00:00",
+    "updated_date": "2020-09-14T17:24:15+00:00",
+    "primary_category": "cs.SE",
+    "categories": [
+      "cs.SE",
+      "cs.AI",
+      "cs.PL"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.08202v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.08202v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.08202v1",
+    "title": "Mediating Community-AI Interaction through Situated Explanation: The Case of AI-Led Moderation",
+    "abstract": "Artificial intelligence (AI) has become prevalent in our everyday technologies and impacts both individuals and communities. The explainable AI (XAI) scholarship has explored the philosophical nature of explanation and technical explanations, which are usually driven by experts in lab settings and can be challenging for laypersons to understand. In addition, existing XAI research tends to focus on the individual level. Little is known about how people understand and explain AI-led decisions in the community context. Drawing from XAI and activity theory, a foundational HCI theory, we theorize how explanation is situated in a community's shared values, norms, knowledge, and practices, and how situated explanation mediates community-AI interaction. We then present a case study of AI-led moderation, where community members collectively develop explanations of AI-led decisions, most of which are automated punishments. Lastly, we discuss the implications of this framework at the intersection of CSCW, HCI, and XAI.",
+    "authors": [
+      "Yubo Kou",
+      "Xinning Gui"
+    ],
+    "published_date": "2020-08-19T00:13:12+00:00",
+    "updated_date": "2020-08-19T00:13:12+00:00",
+    "primary_category": "cs.HC",
+    "categories": [
+      "cs.HC",
+      "cs.AI",
+      "cs.CY"
+    ],
+    "doi": "10.1145/3415173",
+    "journal_ref": "PACMHCI, Vol 4, No. CSCW2, Article 102 (October 2020). 27 pages"
+  },
+  {
+    "paper_id": "2008.08236v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.08236v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.08236v2",
+    "title": "Long-Term Effect Estimation with Surrogate Representation",
+    "abstract": "There are many scenarios where short- and long-term causal effects of an intervention are different. For example, low-quality ads may increase short-term ad clicks but decrease the long-term revenue via reduced clicks. This work, therefore, studies the problem of long-term effect where the outcome of primary interest, or primary outcome, takes months or even years to accumulate. The observational study of long-term effect presents unique challenges. First, the confounding bias causes large estimation error and variance, which can further accumulate towards the prediction of primary outcomes. Second, short-term outcomes are often directly used as the proxy of the primary outcome, i.e., the surrogate. Nevertheless, this method entails the strong surrogacy assumption that is often impractical. To tackle these challenges, we propose to build connections between long-term causal inference and sequential models in machine learning. This enables us to learn surrogate representations that account for the temporal unconfoundedness and circumvent the stringent surrogacy assumption by conditioning on the inferred time-varying confounders. Experimental results show that the proposed framework outperforms the state-of-the-art.",
+    "authors": [
+      "Lu Cheng",
+      "Ruocheng Guo",
+      "Huan Liu"
+    ],
+    "published_date": "2020-08-19T03:16:18+00:00",
+    "updated_date": "2020-12-22T16:52:05+00:00",
+    "primary_category": "stat.AP",
+    "categories": [
+      "stat.AP",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.11149v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.11149v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.11149v1",
+    "title": "Spatiotemporal Action Recognition in Restaurant Videos",
+    "abstract": "Spatiotemporal action recognition is the task of locating and classifying actions in videos. Our project applies this task to analyzing video footage of restaurant workers preparing food, for which potential applications include automated checkout and inventory management. Such videos are quite different from the standardized datasets that researchers are used to, as they involve small objects, rapid actions, and notoriously unbalanced data classes. We explore two approaches. The first approach involves the familiar object detector You Only Look Once, and another applying a recently proposed analogue for action recognition, You Only Watch Once. In the first, we design and implement a novel, recurrent modification of YOLO using convolutional LSTMs and explore the various subtleties in the training of such a network. In the second, we study the ability of YOWOs three dimensional convolutions to capture the spatiotemporal features of our unique dataset",
+    "authors": [
+      "Akshat Gupta",
+      "Milan Desai",
+      "Wusheng Liang",
+      "Magesh Kannan"
+    ],
+    "published_date": "2020-08-25T16:30:01+00:00",
+    "updated_date": "2020-08-25T16:30:01+00:00",
+    "primary_category": "cs.CV",
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG",
+      "eess.IV"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.08665v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.08665v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.08665v1",
+    "title": "Intelligent Replication Management for HDFS Using Reinforcement Learning",
+    "abstract": "Storage systems for cloud computing merge a large number of commodity computers into a single large storage pool. It provides high-performance storage over an unreliable, and dynamic network at a lower cost than purchasing and maintaining large mainframe. In this paper, we examine whether it is feasible to apply Reinforcement Learning(RL) to system domain problems. Our experiments show that the RL model is comparable, even outperform other heuristics for block management problem. However, our experiments are limited in terms of scalability and fidelity. Even though our formulation is not very practical,applying Reinforcement Learning to system domain could offer good alternatives to existing heuristics.",
+    "authors": [
+      "Hyunsung Lee"
+    ],
+    "published_date": "2020-08-19T20:53:13+00:00",
+    "updated_date": "2020-08-19T20:53:13+00:00",
+    "primary_category": "cs.DC",
+    "categories": [
+      "cs.DC",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2008.08812v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2008.08812v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2008.08812v2",
+    "title": "Expressing Diverse Human Driving Behavior with Probabilistic Rewards and Online Inference",
+    "abstract": "In human-robot interaction (HRI) systems, such as autonomous vehicles, understanding and representing human behavior are important. Human behavior is naturally rich and diverse. Cost/reward learning, as an efficient way to learn and represent human behavior, has been successfully applied in many domains. Most of traditional inverse reinforcement learning (IRL) algorithms, however, cannot adequately capture the diversity of human behavior since they assume that all behavior in a given dataset is generated by a single cost function.In this paper, we propose a probabilistic IRL framework that directly learns a distribution of cost functions in continuous domain. Evaluations on both synthetic data and real human driving data are conducted. Both the quantitative and subjective results show that our proposed framework can better express diverse human driving behaviors, as well as extracting different driving styles that match what human participants interpret in our user study.",
+    "authors": [
+      "Liting Sun",
+      "Zheng Wu",
+      "Hengbo Ma",
+      "Masayoshi Tomizuka"
+    ],
+    "published_date": "2020-08-20T07:32:45+00:00",
+    "updated_date": "2020-08-21T01:14:04+00:00",
+    "primary_category": "cs.RO",
+    "categories": [
+      "cs.RO",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.13984v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.13984v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.13984v1",
+    "title": "The design and implementation of Language Learning Chatbot with XAI using Ontology and Transfer Learning",
+    "abstract": "In this paper, we proposed a transfer learning-based English language learning chatbot, whose output generated by GPT-2 can be explained by corresponding ontology graph rooted by fine-tuning dataset. We design three levels for systematically English learning, including phonetics level for speech recognition and pronunciation correction, semantic level for specific domain conversation, and the simulation of free-style conversation in English - the highest level of language chatbot communication as free-style conversation agent. For academic contribution, we implement the ontology graph to explain the performance of free-style conversation, following the concept of XAI (Explainable Artificial Intelligence) to visualize the connections of neural network in bionics, and explain the output sentence from language model. From implementation perspective, our Language Learning agent integrated the mini-program in WeChat as front-end, and fine-tuned GPT-2 model of transfer learning as back-end to interpret the responses by ontology graph.",
+    "authors": [
+      "Nuobei Shi",
+      "Qin Zeng",
+      "Raymond Lee"
+    ],
+    "published_date": "2020-09-29T13:11:40+00:00",
+    "updated_date": "2020-09-29T13:11:40+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": "Dhinaharan Nagamalai et al. (Eds): CSEIT, WiMoNe, NCS, CIoT, CMLA, DMSE, NLPD - 2020 pp. 305-323, 2020. CS & IT - CSCP 2020"
+  },
+  {
+    "paper_id": "2009.13996v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.13996v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.13996v1",
+    "title": "Explainable AI without Interpretable Model",
+    "abstract": "Explainability has been a challenge in AI for as long as AI has existed. With the recently increased use of AI in society, it has become more important than ever that AI systems would be able to explain the reasoning behind their results also to end-users in situations such as being eliminated from a recruitment process or having a bank loan application refused by an AI system. Especially if the AI system has been trained using Machine Learning, it tends to contain too many parameters for them to be analysed and understood, which has caused them to be called `black-box' systems. Most Explainable AI (XAI) methods are based on extracting an interpretable model that can be used for producing explanations. However, the interpretable model does not necessarily map accurately to the original black-box model. Furthermore, the understandability of interpretable models for an end-user remains questionable. The notions of Contextual Importance and Utility (CIU) presented in this paper make it possible to produce human-like explanations of black-box outcomes directly, without creating an interpretable model. Therefore, CIU explanations map accurately to the black-box model itself. CIU is completely model-agnostic and can be used with any black-box system. In addition to feature importance, the utility concept that is well-known in Decision Theory provides a new dimension to explanations compared to most existing XAI methods. Finally, CIU can produce explanations at any level of abstraction and using different vocabularies and other means of interaction, which makes it possible to adjust explanations and interaction according to the context and to the target users.",
+    "authors": [
+      "Kary Främling"
+    ],
+    "published_date": "2020-09-29T13:29:44+00:00",
+    "updated_date": "2020-09-29T13:29:44+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.13798v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.13798v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.13798v1",
+    "title": "Automatic Segmentation, Localization, and Identification of Vertebrae in 3D CT Images Using Cascaded Convolutional Neural Networks",
+    "abstract": "This paper presents a method for automatic segmentation, localization, and identification of vertebrae in arbitrary 3D CT images. Many previous works do not perform the three tasks simultaneously even though requiring a priori knowledge of which part of the anatomy is visible in the 3D CT images. Our method tackles all these tasks in a single multi-stage framework without any assumptions. In the first stage, we train a 3D Fully Convolutional Networks to find the bounding boxes of the cervical, thoracic, and lumbar vertebrae. In the second stage, we train an iterative 3D Fully Convolutional Networks to segment individual vertebrae in the bounding box. The input to the second networks have an auxiliary channel in addition to the 3D CT images. Given the segmented vertebra regions in the auxiliary channel, the networks output the next vertebra. The proposed method is evaluated in terms of segmentation, localization, and identification accuracy with two public datasets of 15 3D CT images from the MICCAI CSI 2014 workshop challenge and 302 3D CT images with various pathologies introduced in [1]. Our method achieved a mean Dice score of 96%, a mean localization error of 8.3 mm, and a mean identification rate of 84%. In summary, our method achieved better performance than all existing works in all the three metrics.",
+    "authors": [
+      "Naoto Masuzawa",
+      "Yoshiro Kitamura",
+      "Keigo Nakamura",
+      "Satoshi Iizuka",
+      "Edgar Simo-Serra"
+    ],
+    "published_date": "2020-09-29T06:11:37+00:00",
+    "updated_date": "2020-09-29T06:11:37+00:00",
+    "primary_category": "eess.IV",
+    "categories": [
+      "eess.IV",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.13891v3",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.13891v3",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.13891v3",
+    "title": "Towards Effective Context for Meta-Reinforcement Learning: an Approach based on Contrastive Learning",
+    "abstract": "Context, the embedding of previous collected trajectories, is a powerful construct for Meta-Reinforcement Learning (Meta-RL) algorithms. By conditioning on an effective context, Meta-RL policies can easily generalize to new tasks within a few adaptation steps. We argue that improving the quality of context involves answering two questions: 1. How to train a compact and sufficient encoder that can embed the task-specific information contained in prior trajectories? 2. How to collect informative trajectories of which the corresponding context reflects the specification of tasks? To this end, we propose a novel Meta-RL framework called CCM (Contrastive learning augmented Context-based Meta-RL). We first focus on the contrastive nature behind different tasks and leverage it to train a compact and sufficient context encoder. Further, we train a separate exploration policy and theoretically derive a new information-gain-based objective which aims to collect informative trajectories in a few steps. Empirically, we evaluate our approaches on common benchmarks as well as several complex sparse-reward environments. The experimental results show that CCM outperforms state-of-the-art algorithms by addressing previously mentioned problems respectively.",
+    "authors": [
+      "Haotian Fu",
+      "Hongyao Tang",
+      "Jianye Hao",
+      "Chen Chen",
+      "Xidong Feng",
+      "Dong Li",
+      "Wulong Liu"
+    ],
+    "published_date": "2020-09-29T09:29:18+00:00",
+    "updated_date": "2020-12-15T08:48:23+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2009.13931v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/2009.13931v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2009.13931v2",
+    "title": "Residual acoustic echo suppression based on efficient multi-task convolutional neural network",
+    "abstract": "Acoustic echo degrades the user experience in voice communication systems thus needs to be suppressed completely. We propose a real-time residual acoustic echo suppression (RAES) method using an efficient convolutional neural network. The double talk detector is used as an auxiliary task to improve the performance of RAES in the context of multi-task learning. The training criterion is based on a novel loss function, which we call as the suppression loss, to balance the suppression of residual echo and the distortion of near-end signals. The experimental results show that the proposed method can efficiently suppress the residual echo under different circumstances.",
+    "authors": [
+      "Xinquan Zhou",
+      "Yanhong Leng"
+    ],
+    "published_date": "2020-09-29T11:26:25+00:00",
+    "updated_date": "2020-11-06T03:33:36+00:00",
+    "primary_category": "cs.SD",
+    "categories": [
+      "cs.SD",
+      "cs.AI",
+      "cs.MM",
+      "eess.AS"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "2010.04344v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/2010.04344v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/2010.04344v1",
+    "title": "Plug-and-Play Conversational Models",
+    "abstract": "There has been considerable progress made towards conversational models that generate coherent and fluent responses; however, this often involves training large language models on large dialogue datasets, such as Reddit. These large conversational models provide little control over the generated responses, and this control is further limited in the absence of annotated conversational datasets for attribute specific generation that can be used for fine-tuning the model. In this paper, we first propose and evaluate plug-and-play methods for controllable response generation, which does not require dialogue specific datasets and does not rely on fine-tuning a large model. While effective, the decoding procedure induces considerable computational overhead, rendering the conversational model unsuitable for interactive usage. To overcome this, we introduce an approach that does not require further computation at decoding time, while also does not require any fine-tuning of a large language model. We demonstrate, through extensive automatic and human evaluation, a high degree of control over the generated conversational responses with regard to multiple desired attributes, while being fluent.",
+    "authors": [
+      "Andrea Madotto",
+      "Etsuko Ishii",
+      "Zhaojiang Lin",
+      "Sumanth Dathathri",
+      "Pascale Fung"
+    ],
+    "published_date": "2020-10-09T03:17:51+00:00",
+    "updated_date": "2020-10-09T03:17:51+00:00",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1806.02308v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1806.02308v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1806.02308v1",
+    "title": "Model-free, Model-based, and General Intelligence",
+    "abstract": "During the 60s and 70s, AI researchers explored intuitions about intelligence by writing programs that displayed intelligent behavior. Many good ideas came out from this work but programs written by hand were not robust or general. After the 80s, research increasingly shifted to the development of learners capable of inferring behavior and functions from experience and data, and solvers capable of tackling well-defined but intractable models like SAT, classical planning, Bayesian networks, and POMDPs. The learning approach has achieved considerable success but results in black boxes that do not have the flexibility, transparency, and generality of their model-based counterparts. Model-based approaches, on the other hand, require models and scalable algorithms. Model-free learners and model-based solvers have close parallels with Systems 1 and 2 in current theories of the human mind: the first, a fast, opaque, and inflexible intuitive mind; the second, a slow, transparent, and flexible analytical mind. In this paper, I review developments in AI and draw on these theories to discuss the gap between model-free learners and model-based solvers, a gap that needs to be bridged in order to have intelligent systems that are robust and general.",
+    "authors": [
+      "Hector Geffner"
+    ],
+    "published_date": "2018-06-06T17:15:27+00:00",
+    "updated_date": "2018-06-06T17:15:27+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": "Invited talk. IJCAI 2018"
+  },
+  {
+    "paper_id": "1806.02311v3",
+    "arxiv_abs_url": "http://arxiv.org/abs/1806.02311v3",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1806.02311v3",
+    "title": "Unsupervised Attention-guided Image to Image Translation",
+    "abstract": "Current unsupervised image-to-image translation techniques struggle to focus their attention on individual objects without altering the background or the way multiple objects interact within a scene. Motivated by the important role of attention in human perception, we tackle this limitation by introducing unsupervised attention mechanisms that are jointly adversarialy trained with the generators and discriminators. We demonstrate qualitatively and quantitatively that our approach is able to attend to relevant regions in the image without requiring supervision, and that by doing so it achieves more realistic mappings compared to recent approaches.",
+    "authors": [
+      "Youssef A. Mejjati",
+      "Christian Richardt",
+      "James Tompkin",
+      "Darren Cosker",
+      "Kwang In Kim"
+    ],
+    "published_date": "2018-06-06T17:21:38+00:00",
+    "updated_date": "2018-11-08T14:43:37+00:00",
+    "primary_category": "cs.CV",
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": "NIPS 2018"
+  },
+  {
+    "paper_id": "1806.04854v3",
+    "arxiv_abs_url": "http://arxiv.org/abs/1806.04854v3",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1806.04854v3",
+    "title": "Fast and Scalable Bayesian Deep Learning by Weight-Perturbation in Adam",
+    "abstract": "Uncertainty computation in deep learning is essential to design robust and reliable systems. Variational inference (VI) is a promising approach for such computation, but requires more effort to implement and execute compared to maximum-likelihood methods. In this paper, we propose new natural-gradient algorithms to reduce such efforts for Gaussian mean-field VI. Our algorithms can be implemented within the Adam optimizer by perturbing the network weights during gradient evaluations, and uncertainty estimates can be cheaply obtained by using the vector that adapts the learning rate. This requires lower memory, computation, and implementation effort than existing VI methods, while obtaining uncertainty estimates of comparable quality. Our empirical results confirm this and further suggest that the weight-perturbation in our algorithm could be useful for exploration in reinforcement learning and stochastic optimization.",
+    "authors": [
+      "Mohammad Emtiyaz Khan",
+      "Didrik Nielsen",
+      "Voot Tangkaratt",
+      "Wu Lin",
+      "Yarin Gal",
+      "Akash Srivastava"
+    ],
+    "published_date": "2018-06-13T05:45:22+00:00",
+    "updated_date": "2018-08-02T08:21:25+00:00",
+    "primary_category": "stat.ML",
+    "categories": [
+      "stat.ML",
+      "cs.AI",
+      "cs.LG",
+      "stat.CO"
+    ],
+    "doi": null,
+    "journal_ref": "Thirty-fifth International Conference on Machine Learning, 2018"
+  },
+  {
+    "paper_id": "1806.00938v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1806.00938v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1806.00938v1",
+    "title": "Program Synthesis from Visual Specification",
+    "abstract": "Program synthesis is the process of automatically translating a specification into computer code. Traditional synthesis settings require a formal, precise specification. Motivated by computer education applications where a student learns to code simple turtle-style drawing programs, we study a novel synthesis setting where only a noisy user-intention drawing is specified. This allows students to sketch their intended output, optionally together with their own incomplete program, to automatically produce a completed program. We formulate this synthesis problem as search in the space of programs, with the score of a state being the Hausdorff distance between the program output and the user drawing. We compare several search algorithms on a corpus consisting of real user drawings and the corresponding programs, and demonstrate that our algorithms can synthesize programs optimally satisfying the specification.",
+    "authors": [
+      "Evan Hernandez",
+      "Ara Vartanian",
+      "Xiaojin Zhu"
+    ],
+    "published_date": "2018-06-04T03:24:34+00:00",
+    "updated_date": "2018-06-04T03:24:34+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.PL"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1806.05298v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1806.05298v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1806.05298v1",
+    "title": "Apuntes de Redes Neuronales Artificiales",
+    "abstract": "These handouts are designed for people who is just starting involved with the topic artificial neural networks. We show how it works a single artificial neuron (McCulloch & Pitt model), mathematically and graphically. We do explain the delta rule, a learning algorithm to find the neuron weights. We also present some examples in MATLAB/Octave. There are examples for classification task for lineal and non-lineal problems. At the end, we present an artificial neural network, a feed-forward neural network along its learning algorithm backpropagation.   -----   Estos apuntes están diseñados para personas que por primera vez se introducen en el tema de las redes neuronales artificiales. Se muestra el funcionamiento básico de una neurona, matemáticamente y gráficamente. Se explica la Regla Delta, algoritmo deaprendizaje para encontrar los pesos de una neurona. También se muestran ejemplos en MATLAB/Octave. Hay ejemplos para problemas de clasificación, para problemas lineales y no-lineales. En la parte final se muestra la arquitectura de red neuronal artificial conocida como backpropagation.",
+    "authors": [
+      "J. C. Cuevas-Tello"
+    ],
+    "published_date": "2018-06-13T23:23:22+00:00",
+    "updated_date": "2018-06-13T23:23:22+00:00",
+    "primary_category": "cs.NE",
+    "categories": [
+      "cs.NE",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1806.04718v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/1806.04718v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1806.04718v2",
+    "title": "Talakat: Bullet Hell Generation through Constrained Map-Elites",
+    "abstract": "We describe a search-based approach to generating new levels for bullet hell games, which are action games characterized by and requiring avoidance of a very large amount of projectiles. Levels are represented using a domain-specific description language, and search in the space defined by this language is performed by a novel variant of the Map-Elites algorithm which incorporates a feasible- infeasible approach to constraint satisfaction. Simulation-based evaluation is used to gauge the fitness of levels, using an agent based on best-first search. The performance of the agent can be tuned according to the two dimensions of strategy and dexterity, making it possible to search for level configurations that require a specific combination of both. As far as we know, this paper describes the first generator for this game genre, and includes several algorithmic innovations.",
+    "authors": [
+      "Ahmed Khalifa",
+      "Scott Lee",
+      "Andy Nealen",
+      "Julian Togelius"
+    ],
+    "published_date": "2018-06-12T19:02:19+00:00",
+    "updated_date": "2018-06-14T01:38:52+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1806.04552v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1806.04552v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1806.04552v1",
+    "title": "Combining Model-Free Q-Ensembles and Model-Based Approaches for Informed Exploration",
+    "abstract": "Q-Ensembles are a model-free approach where input images are fed into different Q-networks and exploration is driven by the assumption that uncertainty is proportional to the variance of the output Q-values obtained. They have been shown to perform relatively well compared to other exploration strategies. Further, model-based approaches, such as encoder-decoder models have been used successfully for next frame prediction given previous frames. This paper proposes to integrate the model-free Q-ensembles and model-based approaches with the hope of compounding the benefits of both and achieving superior exploration as a result. Results show that a model-based trajectory memory approach when combined with Q-ensembles produces superior performance when compared to only using Q-ensembles.",
+    "authors": [
+      "Sreecharan Sankaranarayanan",
+      "Raghuram Mandyam Annasamy",
+      "Katia Sycara",
+      "Carolyn Penstein Rosé"
+    ],
+    "published_date": "2018-06-12T14:24:02+00:00",
+    "updated_date": "2018-06-12T14:24:02+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CV",
+      "cs.NE",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1807.10299v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1807.10299v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1807.10299v1",
+    "title": "Variational Option Discovery Algorithms",
+    "abstract": "We explore methods for option discovery based on variational inference and make two algorithmic contributions. First: we highlight a tight connection between variational option discovery methods and variational autoencoders, and introduce Variational Autoencoding Learning of Options by Reinforcement (VALOR), a new method derived from the connection. In VALOR, the policy encodes contexts from a noise distribution into trajectories, and the decoder recovers the contexts from the complete trajectories. Second: we propose a curriculum learning approach where the number of contexts seen by the agent increases whenever the agent's performance is strong enough (as measured by the decoder) on the current set of contexts. We show that this simple trick stabilizes training for VALOR and prior variational option discovery methods, allowing a single agent to learn many more modes of behavior than it could with a fixed context distribution. Finally, we investigate other topics related to variational option discovery, including fundamental limitations of the general approach and the applicability of learned options to downstream tasks.",
+    "authors": [
+      "Joshua Achiam",
+      "Harrison Edwards",
+      "Dario Amodei",
+      "Pieter Abbeel"
+    ],
+    "published_date": "2018-07-26T18:05:45+00:00",
+    "updated_date": "2018-07-26T18:05:45+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1807.10680v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1807.10680v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1807.10680v1",
+    "title": "Combining Restricted Boltzmann Machines with Neural Networks for Latent Truth Discovery",
+    "abstract": "Latent truth discovery, LTD for short, refers to the problem of aggregating ltiple claims from various sources in order to estimate the plausibility of atements about entities. In the absence of a ground truth, this problem is highly challenging, when some sources provide conflicting claims and others no claims at all. In this work we provide an unsupervised stochastic inference procedure on top of a model that combines restricted Boltzmann machines with feed-forward neural networks to accurately infer the reliability of sources as well as the plausibility of statements about entities. In comparison to prior work our approach stands out (1) by allowing the incorporation of arbitrary features about sources and claims, (2) by generalizing from reliability per source towards a reliability function, and thus (3) enabling the estimation of source reliability even for sources that have provided no or very few claims, (4) by building on efficient and scalable stochastic inference algorithms, and (5) by outperforming the state-of-the-art by a considerable margin.",
+    "authors": [
+      "Klaus Broelemann",
+      "Gjergji Kasneci"
+    ],
+    "published_date": "2018-07-27T15:19:31+00:00",
+    "updated_date": "2018-07-27T15:19:31+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1807.11061v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1807.11061v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1807.11061v1",
+    "title": "Clause Vivification by Unit Propagation in CDCL SAT Solvers",
+    "abstract": "Original and learnt clauses in Conflict-Driven Clause Learning (CDCL) SAT solvers often contain redundant literals. This may have a negative impact on performance because redundant literals may deteriorate both the effectiveness of Boolean constraint propagation and the quality of subsequent learnt clauses. To overcome this drawback, we propose a clause vivification approach that eliminates redundant literals by applying unit propagation. The proposed clause vivification is activated before the SAT solver triggers some selected restarts, and only affects a subset of original and learnt clauses, which are considered to be more relevant according to metrics like the literal block distance (LBD). Moreover, we conducted an empirical investigation with instances coming from the hard combinatorial and application categories of recent SAT competitions. The results show that a remarkable number of additional instances are solved when the proposed approach is incorporated into five of the best performing CDCL SAT solvers (Glucose, TC_Glucose, COMiniSatPS, MapleCOMSPS and MapleCOMSPS_LRB). More importantly, the empirical investigation includes an in-depth analysis of the effectiveness of clause vivification. It is worth mentioning that one of the SAT solvers described here was ranked first in the main track of SAT Competition 2017 thanks to the incorporation of the proposed clause vivification. That solver was further improved in this paper and won the bronze medal in the main track of SAT Competition 2018.",
+    "authors": [
+      "Chu-Min Li",
+      "Fan Xiao",
+      "Mao Luo",
+      "Felip Manyà",
+      "Zhipeng Lü",
+      "Yu Li"
+    ],
+    "published_date": "2018-07-29T14:05:55+00:00",
+    "updated_date": "2018-07-29T14:05:55+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.LO"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1807.11079v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1807.11079v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1807.11079v1",
+    "title": "ReenactGAN: Learning to Reenact Faces via Boundary Transfer",
+    "abstract": "We present a novel learning-based framework for face reenactment. The proposed method, known as ReenactGAN, is capable of transferring facial movements and expressions from monocular video input of an arbitrary person to a target person. Instead of performing a direct transfer in the pixel space, which could result in structural artifacts, we first map the source face onto a boundary latent space. A transformer is subsequently used to adapt the boundary of source face to the boundary of target face. Finally, a target-specific decoder is used to generate the reenacted target face. Thanks to the effective and reliable boundary-based transfer, our method can perform photo-realistic face reenactment. In addition, ReenactGAN is appealing in that the whole reenactment process is purely feed-forward, and thus the reenactment process can run in real-time (30 FPS on one GTX 1080 GPU). Dataset and model will be publicly available at https://wywu.github.io/projects/ReenactGAN/ReenactGAN.html",
+    "authors": [
+      "Wayne Wu",
+      "Yunxuan Zhang",
+      "Cheng Li",
+      "Chen Qian",
+      "Chen Change Loy"
+    ],
+    "published_date": "2018-07-29T16:35:15+00:00",
+    "updated_date": "2018-07-29T16:35:15+00:00",
+    "primary_category": "cs.CV",
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.GR"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.04444v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.04444v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.04444v2",
+    "title": "Character-Level Language Modeling with Deeper Self-Attention",
+    "abstract": "LSTMs and other RNN variants have shown strong performance on character-level language modeling. These models are typically trained using truncated backpropagation through time, and it is common to assume that their success stems from their ability to remember long-term contexts. In this paper, we show that a deep (64-layer) transformer model with fixed context outperforms RNN variants by a large margin, achieving state of the art on two popular benchmarks: 1.13 bits per character on text8 and 1.06 on enwik8. To get good results at this depth, we show that it is important to add auxiliary losses, both at intermediate network layers and intermediate sequence positions.",
+    "authors": [
+      "Rami Al-Rfou",
+      "Dokook Choe",
+      "Noah Constant",
+      "Mandy Guo",
+      "Llion Jones"
+    ],
+    "published_date": "2018-08-09T18:44:38+00:00",
+    "updated_date": "2018-12-10T17:08:57+00:00",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.LG",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.04527v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.04527v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.04527v2",
+    "title": "Weight Learning in a Probabilistic Extension of Answer Set Programs",
+    "abstract": "LPMLN is a probabilistic extension of answer set programs with the weight scheme derived from that of Markov Logic. Previous work has shown how inference in LPMLN can be achieved. In this paper, we present the concept of weight learning in LPMLN and learning algorithms for LPMLN derived from those for Markov Logic. We also present a prototype implementation that uses answer set solvers for learning as well as some example domains that illustrate distinct features of LPMLN learning. Learning in LPMLN is in accordance with the stable model semantics, thereby it learns parameters for probabilistic extensions of knowledge-rich domains where answer set programming has shown to be useful but limited to the deterministic case, such as reachability analysis and reasoning about actions in dynamic domains. We also apply the method to learn the parameters for probabilistic abductive reasoning about actions.",
+    "authors": [
+      "Joohyung Lee",
+      "Yi Wang"
+    ],
+    "published_date": "2018-08-14T05:16:41+00:00",
+    "updated_date": "2018-10-09T03:34:18+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.04620v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.04620v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.04620v2",
+    "title": "Applying the Closed World Assumption to SUMO-based FOL Ontologies for Effective Commonsense Reasoning",
+    "abstract": "Most commonly, the Open World Assumption is adopted as a standard strategy for the design, construction and use of ontologies. This strategy limits the inferencing capabilities of any system because non-asserted statements (missing knowledge) could be assumed to be alternatively true or false. As we will demonstrate, this is especially the case of first-order logic (FOL) ontologies where non-asserted statements is nowadays one of the main obstacles to its practical application in automated commonsense reasoning tasks. In this paper, we investigate the application of the Closed World Assumption (CWA) to enable a better exploitation of FOL ontologies by using state-of-the-art automated theorem provers. To that end, we explore different CWA formulations for the structural knowledge encoded in a FOL translation of the SUMO ontology, discovering that almost 30 % of the structural knowledge is missing. We evaluate these formulations on a practical experimentation using a very large commonsense benchmark obtained from WordNet through its mapping to SUMO. The results show that the competency of the ontology improves more than 50 % when reasoning under the CWA. Thus, applying the CWA automatically to FOL ontologies reduces their ambiguity and more commonsense questions can be answered",
+    "authors": [
+      "Javier Álvez",
+      "Itziar Gonzalez-Dios",
+      "German Rigau"
+    ],
+    "published_date": "2018-08-14T10:41:14+00:00",
+    "updated_date": "2020-03-04T09:02:27+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.07658v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.07658v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.07658v1",
+    "title": "Exploring Shared Structures and Hierarchies for Multiple NLP Tasks",
+    "abstract": "Designing shared neural architecture plays an important role in multi-task learning. The challenge is that finding an optimal sharing scheme heavily relies on the expert knowledge and is not scalable to a large number of diverse tasks. Inspired by the promising work of neural architecture search (NAS), we apply reinforcement learning to automatically find possible shared architecture for multi-task learning. Specifically, we use a controller to select from a set of shareable modules and assemble a task-specific architecture, and repeat the same procedure for other tasks. The controller is trained with reinforcement learning to maximize the expected accuracies for all tasks. We conduct extensive experiments on two types of tasks, text classification and sequence labeling, which demonstrate the benefits of our approach.",
+    "authors": [
+      "Junkun Chen",
+      "Kaiyu Chen",
+      "Xinchi Chen",
+      "Xipeng Qiu",
+      "Xuanjing Huang"
+    ],
+    "published_date": "2018-08-23T08:07:44+00:00",
+    "updated_date": "2018-08-23T08:07:44+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.08941v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.08941v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.08941v1",
+    "title": "Improving Information Extraction from Images with Learned Semantic Models",
+    "abstract": "Many applications require an understanding of an image that goes beyond the simple detection and classification of its objects. In particular, a great deal of semantic information is carried in the relationships between objects. We have previously shown that the combination of a visual model and a statistical semantic prior model can improve on the task of mapping images to their associated scene description. In this paper, we review the model and compare it to a novel conditional multi-way model for visual relationship detection, which does not include an explicitly trained visual prior model. We also discuss potential relationships between the proposed methods and memory models of the human brain.",
+    "authors": [
+      "Stephan Baier",
+      "Yunpu Ma",
+      "Volker Tresp"
+    ],
+    "published_date": "2018-08-27T17:39:56+00:00",
+    "updated_date": "2018-08-27T17:39:56+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.CV"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.08951v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.08951v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.08951v1",
+    "title": "Water Disaggregation via Shape Features based Bayesian Discriminative Sparse Coding",
+    "abstract": "As the issue of freshwater shortage is increasing daily, it is critical to take effective measures for water conservation. According to previous studies, device level consumption could lead to significant freshwater conservation. Existing water disaggregation methods focus on learning the signatures for appliances; however, they are lack of the mechanism to accurately discriminate parallel appliances' consumption. In this paper, we propose a Bayesian Discriminative Sparse Coding model using Laplace Prior (BDSC-LP) to extensively enhance the disaggregation performance. To derive discriminative basis functions, shape features are presented to describe the low-sampling-rate water consumption patterns. A Gibbs sampling based inference method is designed to extend the discriminative capability of the disaggregation dictionaries. Extensive experiments were performed to validate the effectiveness of the proposed model using both real-world and synthetic datasets.",
+    "authors": [
+      "Bingsheng Wang",
+      "Xuchao Zhang",
+      "Chang-Tien Lu",
+      "Feng Chen"
+    ],
+    "published_date": "2018-08-26T16:01:11+00:00",
+    "updated_date": "2018-08-26T16:01:11+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.08954v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.08954v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.08954v1",
+    "title": "Behavior Trees as a Representation for Medical Procedures",
+    "abstract": "Objective: Effective collaboration between machines and clinicians requires flexible data structures to represent medical processes and clinical practice guidelines. Such a data structure could enable effective turn-taking between human and automated components of a complex treatment, accurate on-line monitoring of clinical treatments (for example to detect medical errors), or automated treatment systems (such as future medical robots) whose overall treatment plan is understandable and auditable by human experts.   Materials and Methods: Behavior trees (BTs) emerged from video game development as a graphical language for modeling intelligent agent behavior. BTs have several properties which are attractive for modeling medical procedures including human-readability, authoring tools, and composability.   Results: This paper will illustrate construction of BTs for exemplary medical procedures and clinical protocols.   Discussion and Conclusion: Behavior Trees thus form a useful, and human authorable/readable bridge between clinical practice guidelines and AI systems.",
+    "authors": [
+      "Blake Hannaford",
+      "Randall Bly",
+      "Ian Humphreys",
+      "Mark Whipple"
+    ],
+    "published_date": "2018-08-27T16:56:53+00:00",
+    "updated_date": "2018-08-27T16:56:53+00:00",
+    "primary_category": "cs.HC",
+    "categories": [
+      "cs.HC",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.08702v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.08702v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.08702v1",
+    "title": "Augmenting Bottleneck Features of Deep Neural Network Employing Motor State for Speech Recognition at Humanoid Robots",
+    "abstract": "As for the humanoid robots, the internal noise, which is generated by motors, fans and mechanical components when the robot is moving or shaking its body, severely degrades the performance of the speech recognition accuracy. In this paper, a novel speech recognition system robust to ego-noise for humanoid robots is proposed, in which on/off state of the motor is employed as auxiliary information for finding the relevant input features. For this, we consider the bottleneck features, which have been successfully applied to deep neural network (DNN) based automatic speech recognition (ASR) system. When learning the bottleneck features to catch, we first exploit the motor on/off state data as supplementary information in addition to the acoustic features as the input of the first deep neural network (DNN) for preliminary acoustic modeling. Then, the second DNN for primary acoustic modeling employs both the bottleneck features tossed from the first DNN and the acoustics features. When the proposed method is evaluated in terms of phoneme error rate (PER) on TIMIT database, the experimental results show that achieve obvious improvement (11% relative) is achieved by our algorithm over the conventional systems.",
+    "authors": [
+      "Moa Lee",
+      "Joon Hyuk Chang"
+    ],
+    "published_date": "2018-08-27T06:41:47+00:00",
+    "updated_date": "2018-08-27T06:41:47+00:00",
+    "primary_category": "cs.SD",
+    "categories": [
+      "cs.SD",
+      "cs.AI",
+      "eess.AS"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1810.03151v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1810.03151v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1810.03151v1",
+    "title": "A Minesweeper Solver Using Logic Inference, CSP and Sampling",
+    "abstract": "Minesweeper as a puzzle video game and is proved that it is an NPC problem. We use CSP, Logic Inference and Sampling to make a minesweeper solver and we limit us each select in 5 seconds.",
+    "authors": [
+      "Yimin Tang",
+      "Tian Jiang",
+      "Yanpeng Hu"
+    ],
+    "published_date": "2018-10-07T14:26:11+00:00",
+    "updated_date": "2018-10-07T14:26:11+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1810.03237v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1810.03237v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1810.03237v1",
+    "title": "Task-Embedded Control Networks for Few-Shot Imitation Learning",
+    "abstract": "Much like humans, robots should have the ability to leverage knowledge from previously learned tasks in order to learn new tasks quickly in new and unfamiliar environments. Despite this, most robot learning approaches have focused on learning a single task, from scratch, with a limited notion of generalisation, and no way of leveraging the knowledge to learn other tasks more efficiently. One possible solution is meta-learning, but many of the related approaches are limited in their ability to scale to a large number of tasks and to learn further tasks without forgetting previously learned ones. With this in mind, we introduce Task-Embedded Control Networks, which employ ideas from metric learning in order to create a task embedding that can be used by a robot to learn new tasks from one or more demonstrations. In the area of visually-guided manipulation, we present simulation results in which we surpass the performance of a state-of-the-art method when using only visual information from each demonstration. Additionally, we demonstrate that our approach can also be used in conjunction with domain randomisation to train our few-shot learning ability in simulation and then deploy in the real world without any additional training. Once deployed, the robot can learn new tasks from a single real-world demonstration.",
+    "authors": [
+      "Stephen James",
+      "Michael Bloesch",
+      "Andrew J. Davison"
+    ],
+    "published_date": "2018-10-08T00:57:24+00:00",
+    "updated_date": "2018-10-08T00:57:24+00:00",
+    "primary_category": "cs.RO",
+    "categories": [
+      "cs.RO",
+      "cs.AI",
+      "cs.CV",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1810.03043v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1810.03043v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1810.03043v1",
+    "title": "Robustness via Retrying: Closed-Loop Robotic Manipulation with Self-Supervised Learning",
+    "abstract": "Prediction is an appealing objective for self-supervised learning of behavioral skills, particularly for autonomous robots. However, effectively utilizing predictive models for control, especially with raw image inputs, poses a number of major challenges. How should the predictions be used? What happens when they are inaccurate? In this paper, we tackle these questions by proposing a method for learning robotic skills from raw image observations, using only autonomously collected experience. We show that even an imperfect model can complete complex tasks if it can continuously retry, but this requires the model to not lose track of the objective (e.g., the object of interest). To enable a robot to continuously retry a task, we devise a self-supervised algorithm for learning image registration, which can keep track of objects of interest for the duration of the trial. We demonstrate that this idea can be combined with a video-prediction based controller to enable complex behaviors to be learned from scratch using only raw visual inputs, including grasping, repositioning objects, and non-prehensile manipulation. Our real-world experiments demonstrate that a model trained with 160 robot hours of autonomously collected, unlabeled data is able to successfully perform complex manipulation tasks with a wide range of objects not seen during training.",
+    "authors": [
+      "Frederik Ebert",
+      "Sudeep Dasari",
+      "Alex X. Lee",
+      "Sergey Levine",
+      "Chelsea Finn"
+    ],
+    "published_date": "2018-10-06T19:51:46+00:00",
+    "updated_date": "2018-10-06T19:51:46+00:00",
+    "primary_category": "cs.RO",
+    "categories": [
+      "cs.RO",
+      "cs.AI",
+      "cs.CV"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1810.03064v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/1810.03064v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1810.03064v2",
+    "title": "CSI-Net: Unified Human Body Characterization and Pose Recognition",
+    "abstract": "We build CSI-Net, a unified Deep Neural Network~(DNN), to learn the representation of WiFi signals. Using CSI-Net, we jointly solved two body characterization problems: biometrics estimation (including body fat, muscle, water, and bone rates) and person recognition. We also demonstrated the application of CSI-Net on two distinctive pose recognition tasks: the hand sign recognition (fine-scaled action of the hand) and falling detection (coarse-scaled motion of the body).",
+    "authors": [
+      "Fei Wang",
+      "Jinsong Han",
+      "Shiyuan Zhang",
+      "Xu He",
+      "Dong Huang"
+    ],
+    "published_date": "2018-10-07T00:51:14+00:00",
+    "updated_date": "2019-01-22T18:10:23+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1810.02689v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/1810.02689v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1810.02689v2",
+    "title": "Hows and Whys of Artificial Intelligence for Public Sector Decisions: Explanation and Evaluation",
+    "abstract": "Evaluation has always been a key challenge in the development of artificial intelligence (AI) based software, due to the technical complexity of the software artifact and, often, its embedding in complex sociotechnical processes. Recent advances in machine learning (ML) enabled by deep neural networks has exacerbated the challenge of evaluating such software due to the opaque nature of these ML-based artifacts. A key related issue is the (in)ability of such systems to generate useful explanations of their outputs, and we argue that the explanation and evaluation problems are closely linked. The paper models the elements of a ML-based AI system in the context of public sector decision (PSD) applications involving both artificial and human intelligence, and maps these elements against issues in both evaluation and explanation, showing how the two are related. We consider a number of common PSD application patterns in the light of our model, and identify a set of key issues connected to explanation and evaluation in each case. Finally, we propose multiple strategies to promote wider adoption of AI/ML technologies in PSD, where each is distinguished by a focus on different elements of our model, allowing PSD policy makers to adopt an approach that best fits their context and concerns.",
+    "authors": [
+      "Alun Preece",
+      "Rob Ashelford",
+      "Harry Armstrong",
+      "Dave Braines"
+    ],
+    "published_date": "2018-09-28T09:38:13+00:00",
+    "updated_date": "2018-10-19T21:41:57+00:00",
+    "primary_category": "cs.CY",
+    "categories": [
+      "cs.CY",
+      "cs.AI"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1810.02724v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1810.02724v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1810.02724v1",
+    "title": "Human Indignity: From Legal AI Personhood to Selfish Memes",
+    "abstract": "It is possible to rely on current corporate law to grant legal personhood to Artificially Intelligent (AI) agents. In this paper, after introducing pathways to AI personhood, we analyze consequences of such AI empowerment on human dignity, human safety and AI rights. We emphasize possibility of creating selfish memes and legal system hacking in the context of artificial entities. Finally, we consider some potential solutions for addressing described problems.",
+    "authors": [
+      "Roman V. Yampolskiy"
+    ],
+    "published_date": "2018-10-02T20:01:43+00:00",
+    "updated_date": "2018-10-02T20:01:43+00:00",
+    "primary_category": "cs.GL",
+    "categories": [
+      "cs.GL",
+      "cs.AI",
+      "cs.CY"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1810.02274v5",
+    "arxiv_abs_url": "http://arxiv.org/abs/1810.02274v5",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1810.02274v5",
+    "title": "Episodic Curiosity through Reachability",
+    "abstract": "Rewards are sparse in the real world and most of today's reinforcement learning algorithms struggle with such sparsity. One solution to this problem is to allow the agent to create rewards for itself - thus making rewards dense and more suitable for learning. In particular, inspired by curious behaviour in animals, observing something novel could be rewarded with a bonus. Such bonus is summed up with the real task reward - making it possible for RL algorithms to learn from the combined reward. We propose a new curiosity method which uses episodic memory to form the novelty bonus. To determine the bonus, the current observation is compared with the observations in memory. Crucially, the comparison is done based on how many environment steps it takes to reach the current observation from those in memory - which incorporates rich information about environment dynamics. This allows us to overcome the known \"couch-potato\" issues of prior work - when the agent finds a way to instantly gratify itself by exploiting actions which lead to hardly predictable consequences. We test our approach in visually rich 3D environments in ViZDoom, DMLab and MuJoCo. In navigational tasks from ViZDoom and DMLab, our agent outperforms the state-of-the-art curiosity method ICM. In MuJoCo, an ant equipped with our curiosity module learns locomotion out of the first-person-view curiosity only.",
+    "authors": [
+      "Nikolay Savinov",
+      "Anton Raichuk",
+      "Raphaël Marinier",
+      "Damien Vincent",
+      "Marc Pollefeys",
+      "Timothy Lillicrap",
+      "Sylvain Gelly"
+    ],
+    "published_date": "2018-10-04T15:24:06+00:00",
+    "updated_date": "2019-08-06T17:54:03+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CV",
+      "cs.RO",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1810.02334v6",
+    "arxiv_abs_url": "http://arxiv.org/abs/1810.02334v6",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1810.02334v6",
+    "title": "Unsupervised Learning via Meta-Learning",
+    "abstract": "A central goal of unsupervised learning is to acquire representations from unlabeled data or experience that can be used for more effective learning of downstream tasks from modest amounts of labeled data. Many prior unsupervised learning works aim to do so by developing proxy objectives based on reconstruction, disentanglement, prediction, and other metrics. Instead, we develop an unsupervised meta-learning method that explicitly optimizes for the ability to learn a variety of tasks from small amounts of data. To do so, we construct tasks from unlabeled data in an automatic way and run meta-learning over the constructed tasks. Surprisingly, we find that, when integrated with meta-learning, relatively simple task construction mechanisms, such as clustering embeddings, lead to good performance on a variety of downstream, human-specified tasks. Our experiments across four image datasets indicate that our unsupervised meta-learning approach acquires a learning algorithm without any labeled data that is applicable to a wide range of downstream classification tasks, improving upon the embedding learned by four prior unsupervised learning methods.",
+    "authors": [
+      "Kyle Hsu",
+      "Sergey Levine",
+      "Chelsea Finn"
+    ],
+    "published_date": "2018-10-04T17:29:17+00:00",
+    "updated_date": "2019-03-21T23:43:47+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CV",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.02093v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.02093v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.02093v2",
+    "title": "Learning to Share and Hide Intentions using Information Regularization",
+    "abstract": "Learning to cooperate with friends and compete with foes is a key component of multi-agent reinforcement learning. Typically to do so, one requires access to either a model of or interaction with the other agent(s). Here we show how to learn effective strategies for cooperation and competition in an asymmetric information game with no such model or interaction. Our approach is to encourage an agent to reveal or hide their intentions using an information-theoretic regularizer. We consider both the mutual information between goal and action given state, as well as the mutual information between goal and state. We show how to optimize these regularizers in a way that is easy to integrate with policy gradient reinforcement learning. Finally, we demonstrate that cooperative (competitive) policies learned with our approach lead to more (less) reward for a second agent in two simple asymmetric information games.",
+    "authors": [
+      "DJ Strouse",
+      "Max Kleiman-Weiner",
+      "Josh Tenenbaum",
+      "Matt Botvinick",
+      "David Schwab"
+    ],
+    "published_date": "2018-08-06T20:10:27+00:00",
+    "updated_date": "2019-01-01T23:54:47+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI",
+      "cs.IT",
+      "cs.LG",
+      "cs.MA",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.02123v1",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.02123v1",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.02123v1",
+    "title": "Structure Learning for Relational Logistic Regression: An Ensemble Approach",
+    "abstract": "We consider the problem of learning Relational Logistic Regression (RLR). Unlike standard logistic regression, the features of RLRs are first-order formulae with associated weight vectors instead of scalar weights. We turn the problem of learning RLR to learning these vector-weighted formulae and develop a learning algorithm based on the recently successful functional-gradient boosting methods for probabilistic logic models. We derive the functional gradients and show how weights can be learned simultaneously in an efficient manner. Our empirical evaluation on standard and novel data sets demonstrates the superiority of our approach over other methods for learning RLR.",
+    "authors": [
+      "Nandini Ramanan",
+      "Gautam Kunapuli",
+      "Tushar Khot",
+      "Bahare Fatemi",
+      "Seyed Mehran Kazemi",
+      "David Poole",
+      "Kristian Kersting",
+      "Sriraam Natarajan"
+    ],
+    "published_date": "2018-08-06T21:27:05+00:00",
+    "updated_date": "2018-08-06T21:27:05+00:00",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "doi": null,
+    "journal_ref": null
+  },
+  {
+    "paper_id": "1808.05322v2",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.05322v2",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.05322v2",
+    "title": "Decision-Making with Belief Functions: a Review",
+    "abstract": "Approaches to decision-making under uncertainty in the belief function framework are reviewed. Most methods are shown to blend criteria for decision under ignorance with the maximum expected utility principle of Bayesian decision theory. A distinction is made between methods that construct a complete preference relation among acts, and those that allow incomparability of some acts due to lack of information. Methods developed in the imprecise probability framework are applicable in the Dempster-Shafer context and are also reviewed. Shafer's constructive decision theory, which substitutes the notion of goal for that of utility, is described and contrasted with other approaches. The paper ends by pointing out the need to carry out deeper investigation of fundamental issues related to decision-making with belief functions and to assess the descriptive, normative and prescriptive values of the different approaches.",
+    "authors": [
+      "Thierry Denoeux"
+    ],
+    "published_date": "2018-08-16T01:52:46+00:00",
+    "updated_date": "2019-12-12T08:02:05+00:00",
+    "primary_category": "cs.AI",
+    "categories": [
+      "cs.AI"
+    ],
+    "doi": "10.1016/j.ijar.2019.03.009",
+    "journal_ref": "International Journal of Approximate Reasoning, vol. 109, Pages 87-110, 2019"
+  },
+  {
+    "paper_id": "1808.05385v3",
+    "arxiv_abs_url": "http://arxiv.org/abs/1808.05385v3",
+    "arxiv_pdf_url": "https://arxiv.org/pdf/1808.05385v3",
+    "title": "On the Decision Boundary of Deep Neural Networks",
+    "abstract": "While deep learning models and techniques have achieved great empirical success, our understanding of the source of success in many aspects remains very limited. In an attempt to bridge the gap, we investigate the decision boundary of a production deep learning architecture with weak assumptions on both the training data and the model. We demonstrate, both theoretically and empirically, that the last weight layer of a neural network converges to a linear SVM trained on the output of the last hidden layer, for both the binary case and the multi-class case with the commonly used cross-entropy loss. Furthermore, we show empirically that training a neural network as a whole, instead of only fine-tuning the last weight layer, may result in better bias constant for the last weight layer, which is important for generalization. In addition to facilitating the understanding of deep learning, our result can be helpful for solving a broad range of practical problems of deep learning, such as catastrophic forgetting and adversarial attacking. The experiment codes are available at https://github.com/lykaust15/NN_decision_boundary",
+    "authors": [
+      "Yu Li",
+      "Lizhong Ding",
+      "Xin Gao"
+    ],
+    "published_date": "2018-08-16T09:25:50+00:00",
+    "updated_date": "2019-01-01T08:20:22+00:00",
+    "primary_category": "cs.NE",
+    "categories": [
+      "cs.NE",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "doi": null,
+    "journal_ref": null
+  }
+]
