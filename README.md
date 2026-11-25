@@ -1,15 +1,51 @@
 # 多 Agent 文献综述与 DQN 调度实验
 
-**一号位新接口**：已新增统一五动作 Runner、Workspace、四维 Verifier 和可替换策略接口。
-二号请从 [ROLE1_HANDOFF.md](ROLE1_HANDOFF.md) 的单步示例接入；`python -m core` 为新入口。
-下文 `python -m litreview` 描述保留的旧四角色流水线。新接口已获样例发送授权并完成真实固定规则 pilot 运行；验收范围见 [ROLE1_ACCEPTANCE.md](ROLE1_ACCEPTANCE.md)，不代表正式数据实验或独立质量评测完成。
+本项目在同一套 Agent、语料和预算下，比较固定规则（Rule）与 DQN 调度的综述质量、工作流 Token 消耗、任务错配和动作负载。两种策略共用五动作 Runner，只替换 `select_action`。
 
-目标：在相同 Agent 和数据条件下，比较固定规则调度与 DQN 调度的综述质量、token 消耗和任务错配情况。
+**当前进度：共享 Runner 已完成真实 pilot；DQN 已能离线训练、导出并接回同一 Runner。尚未用正式数据完成标定或独立测试，不能据此判断哪种策略更好。**
 
-当前实现是**第一阶段的固定规则对照组**，使用 Python 3.10+ 标准库，无额外依赖。
-已提供四个角色、DeepSeek 接口、输出验证、调用轨迹和离线演示。尚未实现 DQN 或完成正式实验。
+## 项目状态与交接
 
-## 先运行离线演示
+| 负责人 | 已有交付 | 下一步与入口 |
+|---|---|---|
+| 1 号位：执行层与 Rule | 五动作 Runner、Workspace、四维 Verifier、固定规则；两次真实 pilot 合计覆盖五动作 | [Runner 接入和单步示例](ROLE1_HANDOFF.md) · [真实 pilot 验收范围](ROLE1_ACCEPTANCE.md)。正式采样前共同确认 [Verifier 评分口径](SCORING_PROTOCOL.md)。 |
+| 2 号位：DQN 与实验 | 状态编码、Masked Double-DQN、轨迹采集与对账、标定仿真、两项单因素消融、冻结推理均已通过离线演练 | [训练与交接手册](ROLE2_HANDOFF.md)。收到正式任务和 Judge 样例后，先复核 **T4 采集 → T5 标定**的数据和标签，再用 1–2 个训练任务估算费用、检查动作覆盖。 |
+| 3 号位：数据与评价 | 仓库里的 AgentSkill 论文和任务仅供 pilot；[正式数据目录](data/formal/README.md) 目前只有交付说明 | 待交付正式语料、10 个训练任务、冻结的 Judge 接口及评分样例、统一错配分类器；另行封存至少 5 个独立测试任务。 |
+
+跨岗字段、动作顺序和评测边界以 [CONTRACT.md](CONTRACT.md) 为准。正式测试时先在相同任务上跑完 Rule 与冻结 DQN，封存两者的全部轨迹，再由 3 号位对成功终稿离线盲评。Judge 不参与调度，其 Token 不计入工作流成本。
+
+## DQN 训练与复现
+
+从仓库根目录运行。共享 Runner 和冻结推理只需 Python 3.10+ 标准库；**只有训练和消融需要 PyTorch**。本项目已在 Python 3.12.13、CPU 上验证，不要求 GPU 或 API Key。
+
+**1. 确认共享 Runner 能离线运行。** 此命令使用 Mock 后端和 pilot 样例，运行的是正式比较将复用的 `RuleScheduler`，不是旧四角色流水线：
+
+```powershell
+python -m core --backend mock --corpus data/samples/agent_skill/agent_skill_papers.json --task examples/runner_task.json --output outputs/pilot/mock-handoff
+```
+
+**2. 在训练环境跑一次最小演练。** 若已有安装过[训练依赖](requirements-rl.txt)的环境，直接激活即可。新机器可用 Python 3.12 的 `python -m venv .venv` 创建环境，激活后执行 `python -m pip install -r requirements-rl.txt`。PowerShell 用 `.\.venv\Scripts\Activate.ps1` 激活，macOS/Linux 用 `source .venv/bin/activate`。
+
+```powershell
+python -m experiments.ablate --size smoke --fixture-calibration --config base --seeds 7 --output outputs/dqn-smoke-001
+python -m experiments.frozen --checkpoint outputs/dqn-smoke-001/base-seed7/policy.json --output outputs/dqn-pairs-001
+```
+
+第一条命令用合成任务采集 Mock 轨迹、拟合仿真环境并训练一个策略；第二条加载该 `policy.json`，让 Rule 与冻结 DQN 在同一 Mock Runner 上执行。**两条命令的输出目录都必须是新目录**，重复运行时更换编号，并同步修改 checkpoint 路径。
+
+| 查看什么 | 输出文件 |
+|---|---|
+| 使用了什么数据和配置、各组结果如何 | `outputs/dqn-smoke-001/` 下的 `experiment.json`、`comparison.json` |
+| 原始训练回报、验证指标和冻结权重 | `outputs/dqn-smoke-001/base-seed7/` 下的 `train.json`、`result.json`、`policy.json` |
+| 两个策略的轨迹是否全部保存 | `outputs/dqn-pairs-001/execution_complete.json`，含每条轨迹的路径和哈希 |
+
+要复现**两组消融演练**，从第一条训练命令去掉 `--config base --seeds 7` 并换一个输出目录。Replay Buffer 容量与 Target-Net 更新间隔各三档，共用中档对照，共 5 个配置 × 3 个种子。`--size full` 只增加训练步数，不会把 Mock 轨迹变成正式数据。正式训练包、留出验证、代理质量和错配统计的交接见 [ROLE2_HANDOFF.md](ROLE2_HANDOFF.md)。
+
+## 旧版四角色流水线（保留演示）
+
+以下 `python -m litreview` 命令保留给早期流水线使用；其调用次数、输出格式和 token 说明不适用于上面的五动作 Runner。不要用这条旧路径采集 DQN 训练数据或生成正式 Rule 对照。
+
+### 先运行离线演示
 
 在项目目录的 PowerShell 中运行：
 
@@ -26,7 +62,7 @@ python -m litreview --backend demo --corpus examples/demo_papers.json --query "r
 演示数据为虚构示例，不是 arXiv 论文。离线后端只进行简单词项匹配和摘要原文拼接，校验响应也是演示用固定值。
 因此离线结果只能用于检查流程，不能用于证明生成质量、错配率或 DQN 效果。离线 token 用量和质量分数均为 `null`。
 
-## 接入 deepseek-flash
+### 接入 deepseek-flash
 
 默认使用官方地址 `https://api.deepseek.com`，模型为 `deepseek-flash`。
 推荐在项目根目录使用 `.env` 文件配置。从模板复制（已有 `.env` 时不要覆盖）：
@@ -59,7 +95,7 @@ token 统计直接采用接口返回值，不使用字符数冒充 token 数；�
 
 接口参考：[首次调用](https://api-docs.deepseek.com/)、[Chat Completions](https://api-docs.deepseek.com/api/create-chat-completion/)、[JSON 输出](https://api-docs.deepseek.com/guides/json_mode/)。
 
-## 换成真实论文
+### 换成真实论文
 
 按示例 JSON 格式准备文件，将 `dataset_kind` 改为 `arxiv_abstracts`：
 
@@ -88,15 +124,6 @@ python -m litreview --backend deepseek --corpus data/samples/agent_skill/agent_s
 本地检查保证论文编号有效、所选论文被覆盖、证据确实出现在摘要中；语义上的事实支持由模型校验，仍需人工抽检。
 同模型自查不是独立质量评分，因此 `quality_score` 暂留空。校验未通过时保留问题和中间输出，不生成正式报告。
 
-## 接下来按这三步推进
-
-1. **真实基线**：选定综述主题，收集一小批真实摘要和任务，跑通 DeepSeek，建立人工质量评分规则与错配定义。
-2. **DQN 调度**：为同类任务增加多个能力/成本不同的 Agent 配置，定义状态、候选动作及质量与 token 联合奖励；加入训练/验证/测试划分、经验回放和目标网络。
-3. **实验交付**：相同条件下比较固定规则与 DQN，改变回放池大小和目标网络更新频率，多随机种子评估，生成训练曲线、对比表、报告和 PPT。
-
-仅有四种各司其职的固定角色时，路由选择空间不足；同角色的多个候选配置是后续调度实验的重要前提。
-当前调用轨迹提供基础观测，不等同于已经构造好的强化学习训练集。
-
 ## 验证
 
 ```powershell
@@ -104,6 +131,4 @@ python -m unittest discover -s tests -p "test_*.py" -v
 & ./tests/verify-agents.ps1
 ```
 
-自动测试不调用付费 API，覆盖四角色流程、数据与证据校验、未知引用、校验拒绝、截断和异常响应、token 统计、接口请求格式及 CLI 成功/失败输出。
-配置测试覆盖 `.env` 加载、环境变量优先级、格式错误提示和输出文件不泄漏密钥。
-真实 API 联调需要本地密钥和网络，不能用自动测试通过代替。
+请在训练环境运行 Python 测试，以覆盖依赖 PyTorch 的用例；第二条命令是 PowerShell 的项目约定检查。测试覆盖旧流水线、共享 Runner 的动作与计费边界、DQN 的 Mask 与冻结推理、采集对账、按任务留出验证及消融演练。自动测试不调用付费 API，不能替代真实工作流联调或独立终稿评测。
