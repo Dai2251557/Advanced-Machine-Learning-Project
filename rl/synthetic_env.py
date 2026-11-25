@@ -1,8 +1,9 @@
 """Offline numeric simulation of Runner v1. No text agent, API or Judge calls.
 
-An outcome model samples one *joint* action/Verifier outcome. The environment,
-not the sampler, advances materials, checks budget eligibility, builds the two
-physical masks and computes reward. Snapshots use the ordinary Runner schema.
+An outcome model samples one joint action/Verifier outcome. Empirical draws
+admit each observed call against the current budget. The environment advances
+materials, settles the step, builds physical masks and computes reward.
+Snapshots use the ordinary Runner schema.
 """
 
 import copy
@@ -23,6 +24,8 @@ class Outcome:
     budget settlement. scores contains only valid dimensions (None: no usable
     new check). A successful write can supply its candidate's quality proxy;
     the environment releases it only if the draft actually survives settlement.
+    calls, when supplied, is the budget-admitted prefix of a sampled trace,
+    not live traffic. Aggregate-only analytic draws have no such trace.
     Use simulation_support for sampling provenance, never to mask an action.
     """
     action_success: bool
@@ -33,6 +36,7 @@ class Outcome:
     estimated_final_quality: float | None = None
     quality_method: str | None = None
     simulation_support: dict | None = None
+    calls: tuple[dict, ...] | None = None
 
     def validate(self, action):
         for tokens in (self.input_tokens, self.output_tokens, self.verifier_tokens):
@@ -186,10 +190,11 @@ class SyntheticEnv:
             if action_id == "retrieve_more":
                 after["retrieved_paper_count"] = min(self._size, before["retrieved_paper_count"] +
                                                        self.config.retrieval_batch_size)
-            # Like Runner._can_call: if generation used up the budget or its
-            # usage is missing, no verification starts and old scores go stale.
+            # Without a call trace, model a single uncached verification stage.
+            # A replayed prefix was gated per attempt (a cache hit needs no budget).
             used_before_check = total((before["workflow_tokens_used"], outcome.input_tokens, outcome.output_tokens))
-            if used_before_check is None or used_before_check >= self.config.workflow_tokens_budget:
+            if outcome.calls is None and (used_before_check is None or
+                                          used_before_check >= self.config.workflow_tokens_budget):
                 verifier_tokens = 0
                 success = False
             elif outcome.scores is None:
@@ -234,7 +239,7 @@ class SyntheticEnv:
             "input_tokens": outcome.input_tokens, "output_tokens": outcome.output_tokens,
             "verifier_tokens": verifier_tokens, "total_workflow_tokens": step_tokens,
             "success": success, "done": done, "terminal_reason": reason,
-            "source": self.source, "execution_kind": "simulated", "calls": [],
+            "source": self.source, "execution_kind": "simulated", "calls": list(outcome.calls or ()),
             "estimated_final_quality": quality, "quality_method": outcome.quality_method if quality is not None else None,
             "simulation_support": copy.deepcopy(outcome.simulation_support),
         }

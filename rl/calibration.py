@@ -13,6 +13,7 @@ from dataclasses import asdict, dataclass
 from statistics import fmean, median
 
 from core.rule_scheduler import RuleScheduler
+from core.runner import total
 from core.schema import ACTIONS, SCORE_KEYS, RunnerConfig, verifier_value
 from experiments.collect import validate_collection
 from rl.synthetic_env import Outcome, SyntheticEnv
@@ -51,14 +52,6 @@ def _clip(value):
     return min(1.0, max(0.0, value))
 
 
-def _latency(tr):
-    # Sum sequential call durations (includes retries); not wall-clock step time.
-    values = [call.get("elapsed_seconds") for call in tr["calls"]]
-    if any(type(v) not in (float, int) or not math.isfinite(v) or v < 0 for v in values):
-        return None
-    return sum(values)
-
-
 @dataclass(frozen=True)
 class _Row:
     review_id: str
@@ -66,7 +59,7 @@ class _Row:
     action_success: bool  # execution, independently of subsequent verification
     before: dict
     after: dict | None  # None = no new check, not 'reuse the old scores'
-    elapsed: float | None
+    calls: tuple[dict, ...]  # ordered numeric/role metadata, never donor prompts or outputs
 
     @classmethod
     def read(cls, tr):
@@ -74,11 +67,11 @@ class _Row:
         tokens = tuple(tr[k] for k in TOKEN_FIELDS)
         if any(x is not None and (type(x) is not int or x < 0) for x in tokens):
             raise ValueError("Invalid step token count")
-        total = None if None in tokens else sum(tokens)
-        if total != tr["total_workflow_tokens"]:
+        step_tokens = total(tokens)
+        if step_tokens != tr["total_workflow_tokens"]:
             raise ValueError("Step workflow token ledger does not reconcile")
         used = before["workflow_tokens_used"]
-        if after["workflow_tokens_used"] != (None if used is None or total is None else used + total):
+        if after["workflow_tokens_used"] != total((used, step_tokens)):
             raise ValueError("Cumulative workflow token ledger does not reconcile")
         if tr["action_id"].startswith("write_"):
             # The shared Runner may reject a generated draft on cost grounds;
@@ -89,7 +82,26 @@ class _Row:
         else:
             executed = after["material_revision"] > before["material_revision"]
             checked = _scores(after) if executed and tr["success"] else None
-        return cls(tr["review_id"], tokens, executed, _scores(before), checked, _latency(tr))
+        calls = []
+        for call in tr["calls"]:
+            event = {k: call[k] for k in ("role", "attempt", "status", "prompt_tokens",
+                                          "completion_tokens", "cache_hit")}
+            elapsed = call.get("elapsed_seconds")
+            event["elapsed_seconds"] = (elapsed if type(elapsed) in (int, float)
+                                        and math.isfinite(elapsed) and elapsed >= 0 else None)
+            calls.append(event)
+        return cls(tr["review_id"], tokens, executed, _scores(before), checked, tuple(calls))
+
+    def call_prefix(self, state):
+        """Replay observed hits, not request contents; stop at the first blocked miss."""
+        used, budget = state["workflow_tokens_used"], state["workflow_tokens_budget"]
+        calls = []
+        for call in self.calls:
+            if not call["cache_hit"] and (used is None or used >= budget):
+                break
+            calls.append(call.copy())
+            used = total((used, call["prompt_tokens"], call["completion_tokens"]))
+        return tuple(calls), used
 
     def transferred_scores(self, state):
         if self.after is None:
@@ -222,14 +234,22 @@ class Calibration:
             return Outcome(action_success=False, input_tokens=None, output_tokens=None,
                            verifier_tokens=0, scores=None, simulation_support=support)
         row = rng.choice(rows)
-        estimate, method = (self.quality.estimate(before, action_id)
-                            if action_id.startswith("write_") and row.action_success
-                            else (None, "not_applicable"))
-        support.update(call_seconds=row.elapsed, quality_method=method)
-        return Outcome(action_success=row.action_success, input_tokens=row.tokens[0],
-                       output_tokens=row.tokens[1], verifier_tokens=row.tokens[2],
-                       scores=row.transferred_scores(before), estimated_final_quality=estimate,
-                       quality_method=method, simulation_support=support)
+        calls, used = row.call_prefix(before)
+        workflow = [c for c in calls if c["role"] != "verify"]
+        verifiers = [c for c in calls if c["role"] == "verify"]
+        # Local retrieval commits before its first Verify; generation commits
+        # only on a successful response (possibly a repair) in the admitted prefix.
+        generated = action_id == "retrieve_more" or any(c["status"] == "ok" for c in workflow)
+        checked = any(c["status"] == "ok" for c in verifiers)
+        accepted = (action_id.startswith("write_") and generated and used is not None
+                    and used < before["workflow_tokens_budget"])
+        estimate, method = self.quality.estimate(before, action_id) if accepted else (None, "not_applicable")
+        support.update(call_seconds=total(c["elapsed_seconds"] for c in calls), quality_method=method)
+        return Outcome(action_success=generated, input_tokens=total(c["prompt_tokens"] for c in workflow),
+                       output_tokens=total(c["completion_tokens"] for c in workflow),
+                       verifier_tokens=total(total((c["prompt_tokens"], c["completion_tokens"])) for c in verifiers),
+                       scores=row.transferred_scores(before) if checked else None, estimated_final_quality=estimate,
+                       quality_method=method, simulation_support=support, calls=calls)
 
     def make_env(self, **kwargs):
         """Create an interactive empirical simulator with the captured physical config."""
@@ -256,7 +276,7 @@ class Calibration:
                                 "Choose narrowest pool with >=2 topics, else narrowest nonempty pool.",
                                 "Same action and material stage only. Unsupported => censored unknown usage; not physical illegality or observed failure.",
                                 "Clip transferred dimension-wise changes; newly valid dimensions use donor post scores.",
-                                "Call time sums retries and excludes local orchestration; unknown time/cost stays missing.",
+                                "Replay only budget-admitted calls, including repairs and observed cache hits; no request-content cache model. Sum time and cost of the executed prefix only; unknown values stay missing.",
                                 "Fresh scores: clipped Verifier + train label residual (>=2 topics), else fresh valid Verifier mean.",
                                 "No fresh scores: review-balanced train label mean for unscored writer/stage (>=2 topics), else pooled review-balanced training mean (low support). Without either signal, cost-only diagnostics only."]}
 
