@@ -1,0 +1,1413 @@
+[
+  {
+    "review_id": "R001",
+    "criteria": [
+      {
+        "aspect": "视频与点检测器可观察到什么，匝道实验评价了什么",
+        "evidence": [
+          {
+            "paper_id": "2012.12104v1",
+            "quote": "traffic measures collected by point detectors, such as traffic volumes and occupancies"
+          },
+          {
+            "paper_id": "2012.12104v1",
+            "quote": "traffic cameras-which have been increasingly deployed on road networks-could cover larger areas and provide more detailed traffic information."
+          },
+          {
+            "paper_id": "2012.12104v1",
+            "quote": "in comparison with a state-of-the-practice method, the proposed DRL method results in 1) lower travel times in the mainline, 2) shorter vehicle queues at the on-ramp, and 3) higher traffic flows downstream of the merging area."
+          }
+        ]
+      },
+      {
+        "aspect": "路口结构或车流改变时的方法与证据",
+        "evidence": [
+          {
+            "paper_id": "2010.05772v1",
+            "quote": "our proposed model works for any intersection configuration, as long as a similar configuration is represented in the training set."
+          },
+          {
+            "paper_id": "2009.08052v1",
+            "quote": "GeneraLight boosts the generalization performance by combining the idea of flow clustering and model-agnostic meta-learning. We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows."
+          }
+        ]
+      },
+      {
+        "aspect": "区分观察范围、控制成效与跨环境有效性",
+        "evidence": [
+          {
+            "paper_id": "2012.12104v1",
+            "quote": "A real-world case study demonstrates that, in comparison with a state-of-the-practice method, the proposed DRL method results in"
+          },
+          {
+            "paper_id": "1808.01876v2",
+            "quote": "Simulation experiments have shown that our method outperforms traditional rule-based approaches and has the potential to handle more complex traffic problems in the real world."
+          },
+          {
+            "paper_id": "2009.08052v1",
+            "quote": "most RL models are trained and tested in the same traffic flow environment, which results in a serious overfitting problem."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R002",
+    "criteria": [
+      {
+        "aspect": "文本生成的方法路线与质量目标",
+        "evidence": [
+          {
+            "paper_id": "1905.01984v1",
+            "quote": "New technologies for text generation ranging from template-based methods to neural network-based methods emerged. Meanwhile, the research objectives have also changed from generating smooth and coherent sentences to infusing personalized traits to enrich the diversification of newly generated content."
+          }
+        ]
+      },
+      {
+        "aspect": "举例说明缺少训练样本或标注时，如何获得生成模型的学习信号",
+        "evidence": [
+          {
+            "paper_id": "2010.01794v2",
+            "quote": "We propose and evaluate various augmentation methods, including some that incorporate external knowledge, for finetuning GPT-2 on a subset of Yelp Reviews."
+          },
+          {
+            "paper_id": "2007.08557v1",
+            "quote": "a conditional generative model learns from the search results, and meanwhile smooth out the noise of search. The alternation between search and learning can be repeated for performance bootstrapping."
+          }
+        ]
+      },
+      {
+        "aspect": "个性化评论如何决定写什么，以及为何不能用一般生成质量代替个性化评价",
+        "evidence": [
+          {
+            "paper_id": "2010.01480v1",
+            "quote": "Our generation process contains two major steps, namely aspect sequence generation and sentence generation."
+          },
+          {
+            "paper_id": "2010.01480v1",
+            "quote": "The incorporated KG information is able to enhance user preference at both aspect and word levels."
+          },
+          {
+            "paper_id": "2010.01794v2",
+            "quote": "We utilize several metrics that evaluate important aspects of the generated text including its diversity and fluency."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R003",
+    "criteria": [
+      {
+        "aspect": "哪些人可能得到较差的推荐，原因是什么",
+        "evidence": [
+          {
+            "paper_id": "2006.02046v2",
+            "quote": "inactive users may be more susceptible to receiving unsatisfactory recommendations, due to insufficient training data for the inactive users, and that their recommendations may be biased by the training records of more active users, due to the nature of collaborative filtering"
+          }
+        ]
+      },
+      {
+        "aspect": "怎样在缺少人口统计信息时兼顾公平与准确性",
+        "evidence": [
+          {
+            "paper_id": "2006.05255v1",
+            "quote": "a Deep Learning based Collaborative Filtering algorithm that provides recommendations with an optimum balance between fairness and accuracy without knowing demographic information about the users"
+          }
+        ]
+      },
+      {
+        "aspect": "在面向提供者的重排中，用户偏好起什么作用",
+        "evidence": [
+          {
+            "paper_id": "2005.12974v1",
+            "quote": "a re-ranking approach to fairness-aware recommendation that learns individual preferences across multiple fairness dimensions and uses them to enhance provider fairness in recommendation results"
+          }
+        ]
+      },
+      {
+        "aspect": "后两种方法分别以什么为依据讨论公平与准确性的权衡",
+        "evidence": [
+          {
+            "paper_id": "2006.05255v1",
+            "quote": "Experimental results show that it is possible to make fair recommendations without losing a significant proportion of accuracy."
+          },
+          {
+            "paper_id": "2005.12974v1",
+            "quote": "our opportunistic and metric-agnostic approach achieves a better trade-off between accuracy and fairness than prior re-ranking approaches and does so across multiple fairness dimensions"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R004",
+    "criteria": [
+      {
+        "aspect": "FPGA 加速器的资源利用为何可能限制性能",
+        "evidence": [
+          {
+            "paper_id": "2012.12634v1",
+            "quote": "some accelerators' under-utilization of logic resources or under-utilization of memory bandwidth, so that they can't get the best performance"
+          }
+        ]
+      },
+      {
+        "aspect": "面向图像检索的 ASIC 又为何需要压缩模型",
+        "evidence": [
+          {
+            "paper_id": "1905.03362v1",
+            "quote": "For low-power hardware implementation of image retrieval, the drawback of CNN-based feature descriptor is that it requires hundreds of megabytes of storage."
+          }
+        ]
+      },
+      {
+        "aspect": "如何评估量化对检索性能的影响",
+        "evidence": [
+          {
+            "paper_id": "1905.03362v1",
+            "quote": "using as few as 2-bit weights quantization to deliver a similar performance as floating-point model for image retrieval"
+          }
+        ]
+      },
+      {
+        "aspect": "如何在片上缓冲区有限时处理大图",
+        "evidence": [
+          {
+            "paper_id": "1905.03362v1",
+            "quote": "the limited buffer size of chips should be considered. To retrieve large scale images, we propose an improved pooling strategy, region nested invariance pooling (RNIP), which uses cropped sub-images for CNN."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R005",
+    "criteria": [
+      {
+        "aspect": "为什么需要识别无关特征",
+        "evidence": [
+          {
+            "paper_id": "2010.05744v1",
+            "quote": "The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models."
+          }
+        ]
+      },
+      {
+        "aspect": "采用什么网络和核函数进行特征选择",
+        "evidence": [
+          {
+            "paper_id": "2010.05744v1",
+            "quote": "the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection"
+          }
+        ]
+      },
+      {
+        "aspect": "模拟数据和真实数据分别承担了什么验证任务",
+        "evidence": [
+          {
+            "paper_id": "2010.05744v1",
+            "quote": "A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R006",
+    "criteria": [
+      {
+        "aspect": "观测受扰时的行为鲁棒性",
+        "evidence": [
+          {
+            "paper_id": "1906.01119v1",
+            "quote": "the effectiveness of adversarial training in enhancing the robustness of Deep Q-Network (DQN) policies to state-space perturbations"
+          }
+        ]
+      },
+      {
+        "aspect": "策略被复制时的保密性",
+        "evidence": [
+          {
+            "paper_id": "1906.01121v1",
+            "quote": "the confidentiality aspect of security in Deep Reinforcement Learning (DRL) policies"
+          },
+          {
+            "paper_id": "1906.01121v1",
+            "quote": "model extraction attacks on DRL agents"
+          }
+        ]
+      },
+      {
+        "aspect": "水印可以支持哪种事后核查",
+        "evidence": [
+          {
+            "paper_id": "1906.01126v1",
+            "quote": "The applications of this watermarking scheme include detection of unauthorized replications of proprietary policies"
+          }
+        ]
+      },
+      {
+        "aspect": "该水印演示能支持多大范围的结论",
+        "evidence": [
+          {
+            "paper_id": "1906.01126v1",
+            "quote": "We demonstrate the feasibility of our proposal via experimental evaluation of watermarking a DQN policy trained in the Cartpole environment."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R007",
+    "criteria": [
+      {
+        "aspect": "参数共享留下的风险",
+        "evidence": [
+          {
+            "paper_id": "2010.05867v1",
+            "quote": "it is still possible to reverse engineer information about a client's private data set from communicated model parameters"
+          }
+        ]
+      },
+      {
+        "aspect": "差分隐私和安全多方计算对隐私与模型准确性的作用",
+        "evidence": [
+          {
+            "paper_id": "2010.05867v1",
+            "quote": "use differential privacy to introduce noise to the parameters. This adds uncertainty to any attempt to reveal private client data, but also reduces the accuracy of the shared model"
+          },
+          {
+            "paper_id": "2010.05867v1",
+            "quote": "A system can further reduce the coordinating server's ability to recover private client information, without additional accuracy loss, by also including secure multiparty computation."
+          }
+        ]
+      },
+      {
+        "aspect": "局部噪声如何影响联合训练",
+        "evidence": [
+          {
+            "paper_id": "1905.02941v1",
+            "quote": "Even a single noise-corrupted agent can bias the model training."
+          }
+        ]
+      },
+      {
+        "aspect": "借助可信样本抵抗噪声需要什么前提",
+        "evidence": [
+          {
+            "paper_id": "1905.02941v1",
+            "quote": "We assume that each local agent (teacher) have the resources to verify a small portions of trusted instances, which may not by itself be adequate for learning."
+          },
+          {
+            "paper_id": "1905.02941v1",
+            "quote": "these trusted instances guide the distributed agents to jointly select a compact while informative training subset from data hosted by their own"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "N008",
+    "criteria": [
+      {
+        "aspect": "不规则点的分布给形状表示带来什么困难",
+        "evidence": [
+          {
+            "paper_id": "1904.07601v3",
+            "quote": "the shape implied in irregular points is difficult to capture"
+          }
+        ]
+      },
+      {
+        "aspect": "如何利用局部点间关系表示形状",
+        "evidence": [
+          {
+            "paper_id": "1904.07601v3",
+            "quote": "the convolutional weight for local point set is forced to learn a high-level relation expression from predefined geometric priors, between a sampled point from this point set and the others"
+          },
+          {
+            "paper_id": "1904.07601v3",
+            "quote": "an inductive local representation with explicit reasoning about the spatial layout of points can be obtained"
+          }
+        ]
+      },
+      {
+        "aspect": "连续点云之间要预测什么",
+        "evidence": [
+          {
+            "paper_id": "2011.00551v1",
+            "quote": "Scene flow estimation is the task of estimating 3D flow vectors for consecutive 3D point clouds."
+          }
+        ]
+      },
+      {
+        "aspect": "缺少逐点运动标注时可以用什么信号检验预测",
+        "evidence": [
+          {
+            "paper_id": "2011.00551v1",
+            "quote": "Training a neural network via supervised learning for scene flow is impractical, as this requires manual annotations for each 3D point at each new timestamp for each scene."
+          },
+          {
+            "paper_id": "2011.00551v1",
+            "quote": "a network learns a latent metric to distinguish between points translated by flow estimations and the target point cloud"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R009",
+    "criteria": [
+      {
+        "aspect": "上下文表示与双向注意力在问题和原文的对齐中各起什么作用",
+        "evidence": [
+          {
+            "paper_id": "1904.08109v1",
+            "quote": "leverages BERT's capability of context-aware word embeddings and BiDAF's context interactive exploration mechanism"
+          },
+          {
+            "paper_id": "1904.08109v1",
+            "quote": "extract the contextual word representation at word and character levels, for better comprehension of both question and context and their correlations"
+          }
+        ]
+      },
+      {
+        "aspect": "解码时怎样协调起止位置",
+        "evidence": [
+          {
+            "paper_id": "1905.02019v1",
+            "quote": "I introduce a new end-index decoder layer, conditioning on start-index output."
+          },
+          {
+            "paper_id": "1905.02019v1",
+            "quote": "rewarding both short answer length and high probability in start-index and end-index"
+          }
+        ]
+      },
+      {
+        "aspect": "抽取后依据哪些输入核查片段",
+        "evidence": [
+          {
+            "paper_id": "2011.03435v1",
+            "quote": "Answer validation in machine reading comprehension (MRC) consists of verifying an extracted answer against an input context and question pair."
+          }
+        ]
+      },
+      {
+        "aspect": "片段校正针对哪类定位错误，与判断问题能否作答有何不同",
+        "evidence": [
+          {
+            "paper_id": "2011.03435v1",
+            "quote": "Previous work has looked at re-assessing the \"answerability\" of the question given the extracted answer. Here we address a different problem: the tendency of existing MRC systems to produce partially correct answers when presented with answerable questions."
+          },
+          {
+            "paper_id": "2011.03435v1",
+            "quote": "We explore the nature of such errors and propose a post-processing correction method that yields statistically significant performance improvements over state-of-the-art MRC systems in both monolingual and multilingual evaluation."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R010",
+    "criteria": [
+      {
+        "aspect": "电网研究考察了哪些强化学习设计问题",
+        "evidence": [
+          {
+            "paper_id": "2012.13026v1",
+            "quote": "an in-depth analysis of DRL-based voltage control fromaspects of algorithm selection, state space representation, and reward engineering"
+          }
+        ]
+      },
+      {
+        "aspect": "模仿策略如何给出动作",
+        "evidence": [
+          {
+            "paper_id": "2012.13026v1",
+            "quote": "directly map power grid operating points to effective actions without any interimreinforcement learning process"
+          }
+        ]
+      },
+      {
+        "aspect": "论文如何评价这种转变",
+        "evidence": [
+          {
+            "paper_id": "2012.13026v1",
+            "quote": "strong generalization ability with much less training time"
+          },
+          {
+            "paper_id": "2012.13026v1",
+            "quote": "effective and robust to solve voltagecontrol problem and outperforms the former RL agents"
+          }
+        ]
+      },
+      {
+        "aspect": "容量与补货时间约束",
+        "evidence": [
+          {
+            "paper_id": "2006.04037v1",
+            "quote": "the warehouse, stores, and transportation from warehouse to stores have finite capacities, (iv) warehouse and store replenishment happen at different time scales and with realistic time lags"
+          }
+        ]
+      },
+      {
+        "aspect": "库存决策如何组织、A2C 使用怎样的动作空间",
+        "evidence": [
+          {
+            "paper_id": "2006.04037v1",
+            "quote": "a multi-agent (hierarchical) reinforcement learning framework that can be used for parallelised decision-making, and use the advantage actor critic (A2C) algorithm with quantised action spaces"
+          }
+        ]
+      },
+      {
+        "aspect": "奖励如何体现业务目标",
+        "evidence": [
+          {
+            "paper_id": "2006.04037v1",
+            "quote": "a multi-objective reward comprised of maximising product sales and minimising wastage of perishable products"
+          }
+        ]
+      },
+      {
+        "aspect": "为什么不能用两篇论文的结果判定哪类算法更好",
+        "evidence": [
+          {
+            "paper_id": "2012.13026v1",
+            "quote": "effective and robust to solve voltagecontrol problem and outperforms the former RL agents"
+          },
+          {
+            "paper_id": "2006.04037v1",
+            "quote": "a multi-objective reward comprised of maximising product sales and minimising wastage of perishable products"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R011",
+    "criteria": [
+      {
+        "aspect": "按交谈双方的身份，研究收集了哪两类矛盾对话",
+        "evidence": [
+          {
+            "paper_id": "2012.13391v2",
+            "quote": "a new conversational dataset containing both human-human and human-bot contradictory dialogues"
+          }
+        ]
+      },
+      {
+        "aspect": "按话语组织信息与不作这种结构区分的建模方式",
+        "evidence": [
+          {
+            "paper_id": "2012.13391v2",
+            "quote": "a structured utterance-based approach of using pre-trained Transformer models for contradiction detection with the typical unstructured approach"
+          }
+        ]
+      },
+      {
+        "aspect": "在哪些对话上观察到了稳健性和迁移性的差异",
+        "evidence": [
+          {
+            "paper_id": "2012.13391v2",
+            "quote": "the structured utterance-based approach is more robust and transferable on both analysis and out-of-distribution dialogues than its unstructured counterpart"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R012",
+    "criteria": [
+      {
+        "aspect": "有哪几种利用经验提高样本效率的思路",
+        "evidence": [
+          {
+            "paper_id": "2012.13779v1",
+            "quote": "by incorporating a hippocampus-inspired sequential memory system, can rapidly converge to effective action policies that maximize reward acquisition in a challenging foraging task."
+          },
+          {
+            "paper_id": "2009.09593v1",
+            "quote": "We propose a novel method called Dynamic-horizon Model-based Value Expansion (DMVE) to adjust the world model usage with different rollout horizons."
+          },
+          {
+            "paper_id": "2008.06073v1",
+            "quote": "teacher-aided exploration, ii) a critic with privileged information, and iii) mid-level representations"
+          }
+        ]
+      },
+      {
+        "aspect": "比较所选方法依赖的额外信息或假设",
+        "evidence": [
+          {
+            "paper_id": "2009.09593v1",
+            "quote": "the fixed rollout with an inaccurate model has a potential to harm the learning process."
+          },
+          {
+            "paper_id": "2008.12228v1",
+            "quote": "Our learning framework relies on a data-efficient, off-policy multi-task RL algorithm and a small set of reward functions that are semantically identical across robots."
+          },
+          {
+            "paper_id": "2008.06073v1",
+            "quote": "teacher-aided exploration, ii) a critic with privileged information, and iii) mid-level representations"
+          }
+        ]
+      },
+      {
+        "aspect": "研究用什么任务和对照验证效率，结论能否推广到真实机器人",
+        "evidence": [
+          {
+            "paper_id": "2008.02646v1",
+            "quote": "all of these tasks can be successfully learnt in simulation, and 3 out of 4 tasks can be learned on the real robot. A lack of sample efficiency currently makes the continuous alphabet task impractical on the robot."
+          },
+          {
+            "paper_id": "2009.09593v1",
+            "quote": "On several benchmark visual control tasks, experimental results show that DMVE outperforms all baselines in sample efficiency and final performance"
+          },
+          {
+            "paper_id": "2008.12228v1",
+            "quote": "For nine different types of robots, including a real-world quadruped robot, we demonstrate that the same algorithm can rapidly learn diverse and reusable locomotion skills"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R013",
+    "criteria": [
+      {
+        "aspect": "未标注样本的预测满足什么条件",
+        "evidence": [
+          {
+            "paper_id": "1904.12848v6",
+            "quote": "the use of consistency training on a large amount of unlabeled data to constrain model predictions to be invariant to input noise"
+          }
+        ]
+      },
+      {
+        "aspect": "怎样改变输入扰动",
+        "evidence": [
+          {
+            "paper_id": "1904.12848v6",
+            "quote": "By substituting simple noising operations with advanced data augmentation methods such as RandAugment and back-translation"
+          }
+        ]
+      },
+      {
+        "aspect": "什么文本任务和视觉任务检验这种改变",
+        "evidence": [
+          {
+            "paper_id": "1904.12848v6",
+            "quote": "On the IMDb text classification dataset, with only 20 labeled examples"
+          },
+          {
+            "paper_id": "1904.12848v6",
+            "quote": "On a standard semi-supervised learning benchmark, CIFAR-10, our method outperforms all previous approaches and achieves an error rate of 5.43 with only 250 examples."
+          }
+        ]
+      },
+      {
+        "aspect": "判断模型能否跨模态迁移，这些实验的证据边界在哪里",
+        "evidence": [
+          {
+            "paper_id": "1904.12848v6",
+            "quote": "our method brings substantial improvements across six language and three vision tasks under the same consistency training framework"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R014",
+    "criteria": [
+      {
+        "aspect": "算法组合的泛化保证联系哪两种性能表现",
+        "evidence": [
+          {
+            "paper_id": "2012.13315v1",
+            "quote": "how large the training set should be to ensure that the resulting algorithm selector's average performance over the training set is close to its future (expected) performance"
+          }
+        ]
+      },
+      {
+        "aspect": "扩大组合为何既有吸引力又有代价",
+        "evidence": [
+          {
+            "paper_id": "2012.13315v1",
+            "quote": "as we increase the portfolio size, we can hope to include a well-suited parameter setting for every possible problem instance, but it becomes impossible to avoid overfitting"
+          }
+        ]
+      },
+      {
+        "aspect": "自动化流水线搜索如何表示组合搜索空间",
+        "evidence": [
+          {
+            "paper_id": "2006.04216v1",
+            "quote": "Our system uses matrix and tensor factorization as surrogate models to model the combinatorial pipeline search space."
+          }
+        ]
+      },
+      {
+        "aspect": "怎样决定在新数据集上优先做哪些实验",
+        "evidence": [
+          {
+            "paper_id": "2006.04216v1",
+            "quote": "Under these models, we develop greedy experiment design protocols to efficiently gather information about a new dataset."
+          }
+        ]
+      },
+      {
+        "aspect": "理论保证约束的对象与经验评估所支持的结论",
+        "evidence": [
+          {
+            "paper_id": "2012.13315v1",
+            "quote": "an end-to-end learning-theoretic analysis of the portfolio construction and algorithm selection together"
+          },
+          {
+            "paper_id": "2006.04216v1",
+            "quote": "Experiments on large corpora of real-world classification problems demonstrate the effectiveness of our approach."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R015",
+    "criteria": [
+      {
+        "aspect": "双向生成如何在没有成对样本时学习",
+        "evidence": [
+          {
+            "paper_id": "2006.04702v3",
+            "quote": "an unsupervised training method that can bootstrap from fully non-parallel graph and text data, and iteratively back translate between the two forms"
+          }
+        ]
+      },
+      {
+        "aspect": "两组数据上的实验分别和哪些方法相比",
+        "evidence": [
+          {
+            "paper_id": "2006.04702v3",
+            "quote": "Experiments on WebNLG datasets show that our unsupervised model trained on the same number of data achieves performance on par with several fully supervised models. Further experiments on the non-parallel GenWiki dataset verify that our method performs the best among unsupervised baselines."
+          }
+        ]
+      },
+      {
+        "aspect": "电商案例从什么输入构图",
+        "evidence": [
+          {
+            "paper_id": "2009.11684v1",
+            "quote": "we systematically introduce how we construct domain knowledge graph from free text"
+          }
+        ]
+      },
+      {
+        "aspect": "所得知识用于哪些面向用户的文本任务",
+        "evidence": [
+          {
+            "paper_id": "2009.11684v1",
+            "quote": "It helps to understand user needs, answer pre-sales questions and generate explanation texts."
+          },
+          {
+            "paper_id": "2009.11684v1",
+            "quote": "several online business scenarios such as shopping guide, question answering over properties and recommendation reason generation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R016",
+    "criteria": [
+      {
+        "aspect": "已有的稠密域结果",
+        "evidence": [
+          {
+            "paper_id": "2006.02078v1",
+            "quote": "the most general decidability results are for the so-called $ω$-admissible domains, which are required to be dense. Supporting non-dense domains for features that range over integers or natural numbers remained largely open"
+          }
+        ]
+      },
+      {
+        "aspect": "允许的数值比较",
+        "evidence": [
+          {
+            "paper_id": "2006.02078v1",
+            "quote": "a rich integer domain that allows for comparisons (between features, and between features and constants coded in unary)"
+          }
+        ]
+      },
+      {
+        "aspect": "一般 TBox 下的一致性判定上界",
+        "evidence": [
+          {
+            "paper_id": "2006.02078v1",
+            "quote": "consistency can be solved using automata-theoretic techniques in single exponential time, and thus has no higher worst-case complexity than standard $\\mathcal{ALC}$."
+          },
+          {
+            "paper_id": "2006.02078v1",
+            "quote": "Our upper bounds apply to some extensions of DLs with concrete domains known from the literature, support general TBoxes"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R017",
+    "criteria": [
+      {
+        "aspect": "需要识别的违规内容",
+        "evidence": [
+          {
+            "paper_id": "1905.02234v2",
+            "quote": "Offensive and non-compliant content can include a wide range of objects, logos, and banners conveying violent, sexually explicit, racist, or promotional messages."
+          }
+        ]
+      },
+      {
+        "aspect": "训练数据和类别定义带来的困难",
+        "evidence": [
+          {
+            "paper_id": "1905.02234v2",
+            "quote": "lack of training data, severe class imbalance, fine-grained class definitions"
+          }
+        ]
+      },
+      {
+        "aspect": "自动识别与人工参与手段",
+        "evidence": [
+          {
+            "paper_id": "1905.02234v2",
+            "quote": "Our system combines state-of-the-art image classification and object detection techniques with budgeted crowdsourcing to develop a solution customized for a massive, diverse, and constantly evolving product catalog."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R018",
+    "criteria": [
+      {
+        "aspect": "训练标注的边缘错位",
+        "evidence": [
+          {
+            "paper_id": "1904.07934v2",
+            "quote": "We further reason about true object boundaries during training using a level set formulation, which allows the network to learn from misaligned labels in an end-to-end fashion."
+          }
+        ]
+      },
+      {
+        "aspect": "空间关系不符",
+        "evidence": [
+          {
+            "paper_id": "1904.13196v1",
+            "quote": "The semantic referee relies on ontological reasoning about spatial knowledge in order to characterize errors in terms of their spatial relations with the environment."
+          }
+        ]
+      },
+      {
+        "aspect": "边缘位置还是分类结果",
+        "evidence": [
+          {
+            "paper_id": "1904.07934v2",
+            "quote": "Our layer/loss enforces the detector to predict a maximum response along the normal direction at an edge, while also regularizing its direction."
+          },
+          {
+            "paper_id": "1904.13196v1",
+            "quote": "extract qualitative features of the errors emerging from deep machine learning frameworks and suggest corrections."
+          },
+          {
+            "paper_id": "1904.13196v1",
+            "quote": "the interaction between a neural network classifier and a semantic referee shows how to improve the performance of semantic segmentation for satellite imagery data."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R019",
+    "criteria": [
+      {
+        "aspect": "仅凭距离判断相似性",
+        "evidence": [
+          {
+            "paper_id": "2006.04435v1",
+            "quote": "For multi-scale data, distance-based similarity is not effective because objects of a sparse cluster could be far apart while those of a dense cluster have to be sufficiently close."
+          }
+        ]
+      },
+      {
+        "aspect": "系数矩阵的构造与正则化",
+        "evidence": [
+          {
+            "paper_id": "2006.04435v1",
+            "quote": "integrating the concept of objects' \"reachability similarity\" with a given distance-based similarity to derive an objects' coefficient matrix. We propose the algorithm CAST that applies trace Lasso to regularize the coefficient matrix."
+          }
+        ]
+      },
+      {
+        "aspect": "与聚类有关的性质",
+        "evidence": [
+          {
+            "paper_id": "2006.04435v1",
+            "quote": "We prove that the resulting coefficient matrix has the \"grouping effect\" and that it exhibits \"sparsity\"."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R020",
+    "criteria": [
+      {
+        "aspect": "扩展文档内容",
+        "evidence": [
+          {
+            "paper_id": "2012.14005v1",
+            "quote": "a new approach to document expansion based on a neural Seq2Seq model, showing significant improvement on short text retrieval task."
+          }
+        ]
+      },
+      {
+        "aspect": "丰富匹配表示",
+        "evidence": [
+          {
+            "paper_id": "2010.14049v1",
+            "quote": "injecting extra word interaction information, distilled from a generic (open domain) knowledge base, into a contextual language model for inferring the q-A relevance."
+          },
+          {
+            "paper_id": "2011.01043v1",
+            "quote": "These networks independently process code and text descriptions before passing them to a Siamese network to learn embeddings in a common space."
+          },
+          {
+            "paper_id": "2007.12731v1",
+            "quote": "we propose a document similarity engine that leverages low-dimensional graph embeddings from the CKG with semantic embeddings for similar article retrieval."
+          }
+        ]
+      },
+      {
+        "aspect": "少标注条件下的检索结果",
+        "evidence": [
+          {
+            "paper_id": "2012.14005v1",
+            "quote": "However, this approach needs a large amount of in-domain training data. In this paper, we show that this neural document expansion approach can be effectively adapted to standard IR tasks, where labels are scarce and many long documents are present."
+          }
+        ]
+      },
+      {
+        "aspect": "无监督取得的辅助信息",
+        "evidence": [
+          {
+            "paper_id": "2010.14049v1",
+            "quote": "we also explore to capitalize on domain-specific topically-relevant relations between words in an unsupervised manner, acting as a surrogate to the supervised domain-specific knowledge base information."
+          }
+        ]
+      },
+      {
+        "aspect": "检索基准上的性能改善",
+        "evidence": [
+          {
+            "paper_id": "2011.01043v1",
+            "quote": "We experiment on two different datasets and discover that Siamese networks can act as strong regularizers on networks that extract rich information from code and text, which in turn helps achieve impressive performance on code search beating previous baselines on $2$ programming languages."
+          },
+          {
+            "paper_id": "2010.14049v1",
+            "quote": "Extensive experimental results on these two datasets confirm the promising performance of the proposed approach in relation to some state-of-the-art ones."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R021",
+    "criteria": [
+      {
+        "aspect": "共享设计工具与语言的作用",
+        "evidence": [
+          {
+            "paper_id": "1904.13333v1",
+            "quote": "Our goal is to explore common shared design tools that can be used by humans and artificial agents in a context of creation. This approach can provide a better knowledge transfer and interaction with artificial agents since a common language of design is defined."
+          }
+        ]
+      },
+      {
+        "aspect": "复现既有关卡的质量",
+        "evidence": [
+          {
+            "paper_id": "1809.09420v1",
+            "quote": "For certain measures these approaches have shown success at replicating the quality of existing game levels. However, it is unclear the extent to which they might benefit human designers."
+          }
+        ]
+      },
+      {
+        "aspect": "对设计者受益情况的考察",
+        "evidence": [
+          {
+            "paper_id": "1809.09420v1",
+            "quote": "we present a framework for co-creative level design with a PLGML agent. In support of this framework we present results from a user study and results from a comparative study of PLGML approaches."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R022",
+    "criteria": [
+      {
+        "aspect": "减少真机训练或筛选策略的开销",
+        "evidence": [
+          {
+            "paper_id": "1809.10253v3",
+            "quote": "our method learns to control a real robot in joint-space to achieve these high-level tasks with little or no on-robot time, despite the fact that the low-level policies may not be perfectly transferable from simulation to real"
+          },
+          {
+            "paper_id": "1809.10253v3",
+            "quote": "This diversity and parameterization of low-level skills allows us to find a transferable policy that is able to use combinations and variations of different skills to solve more complex, high-level tasks."
+          },
+          {
+            "paper_id": "2009.12864v1",
+            "quote": "Our transfer metric simplifies the selection of training setups (such as algorithm, hyperparameters, randomizations) and policies in simulation, without the need for extensive and time-consuming real-world rollouts."
+          }
+        ]
+      },
+      {
+        "aspect": "仿真中学会了任务",
+        "evidence": [
+          {
+            "paper_id": "2008.02646v1",
+            "quote": "A simulated counterpart is also constructed by sampling tactile data from the physical environment. Using state-of-the-art deep RL algorithms, we show that all of these tasks can be successfully learnt in simulation, and 3 out of 4 tasks can be learned on the real robot."
+          },
+          {
+            "paper_id": "1809.10253v3",
+            "quote": "we first use simulation to jointly learn a policy for a set of low-level skills, and a \"skill embedding\" parameterization which can be used to compose them."
+          }
+        ]
+      },
+      {
+        "aspect": "根据真实轨迹预测迁移表现",
+        "evidence": [
+          {
+            "paper_id": "2009.12864v1",
+            "quote": "A probabilistic dynamics model is trained alongside the policy and evaluated on a fixed set of real-world trajectories to obtain the transfer metric. Experiments show that the transfer metric is highly correlated with policy performance in both simulated and real-world robotic environments for complex manipulation tasks."
+          }
+        ]
+      },
+      {
+        "aspect": "在真机上验证了任务表现",
+        "evidence": [
+          {
+            "paper_id": "1807.11174v1",
+            "quote": "To validate our method, we conduct experiments on both a simulation dataset (AI2-THOR) and a real-world environment with a physical robot."
+          },
+          {
+            "paper_id": "1809.10253v3",
+            "quote": "We then verify its usefulness for real robotics problems by learning, transferring, and composing free-space and contact motion skills on a Sawyer robot using only joint-space control."
+          },
+          {
+            "paper_id": "2008.02646v1",
+            "quote": "all of these tasks can be successfully learnt in simulation, and 3 out of 4 tasks can be learned on the real robot. A lack of sample efficiency currently makes the continuous alphabet task impractical on the robot."
+          }
+        ]
+      },
+      {
+        "aspect": "仿真成功或迁移指标的相关性不能代替真机任务验证",
+        "evidence": [
+          {
+            "paper_id": "2008.02646v1",
+            "quote": "3 out of 4 tasks can be learned on the real robot. A lack of sample efficiency currently makes the continuous alphabet task impractical on the robot."
+          },
+          {
+            "paper_id": "2009.12864v1",
+            "quote": "Experiments show that the transfer metric is highly correlated with policy performance in both simulated and real-world robotic environments for complex manipulation tasks."
+          },
+          {
+            "paper_id": "1807.11174v1",
+            "quote": "Experimental results validate the efficacy of our method, which outperforms competing methods in both average trajectory length and success rate."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R023",
+    "criteria": [
+      {
+        "aspect": "按病情或解剖区域分别评估",
+        "evidence": [
+          {
+            "paper_id": "2012.13666v1",
+            "quote": "Among images with caries lesions in the test set, our model acquired recall scores of 69.44\\% and 90.52\\% for mild and severe ones"
+          },
+          {
+            "paper_id": "2011.00160v1",
+            "quote": "the proposed approach can distinguish healthy cells from the sick ones with a recognition rate of 89.30% (Rheumatoid Arthritis), 98.45% (Cancer), and 95.13% (Diabetes Mellitus)"
+          },
+          {
+            "paper_id": "2009.07563v1",
+            "quote": "average Dice Scores of 0.90, 0.82, and 0.78 for whole tumour, tumour core and enhancing tumour respectively."
+          }
+        ]
+      },
+      {
+        "aspect": "识别与分割指标各自在评估什么",
+        "evidence": [
+          {
+            "paper_id": "2012.13666v1",
+            "quote": "our model achieved an accuracy score of 86.05\\% on the test set."
+          },
+          {
+            "paper_id": "2009.07563v1",
+            "quote": "segment a brain tumour into its subregions: whole tumour, tumour core and enhancing tumour."
+          },
+          {
+            "paper_id": "2009.07563v1",
+            "quote": "the proposed model achieved average Dice Scores of 0.90, 0.82, and 0.78 for whole tumour, tumour core and enhancing tumour respectively."
+          },
+          {
+            "paper_id": "2009.13798v1",
+            "quote": "Our method achieved a mean Dice score of 96%, a mean localization error of 8.3 mm, and a mean identification rate of 84%."
+          }
+        ]
+      },
+      {
+        "aspect": "任务与指标不同的分数不能直接用来排名",
+        "evidence": [
+          {
+            "paper_id": "2012.13666v1",
+            "quote": "On a dataset of 470 Panoramic images used for features extraction, including 240 labeled images for classification, our model achieved an accuracy score of 86.05\\% on the test set."
+          },
+          {
+            "paper_id": "2009.07563v1",
+            "quote": "Experimental results on the BraTS20 validation dataset demonstrates that the proposed model achieved average Dice Scores of 0.90, 0.82, and 0.78 for whole tumour, tumour core and enhancing tumour respectively."
+          },
+          {
+            "paper_id": "2009.13798v1",
+            "quote": "The proposed method is evaluated in terms of segmentation, localization, and identification accuracy with two public datasets of 15 3D CT images from the MICCAI CSI 2014 workshop challenge and 302 3D CT images with various pathologies introduced in [1]."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R024",
+    "criteria": [
+      {
+        "aspect": "模型层面的偏差缓解",
+        "evidence": [
+          {
+            "paper_id": "2005.14621v1",
+            "quote": "the post-processing approach in fair classification, in which (1) a predictor is learned first, after which (2) its output is adjusted to remove bias."
+          },
+          {
+            "paper_id": "2012.10986v1",
+            "quote": "We also introduce a novel post-processing mitigation technique which increases individual fairness in recourse while maintaining group level fairness."
+          }
+        ]
+      },
+      {
+        "aspect": "组织层面的评估和治理",
+        "evidence": [
+          {
+            "paper_id": "2006.04707v1",
+            "quote": "an impact assessment framework which is broad, operationalizable, flexible, iterative, guided, and participatory is a promising approach to close the principles-to-practices gap."
+          },
+          {
+            "paper_id": "2007.07768v2",
+            "quote": "We make the connection between the seven key requirements as defined by the European Commission's AI high-level expert group and established procedures from software engineering and raise questions for future work."
+          },
+          {
+            "paper_id": "2010.04827v1",
+            "quote": "increased automation and the integration of monitoring, management, and mitigation capabilities. The proposed framework also provides model governance and risk management improved capabilities to manage model risk during deployment."
+          }
+        ]
+      },
+      {
+        "aspect": "公平指标的适用前提",
+        "evidence": [
+          {
+            "paper_id": "2010.10407v3",
+            "quote": "similar to how mathematical assumptions constrain applicability, normative assumptions also limit algorithm applicability to certain problem domains."
+          },
+          {
+            "paper_id": "2005.14621v1",
+            "quote": "Achieving the Bayes optimal binary classification rule subject to group fairness constraints is known to be reducible, in some cases, to learning a group-wise thresholding rule over the Bayes regressor."
+          }
+        ]
+      },
+      {
+        "aspect": "仍需组织判断或跟踪的事项",
+        "evidence": [
+          {
+            "paper_id": "2010.10407v3",
+            "quote": "once normative assumptions are clarified, it is often possible to get unclear or contradictory results."
+          },
+          {
+            "paper_id": "2010.04827v1",
+            "quote": "The proposed framework also provides model governance and risk management improved capabilities to manage model risk during deployment."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R025",
+    "criteria": [
+      {
+        "aspect": "整图监督预测与基于条件独立关系的结构恢复",
+        "evidence": [
+          {
+            "paper_id": "2006.04697v1",
+            "quote": "We propose a novel approach of modeling the whole DAG structure discovery as a supervised learning. To fit the problem in hand, we propose to use permutation equivariant models that align well with the problem domain."
+          },
+          {
+            "paper_id": "2012.07513v2",
+            "quote": "We rely on the causal Markov and faithfulness assumptions and recover the equivalence class of the underlying causal graph by performing a series of conditional independence (CI) tests between observed variables."
+          },
+          {
+            "paper_id": "2010.02675v1",
+            "quote": "we propose an algorithm which, for a given set of conditional independencies of order less or equal to $k$, where $k$ is a small fixed number, computes a faithful graphical representation of the given set."
+          }
+        ]
+      },
+      {
+        "aspect": "变量输入次序对结果的影响",
+        "evidence": [
+          {
+            "paper_id": "2005.14037v1",
+            "quote": "LWF chain graphs combine directed acyclic graphs and undirected graphs. We present a PC-like algorithm that finds the structure of chain graphs under the faithfulness assumption"
+          },
+          {
+            "paper_id": "2005.14037v1",
+            "quote": "We prove that our PC-like algorithm is order dependent, in the sense that the output can depend on the order in which the variables are given."
+          },
+          {
+            "paper_id": "2005.14037v1",
+            "quote": "We propose two modifications of the PC-like algorithm that remove part or all of this order dependence."
+          }
+        ]
+      },
+      {
+        "aspect": "限制搜索范围带来的收益与代价",
+        "evidence": [
+          {
+            "paper_id": "2010.00684v2",
+            "quote": "efficient approximate sampling from the graph posterior, provided that each node is assigned a small number $K$ of candidate parents."
+          },
+          {
+            "paper_id": "2010.00684v2",
+            "quote": "the problem of selecting the candidate parents per node so as to maximize the covered posterior mass."
+          },
+          {
+            "paper_id": "2010.02675v1",
+            "quote": "CI tests with conditioning sets of low order can be performed accurately even for a small number of observations, a reasonable approach to determine casual structures is to base merely on the low-order CIs."
+          },
+          {
+            "paper_id": "2012.07513v2",
+            "quote": "the independence and causal relations entailed from the resulting graph, after any iteration, is correct and becomes more informative with successive iteration."
+          },
+          {
+            "paper_id": "2012.07513v2",
+            "quote": "We demonstrate that our algorithm requires significantly fewer CI tests and smaller condition sets compared to the FCI algorithm."
+          }
+        ]
+      },
+      {
+        "aspect": "置换等变设计或搜索效率的改进能否充当其他算法的顺序保证",
+        "evidence": [
+          {
+            "paper_id": "2006.04697v1",
+            "quote": "we propose to use permutation equivariant models that align well with the problem domain."
+          },
+          {
+            "paper_id": "2005.14037v1",
+            "quote": "This order dependence can be very pronounced in high-dimensional settings. We propose two modifications of the PC-like algorithm that remove part or all of this order dependence."
+          },
+          {
+            "paper_id": "2010.00684v2",
+            "quote": "We present algorithmic techniques to significantly reduce the space and time requirements, which make the use of substantially larger values of $K$ feasible."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R026",
+    "criteria": [
+      {
+        "aspect": "转码以便长期读取",
+        "evidence": [
+          {
+            "paper_id": "1904.12059v1",
+            "quote": "the curatorial requirement for archives to format shift video over time to ensure future accessibility."
+          }
+        ]
+      },
+      {
+        "aspect": "对哪些变化敏感、对哪些变化保持不变",
+        "evidence": [
+          {
+            "paper_id": "1904.12059v1",
+            "quote": "Our TCHs are sensitive to accidental or malicious content modification (tampering) but invariant to the codec used to encode the video."
+          }
+        ]
+      },
+      {
+        "aspect": "用分布式账本保护哪些核验材料",
+        "evidence": [
+          {
+            "paper_id": "1904.12059v1",
+            "quote": "the TCHs (and the models used to derive them) are secured via a proof-of-authority blockchain distributed across multiple independent archives."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R027",
+    "criteria": [
+      {
+        "aspect": "液滴实验的无预设优化目标搜索",
+        "evidence": [
+          {
+            "paper_id": "1904.12635v1",
+            "quote": "The CA-robot is designed to explore formulations in an open-ended way with no explicit optimization target."
+          },
+          {
+            "paper_id": "1904.12635v1",
+            "quote": "we are able to observe an order of magnitude more variety of droplet behaviours than possible with a random parameter search and given the same budget."
+          }
+        ]
+      },
+      {
+        "aspect": "软体机器人的步态库构建",
+        "evidence": [
+          {
+            "paper_id": "2009.10864v2",
+            "quote": "we employ a Quality Diversity Algorithm running model-free on a physical soft tensegrity robot that autonomously generates a behavioral repertoire with no a priori knowledge of the robot dynamics"
+          },
+          {
+            "paper_id": "2009.10864v2",
+            "quote": "The resulting behavior repertoire displays a diversity of unique locomotive gaits useful for a variety of tasks."
+          }
+        ]
+      },
+      {
+        "aspect": "个体模型的参数校准",
+        "evidence": [
+          {
+            "paper_id": "2005.12841v1",
+            "quote": "an elevated number of input parameters which must be tuned for reproducing the observed population data or the experimental results as accurately as possible."
+          },
+          {
+            "paper_id": "2005.12841v1",
+            "quote": "several parameter combinations must be tried to find an acceptable set of input factors minimizing the deviations of simulated and the reference dataset."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R028",
+    "criteria": [
+      {
+        "aspect": "竞争博弈中的未见对手",
+        "evidence": [
+          {
+            "paper_id": "1906.01470v3",
+            "quote": "the generality of the agent can be evaluated by playing against opponents it hasn't seen during training."
+          }
+        ]
+      },
+      {
+        "aspect": "高低层策略如何分工",
+        "evidence": [
+          {
+            "paper_id": "1906.01470v3",
+            "quote": "the top level chooses strategic responses to opponents, while the low level implements them into policy over primitive actions."
+          }
+        ]
+      },
+      {
+        "aspect": "通信协议在什么条件下能够泛化",
+        "evidence": [
+          {
+            "paper_id": "2010.15896v2",
+            "quote": "agents that learn to communicate via actuating their joints in a 3D environment."
+          },
+          {
+            "paper_id": "2010.15896v2",
+            "quote": "under realistic assumptions, a non-uniform distribution of intents and a common-knowledge energy cost, these agents can find protocols that generalize to novel partners."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R029",
+    "criteria": [
+      {
+        "aspect": "前者考察的训练条件",
+        "evidence": [
+          {
+            "paper_id": "1906.01119v1",
+            "quote": "We first present a formal analysis of adversarial training in DQN agents and its performance with respect to the proportion of adversarial perturbations to nominal observations used for training."
+          }
+        ]
+      },
+      {
+        "aspect": "为什么总奖励不足以衡量安全",
+        "evidence": [
+          {
+            "paper_id": "2010.09387v1",
+            "quote": "designing metrics to measure the safety of a neural network is an open problem, since standard evaluation parameters (e.g., total reward) are not informative enough."
+          },
+          {
+            "paper_id": "2010.09387v1",
+            "quote": "our approach allows to efficiently evaluate safety properties for decision-making models in practical applications such as mapless navigation for mobile robots and trajectory generation for manipulators."
+          }
+        ]
+      },
+      {
+        "aspect": "验证方法与计算代价",
+        "evidence": [
+          {
+            "paper_id": "2010.09387v1",
+            "quote": "we present a semi-formal verification approach for decision-making tasks, based on interval analysis"
+          },
+          {
+            "paper_id": "2010.09387v1",
+            "quote": "Our method obtains comparable results over standard benchmarks with respect to formal verifiers, while drastically reducing the computation time."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "review_id": "R030",
+    "criteria": [
+      {
+        "aspect": "投票人层面与记录层面的保护",
+        "evidence": [
+          {
+            "paper_id": "1906.01562v2",
+            "quote": "four granularities of privacy protection by taking voter-/record-level privacy protection and centralized/distributed perturbation into account"
+          }
+        ]
+      },
+      {
+        "aspect": "集中式与分布式扰动",
+        "evidence": [
+          {
+            "paper_id": "1906.01562v2",
+            "quote": "VLCP and RLCP are implemented with the data aggregator setting a universal privacy parameter and perturbing the averaged moral preference to protect the privacy of voters' data."
+          },
+          {
+            "paper_id": "1906.01562v2",
+            "quote": "VLDP and RLDP are implemented in such a way that each voter perturbs her/his local moral preference with a personalized privacy parameter."
+          }
+        ]
+      }
+    ]
+  }
+]
