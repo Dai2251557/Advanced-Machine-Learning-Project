@@ -5,6 +5,7 @@ from agents.executor import MockBackend
 from core.schema import ACTIONS, verifier_value
 from experiments.collect import dry_run
 from rl.calibration import evaluate_holdout, fit_calibration
+from rl.reward import RewardConfig
 
 
 class CalibrationTests(unittest.TestCase):
@@ -25,8 +26,10 @@ class CalibrationTests(unittest.TestCase):
         model = fit_calibration(eps, mode='fixture')
         pairs = set()
         partial = seen_success = False
+        with self.assertRaisesRegex(ValueError, 'summary/write_fast'):
+            model.make_env()
         for seed in range(20):
-            env = model.make_env()
+            env = model.make_env(reward_config=RewardConfig(quality_weight=0))
             env.reset(seed=seed, options={'difficulty':'medium'})
             state, _, _, _, info = env.step('retrieve_more')
             step = info['transition']
@@ -42,6 +45,49 @@ class CalibrationTests(unittest.TestCase):
         self.assertTrue(partial and seen_success)
         self.assertEqual(pairs,{(10,.6),(20,.9)})
         self.assertEqual(model.manifest()['action_samples']['retrieve_more'],2)
+
+    def test_missing_verifier_uses_only_fitting_labels_and_balances_topics(self):
+        class BadVerifier(MockBackend):
+            def complete(self, role, instruction, payload):
+                c = super().complete(role, instruction, payload)
+                c.prompt_tokens, c.completion_tokens = 10, 5
+                if role == 'verify':
+                    c.content = '{}'
+                return c
+
+        topics = [('A', .2), ('A', .2), ('B', .8), ('C', .95)]
+        eps = [dry_run('raw_fast', review_id=rid, backend=BadVerifier()) for rid, _ in topics]
+        labels = [{**{k: ep[k] for k in ('review_id', 'trajectory_id', 'split', 'final_text_sha256')},
+                   'model': 'fixture', 'prompt_id': 'v1', 'source_kind': 'synthetic_fixture', 'overall_score': score}
+                  for ep, (_, score) in zip(eps, topics)]
+        for n, expected, method in [(1, .2, 'pooled_mean_low_support'), (3, .5, 'no_verifier_group_mean')]:
+            model = fit_calibration(eps[:n], labels[:n], mode='fixture')
+            env = model.make_env()
+            env.reset(seed=5)
+            state, _, _, _, _ = env.step('retrieve_more')
+            self.assertIsNone(verifier_value(state))
+            after, reward, done, _, info = env.step('write_fast')
+            t = info['transition']
+            self.assertTrue(done and t['success'])
+            self.assertEqual(t['quality_method'], 'synthetic_fixture_' + method)
+            self.assertAlmostEqual(t['estimated_final_quality'], expected)
+            self.assertAlmostEqual(reward, expected - 15 / 48000)
+            self.assertNotIn('overall_score', after)
+        report = evaluate_holdout(eps, labels, mode='fixture', holdout_review_ids=['C'])
+        self.assertEqual(report['quality']['compared'], 1)
+        self.assertAlmostEqual(report['quality']['mae'], .95 - .5)
+        # 真正没有质量依据时，默认训练须在开始前拒绝，显式成本诊断仍不捏造分数。
+        model = fit_calibration(eps, mode='fixture')
+        self.assertEqual(model.manifest()['unscorable_writes'], ['papers/write_fast'])
+        with self.assertRaisesRegex(ValueError, 'collect labels'):
+            model.make_env()
+        env = model.make_env(reward_config=RewardConfig(quality_weight=0))
+        env.reset(seed=5)
+        env.step('retrieve_more')
+        _, reward, done, _, info = env.step('write_fast')
+        self.assertTrue(done)
+        self.assertIsNone(info['estimated_final_quality'])
+        self.assertAlmostEqual(reward, -15 / 48000)
 
     def test_zero_support_is_not_physical_illegality(self):
         ep = dry_run('raw_fast')

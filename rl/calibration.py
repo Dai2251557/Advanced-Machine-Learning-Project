@@ -109,6 +109,8 @@ class _Quality:
         self.source = source
         self.offsets = defaultdict(list)
         self.targets = []
+        by_review = defaultdict(list)
+        no_verifier = defaultdict(lambda: defaultdict(list))
         for ep in episodes:
             label = labels.get(ep["trajectory_id"])
             if label is None:
@@ -118,16 +120,28 @@ class _Quality:
             tr = ep["transitions"][-1]
             state, action = tr["state_before"], tr["action_id"]
             value = verifier_value(state)
-            if value is not None:
+            by_review[ep['review_id']].append(score)
+            if value is None:
+                no_verifier[(action, _stage(state))][ep['review_id']].append(score)
+            else:
                 group = (action, _stage(state), tuple(_scores(state)))
                 self.offsets[group].append((ep["review_id"], score - value))
+        # 先在题内取均值，避免重复跑得最多的综述主导代理分。
+        self.unscored_means = {key: fmean(fmean(scores) for scores in reviews.values())
+                               for key, reviews in no_verifier.items() if len(reviews) >= MIN_REVIEWS}
+        self.pooled_mean = fmean(fmean(scores) for scores in by_review.values()) if by_review else None
 
     def estimate(self, state, action):
         if not action.startswith("write_"):
             raise ValueError("Final quality is only defined for writing")
         value = verifier_value(state)
         if value is None:
-            return None, "unavailable_no_fresh_valid_scores"
+            key = (action, _stage(state))
+            if key in self.unscored_means:
+                return self.unscored_means[key], self.source + '_no_verifier_group_mean'
+            if self.pooled_mean is not None:
+                return self.pooled_mean, self.source + '_pooled_mean_low_support'
+            return None, 'unavailable_no_fresh_scores_or_training_labels'
         group = (action, _stage(state), tuple(_scores(state)))
         residuals = self.offsets.get(group, ())
         if len({r for r, _ in residuals}) >= MIN_REVIEWS:
@@ -157,6 +171,29 @@ class Calibration:
                     self.buckets[key].append(row)
         label_source = "synthetic_fixture" if mode == "fixture" else "train_judge"
         self.quality = _Quality(episodes, labels, label_source)
+        self.unscorable_writes = self._unscorable_writes()
+
+    def _unscorable_writes(self):
+        if self.quality.pooled_mean is not None:
+            return []
+        # 按与 _select 相同的最粗可用阶段做保守预检，涵盖跨轨迹重组出的路径。
+        stale_cost, write_cost = {}, {}
+        for key, rows in self.buckets.items():
+            if len(key) != 2:
+                continue
+            action, stage = key
+            for r in rows:
+                if not r.action_success or None in r.tokens:
+                    continue
+                cost = sum(r.tokens)
+                if action.startswith('write_'):
+                    write_cost[key] = min(write_cost.get(key, cost), cost)
+                elif r.after is None:
+                    next_stage = 'papers' if action == 'retrieve_more' else 'summary'
+                    stale_cost[next_stage] = min(stale_cost.get(next_stage, cost), cost)
+        return sorted(f'{stage}/{a}' for (a, stage), cost in write_cost.items()
+                      if stage in stale_cost and self.config.max_steps >= (3 if stage == 'summary' else 2)
+                      and cost + stale_cost[stage] < self.config.workflow_tokens_budget)
 
     def _select(self, state, action):
         # Prefer the narrowest pool supported by independent topics. If no
@@ -214,13 +251,14 @@ class Calibration:
                 "episodes": self.episodes, "joint_bins": joints, "joint_bin_count": len(joints),
                 "action_samples": action_counts, "min_reviews": MIN_REVIEWS,
                 "backoff_levels": [*LEVELS, "unsupported"], "quality_labels": len(self.quality.targets),
-                "quality_label_source": self.quality.source,
+                "quality_label_source": self.quality.source, "unscorable_writes": self.unscorable_writes.copy(),
                 "assumptions": ["Uniform joint step resampling within pool; bands <.5, <.75, >=.75, unknown.",
                                 "Choose narrowest pool with >=2 topics, else narrowest nonempty pool.",
                                 "Same action and material stage only. Unsupported => censored unknown usage; not physical illegality or observed failure.",
                                 "Clip transferred dimension-wise changes; newly valid dimensions use donor post scores.",
                                 "Call time sums retries and excludes local orchestration; unknown time/cost stays missing.",
-                                "Quality = clipped Verifier + mean train label residual by writer/stage/valid scope (>=2 topics), else fresh valid Verifier mean, else unavailable."]}
+                                "Fresh scores: clipped Verifier + train label residual (>=2 topics), else fresh valid Verifier mean.",
+                                "No fresh scores: review-balanced train label mean for unscored writer/stage (>=2 topics), else pooled review-balanced training mean (low support). Without either signal, cost-only diagnostics only."]}
 
 
 def _physical_settings(episodes, manifest, corpus_size):
@@ -264,6 +302,9 @@ class CalibratedEnv(SyntheticEnv):
     def __init__(self, model, **kwargs):
         super().__init__(model.config, outcome_model=model, corpus_size=model.corpus_size,
                          source='calibrated', **kwargs)
+        if self.reward_config.quality_weight and model.unscorable_writes:
+            raise ValueError('Missing training labels for possible writes without fresh Verifier scores: '
+                             + ', '.join(model.unscorable_writes) + '; collect labels or use quality_weight=0')
         self.model = model
 
     def reset(self, *, seed=None, options=None):
