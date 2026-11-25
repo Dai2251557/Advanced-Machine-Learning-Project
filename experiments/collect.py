@@ -37,8 +37,9 @@ from agents.executor import MockBackend
 from core.rule_scheduler import RuleScheduler
 from core.runner import Runner, total
 from core.schema import (ACTIONS, CONFIG_VERSION, SCORE_KEYS, ReviewTask, RunnerConfig,
-                         comparable_delta, verifier_value)
+                         comparable_delta, empty_verifier, verifier_value)
 from litreview.clients import DeepSeekBackend
+from litreview.pipeline import validate_ids
 from rl.adapter import step_with_masks
 
 # Planned alternatives are preferences, never new physical masks. Index by the
@@ -310,6 +311,68 @@ def _same_usage(actual, expected, name):
     _require(type(actual) is type(expected) and actual == expected, f'inconsistent {name} usage')
 
 
+def _successful_outputs(calls):
+    """只取本步各角色成功的尝试。修复及缓存命中也应记录原始响应。"""
+    outputs = {}
+    for call in calls:
+        if call['status'] == 'error':
+            _require('output' not in call, 'failed call cannot supply an accepted output')
+            continue
+        output = call['output']
+        _require(call['finish_reason'] == 'stop' and isinstance(call['response_text'], str)
+                 and isinstance(output, dict) and json_sha256(json.loads(call['response_text'])) == json_sha256(output),
+                 'successful call output does not match raw response')
+        # _usage 已核对角色顺序，每个角色至多一次成功。
+        outputs[call['role']] = output
+    return outputs
+
+
+def _check_step_effects(t, outputs, budget_ok):
+    before, after, action = t['state_before'], t['state_after'], t['action_id']
+    retrieved = action == 'retrieve_more'
+    summarized = 'summarize' in outputs
+    revision = before['material_revision'] + int(retrieved or summarized)
+    has_summary = not retrieved and (summarized or before['summary_available'])
+    _require(after['material_revision'] == revision and after['summary_available'] is has_summary,
+             'material change does not match executed action')
+
+    # 材料更新后即使校验失败也不回滚材料，但旧校验的版本和内容必须原样保留。
+    expected = before['verifier']
+    if 'verify' in outputs:
+        result = outputs['verify']
+        expected = {k: result[k] for k in ('scores', 'valid_scores', 'issues')}
+        expected['checked_material_revision'] = revision
+        _require('next_action' not in result and all(result['valid_scores'][k] is (has_summary or k == 'coverage')
+                 and (result['valid_scores'][k] or result['scores'][k] == 0) for k in SCORE_KEYS),
+                 'invalid verifier scoring scope')
+    elif (retrieved or summarized) and budget_ok:
+        _require(any(c['role'] == 'verify' for c in t['calls']), 'missing verifier attempt after material update')
+    _require(json_sha256(after['verifier']) == json_sha256(expected), 'verifier snapshot does not match call history')
+
+    # Step.success 还受自动校验或写稿预算影响，并不等于动作本身执行成功。
+    success = ('write' in outputs and budget_ok) if action.startswith('write_') else 'verify' in outputs
+    _require(t['success'] is success, 'step success does not match call history and budget')
+
+
+def _render_accepted_write(draft, papers, execution_kind):
+    """仅对账 Runner.step 的发布格式；T4 入口已排除 pilot_only，不应出现 PILOT 横幅。"""
+    lines = ['# 文献综述', '', '范围：仅依据提供的论文摘要。', '']
+    if execution_kind == 'mock':
+        lines += ['> MOCK 合成演示，不是实际模型输出或实验结果。', '']
+    ids = {p['id'] for p in papers}
+    cited = set()
+    _require(isinstance(draft['sections'], list) and draft['sections'], 'missing write sections')
+    for section in draft['sections']:
+        _require(_text(section['heading']) and _text(section['text']), 'invalid write section')
+        validate_ids(section['paper_ids'], ids)
+        cited.update(section['paper_ids'])
+        citations = ' '.join(f'[{pid}]' for pid in section['paper_ids'])
+        lines += ['## ' + section['heading'], '', section['text'] + ' ' + citations, '']
+    _require(cited == ids, 'missing write citations')
+    lines += ['## 参考文献', ''] + [f"- [{p['id']}] {p['title']}" for p in papers]
+    return '\n'.join(lines) + '\n'
+
+
 @_wire
 def validate_episode(ep, *, mode='formal', manifest=None):
     """Validate provenance, step chain, masks, call ledger, budget and accepted final text."""
@@ -351,7 +414,7 @@ def validate_episode(ep, *, mode='formal', manifest=None):
         before, after, action = t['state_before'], t['state_after'], t['action_id']
         if previous is None:
             _require(before['retrieved_paper_count'] == 0 and not before['summary_available'] and
-                     before['material_revision'] == 0 and not any(before['verifier']['valid_scores'].values()) and
+                     before['material_revision'] == 0 and before['verifier'] == empty_verifier() and
                      all(h['call_count'] == 0 and h['token_share'] == 0 and h['last_verifier_delta'] is None and
                          h['consecutive_low_gain_or_failures'] == 0 for h in before['action_history'].values()),
                      'not the reset state')
@@ -365,11 +428,16 @@ def validate_episode(ep, *, mode='formal', manifest=None):
         bill = _usage(t['calls'], action, config, used)
         for key, amount in bill.items():
             _same_usage(t[key], amount, key)
+        outputs = _successful_outputs(t['calls'])
+        paper_count = after['retrieved_paper_count']
         for call in t['calls']:
             payload = call['payload']
-            _require(payload['query'] == task.survey_instruction and bool(payload['papers']) and
-                     all(selected.get(k) == v for k, v in paper_index(payload['papers']).items()) and
-                     len(payload['papers']) == after['retrieved_paper_count'], 'call/task/source mismatch')
+            # Runner 只追加检索结果；写稿参考文献沿用调用时的论文顺序，而非按 ID 排序。
+            _require(payload['query'] == task.survey_instruction and 0 < len(payload['papers']) == paper_count
+                     and payload['papers'] == ep['source_papers'][:paper_count], 'call/task/source mismatch')
+            if call['role'] == 'verify':
+                _require(payload['items'] == (outputs['summarize']['items'] if 'summarize' in outputs else []),
+                         'verifier input does not match updated material')
             if mode == 'formal':
                 _require(call['model_requested'] == 'deepseek-flash', 'not a formal workflow model')
         used = total((used, bill['total_workflow_tokens']))
@@ -383,6 +451,7 @@ def validate_episode(ep, *, mode='formal', manifest=None):
         _require(type(t['success']) is bool and type(t['done']) is bool and
                  t['done'] == after['terminal'] == (i == len(steps)), 'incomplete or post-terminal step')
         is_write = action.startswith('write_')
+        _check_step_effects(t, outputs, used is not None and used < config.workflow_tokens_budget)
         reason = ('usage_unknown' if used is None else 'token_budget' if used >= config.workflow_tokens_budget else
                   'final_written' if is_write and t['success'] else 'max_steps' if i == config.max_steps else None)
         _require(t['terminal_reason'] == after['terminal_reason'] == reason and t['done'] == (reason is not None)
@@ -396,8 +465,9 @@ def validate_episode(ep, *, mode='formal', manifest=None):
     _require(ep['success'] is success and ep['terminal_reason'] == reason and ep['action_history'] == previous['action_history']
              and previous['retrieved_paper_count'] == len(selected), 'episode summary mismatch')
     if success:
-        _require(_text(ep['final_text']) and ep['final_text_sha256'] == final_text_sha256(ep['final_text']),
-                 'invalid accepted final text/hash')
+        text = _render_accepted_write(outputs['write'], ep['source_papers'], ep['execution_kind'])
+        _require(ep['final_text'] == text and ep['final_text_sha256'] == final_text_sha256(text),
+                 'accepted final text/hash does not match successful write output')
     else:
         _require(ep['final_text'] is None and ep['final_text_sha256'] is None and ep['final_text_ref'] is None,
                  'failed episode must not publish a final text')
