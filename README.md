@@ -39,7 +39,7 @@ python -m experiments.frozen --checkpoint outputs/dqn-smoke-001/base-seed7/polic
 | 原始训练回报、验证指标和冻结权重 | `outputs/dqn-smoke-001/base-seed7/` 下的 `train.json`、`result.json`、`policy.json` |
 | 两个策略的轨迹是否全部保存 | `outputs/dqn-pairs-001/execution_complete.json`，含每条轨迹的路径和哈希 |
 
-要复现**两组消融演练**，从第一条训练命令去掉 `--config base --seeds 7` 并换一个输出目录。Replay Buffer 容量与 Target-Net 更新间隔各三档，共用中档对照，共 5 个配置 × 3 个种子。`--size full` 只增加训练步数，不会把 Mock 轨迹变成正式数据。正式训练包、留出验证、代理质量和错配统计的交接见 [ROLE2_HANDOFF.md](ROLE2_HANDOFF.md)。
+要复现**两组消融演练**，从第一条训练命令去掉 `--config base --seeds 7` 并换一个输出目录。Replay Buffer 容量与 Target-Net 更新间隔各三档，共用中档对照，共 5 个配置 × 3 个种子。`--size full` 切换到完整实验配置，包括训练步数、Replay Buffer 容量、Target-Net 更新间隔、预热步数、批大小和评估频率；它不改变数据来源。正式训练包、留出验证、代理质量和错配统计的交接见 [ROLE2_HANDOFF.md](ROLE2_HANDOFF.md)。
 
 ## 旧版四角色流水线（保留演示）
 

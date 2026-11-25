@@ -13,7 +13,7 @@
 .venv/bin/python -B -S -m experiments.frozen --checkpoint outputs/my-role2-smoke/base-seed7/policy.json --output outputs/my-role2-pairs
 ```
 
-`--fixture-calibration` 显式走 T4 → T5 → 训练：合成公开任务经共享 Mock Runner 采集、按任务留出、用训练部分拟合仿真，再训练和评估。这里 Mock 成本为零、有效分恒定，结果只说明能接通。若省略该标志，使用 T2 手工定义的、有快慢动作差异和非零成本的解析环境。两者都不能用于正式结论。`--size full` 只改变训练量，**不会将模拟来源变为真实来源**。
+`--fixture-calibration` 显式走 T4 → T5 → 训练：合成公开任务经共享 Mock Runner 采集、按任务留出、用训练部分拟合仿真，再训练和评估。这里 Mock 成本为零、有效分恒定，结果只说明能接通。若省略该标志，使用 T2 手工定义的、有快慢动作差异和非零成本的解析环境。两者都不能用于正式结论。`--size full` 切换到第 6 步所述的完整实验配置，同时调整预热步数、批大小和评估频率。**数据来源不变**：搭配 `--fixture-calibration` 运行时，使用的仍是 Mock 轨迹。
 
 ## 正式数据交接时做什么
 

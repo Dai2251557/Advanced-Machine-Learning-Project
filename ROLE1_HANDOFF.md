@@ -107,6 +107,8 @@ git diff --check
 python -m core --backend deepseek --corpus data/samples/agent_skill/agent_skill_papers.json --task examples/runner_task.json --output outputs/pilot/role1-delivery
 ```
 
-当前交付验证范围：67 项自动测试、Mock 联调、获授权后的真实五动作与两次端到端 pilot 均通过；详见 [ROLE1_ACCEPTANCE.md](ROLE1_ACCEPTANCE.md)。正式数据标定、三方评分冻结、实际 DQN 接入尚未完成。
+一号位交付时的验证范围：67 项自动测试、Mock 联调、获授权后的真实五动作与两次端到端 pilot 均通过；详见 [ROLE1_ACCEPTANCE.md](ROLE1_ACCEPTANCE.md)。当时尚未完成正式数据标定、三方评分冻结或 DQN 接入。
+
+**后续进展：**二号位已将冻结的 DQN 策略接入同一 Runner，并完成 Mock 端到端联调。正式数据上的 Rule/DQN 对比尚未开展，复现步骤见 [ROLE2_HANDOFF.md](ROLE2_HANDOFF.md)。
 
 评分口径及预算边界的待确认草案见 [SCORING_PROTOCOL.md](SCORING_PROTOCOL.md)。
