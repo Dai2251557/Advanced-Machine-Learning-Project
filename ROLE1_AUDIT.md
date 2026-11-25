@@ -1,6 +1,6 @@
 # 一号位契约核查（2026-11-24）
 
-**后续更新**：本报告以下记录的是核查时状态。用户授权具体样例发送后，真实五动作及两次端到端 pilot 已完成，预算耗尽/用量未知优先于终稿成功的边界也已修复。最新证据见 [ROLE1_ACCEPTANCE.md](ROLE1_ACCEPTANCE.md)，评分待确认草案见 [SCORING_PROTOCOL.md](SCORING_PROTOCOL.md)。评分标定、正式数据及 DQN 实际接入仍未完成。
+**后续更新**：本报告以下记录的是核查时状态。用户授权具体样例发送后，真实五动作及两次端到端 pilot 已完成，预算耗尽/用量未知优先于终稿成功的边界也已修复。一号位的 pilot 验收见 [ROLE1_ACCEPTANCE.md](ROLE1_ACCEPTANCE.md)，评分待确认草案见 [SCORING_PROTOCOL.md](SCORING_PROTOCOL.md)。此后二号位已将 DQN 接入共享 Runner，并完成 Mock 联调和离线消融演练，见 [ROLE2_HANDOFF.md](ROLE2_HANDOFF.md)。正式数据标定及独立真实测试仍未开展。
 
 结论：基础接口可供二号进行 Mock 联调；尚不满足正式实验的完整验收条件。不能把自动测试通过等同于真实五动作和终稿质量已经验收。
 
