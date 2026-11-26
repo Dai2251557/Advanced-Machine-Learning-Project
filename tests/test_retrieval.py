@@ -2,6 +2,7 @@ import unittest
 import io
 import json
 import tempfile
+import urllib.error
 from pathlib import Path
 from unittest.mock import patch
 from contextlib import redirect_stdout
@@ -75,6 +76,22 @@ class RetrievalTests(unittest.TestCase):
             for payload in requests:
                 self.assertNotIn('seed_ids', payload)
                 self.assertNotIn('criteria', payload)
+
+    def test_training_probe_stops_after_unmetered_connection_failure(self):
+        from experiments.retrieval_probe import main
+        from litreview.clients import DeepSeekBackend
+
+        with tempfile.TemporaryDirectory() as folder, redirect_stdout(io.StringIO()), \
+                patch('experiments.retrieval_probe.DeepSeekBackend.from_env', return_value=DeepSeekBackend('test-key')), \
+                patch('litreview.clients.urllib.request.build_opener') as opener:
+            opener.return_value.open.side_effect = urllib.error.URLError('offline')
+            output = Path(folder) / 'probe'
+            self.assertEqual(main(['--live', '--output', str(output)]), 1)
+            episode = json.loads((output / 'R005-collection.json').read_text(encoding='utf-8'))
+            self.assertEqual(episode['terminal_reason'], 'usage_unknown')
+            self.assertIsNone(episode['total_workflow_tokens'])
+            self.assertFalse((output / 'R001-collection.json').exists())
+            self.assertEqual(len(json.loads((output / 'summary.json').read_text(encoding='utf-8'))), 1)
 
 
 if __name__ == '__main__':

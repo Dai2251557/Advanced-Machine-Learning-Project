@@ -1,0 +1,1270 @@
+{
+  "config_version": 1,
+  "review_id": "R001",
+  "trajectory_id": "episode-80ba557f1920429a862a95b43e9b136c",
+  "split": "train",
+  "seed": 0,
+  "execution_kind": "real",
+  "dataset_kind": "arxiv_abstracts",
+  "data_purpose": "formal_experiment",
+  "config": {
+    "config_version": 1,
+    "max_steps": 8,
+    "workflow_tokens_budget": 48000,
+    "retrieval_batch_size": 3,
+    "max_output_tokens": 8192,
+    "output_repair_attempts": 1,
+    "cache_enabled": false,
+    "low_gain_threshold": 0.02,
+    "quality_threshold": 0.75,
+    "max_summary_calls": 3
+  },
+  "retrieval": {
+    "spec": {
+      "method": "bilingual_bm25_v1",
+      "k1": 1.2,
+      "b": 0.75,
+      "title_repetitions": 2,
+      "lexicon_sha256": "c932ff14a9da4878484eebcc35ea18cbbc48746d8263d34331cefcca8c887df8"
+    },
+    "events": [
+      {
+        "step_index": 1,
+        "query_terms": [
+          "detector",
+          "flow",
+          "intersection",
+          "junction",
+          "learning",
+          "metering",
+          "ramp",
+          "reinforcement",
+          "sensor",
+          "traffic",
+          "video",
+          "一个",
+          "不同",
+          "不把",
+          "不是",
+          "与点",
+          "与证",
+          "与跨",
+          "个问",
+          "么交",
+          "习做",
+          "交通",
+          "什么",
+          "价控",
+          "例说",
+          "信息",
+          "做交",
+          "再用",
+          "分观",
+          "到什",
+          "到更",
+          "制成",
+          "制效",
+          "制时",
+          "化学",
+          "匝道",
+          "区分",
+          "变时",
+          "口实",
+          "口结",
+          "可观",
+          "合匝",
+          "合成",
+          "同一",
+          "同实",
+          "和适",
+          "器可",
+          "城市",
+          "境是",
+          "境有",
+          "多信",
+          "学习",
+          "实例",
+          "实验",
+          "察到",
+          "察范",
+          "市路",
+          "应新",
+          "强化",
+          "息和",
+          "成效",
+          "成算",
+          "或车",
+          "把不",
+          "指标",
+          "排名",
+          "控制",
+          "改变",
+          "效与",
+          "效性",
+          "效果",
+          "新环",
+          "方法",
+          "时的",
+          "明视",
+          "明路",
+          "是不",
+          "是同",
+          "更多",
+          "有效",
+          "构或",
+          "标评",
+          "检测",
+          "法与",
+          "法排",
+          "流改",
+          "测器",
+          "点检",
+          "环境",
+          "用什",
+          "用城",
+          "用强",
+          "的方",
+          "看到",
+          "算法",
+          "结合",
+          "结构",
+          "范围",
+          "观察",
+          "视频",
+          "证据",
+          "评价",
+          "说明",
+          "跨环",
+          "路口",
+          "车流",
+          "适应",
+          "通指",
+          "通控",
+          "道控",
+          "问题",
+          "频与",
+          "验合",
+          "验用"
+        ],
+        "selected": [
+          {
+            "paper_id": "2012.12104v1",
+            "score": 48.677408040113576
+          },
+          {
+            "paper_id": "2010.05772v1",
+            "score": 24.8595181996358
+          },
+          {
+            "paper_id": "2009.08052v1",
+            "score": 19.541159839730476
+          }
+        ],
+        "zero_score_fallback": false
+      }
+    ]
+  },
+  "success": true,
+  "terminal_reason": "final_written",
+  "final_text": "# 文献综述\n\n范围：仅依据提供的论文摘要。\n\n## 摘要范围与问题界定\n\n本文仅依据所提供论文的摘要与摘要级总结进行综述，不引用全文实验细节，也不对缺失数据进行推断。核心问题是：在强化学习交通控制中，“看到更多信息”和“适应新环境”是否同一问题。就摘要证据看，二者应区分：前者指观察输入的范围与信息粒度，后者指控制策略在路口结构或交通流分布变化时的跨环境有效性；控制成效则指在特定实验中用于评价的交通指标。三篇论文分别触及不同维度，不能把其不同实验设置下的结果合并为统一算法排名。 [2012.12104v1] [2010.05772v1] [2009.08052v1]\n\n## 匝道控制中的观察范围：视频与点检测器\n\n2012.12104v1将匝道控制建模为深度强化学习问题，以交通视频帧作为高维视觉输入直接学习控制策略。摘要明确对比了点检测器与摄像头：既有研究通常基于点检测器采集的预定义交通测度实时更新信号配时，如流量和占有率；摄像头则可覆盖更大区域并提供更细的交通信息。因此，该文所讨论的“看到更多信息”属于观察范围与输入表征问题，即从视频中提取有用信息以改进匝道控制，而不是在摘要中报告对新环境或新需求分布的迁移实验。 [2012.12104v1]\n\n## 匝道控制的控制成效指标\n\n在控制成效方面，2012.12104v1通过真实案例评估所提深度强化学习方法，并与一种现有实践方法比较。摘要报告三项交通指标改善：主线行程时间更低、匝道车辆排队更短、汇入区下游流量更高。这些指标对应特定案例中的控制效果评价，不能直接等同于跨环境泛化能力；摘要也未说明该方法在未见路口或交通流变化下的表现。 [2012.12104v1]\n\n## 城市路口：结构与车流改变下的方法与证据\n\n城市路口方面，2010.05772v1的AttendLight针对既有方法每遇不同结构或交通流分布的新路口就需重新训练的问题，提出训练一个统一模型，适用于任意道路数、车道数、相位和交通流；其两个注意力模型分别处理道路—车道数量和相位数量，只要训练集包含相似配置即可用于任意路口配置。摘要称实验覆盖合成与真实基准，包括三或四进口道、单向或双向道路及一至三车道、不同相位数和交通流，并区分单环境训练—单环境部署与多环境训练—多环境部署两种机制；在两种机制的所有案例上优于经典和其他强化学习方法。该证据主要对应路口结构变化与统一建模下的跨环境有效性。2009.08052v1的GeneraLight则聚焦交通流环境变化：摘要指出多数强化学习模型在同一交通流环境训练和测试，易过拟合，而真实交通流持续变化且可用数据有限；方法上设计基于Wasserstein生成对抗网络的交通流生成器，生成多样且质量足够的交通流以构建训练和测试环境，并提出结合流量聚类与模型无关元学习的元强化学习框架GeneraLight。多个真实数据集实验显示，其在泛化到不同交通流上表现更优。两文分别提供结构与车流变化下的方法与摘要级证据，但实验设置不同，不能据此作跨论文算法排名。 [2010.05772v1] [2009.08052v1]\n\n## 观察范围、控制成效与跨环境有效性的比较\n\n综合来看，2012.12104v1强调的是观察范围：视频相对点检测器可提供更大覆盖和更细信息，并以主线行程时间、匝道排队和下游流量评价控制成效；其摘要未提供跨环境迁移证据。2010.05772v1和2009.08052v1强调的是跨环境有效性：前者通过注意力统一模型应对路口结构、车道、相位和交通流配置变化，后者通过交通流生成与元学习提升对不同交通流的泛化。因而，“看到更多信息”与“适应新环境”不是同一个问题：前者是输入与可观测性维度，后者是策略在环境分布变化下的有效性问题；控制成效指标又是另一维度。三篇论文的实验目标、环境和指标不同，不能合并成统一排名。 [2012.12104v1] [2010.05772v1] [2009.08052v1]\n\n## 局限与结论\n\n本文的局限在于仅使用摘要和摘要级总结：无法核验各文的实验规模、基线细节、统计显著性和复现条件，也无法判断视频方法在结构或车流变化下的迁移表现，或AttendLight与GeneraLight在相同基准上的相对优劣。结论是：在匝道控制中，视频与点检测器之别主要体现观察范围，控制成效由行程时间、排队和下游流量等指标评价；在城市路口，结构变化与车流变化分别由统一注意力模型和元强化学习加交通流生成来应对。应明确区分观察范围、控制成效与跨环境有效性，避免把不同实验合并为算法排名。 [2012.12104v1] [2010.05772v1] [2009.08052v1]\n\n## 参考文献\n\n- [2012.12104v1] A Deep Reinforcement Learning Approach for Ramp Metering Based on Traffic Video Data\n- [2010.05772v1] AttendLight: Universal Attention-Based Reinforcement Learning Model for Traffic Signal Control\n- [2009.08052v1] GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning\n",
+  "final_text_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-80ba557f1920429a862a95b43e9b136c\\report.md",
+  "total_workflow_tokens": 15290,
+  "step_count": 3,
+  "action_history": {
+    "retrieve_more": {
+      "call_count": 1,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.15461085676913014
+    },
+    "summarize_fast": {
+      "call_count": 1,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.6117069980379333
+    },
+    "summarize_deep": {
+      "call_count": 0,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.0
+    },
+    "write_fast": {
+      "call_count": 1,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.23368214519293656
+    },
+    "write_deep": {
+      "call_count": 0,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.0
+    }
+  },
+  "source_papers": [
+    {
+      "id": "2012.12104v1",
+      "title": "A Deep Reinforcement Learning Approach for Ramp Metering Based on Traffic Video Data",
+      "abstract": "Ramp metering that uses traffic signals to regulate vehicle flows from the on-ramps has been widely implemented to improve vehicle mobility of the freeway. Previous studies generally update signal timings in real-time based on predefined traffic measures collected by point detectors, such as traffic volumes and occupancies. Comparing with point detectors, traffic cameras-which have been increasingly deployed on road networks-could cover larger areas and provide more detailed traffic information. In this work, we propose a deep reinforcement learning (DRL) method to explore the potential of traffic video data in improving the efficiency of ramp metering. The proposed method uses traffic video frames as inputs and learns the optimal control strategies directly from the high-dimensional visual inputs. A real-world case study demonstrates that, in comparison with a state-of-the-practice method, the proposed DRL method results in 1) lower travel times in the mainline, 2) shorter vehicle queues at the on-ramp, and 3) higher traffic flows downstream of the merging area. The results suggest that the proposed method is able to extract useful information from the video data for better ramp metering controls."
+    },
+    {
+      "id": "2010.05772v1",
+      "title": "AttendLight: Universal Attention-Based Reinforcement Learning Model for Traffic Signal Control",
+      "abstract": "We propose AttendLight, an end-to-end Reinforcement Learning (RL) algorithm for the problem of traffic signal control. Previous approaches for this problem have the shortcoming that they require training for each new intersection with a different structure or traffic flow distribution. AttendLight solves this issue by training a single, universal model for intersections with any number of roads, lanes, phases (possible signals), and traffic flow. To this end, we propose a deep RL model which incorporates two attention models. The first attention model is introduced to handle different numbers of roads-lanes; and the second attention model is intended for enabling decision-making with any number of phases in an intersection. As a result, our proposed model works for any intersection configuration, as long as a similar configuration is represented in the training set. Experiments were conducted with both synthetic and real-world standard benchmark data-sets. The results we show cover intersections with three or four approaching roads; one-directional/bi-directional roads with one, two, and three lanes; different number of phases; and different traffic flows. We consider two regimes: (i) single-environment training, single-deployment, and (ii) multi-environment training, multi-deployment. AttendLight outperforms both classical and other RL-based approaches on all cases in both regimes."
+    },
+    {
+      "id": "2009.08052v1",
+      "title": "GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning",
+      "abstract": "The heavy traffic congestion problem has always been a concern for modern cities. To alleviate traffic congestion, researchers use reinforcement learning (RL) to develop better traffic signal control (TSC) algorithms in recent years. However, most RL models are trained and tested in the same traffic flow environment, which results in a serious overfitting problem. Since the traffic flow environment in the real world keeps varying, these models can hardly be applied due to the lack of generalization ability. Besides, the limited number of accessible traffic flow data brings extra difficulty in testing the generalization ability of the models. In this paper, we design a novel traffic flow generator based on Wasserstein generative adversarial network to generate sufficient diverse and quality traffic flows and use them to build proper training and testing environments. Then we propose a meta-RL TSC framework GeneraLight to improve the generalization ability of TSC models. GeneraLight boosts the generalization performance by combining the idea of flow clustering and model-agnostic meta-learning. We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows."
+    }
+  ],
+  "transitions": [
+    {
+      "config_version": 1,
+      "review_id": "R001",
+      "trajectory_id": "episode-80ba557f1920429a862a95b43e9b136c",
+      "step_index": 1,
+      "state_before": {
+        "config_version": 1,
+        "review_id": "R001",
+        "difficulty": "medium",
+        "retrieved_paper_count": 0,
+        "summary_available": false,
+        "material_revision": 0,
+        "verifier": {
+          "scores": {
+            "coverage": 0.0,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": false,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "checked_material_revision": -1,
+          "issues": []
+        },
+        "step_count": 0,
+        "max_steps": 8,
+        "workflow_tokens_used": 0,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_after": {
+        "config_version": 1,
+        "review_id": "R001",
+        "difficulty": "medium",
+        "retrieved_paper_count": 3,
+        "summary_available": false,
+        "material_revision": 1,
+        "verifier": {
+          "scores": {
+            "coverage": 0.7,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "issues": [
+            "No generated summary items were supplied, so factuality, citation support, and consistency cannot be evaluated; only coverage is scored.",
+            "The supplied abstracts do not directly establish whether observing richer information (e.g., video) and adapting to new environments are the same problem; any synthesis must present this as an inference/distinction, not as a reported finding.",
+            "Ramp-metering evidence is limited to one abstract's aggregate outcomes (mainline travel time, on-ramp queue, downstream flow); detector/video observability is described only generally as point measures (volume, occupancy) versus cameras covering larger areas with more detail.",
+            "Intersection generalization evidence comes from different papers and experimental settings (AttendLight: universal attention across configurations; GeneraLight: meta-RL across traffic flows); these should not be pooled into a single algorithm ranking or used to claim universal superiority.",
+            "The requested distinction among observation scope, control effectiveness, and cross-environment validity is not explicitly operationalized in the abstracts; the review must label which claim belongs to which dimension."
+          ],
+          "checked_material_revision": 1
+        },
+        "step_count": 1,
+        "max_steps": 8,
+        "workflow_tokens_used": 2364,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 1.0
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_before_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-80ba557f1920429a862a95b43e9b136c\\step-001-before.json",
+      "state_after_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-80ba557f1920429a862a95b43e9b136c\\step-001-after.json",
+      "action_id": "retrieve_more",
+      "action_mask": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "verifier_before": null,
+      "verifier_after": 0.7,
+      "verifier_delta": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "verifier_tokens": 2364,
+      "total_workflow_tokens": 2364,
+      "success": true,
+      "error": null,
+      "done": false,
+      "terminal_reason": null,
+      "calls": [
+        {
+          "role": "verify",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-26T05:55:36.791166+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Evaluate supplied materials against the survey instruction and original abstracts. Return JSON {\"scores\":{\"coverage\":0.0,\"factuality\":0.0,\"citation_support\":0.0,\"consistency\":0.0},\"valid_scores\":{\"coverage\":true,\"factuality\":false,\"citation_support\":false,\"consistency\":false},\"issues\":[\"specific actionable issue\"]}. Never select a next_action. Each valid score is in [0,1], higher is better: coverage measures how much of the requested topic is supported by retrieved materials; factuality measures summary claims supported by abstracts; citation_support measures correct summary attribution and evidence support; consistency measures internal and cross-paper summary consistency without conflating different settings. Anchors: 0=no support/major errors, 0.5=partial coverage or substantial omissions/errors, 1=complete support within supplied abstracts, no identified errors. With no summaries, evaluate coverage only; all other scores must be 0 and invalid. With summaries, evaluate all four dimensions. Do not treat missing source details as established facts. Scores are workflow diagnostics, not independent final quality judgments.",
+          "payload": {
+            "query": "用强化学习做交通控制时，看到更多信息和适应新环境是不是同一个问题？结合匝道控制，说明视频与点检测器可观察到什么、实验用什么交通指标评价控制效果；再用城市路口实例说明路口结构或车流改变时的方法与证据。区分观察范围、控制成效与跨环境有效性，不把不同实验合成算法排名。",
+            "papers": [
+              {
+                "id": "2012.12104v1",
+                "title": "A Deep Reinforcement Learning Approach for Ramp Metering Based on Traffic Video Data",
+                "abstract": "Ramp metering that uses traffic signals to regulate vehicle flows from the on-ramps has been widely implemented to improve vehicle mobility of the freeway. Previous studies generally update signal timings in real-time based on predefined traffic measures collected by point detectors, such as traffic volumes and occupancies. Comparing with point detectors, traffic cameras-which have been increasingly deployed on road networks-could cover larger areas and provide more detailed traffic information. In this work, we propose a deep reinforcement learning (DRL) method to explore the potential of traffic video data in improving the efficiency of ramp metering. The proposed method uses traffic video frames as inputs and learns the optimal control strategies directly from the high-dimensional visual inputs. A real-world case study demonstrates that, in comparison with a state-of-the-practice method, the proposed DRL method results in 1) lower travel times in the mainline, 2) shorter vehicle queues at the on-ramp, and 3) higher traffic flows downstream of the merging area. The results suggest that the proposed method is able to extract useful information from the video data for better ramp metering controls."
+              },
+              {
+                "id": "2010.05772v1",
+                "title": "AttendLight: Universal Attention-Based Reinforcement Learning Model for Traffic Signal Control",
+                "abstract": "We propose AttendLight, an end-to-end Reinforcement Learning (RL) algorithm for the problem of traffic signal control. Previous approaches for this problem have the shortcoming that they require training for each new intersection with a different structure or traffic flow distribution. AttendLight solves this issue by training a single, universal model for intersections with any number of roads, lanes, phases (possible signals), and traffic flow. To this end, we propose a deep RL model which incorporates two attention models. The first attention model is introduced to handle different numbers of roads-lanes; and the second attention model is intended for enabling decision-making with any number of phases in an intersection. As a result, our proposed model works for any intersection configuration, as long as a similar configuration is represented in the training set. Experiments were conducted with both synthetic and real-world standard benchmark data-sets. The results we show cover intersections with three or four approaching roads; one-directional/bi-directional roads with one, two, and three lanes; different number of phases; and different traffic flows. We consider two regimes: (i) single-environment training, single-deployment, and (ii) multi-environment training, multi-deployment. AttendLight outperforms both classical and other RL-based approaches on all cases in both regimes."
+              },
+              {
+                "id": "2009.08052v1",
+                "title": "GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning",
+                "abstract": "The heavy traffic congestion problem has always been a concern for modern cities. To alleviate traffic congestion, researchers use reinforcement learning (RL) to develop better traffic signal control (TSC) algorithms in recent years. However, most RL models are trained and tested in the same traffic flow environment, which results in a serious overfitting problem. Since the traffic flow environment in the real world keeps varying, these models can hardly be applied due to the lack of generalization ability. Besides, the limited number of accessible traffic flow data brings extra difficulty in testing the generalization ability of the models. In this paper, we design a novel traffic flow generator based on Wasserstein generative adversarial network to generate sufficient diverse and quality traffic flows and use them to build proper training and testing environments. Then we propose a meta-RL TSC framework GeneraLight to improve the generalization ability of TSC models. GeneraLight boosts the generalization performance by combining the idea of flow clustering and model-agnostic meta-learning. We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows."
+              }
+            ],
+            "items": [],
+            "feedback": []
+          },
+          "cache_key": "32e7e034b1de231def2819a63bfb44a6ffee7e7923dd18d1857bbb219d0beef7",
+          "cache_hit": false,
+          "prompt_tokens": 1241,
+          "completion_tokens": 1123,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"scores\":{\"coverage\":0.7,\"factuality\":0.0,\"citation_support\":0.0,\"consistency\":0.0},\"valid_scores\":{\"coverage\":true,\"factuality\":false,\"citation_support\":false,\"consistency\":false},\"issues\":[\"No generated summary items were supplied, so factuality, citation support, and consistency cannot be evaluated; only coverage is scored.\",\"The supplied abstracts do not directly establish whether observing richer information (e.g., video) and adapting to new environments are the same problem; any synthesis must present this as an inference/distinction, not as a reported finding.\",\"Ramp-metering evidence is limited to one abstract's aggregate outcomes (mainline travel time, on-ramp queue, downstream flow); detector/video observability is described only generally as point measures (volume, occupancy) versus cameras covering larger areas with more detail.\",\"Intersection generalization evidence comes from different papers and experimental settings (AttendLight: universal attention across configurations; GeneraLight: meta-RL across traffic flows); these should not be pooled into a single algorithm ranking or used to claim universal superiority.\",\"The requested distinction among observation scope, control effectiveness, and cross-environment validity is not explicitly operationalized in the abstracts; the review must label which claim belongs to which dimension.\"]}",
+          "output": {
+            "scores": {
+              "coverage": 0.7,
+              "factuality": 0.0,
+              "citation_support": 0.0,
+              "consistency": 0.0
+            },
+            "valid_scores": {
+              "coverage": true,
+              "factuality": false,
+              "citation_support": false,
+              "consistency": false
+            },
+            "issues": [
+              "No generated summary items were supplied, so factuality, citation support, and consistency cannot be evaluated; only coverage is scored.",
+              "The supplied abstracts do not directly establish whether observing richer information (e.g., video) and adapting to new environments are the same problem; any synthesis must present this as an inference/distinction, not as a reported finding.",
+              "Ramp-metering evidence is limited to one abstract's aggregate outcomes (mainline travel time, on-ramp queue, downstream flow); detector/video observability is described only generally as point measures (volume, occupancy) versus cameras covering larger areas with more detail.",
+              "Intersection generalization evidence comes from different papers and experimental settings (AttendLight: universal attention across configurations; GeneraLight: meta-RL across traffic flows); these should not be pooled into a single algorithm ranking or used to claim universal superiority.",
+              "The requested distinction among observation scope, control effectiveness, and cross-environment validity is not explicitly operationalized in the abstracts; the review must label which claim belongs to which dimension."
+            ]
+          },
+          "elapsed_seconds": 7.5
+        }
+      ],
+      "execution_kind": "real",
+      "next_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "config_version": 1,
+      "review_id": "R001",
+      "trajectory_id": "episode-80ba557f1920429a862a95b43e9b136c",
+      "step_index": 2,
+      "state_before": {
+        "config_version": 1,
+        "review_id": "R001",
+        "difficulty": "medium",
+        "retrieved_paper_count": 3,
+        "summary_available": false,
+        "material_revision": 1,
+        "verifier": {
+          "scores": {
+            "coverage": 0.7,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "issues": [
+            "No generated summary items were supplied, so factuality, citation support, and consistency cannot be evaluated; only coverage is scored.",
+            "The supplied abstracts do not directly establish whether observing richer information (e.g., video) and adapting to new environments are the same problem; any synthesis must present this as an inference/distinction, not as a reported finding.",
+            "Ramp-metering evidence is limited to one abstract's aggregate outcomes (mainline travel time, on-ramp queue, downstream flow); detector/video observability is described only generally as point measures (volume, occupancy) versus cameras covering larger areas with more detail.",
+            "Intersection generalization evidence comes from different papers and experimental settings (AttendLight: universal attention across configurations; GeneraLight: meta-RL across traffic flows); these should not be pooled into a single algorithm ranking or used to claim universal superiority.",
+            "The requested distinction among observation scope, control effectiveness, and cross-environment validity is not explicitly operationalized in the abstracts; the review must label which claim belongs to which dimension."
+          ],
+          "checked_material_revision": 1
+        },
+        "step_count": 1,
+        "max_steps": 8,
+        "workflow_tokens_used": 2364,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 1.0
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_after": {
+        "config_version": 1,
+        "review_id": "R001",
+        "difficulty": "medium",
+        "retrieved_paper_count": 3,
+        "summary_available": true,
+        "material_revision": 2,
+        "verifier": {
+          "scores": {
+            "coverage": 0.85,
+            "factuality": 0.9,
+            "citation_support": 0.65,
+            "consistency": 0.9
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": true,
+            "citation_support": true,
+            "consistency": true
+          },
+          "issues": [
+            "反馈称未提供摘要条目，但 items 实际包含三条摘要；该元数据不一致应修正，避免误判评审范围。",
+            "2012.12104v1 的 evidence 仅覆盖视频帧输入，未覆盖点检测器/摄像头观察范围对比及三项交通指标，需补充对应原文句或收窄摘要断言。",
+            "2010.05772v1 的 evidence 仅覆盖统一模型，未覆盖实验配置与单/多环境两种机制的比较结论，需补充实验句。",
+            "2009.08052v1 的 evidence 仅覆盖泛化实验结论，未覆盖 WGAN、流量聚类和元学习等方法细节，需补充方法句。",
+            "2012.12104v1 摘要中“新需求分布”不是摘要显式表述；应改为“新环境/新交通条件”或标注为推断。",
+            "综合部分应明确用一句总括区分观察范围、控制成效、跨环境有效性，并避免把三篇论文的实验结果合并为算法排名。"
+          ],
+          "checked_material_revision": 2
+        },
+        "step_count": 2,
+        "max_steps": 8,
+        "workflow_tokens_used": 11717,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.2017581292139626
+          },
+          "summarize_fast": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.7982418707860374
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_before_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-80ba557f1920429a862a95b43e9b136c\\step-002-before.json",
+      "state_after_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-80ba557f1920429a862a95b43e9b136c\\step-002-after.json",
+      "action_id": "summarize_fast",
+      "action_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "verifier_before": 0.7,
+      "verifier_after": 0.825,
+      "verifier_delta": null,
+      "input_tokens": 1291,
+      "output_tokens": 2302,
+      "verifier_tokens": 5760,
+      "total_workflow_tokens": 9353,
+      "success": true,
+      "error": null,
+      "done": false,
+      "terminal_reason": null,
+      "calls": [
+        {
+          "role": "summarize",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-26T05:55:44.309785+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Summarize every supplied paper in Chinese, addressing the survey instruction. Use previous summaries and verifier feedback to revise when available. Return JSON {\"items\":[{\"paper_id\":\"id\",\"summary\":\"text\",\"evidence\":\"exact excerpt\"}]}. Cover each paper exactly once. Copy a nonempty evidence excerpt character-for-character from its abstract. Do not infer details absent from abstracts.",
+          "payload": {
+            "query": "用强化学习做交通控制时，看到更多信息和适应新环境是不是同一个问题？结合匝道控制，说明视频与点检测器可观察到什么、实验用什么交通指标评价控制效果；再用城市路口实例说明路口结构或车流改变时的方法与证据。区分观察范围、控制成效与跨环境有效性，不把不同实验合成算法排名。",
+            "papers": [
+              {
+                "id": "2012.12104v1",
+                "title": "A Deep Reinforcement Learning Approach for Ramp Metering Based on Traffic Video Data",
+                "abstract": "Ramp metering that uses traffic signals to regulate vehicle flows from the on-ramps has been widely implemented to improve vehicle mobility of the freeway. Previous studies generally update signal timings in real-time based on predefined traffic measures collected by point detectors, such as traffic volumes and occupancies. Comparing with point detectors, traffic cameras-which have been increasingly deployed on road networks-could cover larger areas and provide more detailed traffic information. In this work, we propose a deep reinforcement learning (DRL) method to explore the potential of traffic video data in improving the efficiency of ramp metering. The proposed method uses traffic video frames as inputs and learns the optimal control strategies directly from the high-dimensional visual inputs. A real-world case study demonstrates that, in comparison with a state-of-the-practice method, the proposed DRL method results in 1) lower travel times in the mainline, 2) shorter vehicle queues at the on-ramp, and 3) higher traffic flows downstream of the merging area. The results suggest that the proposed method is able to extract useful information from the video data for better ramp metering controls."
+              },
+              {
+                "id": "2010.05772v1",
+                "title": "AttendLight: Universal Attention-Based Reinforcement Learning Model for Traffic Signal Control",
+                "abstract": "We propose AttendLight, an end-to-end Reinforcement Learning (RL) algorithm for the problem of traffic signal control. Previous approaches for this problem have the shortcoming that they require training for each new intersection with a different structure or traffic flow distribution. AttendLight solves this issue by training a single, universal model for intersections with any number of roads, lanes, phases (possible signals), and traffic flow. To this end, we propose a deep RL model which incorporates two attention models. The first attention model is introduced to handle different numbers of roads-lanes; and the second attention model is intended for enabling decision-making with any number of phases in an intersection. As a result, our proposed model works for any intersection configuration, as long as a similar configuration is represented in the training set. Experiments were conducted with both synthetic and real-world standard benchmark data-sets. The results we show cover intersections with three or four approaching roads; one-directional/bi-directional roads with one, two, and three lanes; different number of phases; and different traffic flows. We consider two regimes: (i) single-environment training, single-deployment, and (ii) multi-environment training, multi-deployment. AttendLight outperforms both classical and other RL-based approaches on all cases in both regimes."
+              },
+              {
+                "id": "2009.08052v1",
+                "title": "GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning",
+                "abstract": "The heavy traffic congestion problem has always been a concern for modern cities. To alleviate traffic congestion, researchers use reinforcement learning (RL) to develop better traffic signal control (TSC) algorithms in recent years. However, most RL models are trained and tested in the same traffic flow environment, which results in a serious overfitting problem. Since the traffic flow environment in the real world keeps varying, these models can hardly be applied due to the lack of generalization ability. Besides, the limited number of accessible traffic flow data brings extra difficulty in testing the generalization ability of the models. In this paper, we design a novel traffic flow generator based on Wasserstein generative adversarial network to generate sufficient diverse and quality traffic flows and use them to build proper training and testing environments. Then we propose a meta-RL TSC framework GeneraLight to improve the generalization ability of TSC models. GeneraLight boosts the generalization performance by combining the idea of flow clustering and model-agnostic meta-learning. We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows."
+              }
+            ],
+            "items": [],
+            "feedback": [
+              "No generated summary items were supplied, so factuality, citation support, and consistency cannot be evaluated; only coverage is scored.",
+              "The supplied abstracts do not directly establish whether observing richer information (e.g., video) and adapting to new environments are the same problem; any synthesis must present this as an inference/distinction, not as a reported finding.",
+              "Ramp-metering evidence is limited to one abstract's aggregate outcomes (mainline travel time, on-ramp queue, downstream flow); detector/video observability is described only generally as point measures (volume, occupancy) versus cameras covering larger areas with more detail.",
+              "Intersection generalization evidence comes from different papers and experimental settings (AttendLight: universal attention across configurations; GeneraLight: meta-RL across traffic flows); these should not be pooled into a single algorithm ranking or used to claim universal superiority.",
+              "The requested distinction among observation scope, control effectiveness, and cross-environment validity is not explicitly operationalized in the abstracts; the review must label which claim belongs to which dimension."
+            ]
+          },
+          "cache_key": "c6e87c45224aa3b58804444463c33c85ac0c496678f3a827593f7cda7d05a6bf",
+          "cache_hit": false,
+          "prompt_tokens": 1291,
+          "completion_tokens": 2302,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"items\":[{\"paper_id\":\"2012.12104v1\",\"summary\":\"该文将匝道控制建模为深度强化学习问题，探索交通视频数据提升匝道控制效率的潜力：以视频帧为高维视觉输入，直接学习控制策略。就观察范围而言，摘要对比了点检测器通常采集的流量、占有率等预定义点测度与摄像头可覆盖更大区域并提供更细信息；这属于观察信息维度，而非跨环境泛化实验。控制成效用真实案例评估，报告相较现有实践方法：主线行程时间更低、匝道车辆排队更短、汇入区下游流量更高。摘要未说明该方法在新环境或新需求分布下的迁移有效性，因此不能把“看到更多信息”与“适应新环境”视为同一问题，也不能据此作跨论文算法排名。\",\"evidence\":\"The proposed method uses traffic video frames as inputs and learns the optimal control strategies directly from the high-dimensional visual inputs.\"},{\"paper_id\":\"2010.05772v1\",\"summary\":\"AttendLight提出端到端注意力强化学习交通信号控制模型，针对既有方法每遇不同结构或交通流分布的新路口就需重新训练的问题，训练一个可适用于任意道路数、车道数、相位（可能信号）和交通流的统一模型；两个注意力模型分别处理道路-车道数量与相位数量，若训练集包含相似配置即可用于任意路口配置。实验覆盖合成与真实基准：三或四进口道、单向或双向及一、二、三车道、不同相位数和交通流，并区分单环境训练-单环境部署与多环境训练-多环境部署两种机制；摘要称其在两种机制的所有案例上优于经典和其他强化学习方法。该证据主要对应路口结构变化下的跨环境有效性或统一建模，而非视频与点检测器的观察范围比较，也不应与其他论文实验合并成统一排名。\",\"evidence\":\"AttendLight solves this issue by training a single, universal model for intersections with any number of roads, lanes, phases (possible signals), and traffic flow.\"},{\"paper_id\":\"2009.08052v1\",\"summary\":\"GeneraLight关注强化学习交通信号控制在交通流环境变化时的泛化：多数模型在同一交通流环境训练和测试，易过拟合；真实交通流持续变化且可用数据有限。方法上设计基于Wasserstein生成对抗网络的交通流生成器，生成多样且质量足够的交通流以构建训练和测试环境，并提出结合流量聚类与模型无关元学习的元强化学习交通信号控制框架GeneraLight，以提升对新交通流的泛化。多个真实数据集实验显示其在泛化到不同交通流上表现更优。该文证据针对车流分布改变下的跨环境有效性，不涉及视频或点检测器的观察范围，也不提供跨论文统一算法排名。\",\"evidence\":\"We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows.\"}]}",
+          "output": {
+            "items": [
+              {
+                "paper_id": "2012.12104v1",
+                "summary": "该文将匝道控制建模为深度强化学习问题，探索交通视频数据提升匝道控制效率的潜力：以视频帧为高维视觉输入，直接学习控制策略。就观察范围而言，摘要对比了点检测器通常采集的流量、占有率等预定义点测度与摄像头可覆盖更大区域并提供更细信息；这属于观察信息维度，而非跨环境泛化实验。控制成效用真实案例评估，报告相较现有实践方法：主线行程时间更低、匝道车辆排队更短、汇入区下游流量更高。摘要未说明该方法在新环境或新需求分布下的迁移有效性，因此不能把“看到更多信息”与“适应新环境”视为同一问题，也不能据此作跨论文算法排名。",
+                "evidence": "The proposed method uses traffic video frames as inputs and learns the optimal control strategies directly from the high-dimensional visual inputs."
+              },
+              {
+                "paper_id": "2010.05772v1",
+                "summary": "AttendLight提出端到端注意力强化学习交通信号控制模型，针对既有方法每遇不同结构或交通流分布的新路口就需重新训练的问题，训练一个可适用于任意道路数、车道数、相位（可能信号）和交通流的统一模型；两个注意力模型分别处理道路-车道数量与相位数量，若训练集包含相似配置即可用于任意路口配置。实验覆盖合成与真实基准：三或四进口道、单向或双向及一、二、三车道、不同相位数和交通流，并区分单环境训练-单环境部署与多环境训练-多环境部署两种机制；摘要称其在两种机制的所有案例上优于经典和其他强化学习方法。该证据主要对应路口结构变化下的跨环境有效性或统一建模，而非视频与点检测器的观察范围比较，也不应与其他论文实验合并成统一排名。",
+                "evidence": "AttendLight solves this issue by training a single, universal model for intersections with any number of roads, lanes, phases (possible signals), and traffic flow."
+              },
+              {
+                "paper_id": "2009.08052v1",
+                "summary": "GeneraLight关注强化学习交通信号控制在交通流环境变化时的泛化：多数模型在同一交通流环境训练和测试，易过拟合；真实交通流持续变化且可用数据有限。方法上设计基于Wasserstein生成对抗网络的交通流生成器，生成多样且质量足够的交通流以构建训练和测试环境，并提出结合流量聚类与模型无关元学习的元强化学习交通信号控制框架GeneraLight，以提升对新交通流的泛化。多个真实数据集实验显示其在泛化到不同交通流上表现更优。该文证据针对车流分布改变下的跨环境有效性，不涉及视频或点检测器的观察范围，也不提供跨论文统一算法排名。",
+                "evidence": "We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows."
+              }
+            ]
+          },
+          "elapsed_seconds": 23.016
+        },
+        {
+          "role": "verify",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-26T05:56:07.317259+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Evaluate supplied materials against the survey instruction and original abstracts. Return JSON {\"scores\":{\"coverage\":0.0,\"factuality\":0.0,\"citation_support\":0.0,\"consistency\":0.0},\"valid_scores\":{\"coverage\":true,\"factuality\":false,\"citation_support\":false,\"consistency\":false},\"issues\":[\"specific actionable issue\"]}. Never select a next_action. Each valid score is in [0,1], higher is better: coverage measures how much of the requested topic is supported by retrieved materials; factuality measures summary claims supported by abstracts; citation_support measures correct summary attribution and evidence support; consistency measures internal and cross-paper summary consistency without conflating different settings. Anchors: 0=no support/major errors, 0.5=partial coverage or substantial omissions/errors, 1=complete support within supplied abstracts, no identified errors. With no summaries, evaluate coverage only; all other scores must be 0 and invalid. With summaries, evaluate all four dimensions. Do not treat missing source details as established facts. Scores are workflow diagnostics, not independent final quality judgments.",
+          "payload": {
+            "query": "用强化学习做交通控制时，看到更多信息和适应新环境是不是同一个问题？结合匝道控制，说明视频与点检测器可观察到什么、实验用什么交通指标评价控制效果；再用城市路口实例说明路口结构或车流改变时的方法与证据。区分观察范围、控制成效与跨环境有效性，不把不同实验合成算法排名。",
+            "papers": [
+              {
+                "id": "2012.12104v1",
+                "title": "A Deep Reinforcement Learning Approach for Ramp Metering Based on Traffic Video Data",
+                "abstract": "Ramp metering that uses traffic signals to regulate vehicle flows from the on-ramps has been widely implemented to improve vehicle mobility of the freeway. Previous studies generally update signal timings in real-time based on predefined traffic measures collected by point detectors, such as traffic volumes and occupancies. Comparing with point detectors, traffic cameras-which have been increasingly deployed on road networks-could cover larger areas and provide more detailed traffic information. In this work, we propose a deep reinforcement learning (DRL) method to explore the potential of traffic video data in improving the efficiency of ramp metering. The proposed method uses traffic video frames as inputs and learns the optimal control strategies directly from the high-dimensional visual inputs. A real-world case study demonstrates that, in comparison with a state-of-the-practice method, the proposed DRL method results in 1) lower travel times in the mainline, 2) shorter vehicle queues at the on-ramp, and 3) higher traffic flows downstream of the merging area. The results suggest that the proposed method is able to extract useful information from the video data for better ramp metering controls."
+              },
+              {
+                "id": "2010.05772v1",
+                "title": "AttendLight: Universal Attention-Based Reinforcement Learning Model for Traffic Signal Control",
+                "abstract": "We propose AttendLight, an end-to-end Reinforcement Learning (RL) algorithm for the problem of traffic signal control. Previous approaches for this problem have the shortcoming that they require training for each new intersection with a different structure or traffic flow distribution. AttendLight solves this issue by training a single, universal model for intersections with any number of roads, lanes, phases (possible signals), and traffic flow. To this end, we propose a deep RL model which incorporates two attention models. The first attention model is introduced to handle different numbers of roads-lanes; and the second attention model is intended for enabling decision-making with any number of phases in an intersection. As a result, our proposed model works for any intersection configuration, as long as a similar configuration is represented in the training set. Experiments were conducted with both synthetic and real-world standard benchmark data-sets. The results we show cover intersections with three or four approaching roads; one-directional/bi-directional roads with one, two, and three lanes; different number of phases; and different traffic flows. We consider two regimes: (i) single-environment training, single-deployment, and (ii) multi-environment training, multi-deployment. AttendLight outperforms both classical and other RL-based approaches on all cases in both regimes."
+              },
+              {
+                "id": "2009.08052v1",
+                "title": "GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning",
+                "abstract": "The heavy traffic congestion problem has always been a concern for modern cities. To alleviate traffic congestion, researchers use reinforcement learning (RL) to develop better traffic signal control (TSC) algorithms in recent years. However, most RL models are trained and tested in the same traffic flow environment, which results in a serious overfitting problem. Since the traffic flow environment in the real world keeps varying, these models can hardly be applied due to the lack of generalization ability. Besides, the limited number of accessible traffic flow data brings extra difficulty in testing the generalization ability of the models. In this paper, we design a novel traffic flow generator based on Wasserstein generative adversarial network to generate sufficient diverse and quality traffic flows and use them to build proper training and testing environments. Then we propose a meta-RL TSC framework GeneraLight to improve the generalization ability of TSC models. GeneraLight boosts the generalization performance by combining the idea of flow clustering and model-agnostic meta-learning. We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows."
+              }
+            ],
+            "items": [
+              {
+                "paper_id": "2012.12104v1",
+                "summary": "该文将匝道控制建模为深度强化学习问题，探索交通视频数据提升匝道控制效率的潜力：以视频帧为高维视觉输入，直接学习控制策略。就观察范围而言，摘要对比了点检测器通常采集的流量、占有率等预定义点测度与摄像头可覆盖更大区域并提供更细信息；这属于观察信息维度，而非跨环境泛化实验。控制成效用真实案例评估，报告相较现有实践方法：主线行程时间更低、匝道车辆排队更短、汇入区下游流量更高。摘要未说明该方法在新环境或新需求分布下的迁移有效性，因此不能把“看到更多信息”与“适应新环境”视为同一问题，也不能据此作跨论文算法排名。",
+                "evidence": "The proposed method uses traffic video frames as inputs and learns the optimal control strategies directly from the high-dimensional visual inputs."
+              },
+              {
+                "paper_id": "2010.05772v1",
+                "summary": "AttendLight提出端到端注意力强化学习交通信号控制模型，针对既有方法每遇不同结构或交通流分布的新路口就需重新训练的问题，训练一个可适用于任意道路数、车道数、相位（可能信号）和交通流的统一模型；两个注意力模型分别处理道路-车道数量与相位数量，若训练集包含相似配置即可用于任意路口配置。实验覆盖合成与真实基准：三或四进口道、单向或双向及一、二、三车道、不同相位数和交通流，并区分单环境训练-单环境部署与多环境训练-多环境部署两种机制；摘要称其在两种机制的所有案例上优于经典和其他强化学习方法。该证据主要对应路口结构变化下的跨环境有效性或统一建模，而非视频与点检测器的观察范围比较，也不应与其他论文实验合并成统一排名。",
+                "evidence": "AttendLight solves this issue by training a single, universal model for intersections with any number of roads, lanes, phases (possible signals), and traffic flow."
+              },
+              {
+                "paper_id": "2009.08052v1",
+                "summary": "GeneraLight关注强化学习交通信号控制在交通流环境变化时的泛化：多数模型在同一交通流环境训练和测试，易过拟合；真实交通流持续变化且可用数据有限。方法上设计基于Wasserstein生成对抗网络的交通流生成器，生成多样且质量足够的交通流以构建训练和测试环境，并提出结合流量聚类与模型无关元学习的元强化学习交通信号控制框架GeneraLight，以提升对新交通流的泛化。多个真实数据集实验显示其在泛化到不同交通流上表现更优。该文证据针对车流分布改变下的跨环境有效性，不涉及视频或点检测器的观察范围，也不提供跨论文统一算法排名。",
+                "evidence": "We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows."
+              }
+            ],
+            "feedback": [
+              "No generated summary items were supplied, so factuality, citation support, and consistency cannot be evaluated; only coverage is scored.",
+              "The supplied abstracts do not directly establish whether observing richer information (e.g., video) and adapting to new environments are the same problem; any synthesis must present this as an inference/distinction, not as a reported finding.",
+              "Ramp-metering evidence is limited to one abstract's aggregate outcomes (mainline travel time, on-ramp queue, downstream flow); detector/video observability is described only generally as point measures (volume, occupancy) versus cameras covering larger areas with more detail.",
+              "Intersection generalization evidence comes from different papers and experimental settings (AttendLight: universal attention across configurations; GeneraLight: meta-RL across traffic flows); these should not be pooled into a single algorithm ranking or used to claim universal superiority.",
+              "The requested distinction among observation scope, control effectiveness, and cross-environment validity is not explicitly operationalized in the abstracts; the review must label which claim belongs to which dimension."
+            ]
+          },
+          "cache_key": "7f5eb4c904d47473406a04be4772edf04f7a1276023531d0fa82f00b608e9b75",
+          "cache_hit": false,
+          "prompt_tokens": 2086,
+          "completion_tokens": 3674,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"scores\":{\"coverage\":0.85,\"factuality\":0.9,\"citation_support\":0.65,\"consistency\":0.9},\"valid_scores\":{\"coverage\":true,\"factuality\":true,\"citation_support\":true,\"consistency\":true},\"issues\":[\"反馈称未提供摘要条目，但 items 实际包含三条摘要；该元数据不一致应修正，避免误判评审范围。\",\"2012.12104v1 的 evidence 仅覆盖视频帧输入，未覆盖点检测器/摄像头观察范围对比及三项交通指标，需补充对应原文句或收窄摘要断言。\",\"2010.05772v1 的 evidence 仅覆盖统一模型，未覆盖实验配置与单/多环境两种机制的比较结论，需补充实验句。\",\"2009.08052v1 的 evidence 仅覆盖泛化实验结论，未覆盖 WGAN、流量聚类和元学习等方法细节，需补充方法句。\",\"2012.12104v1 摘要中“新需求分布”不是摘要显式表述；应改为“新环境/新交通条件”或标注为推断。\",\"综合部分应明确用一句总括区分观察范围、控制成效、跨环境有效性，并避免把三篇论文的实验结果合并为算法排名。\"]}",
+          "output": {
+            "scores": {
+              "coverage": 0.85,
+              "factuality": 0.9,
+              "citation_support": 0.65,
+              "consistency": 0.9
+            },
+            "valid_scores": {
+              "coverage": true,
+              "factuality": true,
+              "citation_support": true,
+              "consistency": true
+            },
+            "issues": [
+              "反馈称未提供摘要条目，但 items 实际包含三条摘要；该元数据不一致应修正，避免误判评审范围。",
+              "2012.12104v1 的 evidence 仅覆盖视频帧输入，未覆盖点检测器/摄像头观察范围对比及三项交通指标，需补充对应原文句或收窄摘要断言。",
+              "2010.05772v1 的 evidence 仅覆盖统一模型，未覆盖实验配置与单/多环境两种机制的比较结论，需补充实验句。",
+              "2009.08052v1 的 evidence 仅覆盖泛化实验结论，未覆盖 WGAN、流量聚类和元学习等方法细节，需补充方法句。",
+              "2012.12104v1 摘要中“新需求分布”不是摘要显式表述；应改为“新环境/新交通条件”或标注为推断。",
+              "综合部分应明确用一句总括区分观察范围、控制成效、跨环境有效性，并避免把三篇论文的实验结果合并为算法排名。"
+            ]
+          },
+          "elapsed_seconds": 29.078
+        }
+      ],
+      "execution_kind": "real",
+      "next_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "config_version": 1,
+      "review_id": "R001",
+      "trajectory_id": "episode-80ba557f1920429a862a95b43e9b136c",
+      "step_index": 3,
+      "state_before": {
+        "config_version": 1,
+        "review_id": "R001",
+        "difficulty": "medium",
+        "retrieved_paper_count": 3,
+        "summary_available": true,
+        "material_revision": 2,
+        "verifier": {
+          "scores": {
+            "coverage": 0.85,
+            "factuality": 0.9,
+            "citation_support": 0.65,
+            "consistency": 0.9
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": true,
+            "citation_support": true,
+            "consistency": true
+          },
+          "issues": [
+            "反馈称未提供摘要条目，但 items 实际包含三条摘要；该元数据不一致应修正，避免误判评审范围。",
+            "2012.12104v1 的 evidence 仅覆盖视频帧输入，未覆盖点检测器/摄像头观察范围对比及三项交通指标，需补充对应原文句或收窄摘要断言。",
+            "2010.05772v1 的 evidence 仅覆盖统一模型，未覆盖实验配置与单/多环境两种机制的比较结论，需补充实验句。",
+            "2009.08052v1 的 evidence 仅覆盖泛化实验结论，未覆盖 WGAN、流量聚类和元学习等方法细节，需补充方法句。",
+            "2012.12104v1 摘要中“新需求分布”不是摘要显式表述；应改为“新环境/新交通条件”或标注为推断。",
+            "综合部分应明确用一句总括区分观察范围、控制成效、跨环境有效性，并避免把三篇论文的实验结果合并为算法排名。"
+          ],
+          "checked_material_revision": 2
+        },
+        "step_count": 2,
+        "max_steps": 8,
+        "workflow_tokens_used": 11717,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.2017581292139626
+          },
+          "summarize_fast": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.7982418707860374
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_after": {
+        "config_version": 1,
+        "review_id": "R001",
+        "difficulty": "medium",
+        "retrieved_paper_count": 3,
+        "summary_available": true,
+        "material_revision": 2,
+        "verifier": {
+          "scores": {
+            "coverage": 0.85,
+            "factuality": 0.9,
+            "citation_support": 0.65,
+            "consistency": 0.9
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": true,
+            "citation_support": true,
+            "consistency": true
+          },
+          "issues": [
+            "反馈称未提供摘要条目，但 items 实际包含三条摘要；该元数据不一致应修正，避免误判评审范围。",
+            "2012.12104v1 的 evidence 仅覆盖视频帧输入，未覆盖点检测器/摄像头观察范围对比及三项交通指标，需补充对应原文句或收窄摘要断言。",
+            "2010.05772v1 的 evidence 仅覆盖统一模型，未覆盖实验配置与单/多环境两种机制的比较结论，需补充实验句。",
+            "2009.08052v1 的 evidence 仅覆盖泛化实验结论，未覆盖 WGAN、流量聚类和元学习等方法细节，需补充方法句。",
+            "2012.12104v1 摘要中“新需求分布”不是摘要显式表述；应改为“新环境/新交通条件”或标注为推断。",
+            "综合部分应明确用一句总括区分观察范围、控制成效、跨环境有效性，并避免把三篇论文的实验结果合并为算法排名。"
+          ],
+          "checked_material_revision": 2
+        },
+        "step_count": 3,
+        "max_steps": 8,
+        "workflow_tokens_used": 15290,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.15461085676913014
+          },
+          "summarize_fast": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.6117069980379333
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.23368214519293656
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": true,
+        "terminal_reason": "final_written"
+      },
+      "state_before_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-80ba557f1920429a862a95b43e9b136c\\step-003-before.json",
+      "state_after_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-80ba557f1920429a862a95b43e9b136c\\step-003-after.json",
+      "action_id": "write_fast",
+      "action_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "verifier_before": 0.825,
+      "verifier_after": 0.825,
+      "verifier_delta": null,
+      "input_tokens": 1916,
+      "output_tokens": 1657,
+      "verifier_tokens": 0,
+      "total_workflow_tokens": 3573,
+      "success": true,
+      "error": null,
+      "done": true,
+      "terminal_reason": "final_written",
+      "calls": [
+        {
+          "role": "write",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-26T05:56:36.416925+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Write a Chinese literature review with comparisons, limitations and an explicit abstract-only scope. Use the supplied papers and summaries only. Cover all supplied papers with citations. Return JSON {\"sections\":[{\"heading\":\"text\",\"text\":\"text\",\"paper_ids\":[\"id\"]}]}.",
+          "payload": {
+            "query": "用强化学习做交通控制时，看到更多信息和适应新环境是不是同一个问题？结合匝道控制，说明视频与点检测器可观察到什么、实验用什么交通指标评价控制效果；再用城市路口实例说明路口结构或车流改变时的方法与证据。区分观察范围、控制成效与跨环境有效性，不把不同实验合成算法排名。",
+            "papers": [
+              {
+                "id": "2012.12104v1",
+                "title": "A Deep Reinforcement Learning Approach for Ramp Metering Based on Traffic Video Data",
+                "abstract": "Ramp metering that uses traffic signals to regulate vehicle flows from the on-ramps has been widely implemented to improve vehicle mobility of the freeway. Previous studies generally update signal timings in real-time based on predefined traffic measures collected by point detectors, such as traffic volumes and occupancies. Comparing with point detectors, traffic cameras-which have been increasingly deployed on road networks-could cover larger areas and provide more detailed traffic information. In this work, we propose a deep reinforcement learning (DRL) method to explore the potential of traffic video data in improving the efficiency of ramp metering. The proposed method uses traffic video frames as inputs and learns the optimal control strategies directly from the high-dimensional visual inputs. A real-world case study demonstrates that, in comparison with a state-of-the-practice method, the proposed DRL method results in 1) lower travel times in the mainline, 2) shorter vehicle queues at the on-ramp, and 3) higher traffic flows downstream of the merging area. The results suggest that the proposed method is able to extract useful information from the video data for better ramp metering controls."
+              },
+              {
+                "id": "2010.05772v1",
+                "title": "AttendLight: Universal Attention-Based Reinforcement Learning Model for Traffic Signal Control",
+                "abstract": "We propose AttendLight, an end-to-end Reinforcement Learning (RL) algorithm for the problem of traffic signal control. Previous approaches for this problem have the shortcoming that they require training for each new intersection with a different structure or traffic flow distribution. AttendLight solves this issue by training a single, universal model for intersections with any number of roads, lanes, phases (possible signals), and traffic flow. To this end, we propose a deep RL model which incorporates two attention models. The first attention model is introduced to handle different numbers of roads-lanes; and the second attention model is intended for enabling decision-making with any number of phases in an intersection. As a result, our proposed model works for any intersection configuration, as long as a similar configuration is represented in the training set. Experiments were conducted with both synthetic and real-world standard benchmark data-sets. The results we show cover intersections with three or four approaching roads; one-directional/bi-directional roads with one, two, and three lanes; different number of phases; and different traffic flows. We consider two regimes: (i) single-environment training, single-deployment, and (ii) multi-environment training, multi-deployment. AttendLight outperforms both classical and other RL-based approaches on all cases in both regimes."
+              },
+              {
+                "id": "2009.08052v1",
+                "title": "GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning",
+                "abstract": "The heavy traffic congestion problem has always been a concern for modern cities. To alleviate traffic congestion, researchers use reinforcement learning (RL) to develop better traffic signal control (TSC) algorithms in recent years. However, most RL models are trained and tested in the same traffic flow environment, which results in a serious overfitting problem. Since the traffic flow environment in the real world keeps varying, these models can hardly be applied due to the lack of generalization ability. Besides, the limited number of accessible traffic flow data brings extra difficulty in testing the generalization ability of the models. In this paper, we design a novel traffic flow generator based on Wasserstein generative adversarial network to generate sufficient diverse and quality traffic flows and use them to build proper training and testing environments. Then we propose a meta-RL TSC framework GeneraLight to improve the generalization ability of TSC models. GeneraLight boosts the generalization performance by combining the idea of flow clustering and model-agnostic meta-learning. We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows."
+              }
+            ],
+            "items": [
+              {
+                "paper_id": "2012.12104v1",
+                "summary": "该文将匝道控制建模为深度强化学习问题，探索交通视频数据提升匝道控制效率的潜力：以视频帧为高维视觉输入，直接学习控制策略。就观察范围而言，摘要对比了点检测器通常采集的流量、占有率等预定义点测度与摄像头可覆盖更大区域并提供更细信息；这属于观察信息维度，而非跨环境泛化实验。控制成效用真实案例评估，报告相较现有实践方法：主线行程时间更低、匝道车辆排队更短、汇入区下游流量更高。摘要未说明该方法在新环境或新需求分布下的迁移有效性，因此不能把“看到更多信息”与“适应新环境”视为同一问题，也不能据此作跨论文算法排名。",
+                "evidence": "The proposed method uses traffic video frames as inputs and learns the optimal control strategies directly from the high-dimensional visual inputs."
+              },
+              {
+                "paper_id": "2010.05772v1",
+                "summary": "AttendLight提出端到端注意力强化学习交通信号控制模型，针对既有方法每遇不同结构或交通流分布的新路口就需重新训练的问题，训练一个可适用于任意道路数、车道数、相位（可能信号）和交通流的统一模型；两个注意力模型分别处理道路-车道数量与相位数量，若训练集包含相似配置即可用于任意路口配置。实验覆盖合成与真实基准：三或四进口道、单向或双向及一、二、三车道、不同相位数和交通流，并区分单环境训练-单环境部署与多环境训练-多环境部署两种机制；摘要称其在两种机制的所有案例上优于经典和其他强化学习方法。该证据主要对应路口结构变化下的跨环境有效性或统一建模，而非视频与点检测器的观察范围比较，也不应与其他论文实验合并成统一排名。",
+                "evidence": "AttendLight solves this issue by training a single, universal model for intersections with any number of roads, lanes, phases (possible signals), and traffic flow."
+              },
+              {
+                "paper_id": "2009.08052v1",
+                "summary": "GeneraLight关注强化学习交通信号控制在交通流环境变化时的泛化：多数模型在同一交通流环境训练和测试，易过拟合；真实交通流持续变化且可用数据有限。方法上设计基于Wasserstein生成对抗网络的交通流生成器，生成多样且质量足够的交通流以构建训练和测试环境，并提出结合流量聚类与模型无关元学习的元强化学习交通信号控制框架GeneraLight，以提升对新交通流的泛化。多个真实数据集实验显示其在泛化到不同交通流上表现更优。该文证据针对车流分布改变下的跨环境有效性，不涉及视频或点检测器的观察范围，也不提供跨论文统一算法排名。",
+                "evidence": "We conduct extensive experiments on multiple real-world datasets to show the superior performance of GeneraLight on generalizing to different traffic flows."
+              }
+            ],
+            "feedback": [
+              "反馈称未提供摘要条目，但 items 实际包含三条摘要；该元数据不一致应修正，避免误判评审范围。",
+              "2012.12104v1 的 evidence 仅覆盖视频帧输入，未覆盖点检测器/摄像头观察范围对比及三项交通指标，需补充对应原文句或收窄摘要断言。",
+              "2010.05772v1 的 evidence 仅覆盖统一模型，未覆盖实验配置与单/多环境两种机制的比较结论，需补充实验句。",
+              "2009.08052v1 的 evidence 仅覆盖泛化实验结论，未覆盖 WGAN、流量聚类和元学习等方法细节，需补充方法句。",
+              "2012.12104v1 摘要中“新需求分布”不是摘要显式表述；应改为“新环境/新交通条件”或标注为推断。",
+              "综合部分应明确用一句总括区分观察范围、控制成效、跨环境有效性，并避免把三篇论文的实验结果合并为算法排名。"
+            ]
+          },
+          "cache_key": "fdf383bf1113b10aaa161ed6519e34dd6191839fa255fcecedf959711b2bb21e",
+          "cache_hit": false,
+          "prompt_tokens": 1916,
+          "completion_tokens": 1657,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"sections\":[{\"heading\":\"摘要范围与问题界定\",\"text\":\"本文仅依据所提供论文的摘要与摘要级总结进行综述，不引用全文实验细节，也不对缺失数据进行推断。核心问题是：在强化学习交通控制中，“看到更多信息”和“适应新环境”是否同一问题。就摘要证据看，二者应区分：前者指观察输入的范围与信息粒度，后者指控制策略在路口结构或交通流分布变化时的跨环境有效性；控制成效则指在特定实验中用于评价的交通指标。三篇论文分别触及不同维度，不能把其不同实验设置下的结果合并为统一算法排名。\",\"paper_ids\":[\"2012.12104v1\",\"2010.05772v1\",\"2009.08052v1\"]},{\"heading\":\"匝道控制中的观察范围：视频与点检测器\",\"text\":\"2012.12104v1将匝道控制建模为深度强化学习问题，以交通视频帧作为高维视觉输入直接学习控制策略。摘要明确对比了点检测器与摄像头：既有研究通常基于点检测器采集的预定义交通测度实时更新信号配时，如流量和占有率；摄像头则可覆盖更大区域并提供更细的交通信息。因此，该文所讨论的“看到更多信息”属于观察范围与输入表征问题，即从视频中提取有用信息以改进匝道控制，而不是在摘要中报告对新环境或新需求分布的迁移实验。\",\"paper_ids\":[\"2012.12104v1\"]},{\"heading\":\"匝道控制的控制成效指标\",\"text\":\"在控制成效方面，2012.12104v1通过真实案例评估所提深度强化学习方法，并与一种现有实践方法比较。摘要报告三项交通指标改善：主线行程时间更低、匝道车辆排队更短、汇入区下游流量更高。这些指标对应特定案例中的控制效果评价，不能直接等同于跨环境泛化能力；摘要也未说明该方法在未见路口或交通流变化下的表现。\",\"paper_ids\":[\"2012.12104v1\"]},{\"heading\":\"城市路口：结构与车流改变下的方法与证据\",\"text\":\"城市路口方面，2010.05772v1的AttendLight针对既有方法每遇不同结构或交通流分布的新路口就需重新训练的问题，提出训练一个统一模型，适用于任意道路数、车道数、相位和交通流；其两个注意力模型分别处理道路—车道数量和相位数量，只要训练集包含相似配置即可用于任意路口配置。摘要称实验覆盖合成与真实基准，包括三或四进口道、单向或双向道路及一至三车道、不同相位数和交通流，并区分单环境训练—单环境部署与多环境训练—多环境部署两种机制；在两种机制的所有案例上优于经典和其他强化学习方法。该证据主要对应路口结构变化与统一建模下的跨环境有效性。2009.08052v1的GeneraLight则聚焦交通流环境变化：摘要指出多数强化学习模型在同一交通流环境训练和测试，易过拟合，而真实交通流持续变化且可用数据有限；方法上设计基于Wasserstein生成对抗网络的交通流生成器，生成多样且质量足够的交通流以构建训练和测试环境，并提出结合流量聚类与模型无关元学习的元强化学习框架GeneraLight。多个真实数据集实验显示，其在泛化到不同交通流上表现更优。两文分别提供结构与车流变化下的方法与摘要级证据，但实验设置不同，不能据此作跨论文算法排名。\",\"paper_ids\":[\"2010.05772v1\",\"2009.08052v1\"]},{\"heading\":\"观察范围、控制成效与跨环境有效性的比较\",\"text\":\"综合来看，2012.12104v1强调的是观察范围：视频相对点检测器可提供更大覆盖和更细信息，并以主线行程时间、匝道排队和下游流量评价控制成效；其摘要未提供跨环境迁移证据。2010.05772v1和2009.08052v1强调的是跨环境有效性：前者通过注意力统一模型应对路口结构、车道、相位和交通流配置变化，后者通过交通流生成与元学习提升对不同交通流的泛化。因而，“看到更多信息”与“适应新环境”不是同一个问题：前者是输入与可观测性维度，后者是策略在环境分布变化下的有效性问题；控制成效指标又是另一维度。三篇论文的实验目标、环境和指标不同，不能合并成统一排名。\",\"paper_ids\":[\"2012.12104v1\",\"2010.05772v1\",\"2009.08052v1\"]},{\"heading\":\"局限与结论\",\"text\":\"本文的局限在于仅使用摘要和摘要级总结：无法核验各文的实验规模、基线细节、统计显著性和复现条件，也无法判断视频方法在结构或车流变化下的迁移表现，或AttendLight与GeneraLight在相同基准上的相对优劣。结论是：在匝道控制中，视频与点检测器之别主要体现观察范围，控制成效由行程时间、排队和下游流量等指标评价；在城市路口，结构变化与车流变化分别由统一注意力模型和元强化学习加交通流生成来应对。应明确区分观察范围、控制成效与跨环境有效性，避免把不同实验合并为算法排名。\",\"paper_ids\":[\"2012.12104v1\",\"2010.05772v1\",\"2009.08052v1\"]}]}",
+          "output": {
+            "sections": [
+              {
+                "heading": "摘要范围与问题界定",
+                "text": "本文仅依据所提供论文的摘要与摘要级总结进行综述，不引用全文实验细节，也不对缺失数据进行推断。核心问题是：在强化学习交通控制中，“看到更多信息”和“适应新环境”是否同一问题。就摘要证据看，二者应区分：前者指观察输入的范围与信息粒度，后者指控制策略在路口结构或交通流分布变化时的跨环境有效性；控制成效则指在特定实验中用于评价的交通指标。三篇论文分别触及不同维度，不能把其不同实验设置下的结果合并为统一算法排名。",
+                "paper_ids": [
+                  "2012.12104v1",
+                  "2010.05772v1",
+                  "2009.08052v1"
+                ]
+              },
+              {
+                "heading": "匝道控制中的观察范围：视频与点检测器",
+                "text": "2012.12104v1将匝道控制建模为深度强化学习问题，以交通视频帧作为高维视觉输入直接学习控制策略。摘要明确对比了点检测器与摄像头：既有研究通常基于点检测器采集的预定义交通测度实时更新信号配时，如流量和占有率；摄像头则可覆盖更大区域并提供更细的交通信息。因此，该文所讨论的“看到更多信息”属于观察范围与输入表征问题，即从视频中提取有用信息以改进匝道控制，而不是在摘要中报告对新环境或新需求分布的迁移实验。",
+                "paper_ids": [
+                  "2012.12104v1"
+                ]
+              },
+              {
+                "heading": "匝道控制的控制成效指标",
+                "text": "在控制成效方面，2012.12104v1通过真实案例评估所提深度强化学习方法，并与一种现有实践方法比较。摘要报告三项交通指标改善：主线行程时间更低、匝道车辆排队更短、汇入区下游流量更高。这些指标对应特定案例中的控制效果评价，不能直接等同于跨环境泛化能力；摘要也未说明该方法在未见路口或交通流变化下的表现。",
+                "paper_ids": [
+                  "2012.12104v1"
+                ]
+              },
+              {
+                "heading": "城市路口：结构与车流改变下的方法与证据",
+                "text": "城市路口方面，2010.05772v1的AttendLight针对既有方法每遇不同结构或交通流分布的新路口就需重新训练的问题，提出训练一个统一模型，适用于任意道路数、车道数、相位和交通流；其两个注意力模型分别处理道路—车道数量和相位数量，只要训练集包含相似配置即可用于任意路口配置。摘要称实验覆盖合成与真实基准，包括三或四进口道、单向或双向道路及一至三车道、不同相位数和交通流，并区分单环境训练—单环境部署与多环境训练—多环境部署两种机制；在两种机制的所有案例上优于经典和其他强化学习方法。该证据主要对应路口结构变化与统一建模下的跨环境有效性。2009.08052v1的GeneraLight则聚焦交通流环境变化：摘要指出多数强化学习模型在同一交通流环境训练和测试，易过拟合，而真实交通流持续变化且可用数据有限；方法上设计基于Wasserstein生成对抗网络的交通流生成器，生成多样且质量足够的交通流以构建训练和测试环境，并提出结合流量聚类与模型无关元学习的元强化学习框架GeneraLight。多个真实数据集实验显示，其在泛化到不同交通流上表现更优。两文分别提供结构与车流变化下的方法与摘要级证据，但实验设置不同，不能据此作跨论文算法排名。",
+                "paper_ids": [
+                  "2010.05772v1",
+                  "2009.08052v1"
+                ]
+              },
+              {
+                "heading": "观察范围、控制成效与跨环境有效性的比较",
+                "text": "综合来看，2012.12104v1强调的是观察范围：视频相对点检测器可提供更大覆盖和更细信息，并以主线行程时间、匝道排队和下游流量评价控制成效；其摘要未提供跨环境迁移证据。2010.05772v1和2009.08052v1强调的是跨环境有效性：前者通过注意力统一模型应对路口结构、车道、相位和交通流配置变化，后者通过交通流生成与元学习提升对不同交通流的泛化。因而，“看到更多信息”与“适应新环境”不是同一个问题：前者是输入与可观测性维度，后者是策略在环境分布变化下的有效性问题；控制成效指标又是另一维度。三篇论文的实验目标、环境和指标不同，不能合并成统一排名。",
+                "paper_ids": [
+                  "2012.12104v1",
+                  "2010.05772v1",
+                  "2009.08052v1"
+                ]
+              },
+              {
+                "heading": "局限与结论",
+                "text": "本文的局限在于仅使用摘要和摘要级总结：无法核验各文的实验规模、基线细节、统计显著性和复现条件，也无法判断视频方法在结构或车流变化下的迁移表现，或AttendLight与GeneraLight在相同基准上的相对优劣。结论是：在匝道控制中，视频与点检测器之别主要体现观察范围，控制成效由行程时间、排队和下游流量等指标评价；在城市路口，结构变化与车流变化分别由统一注意力模型和元强化学习加交通流生成来应对。应明确区分观察范围、控制成效与跨环境有效性，避免把不同实验合并为算法排名。",
+                "paper_ids": [
+                  "2012.12104v1",
+                  "2010.05772v1",
+                  "2009.08052v1"
+                ]
+              }
+            ]
+          },
+          "elapsed_seconds": 19.546
+        }
+      ],
+      "execution_kind": "real",
+      "next_mask": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ],
+  "collection_kind": "formal",
+  "public_task": {
+    "review_id": "R001",
+    "survey_instruction": "用强化学习做交通控制时，看到更多信息和适应新环境是不是同一个问题？结合匝道控制，说明视频与点检测器可观察到什么、实验用什么交通指标评价控制效果；再用城市路口实例说明路口结构或车流改变时的方法与证据。区分观察范围、控制成效与跨环境有效性，不把不同实验合成算法排名。",
+    "split": "train",
+    "difficulty": "medium",
+    "corpus_scope": "local_arxiv_ai",
+    "config_version": 1
+  },
+  "source": {
+    "source_id": "arxiv600-review40-v1",
+    "manifest_sha256": "842ecacf33e2acf35d1352a0f8c999282db4817fadd48cff19c3c3ba87e1734e",
+    "task_sha256": "8f21ead7ba476b5f5137d104408d894183557a9b4be0bb076b2190ed4fa85e3a",
+    "corpus_sha256": "751acf2ed7b74403f8d89a2c8046f570156643c0e9192cd868cda6722096235f",
+    "corpus_size": 600
+  },
+  "policy": "rule",
+  "plan": {
+    "policy": "rule",
+    "preferences_by_step": [],
+    "fallback": "RuleScheduler",
+    "selection": "deterministic"
+  },
+  "plan_sha256": "3e022d60305df0ccda6091a08c1e16eb0ecfe911a2282ded3f08021be8794111",
+  "config_sha256": "0ce1fc771d0af8bfe57eb0b556a623019a158e2073eabe1d929b3274728eb01e",
+  "final_text_sha256": "63ece1f62c02101c882e2d9bb601dfde5e5ecab0dde11c9d4bc28415847f8c19",
+  "support": [
+    {
+      "difficulty": "medium",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "retrieve_more",
+      "opportunities": 1,
+      "selected": 1,
+      "known_cost_steps": 1,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 1,
+      "selection_rate": 1.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "summarize_deep",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "medium",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "summarize_fast",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "medium",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "write_deep",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "medium",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "write_fast",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "medium",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "retrieve_more",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "summarize_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "summarize_fast",
+      "opportunities": 1,
+      "selected": 1,
+      "known_cost_steps": 1,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 1,
+      "selection_rate": 1.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "write_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "write_fast",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "retrieve_more",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "summarize_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "summarize_fast",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "write_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "medium",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "write_fast",
+      "opportunities": 1,
+      "selected": 1,
+      "known_cost_steps": 1,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 1,
+      "selection_rate": 1.0
+    }
+  ]
+}

@@ -113,4 +113,6 @@ python -m core --backend deepseek --corpus data/samples/agent_skill/agent_skill_
 
 **后续进展：**二号位已将冻结的 DQN 策略接入同一 Runner，并完成 Mock 端到端联调。正式数据上的 Rule/DQN 对比尚未开展，复现步骤见 [ROLE2_HANDOFF.md](ROLE2_HANDOFF.md)。
 
+2026-11-26 已在三号正式训练语料上完成 R005、R001 两条真实 Rule 探针；完整 `collect_episode` 结果与观察见 [训练探针交接](handoff/role1_train_probes/README.md)。尚未执行 DQN 真实轨迹、独立测试或终稿 Judge 评分。
+
 评分口径及预算边界的待确认草案见 [SCORING_PROTOCOL.md](SCORING_PROTOCOL.md)。

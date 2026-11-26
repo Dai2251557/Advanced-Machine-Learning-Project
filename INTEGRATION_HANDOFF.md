@@ -27,5 +27,5 @@ result = runner.run_episode(RuleScheduler(runner.config), task)
 - 新增跨岗测试验证三号清单与二号哈希算法一致、公开训练题能进入 Runner 和 45 维编码器、Mock 不会被正式采样入口误收。
 - 当前 Windows Python 未安装 PyTorch，训练相关测试被显式跳过，不能声称本机 DQN 训练已验收。
 - 新数据格式问题已由三号适配器解决，不需要重命名原文件字段。
-- 中文题面与英文摘要检索现已增加术语扩展和 BM25 排序，训练侧诊断见 `RETRIEVAL_REVIEW.md`；这不等于独立测试质量验收。真实训练探针入口为 `experiments.retrieval_probe`。
+- 中文题面与英文摘要检索现已增加术语扩展和 BM25 排序，训练侧诊断见 `RETRIEVAL_REVIEW.md`；这不等于独立测试质量验收。R005、R001 两条真实训练侧 Rule 探针已完成，完整交接见 `handoff/role1_train_probes/README.md`。
 - Judge 冻结协议已交付；工作流 Verifier 的口径、训练标定及两者区别仍需三方确认。

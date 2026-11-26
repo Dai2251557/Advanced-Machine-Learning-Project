@@ -4,7 +4,7 @@
 
 本项目在同一套 Agent、语料和预算下，比较固定规则（Rule）与 DQN 调度的综述质量、工作流 Token 消耗、任务错配和动作负载。两种策略共用五动作 Runner，只替换 `select_action`。
 
-**当前进度：共享 Runner 已完成真实 pilot；DQN 已能离线训练、导出并接回同一 Runner。尚未用正式数据完成标定或独立测试，不能据此判断哪种策略更好。**
+**当前进度：共享 Runner 已完成真实 pilot，并在正式训练语料上完成两条 Rule 探针；DQN 已能离线训练、导出并接回同一 Runner。尚未用正式数据完成标定或独立测试，不能据此判断哪种策略更好。** 探针交接见 [一号位训练探针](handoff/role1_train_probes/README.md)。
 
 ## 项目状态与交接
 
