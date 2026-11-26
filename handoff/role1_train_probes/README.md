@@ -2,10 +2,12 @@
 
 这两份 `collection.json` 是三号冻结语料上的**真实训练侧 Rule 轨迹**，由共享 Runner、`DeepSeekBackend` 和二号 `collect_episode(..., mode='formal')` 生成，并由 `validate_episode` 校验。语料版本为 `arxiv600-review40-v1`，代码基线为 `390c572`，检索方法为 `bilingual_bm25_v1`，Runner 使用仓库 `config.json`。仅用于训练标定与接口核验；没有 Judge 标签，不属于独立测试，也不证明终稿质量。
 
-| 任务 | 动作 | 成功调用 | 工作流 Token | Verifier 最后四维评分 | 完整采样文件 SHA-256 |
+| 任务 | 动作 | 成功调用 | 工作流 Token | Verifier 最后四维评分 | 仓库交付文件 SHA-256（LF） |
 |---|---|---:|---:|---|---|
-| R005 | retrieve_more → summarize_fast → write_fast | 4 | 11,215 | 1.00 / 0.90 / 0.80 / 1.00 | `8cef4d21e3ab62c17a2c97097769fb2d7f6ae4124df0a64bd44e6d7751c73421` |
-| R001 | retrieve_more → summarize_fast → write_fast | 4 | 15,290 | 0.85 / 0.90 / 0.65 / 0.90 | `ac4ea4e4fddc146525a74758a83defbfdeefda6aa62b3ee892645bafa01b781f` |
+| R005 | retrieve_more → summarize_fast → write_fast | 4 | 11,215 | 1.00 / 0.90 / 0.80 / 1.00 | `556591b7172d582b7a4e2afd0f5746bd79a7f871308db27cfc7cc85cda4e9023` |
+| R001 | retrieve_more → summarize_fast → write_fast | 4 | 15,290 | 0.85 / 0.90 / 0.65 / 0.90 | `5c37a2be0a242c625203e00903b06f0ffd4fa316d362495d54b888a6799792bb` |
+
+仓库发布的两份 JSON 使用 LF，完整性测试直接校验文件字节。原 Windows 采样文件只在换行（CRLF）上不同，其 SHA-256 分别为 R005 `8cef4d21e3ab62c17a2c97097769fb2d7f6ae4124df0a64bd44e6d7751c73421`、R001 `ac4ea4e4fddc146525a74758a83defbfdeefda6aa62b3ee892645bafa01b781f`。
 
 四维顺序为 coverage / factuality / citation_support / consistency。两条轨迹均为三步完成，合计 26,505 个已报告工作流 Token、8 次成功 API 调用。服务端响应的模型标识为 `deepseek-flash`；不能由此推断更细的底层版本。所有调用都报告了输入和输出 Token，没有输出修复。Judge 未调用，以上四维是工作流过程诊断，不能当作终稿 Judge 分。
 

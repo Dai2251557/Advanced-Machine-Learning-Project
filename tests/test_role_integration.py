@@ -46,8 +46,8 @@ class RoleIntegrationTests(unittest.TestCase):
     def test_real_training_probe_handoff_is_bound_to_frozen_delivery(self):
         manifest = load_manifest('train')
         expected = {
-            'R005': ('8cef4d21e3ab62c17a2c97097769fb2d7f6ae4124df0a64bd44e6d7751c73421', 11215),
-            'R001': ('ac4ea4e4fddc146525a74758a83defbfdeefda6aa62b3ee892645bafa01b781f', 15290),
+            'R005': ('556591b7172d582b7a4e2afd0f5746bd79a7f871308db27cfc7cc85cda4e9023', 11215),
+            'R001': ('5c37a2be0a242c625203e00903b06f0ffd4fa316d362495d54b888a6799792bb', 15290),
         }
         for review_id, (digest, tokens) in expected.items():
             with self.subTest(review_id=review_id):
