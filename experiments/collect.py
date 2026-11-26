@@ -21,8 +21,9 @@ checks consistency with a trusted delivery, not authorship or API attestation.
 validate_collection returns an external trajectory_id -> label map; absent labels
 stay absent. Each label has source_kind ('independent_judge'|'synthetic_fixture'),
 review_id, trajectory_id, split, final_text_sha256 (raw UTF-8), overall_score,
-model and prompt_id. Formal labels also require subscores and rationale. No
-Judge is invoked. Keep the sidecar and any Judge usage outside workflow traces.
+model and prompt_id. Formal labels must also satisfy the frozen assessment and
+request fingerprint contract. No Judge is invoked. Keep the sidecar and any
+Judge usage outside workflow traces.
 """
 
 import argparse
@@ -34,6 +35,7 @@ from functools import wraps
 from pathlib import Path
 
 from agents.executor import MockBackend
+from core.judge_result import validate_archived_assessment
 from core.rule_scheduler import RuleScheduler
 from core.runner import Runner, total
 from core.schema import (ACTIONS, CONFIG_VERSION, SCORE_KEYS, ReviewTask, RunnerConfig,
@@ -492,15 +494,17 @@ def validate_collection(episodes, labels=(), *, mode='formal', manifest=None):
         ep = by_id[tid]
         _require(ep['success'] and all(label[k] == ep[k] for k in ('review_id', 'split', 'final_text_sha256')),
                  'label on missing final text or wrong text/identity/split')
-        _require(label['source_kind'] == ('independent_judge' if mode == 'formal' else 'synthetic_fixture') and
-                 _score(label['overall_score']) and all(_text(label[k]) for k in ('model', 'prompt_id')), 'invalid label source/score')
+        _require(label['source_kind'] == ('independent_judge' if mode == 'formal' else 'synthetic_fixture'),
+                 'invalid label source')
         if 'label_id' in label:
             _require(_text(label['label_id']) and label['label_id'] not in label_ids, 'duplicate or empty label ID')
             label_ids.add(label['label_id'])
         if mode == 'formal':
-            _require(all(label[k] == manifest['judge'][k] for k in ('model', 'prompt_id')) and _text(label['rationale'])
-                     and isinstance(label['subscores'], dict) and bool(label['subscores']) and
-                     all(map(_score, label['subscores'].values())), 'wrong frozen Judge or incomplete formal assessment')
+            _require(all(label[k] == manifest['judge'][k] for k in ('model', 'prompt_id')), 'wrong frozen Judge')
+            validate_archived_assessment(label)
+        else:
+            _require(_score(label['overall_score']) and all(_text(label[k]) for k in ('model', 'prompt_id')),
+                     'invalid fixture label score or identifiers')
         joined[tid] = dict(label)
     return joined
 
