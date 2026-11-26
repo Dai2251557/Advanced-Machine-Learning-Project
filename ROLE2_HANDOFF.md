@@ -1,33 +1,44 @@
-# 2 号位交接：训练工作流
+# 2 号位交接：DQN 训练与冻结评测
 
-目前可以验证接口、数值训练和数据管道。**合成环境、Mock Runner 轨迹、用 Mock 轨迹拟合的经验环境，都不是正式训练或独立测试证据。** 2 号位只使用 `core/runner.py`；不修改 1 号位的执行器或 Rule，不调用 Judge。
+**当前进度：采集入口已有真实训练轨迹可验；正式标定还没有足够的动作覆盖和终稿标签。** 训练、消融、导出和冻结推理已能离线演练。仓库没有可供独立比较的正式 DQN checkpoint，也没有 Rule/DQN 独立测试结论。
 
-## 复现离线演练
+| 已交付 | 对训练意味着什么 |
+|---|---|
+| [冻结数据与 Judge 协议](ROLE3_HANDOFF.md)：600 篇摘要、30 道训练题（清单推荐首批 10 题）、10 道独立测试题的公开题面 | 使用 `utils.data_release.load_corpus()` 和 `load_manifest('train')`；测试题及私有证据不参与标定、调参或选权重。 |
+| [R001、R005 的完整 collection](handoff/role1_train_probes/README.md)：两条都成功写稿，工作流分别消耗 15,290 和 11,215 token | 两条都走 `retrieve_more → summarize_fast → write_fast`。`summarize_deep` 和 `write_deep` 各有 4 次可选机会、0 次实际选择。可验证格式、用量和快速路径，不能估计快慢动作差异。 |
+| [离线 Judge 接口](evaluation/judge.py) | 协议已冻结不等于探针已打分。两条终稿均未随附绑定轨迹的独立 Judge 标签；Verifier、Mock 分数和旧版 R001 样例都不能代替。 |
 
-本机用 Python 3.12.13。训练环境 `.venv/` 的直接依赖见 `requirements-rl.txt`；不需要 NumPy 桥接、Gymnasium 或 GPU。冻结策略 `rl.scheduler.DQNScheduler`、采样和标定工具只用标准库。以下命令从仓库根执行，输出路径用**不存在的新路径**，不覆盖旧结果：
+## 从现有探针到正式训练包
+
+1. **核验已有输入。** 在仓库根目录运行 `python -m utils.data_release`，再运行 `python -m unittest discover -s tests -p test_role_integration.py`。后者用冻结训练清单验证两份 collection，并核对文件哈希、成功终止、动作序列和真实用量；两项检查都不发起付费调用。采集 → 标定的数据契约见 [experiments/collect.py](experiments/collect.py)：任务和论文用规范化 JSON 哈希，终稿用原始 UTF-8 文本哈希。
+2. **补齐动作覆盖，而不是重复同一条 Rule 路径。** 先与执行层确认 [Verifier 口径](SCORING_PROTOCOL.md)、实际后端、配置和调用预算。经授权后仅在训练题上用配置好的共享 Runner 调用 `collect_episode(runner, task, policy, mode='formal', manifest=manifest)`，保存返回值（含 `next_mask`、来源与采样计划），不要用 Runner 的中间文件替代。用 `support_report` 分开看每个动作的可选机会、实际选择次数和独立题数；失败与用量未知的轨迹也要保留。不同前缀上的快慢选择不是严格反事实。
+3. **为成功的训练终稿绑定独立标签。** 对已通过 `validate_episode` 的轨迹，评价侧用 `prepare_train_review` 和 `build_judge_request` 构造盲评请求。仓库不会自动调用 Judge。实际评分须单独授权，评分方留存同次调用的 `{binding, request, response}`，用 `finalize_judge_result` 核对回执，再用 `save_judge_result` 为每条轨迹单独保存标签。将这些标签原样放入训练包的 `labels`，不要手拼分数或只按 `review_id` 关联。`validate_collection` 检查轨迹、终稿哈希和评分归档格式，并不认证服务端调用。缺评不是零分；Judge 不进入 Workspace、Mask 或工作流成本。
+4. **按题留出，再拟合。** 正式训练包为 `{episodes, labels, manifest, holdout_review_ids}`。在 30 道训练题内预先登记留出 ID，同题所有轨迹必须在同一侧。`fit_calibration` 只用拟合集；保持检索规格一致，不混用不同检索版本的样本。`evaluate_holdout` 对照 Rule 的实际与模拟完成率、成本、可比增量及分母，并报告终稿代理 MAE 和训练均值基线 MAE。仅用这两条探针时，留出任一题后都只剩一道拟合题；程序可以运行，但两种留出方式都没有可比较的独立标签（`compared=0, mae=null`），不是零误差。
+
+**如何解读仿真。** `model.manifest()` 给出各桶的样本数和独立题数。仿真按剩余预算逐次回放调用：已发起的失败调用计费，未获准的修复既不计费也不采用其输出；只回放观测到的 `cache_hit`。完全无样本的合法分支按用量未知的截尾终止处理，这是建模假设，不是测得的失败率。
+
+有新鲜 Verifier 分数时，终稿代理可用同阶段、同写作档位、至少两道训练题的残差校正，不足时回退至有效 Verifier 均值。无可用分数时，优先取同阶段、同档位至少两道已标注无分终稿的题均值，否则使用拟合集标签的跨题均值（`pooled_mean_low_support`）。两者都不是该终稿的 Judge 真分。若存在可成功写稿的无分状态却完全没有训练标签，模型会在 `unscorable_writes` 列出受影响的写作动作，默认质量环境拒绝启动；可补标，或显式设 `RewardConfig(quality_weight=0)` **仅诊断成本**。回退率高、留出误差大或动作覆盖窄时，应先补样，不据此选择正式策略。
+
+## 消融、冻结和独立测试
+
+- **训练与选权重。** 使用 `python -m experiments.ablate --size full --training-bundle <训练包> --threshold <预先登记值> --output <新目录>`。默认 5 个配置 × 3 个种子（`7,17,27`），每次 20,000 环境步、CPU 单线程。Replay Buffer 容量 `512/2048/8192`，Target-Net 间隔 `50/200/800` 梯度步，共用 `2048/200` 对照。每 500 步在固定仿真场景贪心验证；连续三次达到门槛才记收敛步数，否则为 `null`。只用训练侧信息选 checkpoint。
+- **成对执行。** 正式 checkpoint 绑定训练时的检索规格。冻结推理只需 `DQNScheduler.load(path)`，无探索或梯度更新。获得真实执行授权后，把相同 Runner、对应公开测试题和正式 checkpoint 交给 `experiments.frozen.execute_pairs(..., mode='formal', test_manifest=...)`。使用预先冻结的测试清单（本次交付 `load_manifest('test')` 对应 10 题），题目集合必须与清单完全匹配；不要由候选输入临时生成清单。入口在执行前检查任务、语料和配置；交错执行顺序，失败也保存。
+- **封存与盲评。** 只有整批 Rule/DQN 执行结束后才生成带文件哈希的 `execution_complete.json`。之后由评价侧对成功终稿离线盲评，不向评分者提供策略名。Judge token 单列。`mismatch_status=awaiting_frozen_role3_classifier` 表示错配分类仍待统一；不能用低收益次数冒充 `mismatch_any`。
+
+## 仅复现离线演练
+
+在已安装[训练依赖](requirements-rl.txt)的环境中，从仓库根目录执行；输出必须使用新路径。采样和冻结推理只需标准库，训练和消融才需 PyTorch。
 
 ```bash
-.venv/bin/python -B -m unittest discover -s tests
-.venv/bin/python -B -m experiments.collect --policy all --output /tmp/role2-new-fixtures.json
-.venv/bin/python -B -m experiments.ablate --size smoke --fixture-calibration --output outputs/my-role2-smoke
-.venv/bin/python -B -S -m experiments.frozen --checkpoint outputs/my-role2-smoke/base-seed7/policy.json --output outputs/my-role2-pairs
+python -m experiments.collect --policy all --output outputs/role2-fixtures-001.json
+python -m experiments.ablate --size smoke --fixture-calibration --config base --seeds 7 --output outputs/role2-smoke-001
+python -m experiments.frozen --checkpoint outputs/role2-smoke-001/base-seed7/policy.json --output outputs/role2-pairs-001
 ```
 
-`--fixture-calibration` 显式走 T4 → T5 → 训练：合成公开任务经共享 Mock Runner 采集、按任务留出、用训练部分拟合仿真，再训练和评估。这里 Mock 成本为零、有效分恒定，结果只说明能接通。若省略该标志，使用 T2 手工定义的、有快慢动作差异和非零成本的解析环境。两者都不能用于正式结论。`--size full` 切换到第 6 步所述的完整实验配置，同时调整预热步数、批大小和评估频率。**数据来源不变**：搭配 `--fixture-calibration` 运行时，使用的仍是 Mock 轨迹。
+第一条独立演示 Mock 采集。第二条自行采集 Mock 轨迹、按题留出、拟合仿真并训练；它不读取第一条命令的输出。第三条仅验证冻结策略能接回 Mock Runner。省略 `--fixture-calibration` 且不传训练包时，使用手工定义的解析环境；`--size full` 只改变实验规模，不改变数据来源。两种演练都不能作为正式训练或独立测试证据。
 
-## 正式数据交接时做什么
-
-1. **先核验来源，再采样。** 3 号位交付正式语料、10 个训练任务、冻结 Judge 标识及一条脱敏评分样例。独立的可信 manifest 与 `experiments/collect.py` 文件头的字段对照：公共任务和整库论文摘要用规范化 JSON 哈希；终稿用原始 UTF-8 文本哈希。`source_id` 应标明交付版本。当前适配器要求 `dataset_kind=arxiv_abstracts`、`purpose=formal_experiment`。这些是 2 号位的摄取格式，不是要求 3 号位修改公共 Schema；若实际命名不同，先确认适配关系，不应重标 pilot。不要把测试标签/金标交给训练入口。
-2. **限范围复审 T4→T5。** 正式任务和 Judge 样例都收到后，再用 `/agy-coplan --read` 复审，而不是在 T3 提交后触发。优先范围：`CONTRACT.md`、`SCORING_PROTOCOL.md`、`experiments/collect.py`、`rl/{adapter,calibration,synthetic_env,reward}.py`、对应测试，以及经授权可外发的脱敏训练任务/评分样例（实际传参逐个列路径）。不选整个数据目录、测试集、`.env*`、密钥、Judge 私有配置、原始调用 payload 或未获准外发的语料。重点核对字段映射、缺失用量、轨迹/终稿关联、代理与真分区分、按题留出、零支持分支假设。无法安全分离时先停，不以整目录代替。
-3. **正式探针。** 确认费用、外发范围、Verifier 口径和 Runner 配置后，先在训练集用 Mock 低成本核查检索；再显式提供配置好的共享 Runner，调用 `collect_episode(runner, task, policy, mode='formal', manifest=...)`。先 1–2 个代表任务，核对价格、延迟、调用修复、评分和状态覆盖后再扩采。默认 CLI 不会建真实后端。保存 collect 函数的**返回值**：它比原 Runner 的中间产物多 `next_mask`、来源与采样计划。`support_report` 同时报每动作可选机会、被选次数、独立任务数。标定时以抽中轨迹的逐次调用为单位检查模拟剩余预算：失败的尝试照实计费，下一次未获准的修复不计费，也不采用它的输出。仿真回放已观测到的 `cache_hit`，不推断新状态的请求是否应命中缓存。不同前缀不是严格反事实。
-4. **Judge 分开交付。** 只对成功的真实训练终稿打分；外部 sidecar 每条含 `review_id, trajectory_id, split, final_text_sha256, source_kind=independent_judge, model, prompt_id, overall_score, subscores, rationale`。关联前先核对成功调用的原始响应与解析结果：终稿须由本轨迹成功的写作调用按 Runner 格式生成；校验快照须来自本步成功的 Verifier，未获得新结果时保留原快照和原版本。通过这层对账后，`validate_collection` 再按终稿哈希等字段连接独立标签，不改变 Workspace、工作流成本或物理 Mask。这是产物一致性检查，不是对提供方的签名认证。失败、漏评和真实零分不同。记录 workflow 代码/Prompt 和实际后端版本；版本不明不猜测，不混用不兼容数据。
-5. **拟合与留出。** 训练 bundle 为 JSON 对象 `{episodes, labels, manifest, holdout_review_ids}`。先登记训练内的留出综述 ID；同一任务的重复轨迹一起划分。`evaluate_holdout` 输出 Rule 的实际/模拟完成率、成本、可比增量及分母，另给终稿代理 MAE 和训练均值基线 MAE。无 Rule 留出或未标注时相应项为空，不是零误差。`fit_calibration` 只用拟合部分，`model.manifest()` 列各桶的样本和独立综述数。Verifier 新鲜时沿用同阶段/写作档位的残差代理（至少两个独立训练题），否则回退至有效 Verifier 均值。Verifier 不可用时，同阶段/档位下有至少两题的无分终稿标签，就先取题内均值再跨题平均；否则回退至仅用拟合集训练标签的题均值，标记 `pooled_mean_low_support`。两者都是模拟代理，不是该终稿的 Judge 真分。若训练数据允许从无分材料状态成功写稿却完全无训练标签，默认质量环境在训练开始前报出 `unscorable_writes`；可显式用 `model.make_env(reward_config=RewardConfig(quality_weight=0))` 诊断成本，或补标后再训练。
-6. **消融与冻结。** 使用 `experiments.ablate --size full --training-bundle <训练包> --threshold <预先登记值> --output <新目录>`。默认种子 `7,17,27`；容量 `512/2048/8192`，Target-Net 间隔 `50/200/800`（梯度步），共享 `2048/200` 对照，共 15 次、每次 20,000 环境步，CPU 单线程。每 500 步使用固定仿真场景贪心验证；连续三次达到门槛，才记达到时的步数，否则为 `null`。训练内决定 checkpoint，不能使用测试结果选权重。完全无观测的合法分支在当前仿真中**假设**为用量未知的截尾终止；它不是测得的失败概率，会影响策略偏好。若回退率高、代理误差大或几乎只采到规则路径，先补样/检验敏感性，不应把该策略称为已验证最优。
-7. **独立测试。** 至少 5 个封存 `review_id`。由获得真实执行授权的操作者将相同 Runner、公开测试任务和已选正式 checkpoint 传给 `experiments.frozen.execute_pairs(..., mode='formal', test_manifest=sealed_delivery)`。`sealed_delivery` 由数据负责人提前独立封存：含 `source_id`、`config_version`、`dataset_kind`、`data_purpose`、整库 `papers`（ID → 公开论文哈希）及仅含本批全部测试题的 `tasks`（ID → `{split: 'test', task_sha256: ...}`），哈希算法同第 1 步。不要用待执行的候选输入临时生成清单。入口在创建输出目录或发起调用之前核对整批任务及语料；完成索引记录交付编号和清单摘要，不向策略提供清单或测试标签。交错策略顺序、失败也保存。`execution_complete.json` 只在整批 Rule/DQN 都执行结束后生成，含文件哈希；没有这个索引的目录不是完成的批次。随后由 3 号位另行盲评；不要把带策略名的文件直接交给盲评者。当前 CLI 是 Mock 演练，不能替代正式 ≥5 题比较。
-
-## 产物和边界
-
-- `experiment.json`：配置网格、种子、Python/PyTorch 版本、数据来源、标定假设和留出报告。`comparison.json`：跨种子的回报摘要、收敛步数及各自最终验证指标。
-- 每个配置/种子目录：`train.json`（未平滑原始步级回报与损失）、`result.json`（逐次独立评估、成本和五动作负载）、`eval_steps.jsonl`（含完整状态、有效位、动作、机会 Mask 的模拟验证轨迹）、`policy.json`（权重、编码顺序、来源和训练配置，不含 Judge）。
-- `mismatch_status=awaiting_frozen_role3_classifier` 是有意保留的边界。所有判定输入均可从评估轨迹读取；3 号位冻结分类器后，对同一份轨迹复算 `mismatch_any` 和分类明细。不能用低收益历史次数替代错配次数，写作无后置 Verifier 增量。
-- 冻结推理仅需 `DQNScheduler.load(path)`，再调用 `runner.run_episode(scheduler, task, seed)`。不含探索、重放或梯度更新。训练 checkpoint 用于推理，不是恢复优化器/Replay 继续训练的断点。
+| 查什么 | 看哪里 |
+|---|---|
+| 数据来源、标定假设、留出报告、跨种子对比 | 输出根目录的 `experiment.json`、`comparison.json` |
+| 原始回报和损失、逐次验证指标、含 Mask 的轨迹 | 每个配置/种子目录的 `train.json`、`result.json`、`eval_steps.jsonl` |
+| 冻结权重及来源 | 同目录的 `policy.json`；用于推理，不含优化器或 Replay Buffer，不能用来恢复训练。 |

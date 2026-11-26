@@ -1,6 +1,6 @@
 # 一号位真实 pilot 验收（2026-11-24）
 
-输入为用户已授权发送的五篇 AgentSkill 功能测试论文、`examples/runner_task.json` 和运行中间产物；目的地为 DeepSeek 官方 API。全部运行均标记 `pilot / pilot_only / real`，没有调用 Judge，不属于正式训练、标定或独立测试。
+本记录只覆盖当时的两次 pilot。输入为五篇 AgentSkill 功能测试论文、`examples/runner_task.json` 和运行中间产物；目的地为 DeepSeek 官方 API。两次运行均标记 `pilot / pilot_only / real`，没有调用 Judge，不属于正式训练、标定或独立测试。下列 `outputs/pilot/` 路径是当次本地输出，不随仓库交付；后续正式语料探针见[训练探针交接](handoff/role1_train_probes/README.md)。
 
 ## 固定规则完整流程
 
