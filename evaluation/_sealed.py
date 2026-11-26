@@ -33,4 +33,19 @@ def sealed_episodes(directory, review_ids, delivery):
         if (ep["review_id"] != row["review_id"] or ep["trajectory_id"] != row["trajectory_id"] or
                 type(row["success"]) is not bool or ep["success"] is not row["success"]):
             raise ValueError("封存索引与轨迹身份或完成状态不符")
+        steps = ep.get("transitions")
+        if not steps:
+            raise ValueError("封存轨迹没有终态步骤")
+        last = steps[-1]
+        after = last["state_after"]
+        reason = ep["terminal_reason"]
+        if (last["done"] is not True or after["terminal"] is not True or
+                last["terminal_reason"] != reason or after["terminal_reason"] != reason):
+            raise ValueError("轨迹末步没有达到所声明的终态")
+        if ep["success"]:
+            if (reason != "final_written" or last["action_id"] not in ("write_fast", "write_deep") or
+                    last["success"] is not True):
+                raise ValueError("封存终稿必须来自成功的末步写作")
+        elif reason not in ("max_steps", "token_budget", "usage_unknown"):
+            raise ValueError("封存的失败轨迹缺少合法的终止原因")
         yield ep

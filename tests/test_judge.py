@@ -77,7 +77,12 @@ def batch_inputs():
         for name in ("rule", "dqn"):
             success = (i, name) != (0, "rule")
             tid = f"hidden-{name}-{i}"
-            raw = json.dumps(episode(t, tid, success), ensure_ascii=False).encode()
+            ep = episode(t, tid, success)
+            reason = ep['terminal_reason']
+            ep['transitions'] = [{'action_id': 'write_fast' if success else 'retrieve_more', 'success': True,
+                                  'done': True, 'terminal_reason': reason,
+                                  'state_after': {'terminal': True, 'terminal_reason': reason}}]
+            raw = json.dumps(ep, ensure_ascii=False).encode()
             path = f"{i:03}-{name}.json"
             files[path] = raw
             rows.append(dict(review_id=t["review_id"], policy=name, trajectory_id=tid, success=success,
@@ -263,6 +268,41 @@ class FormalBoundaryTests(unittest.TestCase):
                        {"test_delivery": {"source_id": "fake"}}, {"episodes": seal["episodes"] + seal["episodes"][:1]}):
             files = {"execution_complete.json": json.dumps(dict(seal, **change)).encode()}
             with self.subTest(change=list(change)), patch.object(Path, "read_bytes", lambda path: files[path.name]), self.assertRaises(ValueError):
+                prepare_sealed_test_reviews(**args)
+
+    def test_only_completed_failures_can_be_skipped_even_when_the_seal_hash_matches(self):
+        args, files, seal = batch_inputs()
+        row = seal['episodes'].pop(0)  # 将合法失败轨迹放在已准备好的九份终稿之后。
+        seal['episodes'].append(row)
+        ep = json.loads(files[row['trace']])
+        for reason, done in [('usage_unknown', True), ('token_budget', True), ('max_steps', True),
+                             (None, False), ('in_progress', True), ('max_steps', False)]:
+            ep['terminal_reason'] = reason
+            step = ep['transitions'][-1]
+            step.update(done=done, terminal_reason=reason)
+            step['state_after'].update(terminal=done, terminal_reason=reason)
+            files[row['trace']] = json.dumps(ep).encode()
+            row['sha256'] = sha(files[row['trace']])
+            files['execution_complete.json'] = json.dumps(seal).encode()
+            with self.subTest(reason=reason, done=done), patch.object(Path, 'read_bytes', lambda path: files[path.name]):
+                if done and reason in ('usage_unknown', 'token_budget', 'max_steps'):
+                    self.assertEqual(len(prepare_sealed_test_reviews(**args)), 9)
+                else:
+                    with self.assertRaises(ValueError):
+                        prepare_sealed_test_reviews(**args)
+
+    def test_sealed_final_requires_a_completed_successful_write(self):
+        args, files, seal = batch_inputs()
+        row = seal['episodes'][-1]
+        ep = json.loads(files[row['trace']])
+        last = ep['transitions'][-1]
+        for transitions in ([], [dict(last, success=False)], [dict(last, action_id='retrieve_more')],
+                            [dict(last, state_after={'terminal': False, 'terminal_reason': None})]):
+            ep['transitions'] = transitions
+            files[row['trace']] = json.dumps(ep).encode()
+            row['sha256'] = sha(files[row['trace']])
+            files['execution_complete.json'] = json.dumps(seal).encode()
+            with self.subTest(transitions=transitions), patch.object(Path, 'read_bytes', lambda path: files[path.name]), self.assertRaises(ValueError):
                 prepare_sealed_test_reviews(**args)
 
     def test_last_trace_tampering_and_swapped_identity_invalidate_whole_batch(self):
