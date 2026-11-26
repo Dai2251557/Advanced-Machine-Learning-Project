@@ -42,6 +42,22 @@ Runner 保留五动作和 State 字段，新增独立的结果元数据 `retriev
 
 此次属于检索内部实现更新，公共动作/Schema 未变，因此不修改数据冻结清单中的 config_version=1。但检索改变了真实状态和成本分布：旧 pilot/旧检索轨迹不能与新检索混合标定而不做区分。正式采样前固定本次代码提交与 retrieval.spec；已有仿真模型/权重如依赖旧检索需重新核验或重采样。二号当前只验收过离线基础，不能将本次指标当成其正式训练完成。
 
+### 正式权重的检索兼容性
+
+正式标定和训练先核对**整批轨迹（含留出题）**的 `retrieval.spec` 与冻结代码的 `BilingualRetriever.spec()`；方法、参数和词表摘要必须全部一致。指纹为完整 spec 的 `experiments.collect.json_sha256`，不是词表摘要或 `config_version`。已交接的 R005、R001 可直接使用；缺 spec 或规范不同的轨迹不补写当前值，不纳入本轮正式训练。若更改分词、停用词、并列排序等未单列的行为，也须更新 `method` 版本。这个检查针对已声明的规范，不是对历史运行的签名认证。
+
+新训练将 `retrieval_spec_sha256` 从 `experiment.json.fit` 传入 `policy.json.metadata`；正式 `execute_pairs` 在建目录、运行策略或调用后端前与**实际 Runner** 的检索规范核对，完成索引也记录指纹。Mock / fixture 不要求此证明。
+
+旧正式权重缺指纹时默认拒绝。如果仍保留**原始**策略、`experiment.json` 及完整训练 bundle，可在训练环境显式调用：
+
+```python
+from experiments.ablate import bind_legacy_checkpoint
+
+bind_legacy_checkpoint("old/policy.json", "old/experiment.json", "original-bundle.json", "bound-policy.json")
+```
+
+该函数核对旧策略的 `experiment_sha256` 与实验的 `inputs_sha256` 两段绑定，按当前正式来源、标签和检索规范重新验证原包，不训练，不重采。只创建新文件：只增补检索指纹和原策略字节 SHA-256，不改网络、编码器或原文件。若文件缺失、哈希不符或验证失败，不能从名称或当前 Runner 推定兼容；应使用合规训练数据重新生成权重。
+
 ## 真实训练探针：已完成
 
 入口：`python -m experiments.retrieval_probe --live --output outputs/train-probes-bilingual-v1`。

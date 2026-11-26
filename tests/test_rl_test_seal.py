@@ -33,7 +33,8 @@ class TestDeliveryTests(unittest.TestCase):
             'layers': [{'weight': [[0.] * len(spec['features'])], 'bias': [0.]}, {'weight': [[0.]], 'bias': [0.]},
                        {'weight': [[0.]] * len(ACTIONS), 'bias': [0., 0., 0., 1., 0.]}],
             'metadata': {'data_source': 'formal_train_runner', 'runner_config': asdict(self.runner.config),
-                         'development_review_ids': ['train-0']}}))
+                         'development_review_ids': ['train-0'],
+                         'retrieval_spec_sha256': json_sha256(self.runner.retriever.spec())}}))
 
     def run_pairs(self, tasks, seal):
         return execute_pairs(self.runner, tasks, self.checkpoint, self.root / 'results',
@@ -59,11 +60,28 @@ class TestDeliveryTests(unittest.TestCase):
                 self.assertFalse((self.root / 'results').exists())
             backend.assert_not_called()
 
+    def test_checkpoint_must_match_the_actual_runner_retriever_before_execution(self):
+        original = self.checkpoint.read_text()
+        policy = json.loads(original)
+        del policy['metadata']['retrieval_spec_sha256']
+        self.checkpoint.write_text(json.dumps(policy))
+        with patch.object(self.runner, 'run_episode') as run:
+            with self.assertRaisesRegex(ValueError, 'retrieval fingerprint'):
+                self.run_pairs(self.tasks, self.seal)
+            self.checkpoint.write_text(original)
+            changed = {**self.runner.retriever.spec(), 'k1': 1.4}
+            with patch.object(self.runner.retriever, 'spec', return_value=changed), \
+                    self.assertRaisesRegex(ValueError, 'retrieval fingerprint'):
+                self.run_pairs(self.tasks, self.seal)
+            run.assert_not_called()
+        self.assertFalse((self.root / 'results').exists())
+
     def test_complete_seal_is_order_independent_and_saved(self):
         # 测试采用真实接口形状，传输边界完全替换，不发送数据。
         with patch.object(DeepSeekBackend, 'complete', side_effect=MockBackend().complete):
             result = self.run_pairs(reversed(self.tasks), self.seal)
         self.assertEqual(len(result['episodes']), 12)
         persisted = json.loads((self.root / 'results/execution_complete.json').read_text())
+        self.assertEqual(persisted['retrieval_spec_sha256'], json_sha256(self.runner.retriever.spec()))
         self.assertEqual(persisted['test_delivery'], {'source_id': self.seal['source_id'],
                                                     'manifest_sha256': json_sha256(self.seal)})
