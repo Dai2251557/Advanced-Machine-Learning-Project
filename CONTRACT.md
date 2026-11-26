@@ -1,6 +1,6 @@
 # CONTRACT.md — DQN 多智能体文献综述系统精简开发契约
 
-> **适用范围**：仅 1、2、3 号位；目标周期一周。**Day 1 冻结核心接口**，其他内部实现充分自主。
+> **适用范围**：仅 1、2、3 号位；目标周期一周。**Day 1 冻结核心接口**，其他内部实现充分自主。下文是设计约定与验收标准；当前哪些环节已有代码、哪些已有实验结果，见[集成交接](INTEGRATION_HANDOFF.md)。
 >
 > **统一版本**：使用单一 `config_version`（初始 `1`）标记本轮公共动作、State Schema、执行器/Verifier 配置、评分规则和实验设置。若跨模块语义发生不兼容改变，更新该版本并标明需要重采样或重训练的结果；不另设六套独立版本或正式审批链。
 
@@ -20,7 +20,7 @@
 
 - **动作语义与索引 Day 1 冻结**。Fast/Deep 是同一模型的不同执行配置，不强制对应五个独立 Agent 实例。
 - 四类角色能力必须覆盖：检索、总结、**Verifier 校验**、撰写。Verifier 为统一 Runner 的**自动工作流组件**，不属于五动作之一。
-- 所有工作流 LLM 统一走 **DeepSeek 官方 API**，当前 `deepseek-flash` 对应 **DeepSeek-V4.1-Flash-1017**；请求及响应需记录实际模型标识、`reasoning_effort`、时间和 Token。其他 Prompt、检索器、上下文、重试实现由 1 号位自主决定。
+- 所有工作流 LLM 统一走 **DeepSeek 官方 API**，请求 `deepseek-flash`；记录请求与响应的模型标识、`reasoning_effort`、时间和 Token。响应未标明的底层版本不作推断。其他 Prompt、检索器、上下文、重试实现由 1 号位自主决定。
 - **Judge 不是工作流 Agent**。3 号位自主选择强模型评终稿；训练集真实终稿评分可作 DQN Terminal Reward；**测试时不参与推理和工作流，待 Rule/DQN 测试轨迹全部结束后才离线评分**。Judge 结果不进入 Workspace/State，其 Token 不计入工作流成本。官方文档：<https://api-docs.deepseek.com/quick_start/pricing/>、<https://api-docs.deepseek.com/guides/thinking_mode/>。
 
 ### 1.2 统一闭环与 Verifier

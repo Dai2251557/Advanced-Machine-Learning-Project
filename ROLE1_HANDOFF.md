@@ -1,14 +1,12 @@
 # 一号位交接：基础 Agent 与统一 Runner
 
-**检索更新**：当前集成分支已改用公开题面的中英术语扩展与 BM25 排序，结果新增 `retrieval` 审计元数据；公共五动作及状态不变。下文早期词项检索说明以 [RETRIEVAL_REVIEW.md](RETRIEVAL_REVIEW.md) 为准。真实训练探针尚待具体外发授权。
+共享 Runner、固定规则和二号的冻结 DQN 推理接口已接入主分支。检索与策略无关；在三号冻结语料上已保存 R005、R001 两条[真实训练侧 Rule 探针](handoff/role1_train_probes/README.md)，均未调用 Judge。它们不是正式标定结果，也不是独立测试的 Rule/DQN 对比。集成进度见[集成交接](INTEGRATION_HANDOFF.md)。
 
-契约核查结果、已修复问题和剩余验收条件见 [ROLE1_AUDIT.md](ROLE1_AUDIT.md)。共享执行器仅接受 DeepSeekBackend 或显式 MockBackend，避免把离线替身标成真实实验。
+以下示例使用 `data/samples/agent_skill/` 的五篇 pilot 论文。Runner 拒绝将 `purpose=pilot_only` 的语料用于 `train/validation/test`，日志保留 `data_purpose`。正式语料和任务入口见[数据目录](data/README.md)。
 
-**数据状态：三号冻结数据已接入本地集成分支，入口见 INTEGRATION_HANDOFF.md。** 五篇 AgentSkill 论文已归入 `data/samples/agent_skill/`，仅供功能测试。样例任务须使用 `split=pilot`；Runner 拒绝将 `purpose=pilot_only` 的语料用于 `train/validation/test`，日志保留 `data_purpose`。正式数据预留位置与旧产物分类见 `data/README.md`。
+适用契约：`CONTRACT.md`，`config_version=1`。两种策略都接 `core.runner.Runner`，不使用旧的 `python -m litreview` 固定流水线采样。
 
-适用契约：`CONTRACT.md`，`config_version=1`。旧 `python -m litreview` 仍保留；二号应接入下面的 `core.Runner` 模块接口，不使用旧固定流水线采样。
-
-## 二号立即接入
+## 共享 Runner 接口
 
 无需安装第三方依赖，Python 3.10+。在仓库根目录运行：
 
@@ -59,13 +57,13 @@ class MyScheduler:
         return ACTIONS[next(i for i, valid in enumerate(action_mask) if valid)]
 ```
 
-上面的 MyScheduler 只演示接口，不是可用的 DQN 策略。可用固定策略见 `core/rule_scheduler.py` 的 `RuleScheduler`。二号负责 StateEncoder 的拼接顺序与归一化；本交付不擅自定义另一套编码器或奖励。
+`MyScheduler` 只演示接口。实际策略为 `core/rule_scheduler.py` 的 `RuleScheduler` 和 `rl/scheduler.py` 的 `DQNScheduler`。
 
 ## 公共数据与行为
 
 - 公共类型集中在 `core/schema.py`。任务和配置为 dataclass；`observe/step/result/run_episode` 返回可直接 JSON 序列化的 dict，调用者修改返回对象不会污染 Runner。
 - 动作索引固定为：`retrieve_more / summarize_fast / summarize_deep / write_fast / write_deep`。非法动作抛 `ValueError` 且不消耗步骤；`action_unavailable_reasons()` 返回原因。
-- 五动作执行均由 Runner 管理。检索为本地词项匹配，每次补充默认 3 篇未取过的论文，同分按编号排序；语料耗尽后屏蔽检索。大规模语料检索效果尚未评测。
+- 五动作执行均由 Runner 管理。检索器根据公开题面扩展中英术语，按 BM25 排序，默认每次取最多 3 篇未选论文，同分按编号排序；语料耗尽后屏蔽检索。`EpisodeResult.retrieval` 保存检索规范及逐次选文记录。600 篇语料上 30 道公开训练题的[检索诊断](RETRIEVAL_REVIEW.md)不是独立测试或终稿质量评价。
 - 有论文即可执行总结或终稿，即使没有总结也允许基于原摘要撰写。质量分低不会屏蔽动作。补充论文会清空旧总结，避免把旧覆盖范围误认为当前总结。
 - 成功检索、总结后自动运行同一 Verifier。检索后无总结时仅 coverage 有效；总结后四维有效。材料变更后若校验失败，旧分数版本落后，`verifier_value` 返回 `None`。
 - `V` 暂用有效维度等权平均；只有前后有效维度集合完全相同、且各自评分版本有效时才计算 ΔV。首次有效评分、维度变化、失败或写作步骤的 ΔV 均为 `None`。
@@ -91,9 +89,9 @@ class MyScheduler:
 
 固定规则：无材料先检索；有材料无总结先 fast 总结；评分有效且综合分达到 0.75 时 fast 写作；覆盖不足且还有论文时补检索，否则 deep 修订；最多调用 3 次总结；剩最后一步时优先写作。参数保存在配置中。正式测试前需完成训练集标定并冻结，不能看测试结果再调。
 
-三号可直接读取 `EpisodeResult.final_text/source_papers/review_id/split` 离线评测。`examples/runner_task.json` 与当前五篇语料仅为 pilot 联调，不冒充三号已交付的独立训练/测试集。
+`EpisodeResult` 含终稿与已选论文，但不是正式 Judge 的完整输入。训练侧先由 `experiments.collect` 保存并校验绑定冻结清单的完整轨迹；测试侧须先完成并封存整批 Rule/DQN 配对。只有真实成功的终稿才进入[三号的离线评分接口](ROLE3_HANDOFF.md)。
 
-Verifier 四维 Prompt 已位于 `agents/executor.py`，等权综合分位于 `core/schema.py`。三方仍需在正式标定前确认具体评分尺度、阈值和 StateEncoder 编码；本次实现不代表完成了标定。
+Verifier 四维 Prompt 位于 `agents/executor.py`，等权综合分位于 `core/schema.py`；评分尺度与阈值的待确认项见[评分草案](SCORING_PROTOCOL.md)。共享的 45 维 `StateEncoder` 已在 `rl/state_encoder.py` 定义，与阈值是否完成标定是两件事。
 
 ## 验收命令
 
@@ -109,10 +107,4 @@ git diff --check
 python -m core --backend deepseek --corpus data/samples/agent_skill/agent_skill_papers.json --task examples/runner_task.json --output outputs/pilot/role1-delivery
 ```
 
-一号位交付时的验证范围：67 项自动测试、Mock 联调、获授权后的真实五动作与两次端到端 pilot 均通过；详见 [ROLE1_ACCEPTANCE.md](ROLE1_ACCEPTANCE.md)。当时尚未完成正式数据标定、三方评分冻结或 DQN 接入。
-
-**后续进展：**二号位已将冻结的 DQN 策略接入同一 Runner，并完成 Mock 端到端联调。正式数据上的 Rule/DQN 对比尚未开展，复现步骤见 [ROLE2_HANDOFF.md](ROLE2_HANDOFF.md)。
-
-2026-11-26 已在三号正式训练语料上完成 R005、R001 两条真实 Rule 探针；完整 `collect_episode` 结果与观察见 [训练探针交接](handoff/role1_train_probes/README.md)。尚未执行 DQN 真实轨迹、独立测试或终稿 Judge 评分。
-
-评分口径及预算边界的待确认草案见 [SCORING_PROTOCOL.md](SCORING_PROTOCOL.md)。
+[一号审计](ROLE1_AUDIT.md)和 [pilot 验收记录](ROLE1_ACCEPTANCE.md)保留交付当时的验证范围：67 项自动测试、Mock 联调，以及两次覆盖全部五动作的真实 pilot；这些不是正式实验。二号在共享 Runner 上的 Mock 联调、标定训练入口及冻结推理步骤见[二号交接](ROLE2_HANDOFF.md)。

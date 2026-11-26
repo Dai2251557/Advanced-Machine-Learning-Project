@@ -1,18 +1,16 @@
 # 多 Agent 文献综述与 DQN 调度实验
 
-本地集成已接入三号 data-fix 分支的数据包（600 篇语料、30 个训练任务、10 个封存公开测试任务）。使用 utils.data_release.load_corpus() 与 load_manifest()，不要用旧语料加载器直接读取原始列表。数据及 Judge 协议见 [三号交接说明](ROLE3_HANDOFF.md)。
-
 本项目在同一套 Agent、语料和预算下，比较固定规则（Rule）与 DQN 调度的综述质量、工作流 Token 消耗、任务错配和动作负载。两种策略共用五动作 Runner，只替换 `select_action`。
 
-**当前进度：共享 Runner 已完成真实 pilot，并在正式训练语料上完成两条 Rule 探针；DQN 已能离线训练、导出并接回同一 Runner。尚未用正式数据完成标定或独立测试，不能据此判断哪种策略更好。** 探针交接见 [一号位训练探针](handoff/role1_train_probes/README.md)。
+**当前进度：`main` 已接入冻结数据和 Judge 协议，并收录两条真实训练侧 Rule 轨迹。DQN 已能离线训练和冻结推理；仓库尚无正式标定结果、正式 DQN 权重或独立测试对比。** 三方接口及离线核验入口见[集成交接](INTEGRATION_HANDOFF.md)。
 
 ## 项目状态与交接
 
 | 负责人 | 已有交付 | 下一步与入口 |
 |---|---|---|
-| 1 号位：执行层与 Rule | 五动作 Runner、Workspace、四维 Verifier、固定规则；两次真实 pilot 合计覆盖五动作 | [Runner 接入和单步示例](ROLE1_HANDOFF.md) · [真实 pilot 验收范围](ROLE1_ACCEPTANCE.md)。正式采样前共同确认 [Verifier 评分口径](SCORING_PROTOCOL.md)。 |
-| 2 号位：DQN 与实验 | 状态编码、Masked Double-DQN、轨迹采集与对账、标定仿真、两项单因素消融、冻结推理均已通过离线演练 | [训练与交接手册](ROLE2_HANDOFF.md)。收到正式任务和 Judge 样例后，先复核 **T4 采集 → T5 标定**的数据和标签，再用 1–2 个训练任务估算费用、检查动作覆盖。 |
-| 3 号位：数据与评价 | 仓库里的 AgentSkill 论文和任务仅供 pilot；[正式数据目录](data/formal/README.md) 目前只有交付说明 | 待交付正式语料、10 个训练任务、冻结的 Judge 接口及评分样例、统一错配分类器；另行封存至少 5 个独立测试任务。 |
+| 1 号位：执行层与 Rule | 两次真实 pilot 合计覆盖五动作；正式训练题 R001、R005 的 [Rule 探针](handoff/role1_train_probes/README.md) 均成功写稿，但都只走快速路径 | [Runner 接口](ROLE1_HANDOFF.md) · [pilot 验收](ROLE1_ACCEPTANCE.md)。扩采前确认 [Verifier 评分口径](SCORING_PROTOCOL.md)和调用预算。 |
+| 2 号位：DQN 与实验 | 45 维状态编码、Masked Double-DQN、轨迹校验、标定仿真、消融和冻结推理工具已接通 | 按[二号交接](ROLE2_HANDOFF.md)核验两条探针；补齐训练终稿的独立标签和深档动作样本，按题留出后再标定。 |
+| 3 号位：数据与评价 | 600 篇 arXiv 摘要、30 道训练题、10 道独立测试题的公开题面及分区清单；已冻结离线 Judge 协议 | [数据与 Judge 入口](ROLE3_HANDOFF.md)。训练终稿标签需绑定具体轨迹；测试盲评须等成对执行封存。统一错配分类仍待交付。 |
 
 跨岗字段、动作顺序和评测边界以 [CONTRACT.md](CONTRACT.md) 为准。正式测试时先在相同任务上跑完 Rule 与冻结 DQN，封存两者的全部轨迹，再由 3 号位对成功终稿离线盲评。Judge 不参与调度，其 Token 不计入工作流成本。
 
@@ -113,7 +111,7 @@ token 统计直接采用接口返回值，不使用字符数冒充 token 数；�
 程序检查字段、重复编号和引用范围，但不会联网核实论文真实性。真实数据应保留来源与采集记录，切勿将演示数据标记为真实论文。
 当前检索会把整个给定集合发送给模型，适合先用少量论文验证流程；大规模语料的索引、分批处理和上下文预算属于后续工作。
 
-现有五篇 AgentSkill 真实论文和五个任务仅供功能测试，不是正式实验数据；三号冻结数据已在本地集成分支接入，使用 utils.data_release 加载。分类与运行方法见 [data/README.md](data/README.md)。可直接运行：
+以下示例使用五篇 AgentSkill 论文和五个 pilot 任务，不是正式实验数据。正式数据请用 `utils.data_release.load_corpus()` 与 `load_manifest('train')` 加载，勿把原始论文列表直接传给旧流水线。数据分类见 [data/README.md](data/README.md)。
 
 ```powershell
 python -m litreview --backend deepseek --corpus data/samples/agent_skill/agent_skill_papers.json --task-file data/samples/agent_skill/review_tasks.json --task-id review-001 --output outputs/pilot/agent-skill-001

@@ -1,6 +1,6 @@
 # 固定 arXiv 摘要库上的综述调度实验：数据与终稿评测
 
-本分支交付 **600 篇历史 arXiv 摘要、30 道训练题、10 道独立测试题**，用于比较 Rule 与 DQN 在相同材料和预算下如何调度；不用于衡量开放网络检索或最新研究进展。语料保留原有带版本的 arXiv ID，发表年份为 2018（132 篇）、2019（33 篇）、2020（435 篇）；`data/corpus_chunk/` 的六个文件是主语料的顺序分片，不是额外 600 篇。题面以中文表述，证据边界是库内摘要，不把摘要未给出的数值、因果关系或跨论文胜负作为必答事实。
+主分支已收录冻结数据包 `arxiv600-review40-v1`：**600 篇历史 arXiv 摘要、30 道训练题、10 道独立测试题**，用于比较 Rule 与 DQN 在相同材料和预算下如何调度；不用于衡量开放网络检索或最新研究进展。语料保留原有带版本的 arXiv ID，发表年份为 2018（132 篇）、2019（33 篇）、2020（435 篇）；`data/corpus_chunk/` 的六个文件是主语料的顺序分片，不是额外 600 篇。题面以中文表述，证据边界是库内摘要，不把摘要未给出的数值、因果关系或跨论文胜负作为必答事实。
 
 ## 哪些文件交给谁
 
@@ -17,7 +17,7 @@
 
 ## 离线核验
 
-从本分支根目录运行，不需要模型密钥，不调用网络：
+从仓库根目录运行，不需要模型密钥，不调用网络：
 
 ```bash
 python3 -B -m utils.data_release
@@ -32,7 +32,9 @@ python3 -B -m utils.data_release --with-private
 
 - **覆盖度是答没答全，不是引没引齐。** `coverage` 看对题面公开要求的回应；`factuality` 看事实主张是否有摘要证据、是否夸大；`citation_support` 看引用是否真的支撑对应论断；`consistency` 看全文是否自洽。题目之外的隐藏结论和预选名单召回率都不计分。证据不足时，承认不可比较优于编造结论。
 - 训练与测试共用同一冻结 Rubric。只给真实成功终稿评分，按 `review_id + trajectory_id + final_text_sha256` 追溯，不按 `review_id` 覆盖同题不同终稿；失败留空。示例与真实标签分开。旧 `R001_judge.json` 已原样归档在 `outputs/examples/legacy/`，它不是交通题正式标签，不能作奖励。
-- 训练时真实终稿分可作为终局标签。测试时 Rule 与冻结的 DQN 必须先完成整批并保存，再离线盲评；Judge 分数、测试参考和 Judge Token 都不进入工作流。离线检查证明字段、绑定及证据读取符合约定，不能证明模型实评的一致性。本次没有运行真实模型或产生正式标签。
+- 训练时真实终稿分可作为终局标签。测试时 Rule 与冻结的 DQN 必须先完成整批并保存，再离线盲评；Judge 分数、测试参考和 Judge Token 都不进入工作流。已交付的 [R005、R001 训练探针](handoff/role1_train_probes/README.md)有真实工作流调用，但都没有独立 Judge 标签。仓库中的离线检查验证的是字段、绑定及证据读取，不是 Judge 实评的一致性。
+
+错配分类与终稿评分分别验收：`experiments.ablate.metrics` 已统计五动作调用次数、合法机会选择率和 Token 占比，但 `mismatch_status` 仍是 `awaiting_frozen_role3_classifier`。这表示尚无冻结的错配分类结果，不表示零错配。
 
 **调用迁移**：旧的 `judge_final_review(..., api_key=...)` 不再是正式入口。新版不加载密钥，没有自动网络传输。对已通过 `experiments.collect.validate_episode` 的真实训练轨迹，使用 `evaluation.judge.prepare_train_review(episode=..., frozen_papers=load_corpus()['papers'], manifest=load_manifest('train'))`。对正式测试，使用 `prepare_sealed_test_reviews(execution_dir=..., public_tasks=..., frozen_papers=..., manifest=load_manifest('test'))`；它检查 `execution_complete.json`、整批 Rule/DQN 配对和轨迹字节哈希，不接受边跑边评。无成功终稿则无待评材料。
 

@@ -1,7 +1,7 @@
 # AgentSkill 功能测试样例（pilot only）
 
-这批材料来自用户提供的五个 arXiv PDF 链接，面向 Agent 技能优化、联邦技能演化及语义知识共享。
-仅用于接口联调、回归测试和流程演示，不用于正式 DQN 训练、成本标定或独立测试评测。论文真实不等于正式实验数据；三号位正式数据尚未交付。
+这批材料包含五篇来自 arXiv 的论文，面向 Agent 技能优化、联邦技能演化及语义知识共享。
+仅用于接口联调、回归测试和流程演示，不用于正式 DQN 训练、成本标定或独立测试评测。三号冻结的正式语料和任务另见[数据目录](../../README.md)。
 
 ## 文件
 
@@ -25,15 +25,15 @@
 
 ## 运行一个任务
 
-在项目根目录执行（输出目录须未存在）：
+以下演示使用旧版固定流水线的离线 `demo` 后端，不是共享 Runner 的 Rule/DQN 实验。在项目根目录执行，输出目录必须未存在：
 
 ```powershell
-python -m litreview --backend deepseek --corpus data/samples/agent_skill/agent_skill_papers.json --task-file data/samples/agent_skill/review_tasks.json --task-id review-001 --output outputs/pilot/agent-skill-001
+python -m litreview --backend demo --corpus data/samples/agent_skill/agent_skill_papers.json --task-file data/samples/agent_skill/review_tasks.json --task-id review-001 --output outputs/pilot/agent-skill-001
 ```
 
-可将任务编号替换为 `review-002` 至 `review-005`，并相应更换输出目录。
-`top_k` 默认使用任务内的设置，仍可通过命令行显式覆盖。只有任务的 `query` 会交给 Agent，人工检查要点与预期论文编号不作为提示词提供。
-默认流程正常完成需要四次付费 API 调用；摘要校验失败时最多修正一次，并保留失败尝试和全部用量。先检查一个任务的结果，再决定是否执行剩余任务。
+可将任务编号替换为 `review-002` 至 `review-005`，并相应更换输出目录。`top_k` 默认使用任务内的设置，仍可通过命令行显式覆盖。人工检查要点与预期论文编号不作为提示词提供。
+
+`--backend deepseek` 的检索步骤会把题面、`top_k` 和五篇候选论文记录全部发送到官方 API；后续步骤还会发送选文及中间产物。须另行确认外发范围和费用。正常流程需四次付费调用，摘要校验失败时最多再修正一次。共享 Runner 的 Mock 示例见[一号交接](../../../ROLE1_HANDOFF.md)。
 
 ## 人工检查
 
