@@ -12,10 +12,11 @@ from collections import defaultdict
 from dataclasses import asdict, dataclass
 from statistics import fmean, median
 
+from agents.retrieval import BilingualRetriever
 from core.rule_scheduler import RuleScheduler
 from core.runner import total
 from core.schema import ACTIONS, SCORE_KEYS, RunnerConfig, verifier_value
-from experiments.collect import validate_collection
+from experiments.collect import json_sha256, validate_collection
 from rl.synthetic_env import Outcome, SyntheticEnv
 
 
@@ -164,8 +165,9 @@ class _Quality:
 class Calibration:
     """Fitted outcome callable. Instantiate via fit_calibration (T4 provenance gate)."""
 
-    def __init__(self, episodes, labels, mode, corpus_size):
+    def __init__(self, episodes, labels, mode, corpus_size, retrieval_spec_sha256):
         self.mode = mode
+        self.retrieval_spec_sha256 = retrieval_spec_sha256
         self.source = "synthetic_fixture" if mode == "fixture" else "formal_train_runner"
         self.config = RunnerConfig(**episodes[0]["config"])
         self.corpus_size = corpus_size
@@ -266,6 +268,7 @@ class Calibration:
                            "reviews": len({r.review_id for r in rows})})
             action_counts[action] += len(rows)
         return {"source_kind": "empirical_simulation", "calibration_source": self.source,
+                **({"retrieval_spec_sha256": self.retrieval_spec_sha256} if self.mode == "formal" else {}),
                 "config": asdict(self.config), "corpus_size": self.corpus_size,
                 "training_review_ids": self.reviews.copy(), "review_count": len(self.reviews),
                 "episodes": self.episodes, "joint_bins": joints, "joint_bin_count": len(joints),
@@ -308,14 +311,29 @@ def _physical_settings(episodes, manifest, corpus_size):
     return size
 
 
+def validate_calibration_inputs(episodes, labels, *, mode, manifest, corpus_size=None):
+    """Check the full batch (including any holdout) without fitting or simulating."""
+    episodes = list(episodes)
+    joined = validate_collection(episodes, labels, mode=mode, manifest=manifest)
+    size = _physical_settings(episodes, manifest, corpus_size)
+    fingerprint = None
+    if mode == 'formal':
+        fingerprint = json_sha256(BilingualRetriever.spec())
+        for ep in episodes:
+            retrieval = ep.get('retrieval')
+            if not isinstance(retrieval, dict) or json_sha256(retrieval.get('spec')) != fingerprint:
+                raise ValueError(f"{ep['trajectory_id']}: missing or incompatible frozen retrieval.spec")
+    return joined, size, fingerprint
+
+
 def fit_calibration(episodes, labels=(), *, mode="formal", manifest=None, corpus_size=None):
     """Fit only T4-validated training trajectories; mode='fixture' is opt-in."""
     episodes = list(episodes)
     if not episodes:
         raise ValueError("No training episodes")
-    joined = validate_collection(episodes, labels, mode=mode, manifest=manifest)
-    size = _physical_settings(episodes, manifest, corpus_size)
-    return Calibration(episodes, joined, mode, size)
+    joined, size, fingerprint = validate_calibration_inputs(episodes, labels, mode=mode, manifest=manifest,
+                                                            corpus_size=corpus_size)
+    return Calibration(episodes, joined, mode, size, fingerprint)
 
 
 class CalibratedEnv(SyntheticEnv):
@@ -354,16 +372,15 @@ def evaluate_holdout(episodes, labels=(), *, holdout_review_ids, mode='formal', 
     """按综述整组留出。只对同一 Rule 统计动力学；所有留出的成功标签可验证终稿代理。"""
     from rl.reward import RewardConfig
     episodes, labels = list(episodes), list(labels)
-    joined = validate_collection(episodes, labels, mode=mode, manifest=manifest)
-    _physical_settings(episodes, manifest, None)
+    joined, size, fingerprint = validate_calibration_inputs(episodes, labels, mode=mode, manifest=manifest)
     ids = {e['review_id'] for e in episodes}
     holdout = set(holdout_review_ids)
     if not holdout or not holdout < ids or type(repeats) is not int or repeats < 1:
         raise ValueError('Need a nonempty proper review holdout and positive repeat count')
     train = [e for e in episodes if e['review_id'] not in holdout]
     held = [e for e in episodes if e['review_id'] in holdout]
-    model = fit_calibration(train, [joined[e['trajectory_id']] for e in train if e['trajectory_id'] in joined],
-                            mode=mode, manifest=manifest)
+    train_labels = {e['trajectory_id']: joined[e['trajectory_id']] for e in train if e['trajectory_id'] in joined}
+    model = Calibration(train, train_labels, mode, size, fingerprint)
     if any(e['config'] != asdict(model.config) for e in held):
         raise ValueError('Validation Runner config differs from fitted dynamics')
     env = model.make_env(reward_config=RewardConfig(quality_weight=0))

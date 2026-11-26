@@ -1,10 +1,13 @@
 import copy
+import json
 import unittest
 from unittest.mock import patch
 
 from agents.executor import MockBackend
 from core.runner import Runner
 from core.schema import ACTIONS, ReviewTask, RunnerConfig
+from evaluation.judge import (JUDGE_MODEL, PROMPT_ID, build_judge_request, finalize_judge_result,
+                              prepare_train_review)
 from experiments.collect import (PLANS, collect_episode, dry_run, json_sha256, paper_index,
                                  support_report, validate_collection)
 from litreview.clients import DeepSeekBackend
@@ -20,6 +23,18 @@ class Metered(MockBackend):
 def fixture_label(ep, score=.7):
     return {**{k:ep[k] for k in ('review_id','trajectory_id','split','final_text_sha256')},
             'source_kind':'synthetic_fixture', 'model':'fixture', 'prompt_id':'fixture', 'overall_score':score}
+
+
+def formal_inputs():
+    task = ReviewTask('R', 'topic', split='train')
+    papers = [{'id': 'A', 'title': 'Topic', 'abstract': 'A hypothetical paper.'}]
+    corpus = {'papers': papers, 'purpose': 'formal_experiment', 'dataset_kind': 'arxiv_abstracts'}
+    runner = Runner(corpus, DeepSeekBackend(api_key='fixture', model='deepseek-flash'))
+    manifest = {'config_version': 1, 'source_id': 'fixture-manifest', 'dataset_kind': 'arxiv_abstracts',
+                'data_purpose': 'formal_experiment', 'papers': paper_index(papers),
+                'tasks': {'R': {'split': 'train', 'task_sha256': json_sha256(task.to_dict())}},
+                'judge': {'model': JUDGE_MODEL, 'prompt_id': PROMPT_ID}}
+    return runner, corpus, task, manifest
 
 
 class CollectionTests(unittest.TestCase):
@@ -81,14 +96,7 @@ class CollectionTests(unittest.TestCase):
             with self.assertRaises(ValueError): validate_collection([broken],mode='fixture')
 
     def test_formal_sources_checked_before_runner_reset(self):
-        task = ReviewTask('R','topic',split='train')
-        papers = [{'id':'A','title':'Topic','abstract':'A hypothetical paper.'}]
-        corpus = {'papers':papers,'purpose':'formal_experiment','dataset_kind':'arxiv_abstracts'}
-        runner = Runner(corpus, DeepSeekBackend(api_key='fixture', model='deepseek-flash'))
-        manifest = {'config_version':1,'source_id':'fixture-manifest','dataset_kind':'arxiv_abstracts',
-                    'data_purpose':'formal_experiment','papers':paper_index(papers),
-                    'tasks':{'R':{'split':'train','task_sha256':json_sha256(task.to_dict())}},
-                    'judge':{'model':'fixture','prompt_id':'v1'}}
+        runner, corpus, task, manifest = formal_inputs()
         with patch.object(DeepSeekBackend,'complete',side_effect=AssertionError('no network')) as api:
             for bad_task in (ReviewTask('R','topic',split='test'),ReviewTask('R','different topic',split='train')):
                 with self.assertRaises(ValueError): collect_episode(runner,bad_task,manifest=manifest)
@@ -98,10 +106,30 @@ class CollectionTests(unittest.TestCase):
             with self.assertRaises(ValueError): collect_episode(pilot,task,manifest=manifest)
             api.assert_not_called()
             self.assertIsNone(runner.task)
-        # 验证正式分支的连线：替换传输边界，产物只在本测试内存在。
-        with patch.object(DeepSeekBackend,'complete',side_effect=Metered().complete):
-            ep = collect_episode(runner,task,manifest=manifest)
-        label = {**fixture_label(ep), 'source_kind':'independent_judge','prompt_id':'v1',
-                 'subscores':{'support':.7}, 'rationale':'unit test only'}
-        validate_collection([ep], [label], manifest=manifest)
-        with self.assertRaises(ValueError): validate_collection([ep],[{**label,'prompt_id':'v2'}],manifest=manifest)
+
+    def test_formal_join_accepts_v3_result_and_rejects_malformed_archives(self):
+        # 传输替身与伪回执只测试归档协议；不访问网络，不产生正式评分。
+        runner, corpus, task, manifest = formal_inputs()
+        with patch.object(DeepSeekBackend, 'complete', side_effect=Metered().complete):
+            ep = collect_episode(runner, task, manifest=manifest)
+        prepared = prepare_train_review(episode=ep, frozen_papers=corpus['papers'], manifest=manifest)
+        subscores = {'coverage': .62, 'factuality': .62, 'citation_support': .63, 'consistency': .63}
+        scores = {**subscores, 'overall': .63, 'rationale': 'unit test only'}  # .625 rounds half-up.
+        receipt = {'binding': prepared['binding'], 'request': build_judge_request(prepared), 'response': {
+            'model': JUDGE_MODEL, 'choices': [{'finish_reason': 'stop', 'message': {'content': json.dumps(scores)}}]}}
+        label = finalize_judge_result(prepared, receipt)
+        self.assertEqual(validate_collection([ep], [label], manifest=manifest), {ep['trajectory_id']: label})
+        self.assertEqual(validate_collection([ep], manifest=manifest), {})
+
+        bad_scores = [{'support': .7}, {k: v for k, v in subscores.items() if k != 'consistency'},
+                      {**subscores, 'extra': .5}]
+        bad_scores += [dict(subscores, coverage=v) for v in (.621, False, '.62', float('nan'), 1.01)]
+        bad_labels = [dict(label, subscores=s) for s in bad_scores]
+        bad_labels += [dict(label, overall_score=v) for v in (.62, .625, True)]
+        bad_labels += [dict(label, model='other'), dict(label, prompt_id='v2'), dict(label, rationale='  '),
+                       dict(label, aggregation='weighted_mean'), dict(label, request_sha256='A' * 64),
+                       dict(label, request_sha256='0' * 63), dict(label, request_sha256=None)]
+        bad_labels += [{k: v for k, v in label.items() if k != field} for field in ('request_sha256', 'aggregation')]
+        for bad in bad_labels:
+            with self.subTest(bad=bad), self.assertRaises(ValueError):
+                validate_collection([ep], [bad], manifest=manifest)

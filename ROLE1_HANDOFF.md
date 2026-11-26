@@ -1,8 +1,10 @@
 # 一号位交接：基础 Agent 与统一 Runner
 
+**检索更新**：当前集成分支已改用公开题面的中英术语扩展与 BM25 排序，结果新增 `retrieval` 审计元数据；公共五动作及状态不变。下文早期词项检索说明以 [RETRIEVAL_REVIEW.md](RETRIEVAL_REVIEW.md) 为准。真实训练探针尚待具体外发授权。
+
 契约核查结果、已修复问题和剩余验收条件见 [ROLE1_AUDIT.md](ROLE1_AUDIT.md)。共享执行器仅接受 DeepSeekBackend 或显式 MockBackend，避免把离线替身标成真实实验。
 
-**数据状态：三号位正式数据尚未交付。** 五篇 AgentSkill 论文已归入 `data/samples/agent_skill/`，仅供功能测试。样例任务须使用 `split=pilot`；Runner 拒绝将 `purpose=pilot_only` 的语料用于 `train/validation/test`，日志保留 `data_purpose`。正式数据预留位置与旧产物分类见 `data/README.md`。
+**数据状态：三号冻结数据已接入本地集成分支，入口见 INTEGRATION_HANDOFF.md。** 五篇 AgentSkill 论文已归入 `data/samples/agent_skill/`，仅供功能测试。样例任务须使用 `split=pilot`；Runner 拒绝将 `purpose=pilot_only` 的语料用于 `train/validation/test`，日志保留 `data_purpose`。正式数据预留位置与旧产物分类见 `data/README.md`。
 
 适用契约：`CONTRACT.md`，`config_version=1`。旧 `python -m litreview` 仍保留；二号应接入下面的 `core.Runner` 模块接口，不使用旧固定流水线采样。
 
@@ -89,7 +91,7 @@ class MyScheduler:
 
 固定规则：无材料先检索；有材料无总结先 fast 总结；评分有效且综合分达到 0.75 时 fast 写作；覆盖不足且还有论文时补检索，否则 deep 修订；最多调用 3 次总结；剩最后一步时优先写作。参数保存在配置中。正式测试前需完成训练集标定并冻结，不能看测试结果再调。
 
-三号可直接读取 `EpisodeResult.final_text/source_papers/review_id/split` 离线评测。`examples/runner_task.json` 与当前五篇语料仅为 pilot 联调，不冒充三号尚待交付的独立训练/测试集。
+三号可直接读取 `EpisodeResult.final_text/source_papers/review_id/split` 离线评测。`examples/runner_task.json` 与当前五篇语料仅为 pilot 联调，不冒充三号已交付的独立训练/测试集。
 
 Verifier 四维 Prompt 已位于 `agents/executor.py`，等权综合分位于 `core/schema.py`。三方仍需在正式标定前确认具体评分尺度、阈值和 StateEncoder 编码；本次实现不代表完成了标定。
 
@@ -110,5 +112,7 @@ python -m core --backend deepseek --corpus data/samples/agent_skill/agent_skill_
 一号位交付时的验证范围：67 项自动测试、Mock 联调、获授权后的真实五动作与两次端到端 pilot 均通过；详见 [ROLE1_ACCEPTANCE.md](ROLE1_ACCEPTANCE.md)。当时尚未完成正式数据标定、三方评分冻结或 DQN 接入。
 
 **后续进展：**二号位已将冻结的 DQN 策略接入同一 Runner，并完成 Mock 端到端联调。正式数据上的 Rule/DQN 对比尚未开展，复现步骤见 [ROLE2_HANDOFF.md](ROLE2_HANDOFF.md)。
+
+2026-11-26 已在三号正式训练语料上完成 R005、R001 两条真实 Rule 探针；完整 `collect_episode` 结果与观察见 [训练探针交接](handoff/role1_train_probes/README.md)。尚未执行 DQN 真实轨迹、独立测试或终稿 Judge 评分。
 
 评分口径及预算边界的待确认草案见 [SCORING_PROTOCOL.md](SCORING_PROTOCOL.md)。

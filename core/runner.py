@@ -2,12 +2,12 @@
 
 import copy
 import json
-import re
 import uuid
 from dataclasses import asdict
 from pathlib import Path
 
 from agents.executor import AgentExecutor, MockBackend
+from agents.retrieval import BilingualRetriever, expand_query
 from .schema import (ACTIONS, ReviewTask, RunnerConfig, comparable_delta,
                      empty_verifier, verifier_value)
 
@@ -27,6 +27,7 @@ class Runner:
             raise ValueError("Corpus requires unique IDs and nonempty source texts.")
         self.dataset_kind = corpus.get("dataset_kind", "unknown")
         self.data_purpose = corpus.get("purpose", "unspecified")
+        self.retriever = BilingualRetriever(self.papers)
         self.executor = AgentExecutor(backend if backend is not None else MockBackend(), self.config)
         self.output_dir = Path(output_dir) if output_dir is not None else None
         self.task = None
@@ -44,6 +45,7 @@ class Runner:
             self.episode_dir.mkdir(parents=True, exist_ok=False)
         self.executor.reset()
         self.selected, self.items, self.transitions = [], [], []
+        self.retrieval_events = []
         self.summary_revision = -1
         self.final_text = None
         self.action_tokens = dict.fromkeys(ACTIONS, 0)
@@ -90,14 +92,16 @@ class Runner:
                 "items": copy.deepcopy(self.items), "feedback": copy.deepcopy(self.state["verifier"]["issues"])}
 
     def _retrieve(self):
-        # Deterministic lexical ranking; no gold IDs, network calls or model cost.
-        terms = set(re.findall(r"[a-z0-9]+|[\u4e00-\u9fff]", self.task.survey_instruction.lower()))
+        # The ranker sees public instructions/source texts only, never reference IDs.
         existing = {p["id"] for p in self.selected}
-        candidates = [p for p in self.papers if p["id"] not in existing]
-        def rank(p):
-            words = set(re.findall(r"[a-z0-9]+|[\u4e00-\u9fff]", (p["title"] + " " + p["abstract"]).lower()))
-            return (-len(words & terms), p["id"])
-        self.selected.extend(sorted(candidates, key=rank)[:self.config.retrieval_batch_size])
+        ranked = self.retriever.rank(self.task.survey_instruction, existing)
+        batch = ranked[:self.config.retrieval_batch_size]
+        index = {p['id']: p for p in self.papers}
+        self.selected.extend(index[row['paper_id']] for row in batch)
+        self.retrieval_events.append({'step_index': self.state['step_count'],
+                                     'query_terms': expand_query(self.task.survey_instruction),
+                                     'selected': batch,
+                                     'zero_score_fallback': any(row['score'] == 0 for row in batch)})
         self.state["material_revision"] += 1
         self.state["retrieved_paper_count"] = len(self.selected)
         # Existing summaries become stale when the source set changes.
@@ -221,6 +225,7 @@ class Runner:
             "execution_kind": "mock" if self.executor.backend.name == "mock" else "real",
             "dataset_kind": self.dataset_kind, "data_purpose": self.data_purpose,
             "config": asdict(self.config),
+            "retrieval": {"spec": self.retriever.spec(), "events": self.retrieval_events},
             "success": self.state["terminal_reason"] == "final_written",
             "terminal_reason": self.state["terminal_reason"], "final_text": self.final_text,
             "final_text_ref": str((self.episode_dir / "report.md").resolve())

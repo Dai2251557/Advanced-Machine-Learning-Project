@@ -2,13 +2,34 @@ import json
 import unittest
 
 from agents.executor import MockBackend
+from agents.retrieval import BilingualRetriever
 from core.schema import ACTIONS, verifier_value
-from experiments.collect import dry_run
+from experiments.collect import dry_run, json_sha256
 from rl.calibration import evaluate_holdout, fit_calibration
 from rl.reward import RewardConfig
+from utils.data_release import ROOT, load_manifest, read_json
 
 
 class CalibrationTests(unittest.TestCase):
+    def test_formal_fit_binds_existing_handoffs_to_the_complete_retrieval_spec(self):
+        eps = [read_json(ROOT / 'handoff/role1_train_probes' / f'{rid}-collection.json') for rid in ('R005', 'R001')]
+        manifest = load_manifest('train')
+        spec = eps[1]['retrieval']['spec']
+        model = fit_calibration(eps, manifest=manifest)
+        self.assertEqual(model.manifest()['retrieval_spec_sha256'], json_sha256(BilingualRetriever.spec()))
+        for change in ({'method': 'other'}, {'lexicon_sha256': 'f' * 64}, {'b': .7}, {'title_repetitions': 3}):
+            bad = {**eps[1], 'retrieval': {**eps[1]['retrieval'], 'spec': {**spec, **change}}}
+            with self.subTest(change=change), self.assertRaisesRegex(ValueError, 'retrieval.spec'):
+                fit_calibration([eps[0], bad], manifest=manifest)
+        for retrieval in (None, {}, {'spec': {'method': spec['method']}}):
+            with self.subTest(retrieval=retrieval), self.assertRaisesRegex(ValueError, 'retrieval.spec'):
+                fit_calibration([{**eps[0], 'retrieval': retrieval}], manifest=manifest)
+
+    def test_fixture_does_not_need_formal_retrieval_provenance(self):
+        ep = dry_run('rule')
+        del ep['retrieval']
+        self.assertNotIn('retrieval_spec_sha256', fit_calibration([ep], mode='fixture').manifest())
+
     def test_joint_sampling_and_partial_failure(self):
         class Variant(MockBackend):
             def __init__(self, cost, coverage, broken=False):

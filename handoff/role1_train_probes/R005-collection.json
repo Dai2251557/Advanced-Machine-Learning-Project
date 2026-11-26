@@ -1,0 +1,1193 @@
+{
+  "config_version": 1,
+  "review_id": "R005",
+  "trajectory_id": "episode-a61d9c88101f49728e5bf21415dca3d4",
+  "split": "train",
+  "seed": 0,
+  "execution_kind": "real",
+  "dataset_kind": "arxiv_abstracts",
+  "data_purpose": "formal_experiment",
+  "config": {
+    "config_version": 1,
+    "max_steps": 8,
+    "workflow_tokens_budget": 48000,
+    "retrieval_batch_size": 3,
+    "max_output_tokens": 8192,
+    "output_repair_attempts": 1,
+    "cache_enabled": false,
+    "low_gain_threshold": 0.02,
+    "quality_threshold": 0.75,
+    "max_summary_calls": 3
+  },
+  "retrieval": {
+    "spec": {
+      "method": "bilingual_bm25_v1",
+      "k1": 1.2,
+      "b": 0.75,
+      "title_repetitions": 2,
+      "lexicon_sha256": "c932ff14a9da4878484eebcc35ea18cbbc48746d8263d34331cefcca8c887df8"
+    },
+    "events": [
+      {
+        "step_index": 1,
+        "query_terms": [
+          "analysis",
+          "feature",
+          "kernel",
+          "network",
+          "neural",
+          "pattern",
+          "regression",
+          "selection",
+          "为什",
+          "为例",
+          "么网",
+          "么需",
+          "么验",
+          "了什",
+          "什么",
+          "以及",
+          "以回",
+          "任务",
+          "关特",
+          "函数",
+          "分别",
+          "分析",
+          "别承",
+          "别无",
+          "及模",
+          "和核",
+          "和真",
+          "回归",
+          "在模",
+          "处理",
+          "实数",
+          "式分",
+          "归神",
+          "征选",
+          "承担",
+          "担了",
+          "拟数",
+          "据分",
+          "据和",
+          "数据",
+          "数进",
+          "无关",
+          "明研",
+          "析的",
+          "核函",
+          "模式",
+          "模拟",
+          "特征",
+          "理阶",
+          "用什",
+          "的预",
+          "真实",
+          "研究",
+          "神经",
+          "究采",
+          "经网",
+          "络为",
+          "络和",
+          "网络",
+          "行特",
+          "要识",
+          "证任",
+          "识别",
+          "说明",
+          "进行",
+          "选择",
+          "采用",
+          "阶段",
+          "需要",
+          "预处",
+          "验证"
+        ],
+        "selected": [
+          {
+            "paper_id": "2010.05744v1",
+            "score": 26.573816954605626
+          },
+          {
+            "paper_id": "1905.02845v1",
+            "score": 18.941669349026636
+          },
+          {
+            "paper_id": "1808.02632v1",
+            "score": 13.485236121889157
+          }
+        ],
+        "zero_score_fallback": false
+      }
+    ]
+  },
+  "success": true,
+  "terminal_reason": "final_written",
+  "final_text": "# 文献综述\n\n范围：仅依据提供的论文摘要。\n\n## 范围说明：仅基于摘要的综述\n\n本综述仅依据所提供论文摘要及摘要级总结撰写，不检视全文，不补充摘要未给出的实验设置、参数或数值结果。文献覆盖 [1905.02845v1]、[2010.05744v1] 与 [1808.02632v1]；其中 [1808.02632v1] 主题为视觉问答，与本次查询不直接相关，仅作范围外说明。 [1905.02845v1] [2010.05744v1] [1808.02632v1]\n\n## 预处理阶段为何需要识别无关特征\n\n模式分析通常需要预处理阶段来抽取或选择特征，以帮助分类、预测或聚类阶段更好地区分或表示数据；其原因是原始数据复杂，若不事先抽取或选择合适特征就难以直接处理 [1905.02845v1]。在机器学习输入层面，[2010.05744v1] 进一步指出，输入数据中的无关特征会降低模型的可解释性和预测质量，因此识别无关特征的特征选择是机器学习中的关键环节。需要说明的是，[2010.05744v1] 摘要只明确提到“无关特征”，本综述不将其扩展为“冗余特征”等未给出的断言。 [1905.02845v1] [2010.05744v1]\n\n## 回归神经网络与核函数\n\n针对特征选择，[2010.05744v1] 采用广义回归神经网络（General Regression Neural Network）配合各向异性高斯核（anisotropic Gaussian Kernel）进行特征选择。摘要未给出网络结构、核参数设置或具体选择准则的细节，因此本综述仅能确认网络类型与核函数类型，不能展开其算法细节。 [2010.05744v1]\n\n## 模拟数据与真实数据的验证任务\n\n[2010.05744v1] 中，模拟数据用于数值实验，以检验所提方法的稳健性及其对样本量的敏感性；真实数据用于在多个真实数据集上与另外四种特征选择方法进行比较。据此，模拟数据主要承担方法行为与稳健性、样本量敏感性的验证任务，真实数据主要承担相对比较与外部数据场景下的验证任务。摘要未报告具体数据集名称、对比方法名称或性能指标。 [2010.05744v1]\n\n## 比较与局限\n\n与 [1905.02845v1] 的综述性讨论相比，[2010.05744v1] 提供了更具体的特征选择方法与验证安排：前者说明模式分析预处理中特征抽取或选择的一般动机，后者具体采用广义回归神经网络与各向异性高斯核，并区分模拟数据与真实数据的验证任务。[1808.02632v1] 提出用于视觉问答的 Question-Guided Hybrid Convolution 网络，关注文本与视觉特征融合及视觉空间信息利用，不涉及模式分析预处理中的无关特征识别，也不涉及回归神经网络或高斯核特征选择，因此不能纳入本查询的方法比较。本文的局限在于：仅基于摘要，无法评估实验设计、统计显著性、数据集细节、四种对比方法的具体名称与性能指标；[1905.02845v1] 的摘要级信息也不足以支撑对其方法比较结论的细粒度评述。因此，上述结论限于摘要明确陈述的范围。 [1905.02845v1] [2010.05744v1] [1808.02632v1]\n\n## 参考文献\n\n- [2010.05744v1] On Feature Selection Using Anisotropic General Regression Neural Network\n- [1905.02845v1] Feature Selection and Feature Extraction in Pattern Analysis: A Literature Review\n- [1808.02632v1] Question-Guided Hybrid Convolution for Visual Question Answering\n",
+  "final_text_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-a61d9c88101f49728e5bf21415dca3d4\\report.md",
+  "total_workflow_tokens": 11215,
+  "step_count": 3,
+  "action_history": {
+    "retrieve_more": {
+      "call_count": 1,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.1645118145341061
+    },
+    "summarize_fast": {
+      "call_count": 1,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.5680784663397236
+    },
+    "summarize_deep": {
+      "call_count": 0,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.0
+    },
+    "write_fast": {
+      "call_count": 1,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.2674097191261703
+    },
+    "write_deep": {
+      "call_count": 0,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.0
+    }
+  },
+  "source_papers": [
+    {
+      "id": "2010.05744v1",
+      "title": "On Feature Selection Using Anisotropic General Regression Neural Network",
+      "abstract": "The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models. Therefore, the development of feature selection methods to recognize irrelevant features is a crucial topic in machine learning. Here we show how the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection. A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets."
+    },
+    {
+      "id": "1905.02845v1",
+      "title": "Feature Selection and Feature Extraction in Pattern Analysis: A Literature Review",
+      "abstract": "Pattern analysis often requires a pre-processing stage for extracting or selecting features in order to help the classification, prediction, or clustering stage discriminate or represent the data in a better way. The reason for this requirement is that the raw data are complex and difficult to process without extracting or selecting appropriate features beforehand. This paper reviews theory and motivation of different common methods of feature selection and extraction and introduces some of their applications. Some numerical implementations are also shown for these methods. Finally, the methods in feature selection and extraction are compared."
+    },
+    {
+      "id": "1808.02632v1",
+      "title": "Question-Guided Hybrid Convolution for Visual Question Answering",
+      "abstract": "In this paper, we propose a novel Question-Guided Hybrid Convolution (QGHC) network for Visual Question Answering (VQA). Most state-of-the-art VQA methods fuse the high-level textual and visual features from the neural network and abandon the visual spatial information when learning multi-modal features.To address these problems, question-guided kernels generated from the input question are designed to convolute with visual features for capturing the textual and visual relationship in the early stage. The question-guided convolution can tightly couple the textual and visual information but also introduce more parameters when learning kernels. We apply the group convolution, which consists of question-independent kernels and question-dependent kernels, to reduce the parameter size and alleviate over-fitting. The hybrid convolution can generate discriminative multi-modal features with fewer parameters. The proposed approach is also complementary to existing bilinear pooling fusion and attention based VQA methods. By integrating with them, our method could further boost the performance. Extensive experiments on public VQA datasets validate the effectiveness of QGHC."
+    }
+  ],
+  "transitions": [
+    {
+      "config_version": 1,
+      "review_id": "R005",
+      "trajectory_id": "episode-a61d9c88101f49728e5bf21415dca3d4",
+      "step_index": 1,
+      "state_before": {
+        "config_version": 1,
+        "review_id": "R005",
+        "difficulty": "easy",
+        "retrieved_paper_count": 0,
+        "summary_available": false,
+        "material_revision": 0,
+        "verifier": {
+          "scores": {
+            "coverage": 0.0,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": false,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "checked_material_revision": -1,
+          "issues": []
+        },
+        "step_count": 0,
+        "max_steps": 8,
+        "workflow_tokens_used": 0,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_after": {
+        "config_version": 1,
+        "review_id": "R005",
+        "difficulty": "easy",
+        "retrieved_paper_count": 3,
+        "summary_available": false,
+        "material_revision": 1,
+        "verifier": {
+          "scores": {
+            "coverage": 1.0,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "issues": [
+            "No summaries/items were supplied, so factuality, citation_support, and consistency cannot be evaluated; only coverage was assessed.",
+            "The retrieved set includes an unrelated Visual Question Answering paper (1808.02632v1); exclude it from synthesis because it does not address pattern-analysis preprocessing or feature selection.",
+            "When drafting, attribute the preprocessing motivation to the literature review (1905.02845v1) and the anisotropic Gaussian-kernel General Regression Neural Network, simulated-data robustness/sample-size experiments, and real-data comparison to 2010.05744v1."
+          ],
+          "checked_material_revision": 1
+        },
+        "step_count": 1,
+        "max_steps": 8,
+        "workflow_tokens_used": 1845,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 1.0
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_before_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-a61d9c88101f49728e5bf21415dca3d4\\step-001-before.json",
+      "state_after_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-a61d9c88101f49728e5bf21415dca3d4\\step-001-after.json",
+      "action_id": "retrieve_more",
+      "action_mask": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "verifier_before": null,
+      "verifier_after": 1.0,
+      "verifier_delta": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "verifier_tokens": 1845,
+      "total_workflow_tokens": 1845,
+      "success": true,
+      "error": null,
+      "done": false,
+      "terminal_reason": null,
+      "calls": [
+        {
+          "role": "verify",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-26T05:54:57.272271+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Evaluate supplied materials against the survey instruction and original abstracts. Return JSON {\"scores\":{\"coverage\":0.0,\"factuality\":0.0,\"citation_support\":0.0,\"consistency\":0.0},\"valid_scores\":{\"coverage\":true,\"factuality\":false,\"citation_support\":false,\"consistency\":false},\"issues\":[\"specific actionable issue\"]}. Never select a next_action. Each valid score is in [0,1], higher is better: coverage measures how much of the requested topic is supported by retrieved materials; factuality measures summary claims supported by abstracts; citation_support measures correct summary attribution and evidence support; consistency measures internal and cross-paper summary consistency without conflating different settings. Anchors: 0=no support/major errors, 0.5=partial coverage or substantial omissions/errors, 1=complete support within supplied abstracts, no identified errors. With no summaries, evaluate coverage only; all other scores must be 0 and invalid. With summaries, evaluate all four dimensions. Do not treat missing source details as established facts. Scores are workflow diagnostics, not independent final quality judgments.",
+          "payload": {
+            "query": "在模式分析的预处理阶段，为什么需要识别无关特征？以回归神经网络为例，说明研究采用什么网络和核函数进行特征选择，以及模拟数据和真实数据分别承担了什么验证任务。",
+            "papers": [
+              {
+                "id": "2010.05744v1",
+                "title": "On Feature Selection Using Anisotropic General Regression Neural Network",
+                "abstract": "The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models. Therefore, the development of feature selection methods to recognize irrelevant features is a crucial topic in machine learning. Here we show how the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection. A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets."
+              },
+              {
+                "id": "1905.02845v1",
+                "title": "Feature Selection and Feature Extraction in Pattern Analysis: A Literature Review",
+                "abstract": "Pattern analysis often requires a pre-processing stage for extracting or selecting features in order to help the classification, prediction, or clustering stage discriminate or represent the data in a better way. The reason for this requirement is that the raw data are complex and difficult to process without extracting or selecting appropriate features beforehand. This paper reviews theory and motivation of different common methods of feature selection and extraction and introduces some of their applications. Some numerical implementations are also shown for these methods. Finally, the methods in feature selection and extraction are compared."
+              },
+              {
+                "id": "1808.02632v1",
+                "title": "Question-Guided Hybrid Convolution for Visual Question Answering",
+                "abstract": "In this paper, we propose a novel Question-Guided Hybrid Convolution (QGHC) network for Visual Question Answering (VQA). Most state-of-the-art VQA methods fuse the high-level textual and visual features from the neural network and abandon the visual spatial information when learning multi-modal features.To address these problems, question-guided kernels generated from the input question are designed to convolute with visual features for capturing the textual and visual relationship in the early stage. The question-guided convolution can tightly couple the textual and visual information but also introduce more parameters when learning kernels. We apply the group convolution, which consists of question-independent kernels and question-dependent kernels, to reduce the parameter size and alleviate over-fitting. The hybrid convolution can generate discriminative multi-modal features with fewer parameters. The proposed approach is also complementary to existing bilinear pooling fusion and attention based VQA methods. By integrating with them, our method could further boost the performance. Extensive experiments on public VQA datasets validate the effectiveness of QGHC."
+              }
+            ],
+            "items": [],
+            "feedback": []
+          },
+          "cache_key": "cc4c48515cc6e2f8f841aad3e19c16bceae852867bb0e2a0cb9fa4442ffb9838",
+          "cache_hit": false,
+          "prompt_tokens": 899,
+          "completion_tokens": 946,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"scores\":{\"coverage\":1.0,\"factuality\":0.0,\"citation_support\":0.0,\"consistency\":0.0},\"valid_scores\":{\"coverage\":true,\"factuality\":false,\"citation_support\":false,\"consistency\":false},\"issues\":[\"No summaries/items were supplied, so factuality, citation_support, and consistency cannot be evaluated; only coverage was assessed.\",\"The retrieved set includes an unrelated Visual Question Answering paper (1808.02632v1); exclude it from synthesis because it does not address pattern-analysis preprocessing or feature selection.\",\"When drafting, attribute the preprocessing motivation to the literature review (1905.02845v1) and the anisotropic Gaussian-kernel General Regression Neural Network, simulated-data robustness/sample-size experiments, and real-data comparison to 2010.05744v1.\"]}",
+          "output": {
+            "scores": {
+              "coverage": 1.0,
+              "factuality": 0.0,
+              "citation_support": 0.0,
+              "consistency": 0.0
+            },
+            "valid_scores": {
+              "coverage": true,
+              "factuality": false,
+              "citation_support": false,
+              "consistency": false
+            },
+            "issues": [
+              "No summaries/items were supplied, so factuality, citation_support, and consistency cannot be evaluated; only coverage was assessed.",
+              "The retrieved set includes an unrelated Visual Question Answering paper (1808.02632v1); exclude it from synthesis because it does not address pattern-analysis preprocessing or feature selection.",
+              "When drafting, attribute the preprocessing motivation to the literature review (1905.02845v1) and the anisotropic Gaussian-kernel General Regression Neural Network, simulated-data robustness/sample-size experiments, and real-data comparison to 2010.05744v1."
+            ]
+          },
+          "elapsed_seconds": 6.031
+        }
+      ],
+      "execution_kind": "real",
+      "next_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "config_version": 1,
+      "review_id": "R005",
+      "trajectory_id": "episode-a61d9c88101f49728e5bf21415dca3d4",
+      "step_index": 2,
+      "state_before": {
+        "config_version": 1,
+        "review_id": "R005",
+        "difficulty": "easy",
+        "retrieved_paper_count": 3,
+        "summary_available": false,
+        "material_revision": 1,
+        "verifier": {
+          "scores": {
+            "coverage": 1.0,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "issues": [
+            "No summaries/items were supplied, so factuality, citation_support, and consistency cannot be evaluated; only coverage was assessed.",
+            "The retrieved set includes an unrelated Visual Question Answering paper (1808.02632v1); exclude it from synthesis because it does not address pattern-analysis preprocessing or feature selection.",
+            "When drafting, attribute the preprocessing motivation to the literature review (1905.02845v1) and the anisotropic Gaussian-kernel General Regression Neural Network, simulated-data robustness/sample-size experiments, and real-data comparison to 2010.05744v1."
+          ],
+          "checked_material_revision": 1
+        },
+        "step_count": 1,
+        "max_steps": 8,
+        "workflow_tokens_used": 1845,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 1.0
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_after": {
+        "config_version": 1,
+        "review_id": "R005",
+        "difficulty": "easy",
+        "retrieved_paper_count": 3,
+        "summary_available": true,
+        "material_revision": 2,
+        "verifier": {
+          "scores": {
+            "coverage": 1.0,
+            "factuality": 0.9,
+            "citation_support": 0.8,
+            "consistency": 1.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": true,
+            "citation_support": true,
+            "consistency": true
+          },
+          "issues": [
+            "2010.05744v1 的摘要加入了“冗余特征”，但原摘要只提到无关特征；应删除“冗余”，或将其明确标注为推断。",
+            "1905.02845v1 的摘要声称该综述涵盖理论/动机、应用、数值实现和方法比较，但所提供的证据摘录只支持预处理动机；应扩展证据摘录以包含这些摘要句子，或删减摘要中的相关声称。",
+            "将关于无关特征的具体理由归于 2010.05744v1，将关于预处理/特征选择的一般理由归于 1905.02845v1；不要把它们合并成一个缺乏支持的单一论断。"
+          ],
+          "checked_material_revision": 2
+        },
+        "step_count": 2,
+        "max_steps": 8,
+        "workflow_tokens_used": 8216,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.2245618305744888
+          },
+          "summarize_fast": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.7754381694255112
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_before_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-a61d9c88101f49728e5bf21415dca3d4\\step-002-before.json",
+      "state_after_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-a61d9c88101f49728e5bf21415dca3d4\\step-002-after.json",
+      "action_id": "summarize_fast",
+      "action_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "verifier_before": 1.0,
+      "verifier_after": 0.925,
+      "verifier_delta": null,
+      "input_tokens": 856,
+      "output_tokens": 2120,
+      "verifier_tokens": 3395,
+      "total_workflow_tokens": 6371,
+      "success": true,
+      "error": null,
+      "done": false,
+      "terminal_reason": null,
+      "calls": [
+        {
+          "role": "summarize",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-26T05:55:03.319593+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Summarize every supplied paper in Chinese, addressing the survey instruction. Use previous summaries and verifier feedback to revise when available. Return JSON {\"items\":[{\"paper_id\":\"id\",\"summary\":\"text\",\"evidence\":\"exact excerpt\"}]}. Cover each paper exactly once. Copy a nonempty evidence excerpt character-for-character from its abstract. Do not infer details absent from abstracts.",
+          "payload": {
+            "query": "在模式分析的预处理阶段，为什么需要识别无关特征？以回归神经网络为例，说明研究采用什么网络和核函数进行特征选择，以及模拟数据和真实数据分别承担了什么验证任务。",
+            "papers": [
+              {
+                "id": "2010.05744v1",
+                "title": "On Feature Selection Using Anisotropic General Regression Neural Network",
+                "abstract": "The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models. Therefore, the development of feature selection methods to recognize irrelevant features is a crucial topic in machine learning. Here we show how the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection. A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets."
+              },
+              {
+                "id": "1905.02845v1",
+                "title": "Feature Selection and Feature Extraction in Pattern Analysis: A Literature Review",
+                "abstract": "Pattern analysis often requires a pre-processing stage for extracting or selecting features in order to help the classification, prediction, or clustering stage discriminate or represent the data in a better way. The reason for this requirement is that the raw data are complex and difficult to process without extracting or selecting appropriate features beforehand. This paper reviews theory and motivation of different common methods of feature selection and extraction and introduces some of their applications. Some numerical implementations are also shown for these methods. Finally, the methods in feature selection and extraction are compared."
+              },
+              {
+                "id": "1808.02632v1",
+                "title": "Question-Guided Hybrid Convolution for Visual Question Answering",
+                "abstract": "In this paper, we propose a novel Question-Guided Hybrid Convolution (QGHC) network for Visual Question Answering (VQA). Most state-of-the-art VQA methods fuse the high-level textual and visual features from the neural network and abandon the visual spatial information when learning multi-modal features.To address these problems, question-guided kernels generated from the input question are designed to convolute with visual features for capturing the textual and visual relationship in the early stage. The question-guided convolution can tightly couple the textual and visual information but also introduce more parameters when learning kernels. We apply the group convolution, which consists of question-independent kernels and question-dependent kernels, to reduce the parameter size and alleviate over-fitting. The hybrid convolution can generate discriminative multi-modal features with fewer parameters. The proposed approach is also complementary to existing bilinear pooling fusion and attention based VQA methods. By integrating with them, our method could further boost the performance. Extensive experiments on public VQA datasets validate the effectiveness of QGHC."
+              }
+            ],
+            "items": [],
+            "feedback": [
+              "No summaries/items were supplied, so factuality, citation_support, and consistency cannot be evaluated; only coverage was assessed.",
+              "The retrieved set includes an unrelated Visual Question Answering paper (1808.02632v1); exclude it from synthesis because it does not address pattern-analysis preprocessing or feature selection.",
+              "When drafting, attribute the preprocessing motivation to the literature review (1905.02845v1) and the anisotropic Gaussian-kernel General Regression Neural Network, simulated-data robustness/sample-size experiments, and real-data comparison to 2010.05744v1."
+            ]
+          },
+          "cache_key": "1ea12d72e51ac1284dc5180df64c0ba4bc605c9aafe2b94248aa3cf581b99f69",
+          "cache_hit": false,
+          "prompt_tokens": 856,
+          "completion_tokens": 2120,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"items\":[{\"paper_id\":\"2010.05744v1\",\"summary\":\"该文指出，输入数据中的无关特征会降低机器学习模型的可解释性和预测质量，因此识别无关特征的特征选择是机器学习的关键环节，也对应模式分析预处理阶段筛选无关或冗余特征的需要。方法上，研究采用广义回归神经网络（General Regression Neural Network）配合各向异性高斯核（anisotropic Gaussian Kernel）进行特征选择。模拟数据用于数值实验，检验方法的稳健性及其对样本量的敏感性；真实数据用于在多个真实数据集上与另外四种特征选择方法进行比较。\",\"evidence\":\"The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models. Therefore, the development of feature selection methods to recognize irrelevant features is a crucial topic in machine learning. Here we show how the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection. A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets.\"},{\"paper_id\":\"1905.02845v1\",\"summary\":\"该综述说明，模式分析通常需要预处理阶段来抽取或选择特征，以帮助分类、预测或聚类阶段更好地区分或表示数据；原因是原始数据复杂，若不事先抽取或选择合适特征就难以处理。文章回顾特征选择与特征抽取的理论和动机，介绍其应用，给出一些数值实现，并对相关方法进行比较。它为“预处理阶段为何需要特征选择”提供了一般性依据，但未具体展开回归神经网络。\",\"evidence\":\"Pattern analysis often requires a pre-processing stage for extracting or selecting features in order to help the classification, prediction, or clustering stage discriminate or represent the data in a better way. The reason for this requirement is that the raw data are complex and difficult to process without extracting or selecting appropriate features beforehand.\"},{\"paper_id\":\"1808.02632v1\",\"summary\":\"该文提出用于视觉问答（VQA）的Question-Guided Hybrid Convolution网络，关注文本与视觉特征融合及视觉空间信息利用，不涉及模式分析预处理中的无关特征识别，也不涉及回归神经网络或高斯核特征选择；因此与本次查询主题无关，不纳入综合回答。\",\"evidence\":\"In this paper, we propose a novel Question-Guided Hybrid Convolution (QGHC) network for Visual Question Answering (VQA).\"}]}",
+          "output": {
+            "items": [
+              {
+                "paper_id": "2010.05744v1",
+                "summary": "该文指出，输入数据中的无关特征会降低机器学习模型的可解释性和预测质量，因此识别无关特征的特征选择是机器学习的关键环节，也对应模式分析预处理阶段筛选无关或冗余特征的需要。方法上，研究采用广义回归神经网络（General Regression Neural Network）配合各向异性高斯核（anisotropic Gaussian Kernel）进行特征选择。模拟数据用于数值实验，检验方法的稳健性及其对样本量的敏感性；真实数据用于在多个真实数据集上与另外四种特征选择方法进行比较。",
+                "evidence": "The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models. Therefore, the development of feature selection methods to recognize irrelevant features is a crucial topic in machine learning. Here we show how the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection. A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets."
+              },
+              {
+                "paper_id": "1905.02845v1",
+                "summary": "该综述说明，模式分析通常需要预处理阶段来抽取或选择特征，以帮助分类、预测或聚类阶段更好地区分或表示数据；原因是原始数据复杂，若不事先抽取或选择合适特征就难以处理。文章回顾特征选择与特征抽取的理论和动机，介绍其应用，给出一些数值实现，并对相关方法进行比较。它为“预处理阶段为何需要特征选择”提供了一般性依据，但未具体展开回归神经网络。",
+                "evidence": "Pattern analysis often requires a pre-processing stage for extracting or selecting features in order to help the classification, prediction, or clustering stage discriminate or represent the data in a better way. The reason for this requirement is that the raw data are complex and difficult to process without extracting or selecting appropriate features beforehand."
+              },
+              {
+                "paper_id": "1808.02632v1",
+                "summary": "该文提出用于视觉问答（VQA）的Question-Guided Hybrid Convolution网络，关注文本与视觉特征融合及视觉空间信息利用，不涉及模式分析预处理中的无关特征识别，也不涉及回归神经网络或高斯核特征选择；因此与本次查询主题无关，不纳入综合回答。",
+                "evidence": "In this paper, we propose a novel Question-Guided Hybrid Convolution (QGHC) network for Visual Question Answering (VQA)."
+              }
+            ]
+          },
+          "elapsed_seconds": 11.531
+        },
+        {
+          "role": "verify",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-26T05:55:14.854965+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Evaluate supplied materials against the survey instruction and original abstracts. Return JSON {\"scores\":{\"coverage\":0.0,\"factuality\":0.0,\"citation_support\":0.0,\"consistency\":0.0},\"valid_scores\":{\"coverage\":true,\"factuality\":false,\"citation_support\":false,\"consistency\":false},\"issues\":[\"specific actionable issue\"]}. Never select a next_action. Each valid score is in [0,1], higher is better: coverage measures how much of the requested topic is supported by retrieved materials; factuality measures summary claims supported by abstracts; citation_support measures correct summary attribution and evidence support; consistency measures internal and cross-paper summary consistency without conflating different settings. Anchors: 0=no support/major errors, 0.5=partial coverage or substantial omissions/errors, 1=complete support within supplied abstracts, no identified errors. With no summaries, evaluate coverage only; all other scores must be 0 and invalid. With summaries, evaluate all four dimensions. Do not treat missing source details as established facts. Scores are workflow diagnostics, not independent final quality judgments.",
+          "payload": {
+            "query": "在模式分析的预处理阶段，为什么需要识别无关特征？以回归神经网络为例，说明研究采用什么网络和核函数进行特征选择，以及模拟数据和真实数据分别承担了什么验证任务。",
+            "papers": [
+              {
+                "id": "2010.05744v1",
+                "title": "On Feature Selection Using Anisotropic General Regression Neural Network",
+                "abstract": "The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models. Therefore, the development of feature selection methods to recognize irrelevant features is a crucial topic in machine learning. Here we show how the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection. A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets."
+              },
+              {
+                "id": "1905.02845v1",
+                "title": "Feature Selection and Feature Extraction in Pattern Analysis: A Literature Review",
+                "abstract": "Pattern analysis often requires a pre-processing stage for extracting or selecting features in order to help the classification, prediction, or clustering stage discriminate or represent the data in a better way. The reason for this requirement is that the raw data are complex and difficult to process without extracting or selecting appropriate features beforehand. This paper reviews theory and motivation of different common methods of feature selection and extraction and introduces some of their applications. Some numerical implementations are also shown for these methods. Finally, the methods in feature selection and extraction are compared."
+              },
+              {
+                "id": "1808.02632v1",
+                "title": "Question-Guided Hybrid Convolution for Visual Question Answering",
+                "abstract": "In this paper, we propose a novel Question-Guided Hybrid Convolution (QGHC) network for Visual Question Answering (VQA). Most state-of-the-art VQA methods fuse the high-level textual and visual features from the neural network and abandon the visual spatial information when learning multi-modal features.To address these problems, question-guided kernels generated from the input question are designed to convolute with visual features for capturing the textual and visual relationship in the early stage. The question-guided convolution can tightly couple the textual and visual information but also introduce more parameters when learning kernels. We apply the group convolution, which consists of question-independent kernels and question-dependent kernels, to reduce the parameter size and alleviate over-fitting. The hybrid convolution can generate discriminative multi-modal features with fewer parameters. The proposed approach is also complementary to existing bilinear pooling fusion and attention based VQA methods. By integrating with them, our method could further boost the performance. Extensive experiments on public VQA datasets validate the effectiveness of QGHC."
+              }
+            ],
+            "items": [
+              {
+                "paper_id": "2010.05744v1",
+                "summary": "该文指出，输入数据中的无关特征会降低机器学习模型的可解释性和预测质量，因此识别无关特征的特征选择是机器学习的关键环节，也对应模式分析预处理阶段筛选无关或冗余特征的需要。方法上，研究采用广义回归神经网络（General Regression Neural Network）配合各向异性高斯核（anisotropic Gaussian Kernel）进行特征选择。模拟数据用于数值实验，检验方法的稳健性及其对样本量的敏感性；真实数据用于在多个真实数据集上与另外四种特征选择方法进行比较。",
+                "evidence": "The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models. Therefore, the development of feature selection methods to recognize irrelevant features is a crucial topic in machine learning. Here we show how the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection. A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets."
+              },
+              {
+                "paper_id": "1905.02845v1",
+                "summary": "该综述说明，模式分析通常需要预处理阶段来抽取或选择特征，以帮助分类、预测或聚类阶段更好地区分或表示数据；原因是原始数据复杂，若不事先抽取或选择合适特征就难以处理。文章回顾特征选择与特征抽取的理论和动机，介绍其应用，给出一些数值实现，并对相关方法进行比较。它为“预处理阶段为何需要特征选择”提供了一般性依据，但未具体展开回归神经网络。",
+                "evidence": "Pattern analysis often requires a pre-processing stage for extracting or selecting features in order to help the classification, prediction, or clustering stage discriminate or represent the data in a better way. The reason for this requirement is that the raw data are complex and difficult to process without extracting or selecting appropriate features beforehand."
+              },
+              {
+                "paper_id": "1808.02632v1",
+                "summary": "该文提出用于视觉问答（VQA）的Question-Guided Hybrid Convolution网络，关注文本与视觉特征融合及视觉空间信息利用，不涉及模式分析预处理中的无关特征识别，也不涉及回归神经网络或高斯核特征选择；因此与本次查询主题无关，不纳入综合回答。",
+                "evidence": "In this paper, we propose a novel Question-Guided Hybrid Convolution (QGHC) network for Visual Question Answering (VQA)."
+              }
+            ],
+            "feedback": [
+              "No summaries/items were supplied, so factuality, citation_support, and consistency cannot be evaluated; only coverage was assessed.",
+              "The retrieved set includes an unrelated Visual Question Answering paper (1808.02632v1); exclude it from synthesis because it does not address pattern-analysis preprocessing or feature selection.",
+              "When drafting, attribute the preprocessing motivation to the literature review (1905.02845v1) and the anisotropic Gaussian-kernel General Regression Neural Network, simulated-data robustness/sample-size experiments, and real-data comparison to 2010.05744v1."
+            ]
+          },
+          "cache_key": "f340b27f61cee9eb26fb5b91b92ede9b0b0e076738a0f3818c5bac44bcbfdcb3",
+          "cache_hit": false,
+          "prompt_tokens": 1543,
+          "completion_tokens": 1852,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"scores\":{\"coverage\":1.0,\"factuality\":0.9,\"citation_support\":0.8,\"consistency\":1.0},\"valid_scores\":{\"coverage\":true,\"factuality\":true,\"citation_support\":true,\"consistency\":true},\"issues\":[\"2010.05744v1 的摘要加入了“冗余特征”，但原摘要只提到无关特征；应删除“冗余”，或将其明确标注为推断。\",\"1905.02845v1 的摘要声称该综述涵盖理论/动机、应用、数值实现和方法比较，但所提供的证据摘录只支持预处理动机；应扩展证据摘录以包含这些摘要句子，或删减摘要中的相关声称。\",\"将关于无关特征的具体理由归于 2010.05744v1，将关于预处理/特征选择的一般理由归于 1905.02845v1；不要把它们合并成一个缺乏支持的单一论断。\"]}",
+          "output": {
+            "scores": {
+              "coverage": 1.0,
+              "factuality": 0.9,
+              "citation_support": 0.8,
+              "consistency": 1.0
+            },
+            "valid_scores": {
+              "coverage": true,
+              "factuality": true,
+              "citation_support": true,
+              "consistency": true
+            },
+            "issues": [
+              "2010.05744v1 的摘要加入了“冗余特征”，但原摘要只提到无关特征；应删除“冗余”，或将其明确标注为推断。",
+              "1905.02845v1 的摘要声称该综述涵盖理论/动机、应用、数值实现和方法比较，但所提供的证据摘录只支持预处理动机；应扩展证据摘录以包含这些摘要句子，或删减摘要中的相关声称。",
+              "将关于无关特征的具体理由归于 2010.05744v1，将关于预处理/特征选择的一般理由归于 1905.02845v1；不要把它们合并成一个缺乏支持的单一论断。"
+            ]
+          },
+          "elapsed_seconds": 11.594
+        }
+      ],
+      "execution_kind": "real",
+      "next_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "config_version": 1,
+      "review_id": "R005",
+      "trajectory_id": "episode-a61d9c88101f49728e5bf21415dca3d4",
+      "step_index": 3,
+      "state_before": {
+        "config_version": 1,
+        "review_id": "R005",
+        "difficulty": "easy",
+        "retrieved_paper_count": 3,
+        "summary_available": true,
+        "material_revision": 2,
+        "verifier": {
+          "scores": {
+            "coverage": 1.0,
+            "factuality": 0.9,
+            "citation_support": 0.8,
+            "consistency": 1.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": true,
+            "citation_support": true,
+            "consistency": true
+          },
+          "issues": [
+            "2010.05744v1 的摘要加入了“冗余特征”，但原摘要只提到无关特征；应删除“冗余”，或将其明确标注为推断。",
+            "1905.02845v1 的摘要声称该综述涵盖理论/动机、应用、数值实现和方法比较，但所提供的证据摘录只支持预处理动机；应扩展证据摘录以包含这些摘要句子，或删减摘要中的相关声称。",
+            "将关于无关特征的具体理由归于 2010.05744v1，将关于预处理/特征选择的一般理由归于 1905.02845v1；不要把它们合并成一个缺乏支持的单一论断。"
+          ],
+          "checked_material_revision": 2
+        },
+        "step_count": 2,
+        "max_steps": 8,
+        "workflow_tokens_used": 8216,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.2245618305744888
+          },
+          "summarize_fast": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.7754381694255112
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_after": {
+        "config_version": 1,
+        "review_id": "R005",
+        "difficulty": "easy",
+        "retrieved_paper_count": 3,
+        "summary_available": true,
+        "material_revision": 2,
+        "verifier": {
+          "scores": {
+            "coverage": 1.0,
+            "factuality": 0.9,
+            "citation_support": 0.8,
+            "consistency": 1.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": true,
+            "citation_support": true,
+            "consistency": true
+          },
+          "issues": [
+            "2010.05744v1 的摘要加入了“冗余特征”，但原摘要只提到无关特征；应删除“冗余”，或将其明确标注为推断。",
+            "1905.02845v1 的摘要声称该综述涵盖理论/动机、应用、数值实现和方法比较，但所提供的证据摘录只支持预处理动机；应扩展证据摘录以包含这些摘要句子，或删减摘要中的相关声称。",
+            "将关于无关特征的具体理由归于 2010.05744v1，将关于预处理/特征选择的一般理由归于 1905.02845v1；不要把它们合并成一个缺乏支持的单一论断。"
+          ],
+          "checked_material_revision": 2
+        },
+        "step_count": 3,
+        "max_steps": 8,
+        "workflow_tokens_used": 11215,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.1645118145341061
+          },
+          "summarize_fast": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.5680784663397236
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.2674097191261703
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": true,
+        "terminal_reason": "final_written"
+      },
+      "state_before_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-a61d9c88101f49728e5bf21415dca3d4\\step-003-before.json",
+      "state_after_ref": "D:\\DQN\\outputs\\train-probes-bilingual-v1-20261126-network\\traces\\episode-a61d9c88101f49728e5bf21415dca3d4\\step-003-after.json",
+      "action_id": "write_fast",
+      "action_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "verifier_before": 0.925,
+      "verifier_after": 0.925,
+      "verifier_delta": null,
+      "input_tokens": 1382,
+      "output_tokens": 1617,
+      "verifier_tokens": 0,
+      "total_workflow_tokens": 2999,
+      "success": true,
+      "error": null,
+      "done": true,
+      "terminal_reason": "final_written",
+      "calls": [
+        {
+          "role": "write",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-26T05:55:26.457394+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Write a Chinese literature review with comparisons, limitations and an explicit abstract-only scope. Use the supplied papers and summaries only. Cover all supplied papers with citations. Return JSON {\"sections\":[{\"heading\":\"text\",\"text\":\"text\",\"paper_ids\":[\"id\"]}]}.",
+          "payload": {
+            "query": "在模式分析的预处理阶段，为什么需要识别无关特征？以回归神经网络为例，说明研究采用什么网络和核函数进行特征选择，以及模拟数据和真实数据分别承担了什么验证任务。",
+            "papers": [
+              {
+                "id": "2010.05744v1",
+                "title": "On Feature Selection Using Anisotropic General Regression Neural Network",
+                "abstract": "The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models. Therefore, the development of feature selection methods to recognize irrelevant features is a crucial topic in machine learning. Here we show how the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection. A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets."
+              },
+              {
+                "id": "1905.02845v1",
+                "title": "Feature Selection and Feature Extraction in Pattern Analysis: A Literature Review",
+                "abstract": "Pattern analysis often requires a pre-processing stage for extracting or selecting features in order to help the classification, prediction, or clustering stage discriminate or represent the data in a better way. The reason for this requirement is that the raw data are complex and difficult to process without extracting or selecting appropriate features beforehand. This paper reviews theory and motivation of different common methods of feature selection and extraction and introduces some of their applications. Some numerical implementations are also shown for these methods. Finally, the methods in feature selection and extraction are compared."
+              },
+              {
+                "id": "1808.02632v1",
+                "title": "Question-Guided Hybrid Convolution for Visual Question Answering",
+                "abstract": "In this paper, we propose a novel Question-Guided Hybrid Convolution (QGHC) network for Visual Question Answering (VQA). Most state-of-the-art VQA methods fuse the high-level textual and visual features from the neural network and abandon the visual spatial information when learning multi-modal features.To address these problems, question-guided kernels generated from the input question are designed to convolute with visual features for capturing the textual and visual relationship in the early stage. The question-guided convolution can tightly couple the textual and visual information but also introduce more parameters when learning kernels. We apply the group convolution, which consists of question-independent kernels and question-dependent kernels, to reduce the parameter size and alleviate over-fitting. The hybrid convolution can generate discriminative multi-modal features with fewer parameters. The proposed approach is also complementary to existing bilinear pooling fusion and attention based VQA methods. By integrating with them, our method could further boost the performance. Extensive experiments on public VQA datasets validate the effectiveness of QGHC."
+              }
+            ],
+            "items": [
+              {
+                "paper_id": "2010.05744v1",
+                "summary": "该文指出，输入数据中的无关特征会降低机器学习模型的可解释性和预测质量，因此识别无关特征的特征选择是机器学习的关键环节，也对应模式分析预处理阶段筛选无关或冗余特征的需要。方法上，研究采用广义回归神经网络（General Regression Neural Network）配合各向异性高斯核（anisotropic Gaussian Kernel）进行特征选择。模拟数据用于数值实验，检验方法的稳健性及其对样本量的敏感性；真实数据用于在多个真实数据集上与另外四种特征选择方法进行比较。",
+                "evidence": "The presence of irrelevant features in the input dataset tends to reduce the interpretability and predictive quality of machine learning models. Therefore, the development of feature selection methods to recognize irrelevant features is a crucial topic in machine learning. Here we show how the General Regression Neural Network used with an anisotropic Gaussian Kernel can be used to perform feature selection. A number of numerical experiments are conducted using simulated data to study the robustness of the proposed methodology and its sensitivity to sample size. Finally, a comparison with four other feature selection methods is performed on several real world datasets."
+              },
+              {
+                "paper_id": "1905.02845v1",
+                "summary": "该综述说明，模式分析通常需要预处理阶段来抽取或选择特征，以帮助分类、预测或聚类阶段更好地区分或表示数据；原因是原始数据复杂，若不事先抽取或选择合适特征就难以处理。文章回顾特征选择与特征抽取的理论和动机，介绍其应用，给出一些数值实现，并对相关方法进行比较。它为“预处理阶段为何需要特征选择”提供了一般性依据，但未具体展开回归神经网络。",
+                "evidence": "Pattern analysis often requires a pre-processing stage for extracting or selecting features in order to help the classification, prediction, or clustering stage discriminate or represent the data in a better way. The reason for this requirement is that the raw data are complex and difficult to process without extracting or selecting appropriate features beforehand."
+              },
+              {
+                "paper_id": "1808.02632v1",
+                "summary": "该文提出用于视觉问答（VQA）的Question-Guided Hybrid Convolution网络，关注文本与视觉特征融合及视觉空间信息利用，不涉及模式分析预处理中的无关特征识别，也不涉及回归神经网络或高斯核特征选择；因此与本次查询主题无关，不纳入综合回答。",
+                "evidence": "In this paper, we propose a novel Question-Guided Hybrid Convolution (QGHC) network for Visual Question Answering (VQA)."
+              }
+            ],
+            "feedback": [
+              "2010.05744v1 的摘要加入了“冗余特征”，但原摘要只提到无关特征；应删除“冗余”，或将其明确标注为推断。",
+              "1905.02845v1 的摘要声称该综述涵盖理论/动机、应用、数值实现和方法比较，但所提供的证据摘录只支持预处理动机；应扩展证据摘录以包含这些摘要句子，或删减摘要中的相关声称。",
+              "将关于无关特征的具体理由归于 2010.05744v1，将关于预处理/特征选择的一般理由归于 1905.02845v1；不要把它们合并成一个缺乏支持的单一论断。"
+            ]
+          },
+          "cache_key": "e5723b21f7329bd271ed7c803052ab993b8fb5c31f10f374612a0acf4b3b8413",
+          "cache_hit": false,
+          "prompt_tokens": 1382,
+          "completion_tokens": 1617,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"sections\":[{\"heading\":\"范围说明：仅基于摘要的综述\",\"text\":\"本综述仅依据所提供论文摘要及摘要级总结撰写，不检视全文，不补充摘要未给出的实验设置、参数或数值结果。文献覆盖 [1905.02845v1]、[2010.05744v1] 与 [1808.02632v1]；其中 [1808.02632v1] 主题为视觉问答，与本次查询不直接相关，仅作范围外说明。\",\"paper_ids\":[\"1905.02845v1\",\"2010.05744v1\",\"1808.02632v1\"]},{\"heading\":\"预处理阶段为何需要识别无关特征\",\"text\":\"模式分析通常需要预处理阶段来抽取或选择特征，以帮助分类、预测或聚类阶段更好地区分或表示数据；其原因是原始数据复杂，若不事先抽取或选择合适特征就难以直接处理 [1905.02845v1]。在机器学习输入层面，[2010.05744v1] 进一步指出，输入数据中的无关特征会降低模型的可解释性和预测质量，因此识别无关特征的特征选择是机器学习中的关键环节。需要说明的是，[2010.05744v1] 摘要只明确提到“无关特征”，本综述不将其扩展为“冗余特征”等未给出的断言。\",\"paper_ids\":[\"1905.02845v1\",\"2010.05744v1\"]},{\"heading\":\"回归神经网络与核函数\",\"text\":\"针对特征选择，[2010.05744v1] 采用广义回归神经网络（General Regression Neural Network）配合各向异性高斯核（anisotropic Gaussian Kernel）进行特征选择。摘要未给出网络结构、核参数设置或具体选择准则的细节，因此本综述仅能确认网络类型与核函数类型，不能展开其算法细节。\",\"paper_ids\":[\"2010.05744v1\"]},{\"heading\":\"模拟数据与真实数据的验证任务\",\"text\":\"[2010.05744v1] 中，模拟数据用于数值实验，以检验所提方法的稳健性及其对样本量的敏感性；真实数据用于在多个真实数据集上与另外四种特征选择方法进行比较。据此，模拟数据主要承担方法行为与稳健性、样本量敏感性的验证任务，真实数据主要承担相对比较与外部数据场景下的验证任务。摘要未报告具体数据集名称、对比方法名称或性能指标。\",\"paper_ids\":[\"2010.05744v1\"]},{\"heading\":\"比较与局限\",\"text\":\"与 [1905.02845v1] 的综述性讨论相比，[2010.05744v1] 提供了更具体的特征选择方法与验证安排：前者说明模式分析预处理中特征抽取或选择的一般动机，后者具体采用广义回归神经网络与各向异性高斯核，并区分模拟数据与真实数据的验证任务。[1808.02632v1] 提出用于视觉问答的 Question-Guided Hybrid Convolution 网络，关注文本与视觉特征融合及视觉空间信息利用，不涉及模式分析预处理中的无关特征识别，也不涉及回归神经网络或高斯核特征选择，因此不能纳入本查询的方法比较。本文的局限在于：仅基于摘要，无法评估实验设计、统计显著性、数据集细节、四种对比方法的具体名称与性能指标；[1905.02845v1] 的摘要级信息也不足以支撑对其方法比较结论的细粒度评述。因此，上述结论限于摘要明确陈述的范围。\",\"paper_ids\":[\"1905.02845v1\",\"2010.05744v1\",\"1808.02632v1\"]}]}",
+          "output": {
+            "sections": [
+              {
+                "heading": "范围说明：仅基于摘要的综述",
+                "text": "本综述仅依据所提供论文摘要及摘要级总结撰写，不检视全文，不补充摘要未给出的实验设置、参数或数值结果。文献覆盖 [1905.02845v1]、[2010.05744v1] 与 [1808.02632v1]；其中 [1808.02632v1] 主题为视觉问答，与本次查询不直接相关，仅作范围外说明。",
+                "paper_ids": [
+                  "1905.02845v1",
+                  "2010.05744v1",
+                  "1808.02632v1"
+                ]
+              },
+              {
+                "heading": "预处理阶段为何需要识别无关特征",
+                "text": "模式分析通常需要预处理阶段来抽取或选择特征，以帮助分类、预测或聚类阶段更好地区分或表示数据；其原因是原始数据复杂，若不事先抽取或选择合适特征就难以直接处理 [1905.02845v1]。在机器学习输入层面，[2010.05744v1] 进一步指出，输入数据中的无关特征会降低模型的可解释性和预测质量，因此识别无关特征的特征选择是机器学习中的关键环节。需要说明的是，[2010.05744v1] 摘要只明确提到“无关特征”，本综述不将其扩展为“冗余特征”等未给出的断言。",
+                "paper_ids": [
+                  "1905.02845v1",
+                  "2010.05744v1"
+                ]
+              },
+              {
+                "heading": "回归神经网络与核函数",
+                "text": "针对特征选择，[2010.05744v1] 采用广义回归神经网络（General Regression Neural Network）配合各向异性高斯核（anisotropic Gaussian Kernel）进行特征选择。摘要未给出网络结构、核参数设置或具体选择准则的细节，因此本综述仅能确认网络类型与核函数类型，不能展开其算法细节。",
+                "paper_ids": [
+                  "2010.05744v1"
+                ]
+              },
+              {
+                "heading": "模拟数据与真实数据的验证任务",
+                "text": "[2010.05744v1] 中，模拟数据用于数值实验，以检验所提方法的稳健性及其对样本量的敏感性；真实数据用于在多个真实数据集上与另外四种特征选择方法进行比较。据此，模拟数据主要承担方法行为与稳健性、样本量敏感性的验证任务，真实数据主要承担相对比较与外部数据场景下的验证任务。摘要未报告具体数据集名称、对比方法名称或性能指标。",
+                "paper_ids": [
+                  "2010.05744v1"
+                ]
+              },
+              {
+                "heading": "比较与局限",
+                "text": "与 [1905.02845v1] 的综述性讨论相比，[2010.05744v1] 提供了更具体的特征选择方法与验证安排：前者说明模式分析预处理中特征抽取或选择的一般动机，后者具体采用广义回归神经网络与各向异性高斯核，并区分模拟数据与真实数据的验证任务。[1808.02632v1] 提出用于视觉问答的 Question-Guided Hybrid Convolution 网络，关注文本与视觉特征融合及视觉空间信息利用，不涉及模式分析预处理中的无关特征识别，也不涉及回归神经网络或高斯核特征选择，因此不能纳入本查询的方法比较。本文的局限在于：仅基于摘要，无法评估实验设计、统计显著性、数据集细节、四种对比方法的具体名称与性能指标；[1905.02845v1] 的摘要级信息也不足以支撑对其方法比较结论的细粒度评述。因此，上述结论限于摘要明确陈述的范围。",
+                "paper_ids": [
+                  "1905.02845v1",
+                  "2010.05744v1",
+                  "1808.02632v1"
+                ]
+              }
+            ]
+          },
+          "elapsed_seconds": 10.032
+        }
+      ],
+      "execution_kind": "real",
+      "next_mask": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ],
+  "collection_kind": "formal",
+  "public_task": {
+    "review_id": "R005",
+    "survey_instruction": "在模式分析的预处理阶段，为什么需要识别无关特征？以回归神经网络为例，说明研究采用什么网络和核函数进行特征选择，以及模拟数据和真实数据分别承担了什么验证任务。",
+    "split": "train",
+    "difficulty": "easy",
+    "corpus_scope": "local_arxiv_ai",
+    "config_version": 1
+  },
+  "source": {
+    "source_id": "arxiv600-review40-v1",
+    "manifest_sha256": "842ecacf33e2acf35d1352a0f8c999282db4817fadd48cff19c3c3ba87e1734e",
+    "task_sha256": "9e327eb18b157bb78f83c3175341c7af929b9b6021d57064c583010149d5c0eb",
+    "corpus_sha256": "751acf2ed7b74403f8d89a2c8046f570156643c0e9192cd868cda6722096235f",
+    "corpus_size": 600
+  },
+  "policy": "rule",
+  "plan": {
+    "policy": "rule",
+    "preferences_by_step": [],
+    "fallback": "RuleScheduler",
+    "selection": "deterministic"
+  },
+  "plan_sha256": "3e022d60305df0ccda6091a08c1e16eb0ecfe911a2282ded3f08021be8794111",
+  "config_sha256": "0ce1fc771d0af8bfe57eb0b556a623019a158e2073eabe1d929b3274728eb01e",
+  "final_text_sha256": "85691f8ad05a34752353f14762d3626c11eeaa2eea8964280dabfd75eb065e0e",
+  "support": [
+    {
+      "difficulty": "easy",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "retrieve_more",
+      "opportunities": 1,
+      "selected": 1,
+      "known_cost_steps": 1,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 1,
+      "selection_rate": 1.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "summarize_deep",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "easy",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "summarize_fast",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "easy",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "write_deep",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "easy",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "write_fast",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "easy",
+      "stage": "raw",
+      "verifier_band": "high",
+      "action_id": "retrieve_more",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "raw",
+      "verifier_band": "high",
+      "action_id": "summarize_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "raw",
+      "verifier_band": "high",
+      "action_id": "summarize_fast",
+      "opportunities": 1,
+      "selected": 1,
+      "known_cost_steps": 1,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 1,
+      "selection_rate": 1.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "raw",
+      "verifier_band": "high",
+      "action_id": "write_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "raw",
+      "verifier_band": "high",
+      "action_id": "write_fast",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "retrieve_more",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "summarize_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "summarize_fast",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "write_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "easy",
+      "stage": "summary",
+      "verifier_band": "high",
+      "action_id": "write_fast",
+      "opportunities": 1,
+      "selected": 1,
+      "known_cost_steps": 1,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 1,
+      "selection_rate": 1.0
+    }
+  ]
+}

@@ -1,2 +1,6 @@
 # Preserve the exact bytes of downloaded metadata for reproducible SHA-256 checks.
 *.atom.xml -text
+
+# Keep the published training probe bytes identical on every checkout.
+handoff/role1_train_probes/R001-collection.json text eol=lf
+handoff/role1_train_probes/R005-collection.json text eol=lf

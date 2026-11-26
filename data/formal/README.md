@@ -1,4 +1,6 @@
-# 正式数据：等待三号位交付
+# 正式数据位置说明
+
+**状态更新**：三号已在 data-fix 分支交付，现已集成本地。为保持冻结路径与哈希不变，没有迁移到本目录；实际文件在 `data/arxiv_corpus.json`、`data/train_tasks.json`、`data/test_tasks.json` 和 `data/release.json`。使用 `utils.data_release` 加载。以下为原先的交付计划。
 
 此目录目前只有交付说明，没有正式语料或任务。禁止用 AgentSkill 样例填充占位。
 

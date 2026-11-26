@@ -1,0 +1,10 @@
+{
+  "coverage": 0.1,
+  "factuality": 1.0,
+  "citation_support": 0.0,
+  "consistency": 0.5,
+  "overall": 0.4,
+  "review_id": "R001",
+  "judge_model": "deepseek-v4-pro",
+  "prompt_hash": "ea3c74eda22e438e159d697b8ece53ea"
+}

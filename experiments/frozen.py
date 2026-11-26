@@ -35,7 +35,6 @@ def execute_pairs(runner, tasks, checkpoint, output, *, mode='fixture', seed=0, 
     tasks = list(tasks)
     checkpoint = Path(checkpoint).read_bytes()
     artifact = json.loads(checkpoint)
-    frozen = DQNScheduler(artifact)
     if not tasks or not all(isinstance(t, ReviewTask) for t in tasks):
         raise ValueError('Expected public ReviewTask instances')
     ids = {t.review_id for t in tasks}
@@ -48,10 +47,14 @@ def execute_pairs(runner, tasks, checkpoint, output, *, mode='fixture', seed=0, 
                 meta['data_source'] != 'formal_train_runner' or meta['runner_config'] != asdict(runner.config) or
                 ids.intersection(meta['development_review_ids'])):
             raise ValueError('Formal run needs frozen compatible weights and at least five disjoint test tasks')
+        fingerprint = json_sha256(runner.retriever.spec())
+        if meta.get('retrieval_spec_sha256') != fingerprint:
+            raise ValueError('Missing or incompatible checkpoint retrieval fingerprint for this Runner')
         seal_ref = _verify_test_seal(runner, tasks, test_manifest)
     elif (mode != 'fixture' or test_manifest is not None or not isinstance(runner.executor.backend, MockBackend)
           or any(t.split != 'pilot' for t in tasks)):
         raise ValueError('Rehearsal requires mock backend and pilot tasks, without a formal test manifest')
+    frozen = DQNScheduler(artifact)
     out = Path(output)
     out.mkdir(parents=True, exist_ok=False)
     policies = [('rule', RuleScheduler(runner.config)), ('dqn', frozen)]
@@ -69,6 +72,7 @@ def execute_pairs(runner, tasks, checkpoint, output, *, mode='fixture', seed=0, 
                 'runner_config':asdict(runner.config),'seed':seed,'all_episodes_complete':True,'episodes':rows}
     if mode == 'formal':
         manifest['test_delivery'] = seal_ref
+        manifest['retrieval_spec_sha256'] = fingerprint
     with (out/'execution_complete.json').open('x',encoding='utf-8') as stream:
         json.dump(manifest,stream,ensure_ascii=False,indent=2)
     return manifest

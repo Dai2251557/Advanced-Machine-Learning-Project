@@ -1,8 +1,10 @@
 # 多 Agent 文献综述与 DQN 调度实验
 
+本地集成已接入三号 data-fix 分支的数据包（600 篇语料、30 个训练任务、10 个封存公开测试任务）。使用 utils.data_release.load_corpus() 与 load_manifest()，不要用旧语料加载器直接读取原始列表。数据及 Judge 协议见 [三号交接说明](ROLE3_HANDOFF.md)。
+
 本项目在同一套 Agent、语料和预算下，比较固定规则（Rule）与 DQN 调度的综述质量、工作流 Token 消耗、任务错配和动作负载。两种策略共用五动作 Runner，只替换 `select_action`。
 
-**当前进度：共享 Runner 已完成真实 pilot；DQN 已能离线训练、导出并接回同一 Runner。尚未用正式数据完成标定或独立测试，不能据此判断哪种策略更好。**
+**当前进度：共享 Runner 已完成真实 pilot，并在正式训练语料上完成两条 Rule 探针；DQN 已能离线训练、导出并接回同一 Runner。尚未用正式数据完成标定或独立测试，不能据此判断哪种策略更好。** 探针交接见 [一号位训练探针](handoff/role1_train_probes/README.md)。
 
 ## 项目状态与交接
 
@@ -111,7 +113,7 @@ token 统计直接采用接口返回值，不使用字符数冒充 token 数；�
 程序检查字段、重复编号和引用范围，但不会联网核实论文真实性。真实数据应保留来源与采集记录，切勿将演示数据标记为真实论文。
 当前检索会把整个给定集合发送给模型，适合先用少量论文验证流程；大规模语料的索引、分批处理和上下文预算属于后续工作。
 
-现有五篇 AgentSkill 真实论文和五个任务仅供功能测试，不是正式实验数据；三号位尚未交付正式数据。分类与运行方法见 [data/README.md](data/README.md)。可直接运行：
+现有五篇 AgentSkill 真实论文和五个任务仅供功能测试，不是正式实验数据；三号冻结数据已在本地集成分支接入，使用 utils.data_release 加载。分类与运行方法见 [data/README.md](data/README.md)。可直接运行：
 
 ```powershell
 python -m litreview --backend deepseek --corpus data/samples/agent_skill/agent_skill_papers.json --task-file data/samples/agent_skill/review_tasks.json --task-id review-001 --output outputs/pilot/agent-skill-001

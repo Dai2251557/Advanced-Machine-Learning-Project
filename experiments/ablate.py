@@ -1,6 +1,7 @@
 """离线单因素消融。默认只演练，正式数据须显式传入并通过 T4 来源验证。"""
 
 import argparse
+import hashlib
 import json
 import platform
 import time
@@ -12,7 +13,7 @@ import torch
 
 from core.schema import ACTIONS, CONFIG_VERSION
 from experiments.collect import PLANS, dry_run, json_sha256
-from rl.calibration import evaluate_holdout, fit_calibration
+from rl.calibration import evaluate_holdout, fit_calibration, validate_calibration_inputs
 from rl.dqn import TrainConfig, train
 from rl.synthetic_env import SyntheticEnv
 
@@ -32,6 +33,11 @@ def grid(size):
             'target_rare': replace(base, target_interval=intervals[1])}
 
 
+def _inputs_sha256(episodes, labels, manifest, holdout):
+    # Keep the original experiment.json digest format, including the historical key 'holdout'.
+    return json_sha256({'episodes': episodes, 'labels': labels, 'manifest': manifest, 'holdout': holdout})
+
+
 def prepare(bundle=None, fixture_calibration=False):
     if bundle is None and not fixture_calibration:
         return SyntheticEnv, ['easy','medium','hard'], {'data_source':'analytic_fixture'}
@@ -47,7 +53,7 @@ def prepare(bundle=None, fixture_calibration=False):
     model = fit_calibration(fitting,[x for x in labels if x['trajectory_id'] in tids],mode=mode,manifest=manifest)
     difficulties = [e['public_task']['difficulty'] for e in {ep['review_id']:ep for ep in eps if ep['review_id'] in holdout}.values()]
     meta = {'data_source':model.source, 'fit':model.manifest(), 'holdout':report,
-            'inputs_sha256':json_sha256({'episodes':eps,'labels':labels,'manifest':manifest,'holdout':holdout})}
+            'inputs_sha256':_inputs_sha256(eps,labels,manifest,holdout)}
     return model.make_env, difficulties, meta
 
 
@@ -93,7 +99,36 @@ def write_json(path, value):
         stream.write('\n')
 
 
+def bind_legacy_checkpoint(checkpoint, experiment, training_bundle, output):
+    """Copy an old formal policy only after validating both links back to its training inputs."""
+    raw = Path(checkpoint).read_bytes()
+    policy = json.loads(raw)
+    meta = policy['metadata']
+    experiment = json.loads(Path(experiment).read_bytes())
+    if (meta.get('data_source') != 'formal_train_runner' or 'retrieval_spec_sha256' in meta or
+            experiment.get('data_source') != 'formal_train_runner' or
+            meta.get('experiment_sha256') != json_sha256(experiment)):
+        raise ValueError('Expected an unbound formal checkpoint and its matching original experiment.json')
+    bundle = json.loads(Path(training_bundle).read_bytes())
+    episodes, labels, manifest = bundle['episodes'], bundle['labels'], bundle['manifest']
+    if experiment.get('inputs_sha256') != _inputs_sha256(episodes, labels, manifest, bundle['holdout_review_ids']):
+        raise ValueError('Training inputs do not match the original experiment')
+    _, _, fingerprint = validate_calibration_inputs(episodes, labels, mode='formal', manifest=manifest)
+    meta.update(retrieval_spec_sha256=fingerprint, legacy_checkpoint_sha256=hashlib.sha256(raw).hexdigest())
+    write_json(Path(output), policy)  # exclusive create; keep the original policy and experiment intact
+
+
 def run_one(root, name, cfg, seed, env_factory, difficulties, meta, *, interval, threshold):
+    env = env_factory()
+    metadata = {'data_source':meta['data_source'],'experiment_sha256':json_sha256(meta), 'seed':seed, 'name':name,
+                'runner_config':asdict(env.config),
+                'development_review_ids':sorted(set(meta.get('fit',{}).get('training_review_ids',[])) |
+                                                set(meta.get('holdout',{}).get('holdout_review_ids',[])))}
+    if meta['data_source'] == 'formal_train_runner':
+        fingerprint = meta['fit'].get('retrieval_spec_sha256')
+        if not fingerprint or fingerprint != env.model.retrieval_spec_sha256:
+            raise ValueError('Training environment does not match the fitted retrieval specification')
+        metadata['retrieval_spec_sha256'] = fingerprint
     run = root / f'{name}-seed{seed}'
     run.mkdir(exist_ok=False)
     evaluations = []
@@ -106,13 +141,9 @@ def run_one(root, name, cfg, seed, env_factory, difficulties, meta, *, interval,
                 evaluations.append({'step':step, **summary})
                 for ep in episodes:
                     traces.write(json.dumps({'step':step,'transitions':ep},ensure_ascii=False,allow_nan=False)+'\n')
-        agent, raw = train(env_factory(),cfg,seed,on_step=periodic)
+        agent, raw = train(env,cfg,seed,on_step=periodic)
     converged = next((evaluations[i]['step'] for i in range(2,len(evaluations)) if all(
         e['mean_return'] >= threshold for e in evaluations[i-2:i+1])), None)
-    metadata = {'data_source':meta['data_source'],'experiment_sha256':json_sha256(meta), 'seed':seed, 'name':name,
-                'runner_config':asdict(env_factory().config),
-                'development_review_ids':sorted(set(meta.get('fit',{}).get('training_review_ids',[])) |
-                                                set(meta.get('holdout',{}).get('holdout_review_ids',[])))}
     agent.save(run/'policy.json', metadata)
     write_json(run/'train.json',raw)
     result = {**metadata,'config':asdict(cfg), 'evaluations':evaluations, 'gradient_updates':agent.updates,
