@@ -1,0 +1,16 @@
+{
+  "kind": "manually_curated_train_pilot_not_formal_release",
+  "sections": [
+    {
+      "paper_id": "2008.02646v1",
+      "abstract_sha256": "54c9b594ea1b1afd5cd3c561a5d2df869e7e8602cc8533bd4d9fedfa9a6d3154",
+      "section_id": "discussion-p7-her",
+      "heading": "X. DISCUSSION — sample efficiency on a physical robot",
+      "source_url": "https://arxiv.org/pdf/2008.02646v1",
+      "source_locator": "PDF page 7, lines 600-605; whitespace normalized",
+      "search_terms": ["physical robot", "sample efficiency", "HER", "alphabet tasks", "real robot"],
+      "text": "During development, we found some techniques were crucial to achieving successful learning on a physical robot. For example, HER gave sample efficiency improvements up to a factor of 10, along with boosting final performance. This efficiency was particularly evident on the alphabet tasks where rewards are less frequently encountered under random exploration.",
+      "sha256": "14077084b6266697dbebceac6b3fd8c11445ddde888116e637f2815145c188d0"
+    }
+  ]
+}
