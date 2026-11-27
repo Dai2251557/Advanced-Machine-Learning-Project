@@ -1,0 +1,222 @@
+{
+  "kind": "train_pilot_tasks_not_formal_test",
+  "corpus_paper_ids": [
+    "2008.02646v1",
+    "2009.12864v1",
+    "1809.10253v3",
+    "1807.11174v1",
+    "2012.12104v1",
+    "2010.05772v1",
+    "2009.08052v1",
+    "1808.01876v2"
+  ],
+  "tasks": [
+    {
+      "review_id": "V2-A01",
+      "split": "train",
+      "kind": "abstract",
+      "survey_instruction": "触觉键盘机器人研究中，四项任务在仿真和实机上的学习结果有何不同？说明摘要中的证据边界。",
+      "source_section_ids": [],
+      "required_paper_ids": [
+        "2008.02646v1"
+      ],
+      "checklist": [
+        "四项任务在仿真中学会",
+        "三项任务在真实机器人上学会",
+        "说明摘要证据的适用范围"
+      ]
+    },
+    {
+      "review_id": "V2-A02",
+      "split": "train",
+      "kind": "abstract",
+      "survey_instruction": "概率动力学模型如何使用固定的真实轨迹预测仿真到实机迁移表现？这种相关性意味着什么，又不能证明什么？",
+      "source_section_ids": [],
+      "required_paper_ids": [
+        "2009.12864v1"
+      ],
+      "checklist": [
+        "概率动力学模型与策略共同训练",
+        "在固定真实轨迹上计算迁移指标",
+        "相关性不能替代逐项真实任务验证"
+      ]
+    },
+    {
+      "review_id": "V2-A03",
+      "split": "train",
+      "kind": "abstract",
+      "survey_instruction": "视频与点检测器在匝道控制中分别提供什么范围的信息？论文用哪些指标比较控制效果？只依据摘要回答。",
+      "source_section_ids": [],
+      "required_paper_ids": [
+        "2012.12104v1"
+      ],
+      "checklist": [
+        "视频覆盖区域和点检测器观测范围的区别",
+        "主线旅行时间、匝道排队或下游流量指标",
+        "限定在所给摘要"
+      ]
+    },
+    {
+      "review_id": "V2-A04",
+      "split": "train",
+      "kind": "abstract",
+      "survey_instruction": "路口结构变化与车流变化是同一种泛化问题吗？比较 AttendLight 和 GeneraLight 摘要描述的方法与适用条件。",
+      "source_section_ids": [],
+      "required_paper_ids": [
+        "2010.05772v1",
+        "2009.08052v1"
+      ],
+      "checklist": [
+        "AttendLight 针对路口结构且要求训练集中有类似结构",
+        "GeneraLight 针对车流变化并结合聚类与元学习",
+        "不把不同场景混成排名"
+      ]
+    },
+    {
+      "review_id": "V2-D01",
+      "split": "train",
+      "kind": "section",
+      "survey_instruction": "触觉键盘研究中，HER 对实机训练样本效率报告了多大改善？在哪类任务上尤其明显？解释这与连续字母任务仍不可行的关系。",
+      "source_section_ids": [
+        "2008.02646v1-p7-s3"
+      ],
+      "required_paper_ids": [
+        "2008.02646v1"
+      ],
+      "checklist": [
+        "HER 对样本效率最高约十倍改善",
+        "字母任务尤其明显",
+        "连续字母任务仍受实机样本效率限制"
+      ]
+    },
+    {
+      "review_id": "V2-D02",
+      "split": "train",
+      "kind": "section",
+      "survey_instruction": "迁移预测论文的方块重定向真机实验使用了什么机器人手、约多少条真实轨迹、轨迹长度范围怎样？这些数据支撑什么预测目的？",
+      "source_section_ids": [
+        "2009.12864v1-p4-s2"
+      ],
+      "required_paper_ids": [
+        "2009.12864v1"
+      ],
+      "checklist": [
+        "Shadow 机器人手上的真实轨迹",
+        "约五百条轨迹",
+        "轨迹长度约二十到三千步及预测用途"
+      ]
+    },
+    {
+      "review_id": "V2-D03",
+      "split": "train",
+      "kind": "section",
+      "survey_instruction": "视频匝道控制论文如何用多次模拟比较 PI-ALINEA 与不控制？举出实验中 PI-ALINEA 反而增加主线旅行时间的例子，并说明不能据此作普遍排名。",
+      "source_section_ids": [
+        "2012.12104v1-p10-s3"
+      ],
+      "required_paper_ids": [
+        "2012.12104v1"
+      ],
+      "checklist": [
+        "二十次模拟实验",
+        "PI-ALINEA 在第六次实验使旅行时间增加约百分之十",
+        "不作普遍算法排名"
+      ]
+    },
+    {
+      "review_id": "V2-D04",
+      "split": "train",
+      "kind": "section",
+      "survey_instruction": "AttendLight 正文考察了多少种路口拓扑？作者指出遇到哪种未覆盖结构时可能失效？给出证据边界。",
+      "source_section_ids": [
+        "2010.05772v1-p6-s2",
+        "2010.05772v1-p10-s3"
+      ],
+      "required_paper_ids": [
+        "2010.05772v1"
+      ],
+      "checklist": [
+        "考察十一路口拓扑",
+        "训练集中缺少类似的复杂异常路口时可能失效",
+        "限定该研究的结论"
+      ]
+    },
+    {
+      "review_id": "V2-C01",
+      "split": "train",
+      "kind": "cross_paper",
+      "survey_instruction": "对比触觉键盘实机学习与概率动力学迁移预测：HER 的样本效率提升幅度及其任务条件，与约多少真实轨迹支撑的预测指标，分别是什么证据？为什么不能互相替代？",
+      "source_section_ids": [
+        "2008.02646v1-p7-s3",
+        "2009.12864v1-p4-s2"
+      ],
+      "required_paper_ids": [
+        "2008.02646v1",
+        "2009.12864v1"
+      ],
+      "checklist": [
+        "HER 最高约十倍且在字母任务明显",
+        "迁移指标使用约五百条真实轨迹",
+        "区分真机任务学习与预测代理"
+      ]
+    },
+    {
+      "review_id": "V2-C02",
+      "split": "train",
+      "kind": "cross_paper",
+      "survey_instruction": "比较视频匝道控制和城市交通控制两项模拟研究：前者的重复试验与 PI-ALINEA 反例是什么，后者训练了多少回合？说明这些实验为何不能合并成算法排名。",
+      "source_section_ids": [
+        "2012.12104v1-p10-s3",
+        "1808.01876v2-p6-s2"
+      ],
+      "required_paper_ids": [
+        "2012.12104v1",
+        "1808.01876v2"
+      ],
+      "checklist": [
+        "匝道研究二十次实验和 PI-ALINEA 反例",
+        "城市交通研究训练五十回合",
+        "指出任务与指标不同不可直接排名"
+      ]
+    },
+    {
+      "review_id": "V2-C03",
+      "split": "train",
+      "kind": "cross_paper",
+      "survey_instruction": "AttendLight 考察的路口拓扑数量和未覆盖结构的局限是什么？GeneraLight 在何种模拟平台与车流分布上实验？比较两种泛化证据的范围。",
+      "source_section_ids": [
+        "2010.05772v1-p6-s2",
+        "2010.05772v1-p10-s3",
+        "2009.08052v1-p6-s2"
+      ],
+      "required_paper_ids": [
+        "2010.05772v1",
+        "2009.08052v1"
+      ],
+      "checklist": [
+        "AttendLight 十一路口拓扑与未覆盖结构限制",
+        "GeneraLight 使用 CityFlow 与不同车流分布",
+        "区分结构泛化与流量泛化"
+      ]
+    },
+    {
+      "review_id": "V2-C04",
+      "split": "train",
+      "kind": "cross_paper",
+      "survey_instruction": "主动目标搜索和组合机器人技能的实验环境有何不同？前者仿真场景如何分训练与验证，后者在真实机器人上验证了哪类技能组合？据此限定比较结论。",
+      "source_section_ids": [
+        "1807.11174v1-p5-s2",
+        "1809.10253v3-p6-s2"
+      ],
+      "required_paper_ids": [
+        "1807.11174v1",
+        "1809.10253v3"
+      ],
+      "checklist": [
+        "主动目标搜索使用二十场景训练和十场景验证",
+        "组合技能在真实机器人上验证到达或轨迹组合",
+        "说明场景与任务差别"
+      ]
+    }
+  ]
+}

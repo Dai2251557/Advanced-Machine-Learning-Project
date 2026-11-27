@@ -1,0 +1,509 @@
+{
+  "kind": "manually_selected_train_benchmark_v2",
+  "sections": [
+    {
+      "paper_id": "2008.02646v1",
+      "section_id": "2008.02646v1-p3-s1",
+      "heading": "Deep Reinforcement Learning for Tactile Robotics: Learning to Type on a Braille Keyboard - page 3 excerpt 1",
+      "source_url": "https://arxiv.org/pdf/2008.02646v1",
+      "source_locator": "PDF page 3, bbox (312.0, 436.2, 564.3, 517.9)",
+      "page": 3,
+      "bbox": [
+        311.98,
+        436.25,
+        564.28,
+        517.88
+      ],
+      "pdf_sha256": "552423eb96da8f6c85e1f0bf9d28b5dcfab3ff48d42a6b67a354b399a2944f08",
+      "abstract_sha256": "54c9b594ea1b1afd5cd3c561a5d2df869e7e8602cc8533bd4d9fedfa9a6d3154",
+      "search_terms": [
+        "arrow keys"
+      ],
+      "text": "The arrow keys offer a natural way to deﬁne an easier task,\nsince they are located away from the other keys, are fewer,\nand span a smaller area, which greatly reduces the size of\nthe state space. An agent should therefore encounter more\npositive rewards during random exploration. Moreover, the\ntactile features on the arrow keys are more distinct, easing\ntheir interpretation from tactile data.",
+      "sha256": "c0df4a274969542dda094b3c6f33456f9d368e4449666d2545bd2540c0901212"
+    },
+    {
+      "paper_id": "2008.02646v1",
+      "section_id": "2008.02646v1-p6-s2",
+      "heading": "Deep Reinforcement Learning for Tactile Robotics: Learning to Type on a Braille Keyboard - page 6 excerpt 2",
+      "source_url": "https://arxiv.org/pdf/2008.02646v1",
+      "source_locator": "PDF page 6, bbox (49.0, 238.1, 301.9, 441.5)",
+      "page": 6,
+      "bbox": [
+        48.96,
+        238.14,
+        301.94,
+        441.48
+      ],
+      "pdf_sha256": "552423eb96da8f6c85e1f0bf9d28b5dcfab3ff48d42a6b67a354b399a2944f08",
+      "abstract_sha256": "54c9b594ea1b1afd5cd3c561a5d2df869e7e8602cc8533bd4d9fedfa9a6d3154",
+      "search_terms": [
+        "Typing Efficiency"
+      ],
+      "text": "• Typing Efﬁciency: Measures the number of steps taken\nto press a key and gives an indication as to whether the\npolicies learnt are near optimal.\nWhen measuring typing accuracy and efﬁciency for the arrow\ntask all 24 permutations of {UP, DOWN, LEFT, RIGHT}\nare evaluated. For the alphabet task, we provide 10 randomly\ngenerated permutations of the alphabet. This tests that a\nmapping between all keys is stored implicitly within the weights\nof the policy neural networks. During evaluation, the sensor\nis initialised in a random starting position for each sequence\nand the sensor position is not randomly reset after episode\ntermination when a single key is pressed unlike during training.\nFurthermore, during evaluation we used deterministic actions\nto avoid mispressed keys from unnecessary exploration. This\nprocedure gives a more consistent value in comparison with\nusing average episodic return, which allows better comparisons\nto be drawn.",
+      "sha256": "e4c0b2027bd703f38b24c79aff2d5db52a7f5d4e4849fb63cdea97d44f36e5a1"
+    },
+    {
+      "paper_id": "2008.02646v1",
+      "section_id": "2008.02646v1-p7-s3",
+      "heading": "Deep Reinforcement Learning for Tactile Robotics: Learning to Type on a Braille Keyboard - page 7 excerpt 3",
+      "source_url": "https://arxiv.org/pdf/2008.02646v1",
+      "source_locator": "PDF page 7, bbox (48.6, 343.1, 301.8, 520.4)",
+      "page": 7,
+      "bbox": [
+        48.6,
+        343.09,
+        301.77,
+        520.35
+      ],
+      "pdf_sha256": "552423eb96da8f6c85e1f0bf9d28b5dcfab3ff48d42a6b67a354b399a2944f08",
+      "abstract_sha256": "54c9b594ea1b1afd5cd3c561a5d2df869e7e8602cc8533bd4d9fedfa9a6d3154",
+      "search_terms": [
+        "HER gave"
+      ],
+      "text": "During development, we found some techniques were crucial\nto achieving successful learning on a physical robot. For\nexample, HER gave sample efﬁciency improvements up to\na factor of 10, along with boosting ﬁnal performance. This\nefﬁciency was particularly evident on the alphabet tasks\nwhere rewards are less frequently encountered under random\nexploration. Training a DQN agent on the simulated discrete\nalphabet task with HER achieved ﬁnal performance of ∼0.98\nwithin 50 epochs; comparatively, this same task without HER\nachieved a similar level of performance after ∼500 epochs.\nThus, HER was required for feasible learning of the tasks on\na physical system. When using RL to solve physical robotics\nproblems, designing the tasks to be goal orientated can allow\nfor more general behaviour to be learnt whilst taking advantage\nof the beneﬁts HER gives.",
+      "sha256": "c3b9ab05c94f84fa5491b4775d67c4bf89d790f9e4a07ff9c802022cd673e189"
+    },
+    {
+      "paper_id": "2009.12864v1",
+      "section_id": "2009.12864v1-p2-s1",
+      "heading": "Predicting Sim-to-Real Transfer with Probabilistic Dynamics Models - page 2 excerpt 1",
+      "source_url": "https://arxiv.org/pdf/2009.12864v1",
+      "source_locator": "PDF page 2, bbox (307.4, 248.1, 543.1, 306.0)",
+      "page": 2,
+      "bbox": [
+        307.44,
+        248.1,
+        543.09,
+        305.96
+      ],
+      "pdf_sha256": "2c02e3c360400c050027a6299458891be55991e4bfb32ae66c3ff11bcac15515",
+      "abstract_sha256": "9cf425ec1c7bfb718d2e659a1ff67d178c38acd184ee92a4efa1e6b4b2e729c8",
+      "search_terms": [
+        "transfer metric"
+      ],
+      "text": "Figure 1: Transfer metric architecture. A probabilistic dy-\nnamics model is trained in the same source environment\nas the policy. The transfer metric is the average negative\nlog-likelihood of the relative next state given by the model\nfor trajectories from the target environment.",
+      "sha256": "fdc1c911a8d27e0c9fefa1316dc9ed1cc6a8e88025ebd705b0b87e8f07000855"
+    },
+    {
+      "paper_id": "2009.12864v1",
+      "section_id": "2009.12864v1-p4-s2",
+      "heading": "Predicting Sim-to-Real Transfer with Probabilistic Dynamics Models - page 4 excerpt 2",
+      "source_url": "https://arxiv.org/pdf/2009.12864v1",
+      "source_locator": "PDF page 4, bbox (55.0, 378.2, 291.2, 471.9)",
+      "page": 4,
+      "bbox": [
+        54.97,
+        378.21,
+        291.18,
+        471.89
+      ],
+      "pdf_sha256": "2c02e3c360400c050027a6299458891be55991e4bfb32ae66c3ff11bcac15515",
+      "abstract_sha256": "9cf425ec1c7bfb718d2e659a1ff67d178c38acd184ee92a4efa1e6b4b2e729c8",
+      "search_terms": [
+        "real-world deployments"
+      ],
+      "text": "We performed real-world deployments of policies for both\nthe block reorientation task and the Rubik’s cube task. For\nblock reorientation, we evaluated transfer metrics on a ﬁxed\nset of trajectories recorded from Shadow robotic hands.\nThey contains approximately 500 trajectories ranging from\n20 to 3000 time steps. See Sec. 4.4.2 for details of the\nrecorded trajectories used to evaluate the transfer metrics\nfor the Rubik’s cube task.",
+      "sha256": "b3e2c656be808400d237fd7bb3171d38e54f2df5bbb5905c52177dd2be87a52d"
+    },
+    {
+      "paper_id": "2009.12864v1",
+      "section_id": "2009.12864v1-p6-s3",
+      "heading": "Predicting Sim-to-Real Transfer with Probabilistic Dynamics Models - page 6 excerpt 3",
+      "source_url": "https://arxiv.org/pdf/2009.12864v1",
+      "source_locator": "PDF page 6, bbox (55.4, 511.1, 291.1, 580.9)",
+      "page": 6,
+      "bbox": [
+        55.44,
+        511.1,
+        291.1,
+        580.9
+      ],
+      "pdf_sha256": "2c02e3c360400c050027a6299458891be55991e4bfb32ae66c3ff11bcac15515",
+      "abstract_sha256": "9cf425ec1c7bfb718d2e659a1ff67d178c38acd184ee92a4efa1e6b4b2e729c8",
+      "search_terms": [
+        "correlation"
+      ],
+      "text": "In summary, we showed in these experiments that it is not\nnecessary to train the prediction model alongside the policy\nand that the transfer metric can be evaluated for existing\npolicies. We also showed good correlation between the eval-\nuate transfer metrics for existing both block reorientation\nand Rubik’s cube policies.",
+      "sha256": "bc52ffdff9f048314372a3539c07f4703e65c4fca12c6b9ddead8e2d07d8f938"
+    },
+    {
+      "paper_id": "1809.10253v3",
+      "section_id": "1809.10253v3-p4-s1",
+      "heading": "Scaling simulation-to-real transfer by learning composable robot skills - page 4 excerpt 1",
+      "source_url": "https://arxiv.org/pdf/1809.10253v3",
+      "source_locator": "PDF page 4, bbox (134.8, 451.4, 466.4, 547.2)",
+      "page": 4,
+      "bbox": [
+        134.76,
+        451.43,
+        466.42,
+        547.17
+      ],
+      "pdf_sha256": "19f3b46bc212dda744662f463bdbf4d9055123d434205201984ca0c4641604fd",
+      "abstract_sha256": "7ebb214a81134147cdfebfb9b5461ebf41fffee6ca6bc5992ef2552741e75fca",
+      "search_terms": [
+        "Stage 2:"
+      ],
+      "text": "Stage 2: Learning Hierarchical Policies\nIn the second stage, we learn a high-level “composer” policy, represented in general\nby a probability distribution ρχ(z|s) over the latent vector z. The composer actu-\nates the low-level policy πθ(a|s,z) by choosing z at each time step to compose the\npreviously-learned skills. This hierarchical organization admits our novel approach\nto transfer learning: by freezing the low-level skill policy and embedding functions,\nand exploring only in the pre-learned latent space to acquire new tasks, we can\ntransfer a multitude of high-level task policies derived from the low-level skills.",
+      "sha256": "f998ca310faecc30f085ed034ff317e01ec02f66df8c8fcb2334563df5486505"
+    },
+    {
+      "paper_id": "1809.10253v3",
+      "section_id": "1809.10253v3-p6-s2",
+      "heading": "Scaling simulation-to-real transfer by learning composable robot skills - page 6 excerpt 2",
+      "source_url": "https://arxiv.org/pdf/1809.10253v3",
+      "source_locator": "PDF page 6, bbox (134.8, 589.8, 466.4, 647.5)",
+      "page": 6,
+      "bbox": [
+        134.76,
+        589.76,
+        466.42,
+        647.54
+      ],
+      "pdf_sha256": "19f3b46bc212dda744662f463bdbf4d9055123d434205201984ca0c4641604fd",
+      "abstract_sha256": "7ebb214a81134147cdfebfb9b5461ebf41fffee6ca6bc5992ef2552741e75fca",
+      "search_terms": [
+        "Gripper position"
+      ],
+      "text": "Fig. 5: 1. Gripper position trajectory while interpolating latents between task 3,\n4, 8 and 7 for the embedded reaching skill policy on the real robot. 2. Gripper\nposition for composed reaching policy, trained with DDPG to reach an unseen point.\n3. Gripper position trajectory reaching points (black) in a triangle within a radius of\n5 cm composed by search-based planning in the latent space.",
+      "sha256": "b5d83fddc31329d670c7f6128acf969f444fab8fab0e21e97ed399229b711a2a"
+    },
+    {
+      "paper_id": "1809.10253v3",
+      "section_id": "1809.10253v3-p9-s3",
+      "heading": "Scaling simulation-to-real transfer by learning composable robot skills - page 9 excerpt 3",
+      "source_url": "https://arxiv.org/pdf/1809.10253v3",
+      "source_locator": "PDF page 9, bbox (134.8, 441.4, 466.4, 499.2)",
+      "page": 9,
+      "bbox": [
+        134.76,
+        441.39,
+        466.42,
+        499.17
+      ],
+      "pdf_sha256": "19f3b46bc212dda744662f463bdbf4d9055123d434205201984ca0c4641604fd",
+      "abstract_sha256": "7ebb214a81134147cdfebfb9b5461ebf41fffee6ca6bc5992ef2552741e75fca",
+      "search_terms": [
+        "point environment experiments"
+      ],
+      "text": "The point environment experiments verify the principles of our method, and the\nsingle-skill Sawyer experiments demonstrate its applicability to real robotics tasks.\nRecall that all Sawyer skill policies used only joint space control to actuate the robot,\nmeaning that the skill policies and composer needed to learn how using the robot to\nachieve task-space goals without colliding the robot with the world or itself.",
+      "sha256": "7a40e4de17e1572ab8f09bd51e31deec0cf0d20d235ce493eaf79c60e0a3d90f"
+    },
+    {
+      "paper_id": "1807.11174v1",
+      "section_id": "1807.11174v1-p3-s1",
+      "heading": "Active Object Perceiver: Recognition-guided Policy Learning for Object Searching on Mobile Robots - page 3 excerpt 1",
+      "source_url": "https://arxiv.org/pdf/1807.11174v1",
+      "source_locator": "PDF page 3, bbox (54.0, 74.3, 298.8, 251.6)",
+      "page": 3,
+      "bbox": [
+        54.0,
+        74.29,
+        298.8,
+        251.63
+      ],
+      "pdf_sha256": "139467d252be61664c6940f166a1891e6506c3fb9fd723f2c09bb87598d7edf6",
+      "abstract_sha256": "2e64f393721678e69f31af572efdafe6e7d28de337c60ecd338c946b88f156f3",
+      "search_terms": [
+        "Object Recognition"
+      ],
+      "text": "A standard object detection process typically consists of\ntwo steps: 1) detect the candidate regions of objects in an\nimage; and 2) predict a class label to each region (a bounding\nbox representation is typically used). However, under the\nactive perceiver setting, the target object is given, and the\nobject recognition module only needs to detect whether the\nspeciﬁc object exists in the current range of view at any\ntime step. Following this observation, we adopt a deep neural\nnetwork that simply takes the target object image as the ﬁrst\ninput, along with the whole image of robot’s current view as\nthe second input, to predict the bounding box coordinates of\nthe target object in the current view if there is one. Fig. 2\nshows an illustration of the proposed network architecture.\nTo train such a network, we minimize the loss function as\ndeﬁned in Eq. 1. We present the details in the following.",
+      "sha256": "bb19cbd8b51b90e72d3b8fe375d4d5acaa8c8c044ee785bf5626f14a7df5121e"
+    },
+    {
+      "paper_id": "1807.11174v1",
+      "section_id": "1807.11174v1-p5-s2",
+      "heading": "Active Object Perceiver: Recognition-guided Policy Learning for Object Searching on Mobile Robots - page 5 excerpt 2",
+      "source_url": "https://arxiv.org/pdf/1807.11174v1",
+      "source_locator": "PDF page 5, bbox (54.0, 54.3, 298.8, 219.9)",
+      "page": 5,
+      "bbox": [
+        54.0,
+        54.25,
+        298.8,
+        219.86
+      ],
+      "pdf_sha256": "139467d252be61664c6940f166a1891e6506c3fb9fd723f2c09bb87598d7edf6",
+      "abstract_sha256": "2e64f393721678e69f31af572efdafe6e7d28de337c60ecd338c946b88f156f3",
+      "search_terms": [
+        "performance of different methods"
+      ],
+      "text": "indoor scenes (15 kitchens and 15 living rooms) from AI2-\nTHOR dataset [9] for training (20 scenes) and validat-\ning (10 scenes) autonomous robotic systems to navigate\nand search for objects in these virtual environments. The\navailable actions for the robot are predeﬁned as 8 discrete\nactions, namely MoveAhead, MoveRight, MoveLeft,\nMoveBack,\nLookUp,\nLookDown,\nRotateRight\nand\nRotateLeft. Following the simulation setting, each virtual\nscene can be discretized into a set of images taken from\neach robot state, and the whole set of images characterize\nthe overall state space of the robot. Moreover, the platform\nalso provides a set of target images for each scene. These\ntarget images contain only objects without any background,\nwhich can well-support our experiments.",
+      "sha256": "5ff86d023600735b9cb6071bb6d5c0762da6172786257957642ecd9c9170fc58"
+    },
+    {
+      "paper_id": "1807.11174v1",
+      "section_id": "1807.11174v1-p6-s3",
+      "heading": "Active Object Perceiver: Recognition-guided Policy Learning for Object Searching on Mobile Robots - page 6 excerpt 3",
+      "source_url": "https://arxiv.org/pdf/1807.11174v1",
+      "source_locator": "PDF page 6, bbox (54.0, 398.8, 298.8, 659.8)",
+      "page": 6,
+      "bbox": [
+        54.0,
+        398.78,
+        298.8,
+        659.8
+      ],
+      "pdf_sha256": "139467d252be61664c6940f166a1891e6506c3fb9fd723f2c09bb87598d7edf6",
+      "abstract_sha256": "2e64f393721678e69f31af572efdafe6e7d28de337c60ecd338c946b88f156f3",
+      "search_terms": [
+        "real world"
+      ],
+      "text": "After the model is trained, it takes about 0.5 seconds (on an\nNvidia GeForce GTX 1080 Ti machine) to feed forward our\nobject recognition network and deep reinforcement learning\nnetwork to generate an action at each state. We report the\nperformance of all methods with two metrics, namely the\naverage number of actions that need to be taken to ﬁnd the\ntarget object (also known as the average trajectory length),\nand the success rate of the robot ﬁnally ﬁnds the target object.\nFor a fair comparison, for each target object, we randomly\ninitialize the robot’s starting position and run each method\nfor 10 episodes. An episode ends when the robot ﬁnds the\ntarget object or it has already taken 5000 steps (and it\nclaims a failure). Only when the robot ﬁnds the target object\nsuccessfully, we count the episode as a successful trail, and\nthe corresponding trajectory length will then contribute to the\naverage trajectory length metric. “-” indicates the model does\nnot converge or during testing the robot is trapped in sub-\noptimal states for good. Here we want to mention a caveat:\nbecause both the reward function 1 and 2 do not perform\nwell even on the 1 object 1 scene scenario and due to the\nlimited computing resource we have, we did not test them\nfor the other three scenarios (we use “∼” in the table).",
+      "sha256": "3d671b0772a3a35895d235d93a13cd363ee4922566271f96a7e749ea7d48cf7a"
+    },
+    {
+      "paper_id": "2012.12104v1",
+      "section_id": "2012.12104v1-p4-s1",
+      "heading": "A Deep Reinforcement Learning Approach for Ramp Metering Based on Traffic Video Data - page 4 excerpt 1",
+      "source_url": "https://arxiv.org/pdf/2012.12104v1",
+      "source_locator": "PDF page 4, bbox (72.0, 371.6, 526.0, 496.3)",
+      "page": 4,
+      "bbox": [
+        72.0,
+        371.56,
+        525.96,
+        496.28
+      ],
+      "pdf_sha256": "264d741d7243d92f9eec7abfd9082acae091e207d7468fc53a66b870c7016ad0",
+      "abstract_sha256": "56b95e6088f409bd6edc05c0bbc624cbf52370b28a358c34ad6a90f08c760da8",
+      "search_terms": [
+        "traffic cameras"
+      ],
+      "text": "𝜋𝜋∗(𝑠𝑠) = argmax𝑎𝑎′𝑄𝑄∗(𝑠𝑠, 𝑎𝑎′) \n(2) \nThe process of learning policy from the action-value function Q is termed Q-learning. \nThe key step in Q-learning is to estimate Q* (s, a). To better capture the traffic features in video \ndata, we adopt a deep neural network termed Q-network to approximate Q* (s, a). The neural \nnetwork contains serval convolutional layers and fully-connected layers. The convolutional \nlayers extract traffic features from the video frames and the full-connected layers estimate the \nQ value based on the output of convolutional layers.",
+      "sha256": "abeaf355c04d74de98740f542a039067069dc0cbbeb620f0c1bcb19c61f4f39c"
+    },
+    {
+      "paper_id": "2012.12104v1",
+      "section_id": "2012.12104v1-p9-s2",
+      "heading": "A Deep Reinforcement Learning Approach for Ramp Metering Based on Traffic Video Data - page 9 excerpt 2",
+      "source_url": "https://arxiv.org/pdf/2012.12104v1",
+      "source_locator": "PDF page 9, bbox (72.0, 278.8, 526.0, 531.4)",
+      "page": 9,
+      "bbox": [
+        72.0,
+        278.76,
+        525.96,
+        531.44
+      ],
+      "pdf_sha256": "264d741d7243d92f9eec7abfd9082acae091e207d7468fc53a66b870c7016ad0",
+      "abstract_sha256": "56b95e6088f409bd6edc05c0bbc624cbf52370b28a358c34ad6a90f08c760da8",
+      "search_terms": [
+        "Each scenario is evaluated"
+      ],
+      "text": "Parameters \nValue \nReplay buffer size B \n2×105 \nLearning rate η \n2.5×10-4 \nBatch size k \n32 \nExploration rate ε \n0.1 \nFreeze interval F \n104 \nDecision step size L \n4 s \nReward weight μ \n0.5 \nReward weight ω \n-0.1 \n \nThe Q-network in the proposed method is trained in 106 training frames. For comparison \npurposes, two scenarios are also considered in the evaluation. The first scenario does not apply \nramp metering and the second scenario adopts the PI-ALINEA method. The PI-ALINEA \nmethod fixes the length of the green phase and determines the length of the red phase in the \ncurrent signal cycle based on the length of the red phase in the previous cycle and the \ndownstream occupancies in the previous and current cycles. The parameters are fine-tuned to \nminimize mean travel times in the traffic system. Each scenario is evaluated in 20 simulation \nexperiments, each of which is initialized with different random seeds.",
+      "sha256": "a2269f4e82f1e155bdef9f7c4ab172743422404c759936ab4b80cfd0f80e7766"
+    },
+    {
+      "paper_id": "2012.12104v1",
+      "section_id": "2012.12104v1-p10-s3",
+      "heading": "A Deep Reinforcement Learning Approach for Ramp Metering Based on Traffic Video Data - page 10 excerpt 3",
+      "source_url": "https://arxiv.org/pdf/2012.12104v1",
+      "source_locator": "PDF page 10, bbox (72.0, 197.9, 526.0, 337.3)",
+      "page": 10,
+      "bbox": [
+        72.0,
+        197.88,
+        525.96,
+        337.28
+      ],
+      "pdf_sha256": "264d741d7243d92f9eec7abfd9082acae091e207d7468fc53a66b870c7016ad0",
+      "abstract_sha256": "56b95e6088f409bd6edc05c0bbc624cbf52370b28a358c34ad6a90f08c760da8",
+      "search_terms": [
+        "vehicle travel times"
+      ],
+      "text": "Figure 8: Vehicle travel times in the mainline. \n \nTable 3 presents mean vehicle travel times in 20 simulation experiments. It is found that \nthe performance of the PI-ALINEA method is not always better than the no-control scenario. \nFor example, compared with the no-control scenario, the PI-ALINEA method increases vehicle \ntravel time by 10% in the 6th experiment. In contrast, the proposed DRL method consistently \nresults in shorter travel time than that of the no-control scenario, demonstrating the stable \nperformance of the proposed method. On average, the DRL method reduces vehicle travel time \nby 13% when compared with the no-control scenario.",
+      "sha256": "8dfea3d2ecd75ff77a526e1d73b5765e82e86a5a546f4b42c48dbd2e3d7c6ecd"
+    },
+    {
+      "paper_id": "2010.05772v1",
+      "section_id": "2010.05772v1-p4-s1",
+      "heading": "AttendLight: Universal Attention-Based Reinforcement Learning Model for Traffic Signal Control - page 4 excerpt 1",
+      "source_url": "https://arxiv.org/pdf/2010.05772v1",
+      "source_locator": "PDF page 4, bbox (108.0, 406.8, 504.0, 438.6)",
+      "page": 4,
+      "bbox": [
+        108.0,
+        406.76,
+        504.0,
+        438.62
+      ],
+      "pdf_sha256": "63053b4b33e3c2be4531806eca5f637ff2dfb986449f9ba3c4814e359ae56f5f",
+      "abstract_sha256": "f2f33c5c879e95364946e64dfa858d2836ec839dac4a553d77d2be03593088df",
+      "search_terms": [
+        "State."
+      ],
+      "text": "In this section we present our end-to-end RL framework for solving the TSCP. To formulate this\nproblem into an RL context, we ﬁrst require to identify state, action, and reward.\nState. The state at time t is the trafﬁc characteristics st",
+      "sha256": "d9db28e0fa5ed4857dfe57565eb4191520d8f90a8d9a297cffd2bac3e4e226f0"
+    },
+    {
+      "paper_id": "2010.05772v1",
+      "section_id": "2010.05772v1-p6-s2",
+      "heading": "AttendLight: Universal Attention-Based Reinforcement Learning Model for Traffic Signal Control - page 6 excerpt 2",
+      "source_url": "https://arxiv.org/pdf/2010.05772v1",
+      "source_locator": "PDF page 6, bbox (108.0, 289.4, 504.0, 342.9)",
+      "page": 6,
+      "bbox": [
+        108.0,
+        289.41,
+        504.0,
+        342.94
+      ],
+      "pdf_sha256": "63053b4b33e3c2be4531806eca5f637ff2dfb986449f9ba3c4814e359ae56f5f",
+      "abstract_sha256": "f2f33c5c879e95364946e64dfa858d2836ec839dac4a553d77d2be03593088df",
+      "search_terms": [
+        "single model"
+      ],
+      "text": "Many variants of the intersections have been studied in the literature and we claim that a single model\ncan provide reasonable phase decisions for all of them. We consider 11 intersection topologies, where\nthey vary in terms of the number of approaching roads (i.e., 3-way or 4-way), and the number of\nlanes in each road. Further, each of these 11 intersections may have a different number of phases and\ntrafﬁc-data. Table 1 summarizes the properties of all intersections.",
+      "sha256": "51ef83b6b98fd3acbfe88c18e01868e1cb180a445960e45487473c794823a59b"
+    },
+    {
+      "paper_id": "2010.05772v1",
+      "section_id": "2010.05772v1-p10-s3",
+      "heading": "AttendLight: Universal Attention-Based Reinforcement Learning Model for Traffic Signal Control - page 10 excerpt 3",
+      "source_url": "https://arxiv.org/pdf/2010.05772v1",
+      "source_locator": "PDF page 10, bbox (108.0, 375.3, 504.2, 418.1)",
+      "page": 10,
+      "bbox": [
+        108.0,
+        375.3,
+        504.17,
+        418.07
+      ],
+      "pdf_sha256": "63053b4b33e3c2be4531806eca5f637ff2dfb986449f9ba3c4814e359ae56f5f",
+      "abstract_sha256": "f2f33c5c879e95364946e64dfa858d2836ec839dac4a553d77d2be03593088df",
+      "search_terms": [
+        "One limitation"
+      ],
+      "text": "One limitation of AttendLight is that it may fail to come up with an efﬁcient policy whenever the\nintersection topology is very complex and unusual, such that the training set does not involve a similar\nstructure. We hope that such a limitation can be addressed by increasing the training set diversity and\nincorporating more complex policy models.",
+      "sha256": "a4a58e1869152dcc63e1e43528fde1a7f72497179de09bf5c54e9a3b1e3cb601"
+    },
+    {
+      "paper_id": "2009.08052v1",
+      "section_id": "2009.08052v1-p4-s1",
+      "heading": "GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning - page 4 excerpt 1",
+      "source_url": "https://arxiv.org/pdf/2009.08052v1",
+      "source_locator": "PDF page 4, bbox (318.0, 290.2, 559.7, 409.5)",
+      "page": 4,
+      "bbox": [
+        318.02,
+        290.25,
+        559.72,
+        409.47
+      ],
+      "pdf_sha256": "ff0ce7c00eeedac7f0c3a7165b87c374f3a325ce1bd44241b2b7f11b8b5fa2bd",
+      "abstract_sha256": "42bdd196698f91798f71a32e9fd4ec4cb37a9609d5975ff68c98fdc6d80a6309",
+      "search_terms": [
+        "Reward."
+      ],
+      "text": "the number of vehicles on every incoming lane x(l1)(l1 ∈Lin).\nNote that the definition of state can be apply to multi-intersection\nscenario, which equals to the definition of observation in multi-\nagent RL.\n• Action. The action of each agent is to choose the phase for the\nnext time interval. In this paper, each agent has eight permissible\nactions, corresponding to eight phases that are generally accepted\nand reasonable in previous work. [29].\n• Reward. We define the reward of each agent as the negative\nof the pressure on the intersection it controls, as Equation (7)\nshows.",
+      "sha256": "7df7f6a21e661ae398774c0adc1b283147068c6c56149166bc83e79e009121c0"
+    },
+    {
+      "paper_id": "2009.08052v1",
+      "section_id": "2009.08052v1-p6-s2",
+      "heading": "GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning - page 6 excerpt 2",
+      "source_url": "https://arxiv.org/pdf/2009.08052v1",
+      "source_locator": "PDF page 6, bbox (317.5, 381.6, 559.7, 459.5)",
+      "page": 6,
+      "bbox": [
+        317.52,
+        381.57,
+        559.72,
+        459.54
+      ],
+      "pdf_sha256": "ff0ce7c00eeedac7f0c3a7165b87c374f3a325ce1bd44241b2b7f11b8b5fa2bd",
+      "abstract_sha256": "42bdd196698f91798f71a32e9fd4ec4cb37a9609d5975ff68c98fdc6d80a6309",
+      "search_terms": [
+        "We conduct experiments"
+      ],
+      "text": "We conduct experiments on Cityflow3 [30], an open-source traffic\nsimulation platform. Specifically, Cityflow is used as the environ-\nment to provide the state and reward of the traffic control agents\nand execute the action of agents by changing the phase of traffic\nlights. We will feed the traffic flows sampled from traffic flow distri-\nbutions to Cityflow in each experiment. Our code has been released\non a GitH ub repository4.",
+      "sha256": "bbe6a1b53708d1169fc1b642b22c54acd8f950cd4bc8edb67fb3b065872453f0"
+    },
+    {
+      "paper_id": "2009.08052v1",
+      "section_id": "2009.08052v1-p8-s3",
+      "heading": "GeneraLight: Improving Environment Generalization of Traffic Signal Control via Meta Reinforcement Learning - page 8 excerpt 3",
+      "source_url": "https://arxiv.org/pdf/2009.08052v1",
+      "source_locator": "PDF page 8, bbox (53.5, 84.2, 559.8, 137.4)",
+      "page": 8,
+      "bbox": [
+        53.5,
+        84.18,
+        559.81,
+        137.38
+      ],
+      "pdf_sha256": "ff0ce7c00eeedac7f0c3a7165b87c374f3a325ce1bd44241b2b7f11b8b5fa2bd",
+      "abstract_sha256": "42bdd196698f91798f71a32e9fd4ec4cb37a9609d5975ff68c98fdc6d80a6309",
+      "search_terms": [
+        "Overall performance"
+      ],
+      "text": "Table 1: Overall performance comparison on Hangzhou 1x1 roadnet, where D0 is the traffic flow distribution for training,\nD0.005, D0.01, D0.05, D0.1 are the generated traffic flow distributions for testing (subscripts show the Wasserstein Distance be-\ntween D0). Average travel time is reported in the unit of second. “Improvement” under GeneraLight shows the improvement\nover the best baseline. “Improvement” in the last row shows the relative improvement with respect to FreeFlow in Equa-\ntion (11).",
+      "sha256": "2a76d9f9eee250af8ae52841dda784443709341c028348bfacae7adebf046a34"
+    },
+    {
+      "paper_id": "1808.01876v2",
+      "section_id": "1808.01876v2-p3-s1",
+      "heading": "An Efficient Deep Reinforcement Learning Model for Urban Traffic Control - page 3 excerpt 1",
+      "source_url": "https://arxiv.org/pdf/1808.01876v2",
+      "source_locator": "PDF page 3, bbox (49.0, 176.7, 300.0, 294.9)",
+      "page": 3,
+      "bbox": [
+        48.96,
+        176.71,
+        300.03,
+        294.88
+      ],
+      "pdf_sha256": "dc6e41384b9929e39e86277bf19cbce37414dedab71d6908a19ca2ef2ff4b22b",
+      "abstract_sha256": "fab5855f73cc407a88fb88784f7cfa042184082aaa2d3c3c912267ca63aa7142",
+      "search_terms": [
+        "urban traffic control system"
+      ],
+      "text": "In this paper, we consider the neural network-based value\nfunction and the associated policy-based methods [29]. Here,\nwe parameterize the policy as π(a|s; θ) and update the pa-\nrameters θ to maximize the cumulative return. By performing\nthe approximate gradient ascent on E [Rt], the parameterized\npolicy π(a|s; θ) tends to choose the action a that maximizes\nfuture return from state s. One of the earliest algorithms for\nsuch methods, called REINFORCE algorithm [30] updates\nthe policy parameters θ in the direction ∇θ log π (at|st; θ) Rt,\nwhich is an unbiased estimate of ∇θE [Rt].",
+      "sha256": "ef9793d638bdbb0b27b00594279be59d46b6cc511ea7371b3b9606094fbb255c"
+    },
+    {
+      "paper_id": "1808.01876v2",
+      "section_id": "1808.01876v2-p6-s2",
+      "heading": "An Efficient Deep Reinforcement Learning Model for Urban Traffic Control - page 6 excerpt 2",
+      "source_url": "https://arxiv.org/pdf/1808.01876v2",
+      "source_locator": "PDF page 6, bbox (312.0, 606.9, 563.0, 748.3)",
+      "page": 6,
+      "bbox": [
+        311.98,
+        606.9,
+        563.04,
+        748.29
+      ],
+      "pdf_sha256": "dc6e41384b9929e39e86277bf19cbce37414dedab71d6908a19ca2ef2ff4b22b",
+      "abstract_sha256": "fab5855f73cc407a88fb88784f7cfa042184082aaa2d3c3c912267ca63aa7142",
+      "search_terms": [
+        "waiting time"
+      ],
+      "text": "In this paper, the agent is built with PyTorch [42] and com-\nmunicates with simulation environment via the Traci library\n[43]. Both simulations and deep learning process are run on a\nworkstation with Intel Core i7-6700K CPU, 32GB RAM and\n2 Nvidia GeForce Titan X GPUs.\nAs mentioned in Table II, the agent is trained for 50\nepisodes, and each episode has 3600 simulation steps. In each\nepisode, the DRL model will be updated for 3 epochs at\nevery 128 simulation steps. An epoch is a single pass through\nthe entire training set, followed by testing of the veriﬁcation\nset. That means the whole training process contains 180000\nforward passes (50×3600, for trafﬁc lights control) and 4219",
+      "sha256": "387783f1b404b7ffcb5c33a8ba9cf707423bb7e93d87197df5c248b0d412b9c7"
+    },
+    {
+      "paper_id": "1808.01876v2",
+      "section_id": "1808.01876v2-p7-s3",
+      "heading": "An Efficient Deep Reinforcement Learning Model for Urban Traffic Control - page 7 excerpt 3",
+      "source_url": "https://arxiv.org/pdf/1808.01876v2",
+      "source_locator": "PDF page 7, bbox (312.0, 121.3, 563.0, 179.1)",
+      "page": 7,
+      "bbox": [
+        311.98,
+        121.29,
+        563.04,
+        179.08
+      ],
+      "pdf_sha256": "dc6e41384b9929e39e86277bf19cbce37414dedab71d6908a19ca2ef2ff4b22b",
+      "abstract_sha256": "fab5855f73cc407a88fb88784f7cfa042184082aaa2d3c3c912267ca63aa7142",
+      "search_terms": [
+        "simulation experiments"
+      ],
+      "text": "In this paper, we propose an efﬁcient DRL based approach\nfor UTC. The simulation experiments have shown that our\nmethod performs better than tradition UTC approaches and\ncan handle more complex environments while using fewer\ncomputing resources.",
+      "sha256": "d079e59706b1cbffb39652f05fecda8f9aefa39c1d9bc24a87db78435444395c"
+    }
+  ]
+}

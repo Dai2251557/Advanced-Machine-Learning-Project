@@ -5,6 +5,8 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import re
+import unicodedata
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -27,6 +29,18 @@ WRITE_PROMPT = (
     '[paper_id] in the body; distinguish simulation, predictive proxy and real-robot validation. '
     'If a requested fact is unavailable, say so. Return JSON {"text":"review", "paper_ids":["id"]}.'
 )
+READ_PROMPT = ('Read the supplied paper section for the survey question. Return JSON '
+               '{"summary":"brief Chinese finding","evidence":"exact continuous excerpt from section",'
+               '"supports_question":true}. supports_question must be boolean; true only if the excerpt '
+               'directly supports at least one requested question point, not merely the same topic. '
+               'If the section does not answer the question, say so and still quote a short exact excerpt.')
+
+
+def normalized_pdf_text(text):
+    """Normalize PDF layout artifacts only; source hashes still cover the original text."""
+    text = unicodedata.normalize('NFKC', text)
+    text = re.sub(r'(?<=\w)-\s*\n\s*(?=\w)', '', text)
+    return ' '.join(text.split())
 
 
 class EvidenceBackend:
@@ -108,7 +122,7 @@ class EvidenceRunner:
     """Four discrete V2 pilot actions; a new action contract is required before DQN use."""
 
     def __init__(self, corpus: dict, task: dict, sections: dict, backend, *, batch_size=3, max_steps=8,
-                 token_budget=48000):
+                 token_budget=48000, read_on_open=False):
         if task.get('split') != 'train' or not task.get('survey_instruction'):
             raise ValueError('V2 pilot accepts a public training task only.')
         if not all(type(x) is int and x > 0 for x in (batch_size, max_steps, token_budget)):
@@ -124,6 +138,7 @@ class EvidenceRunner:
             raise ValueError('Section paper missing from corpus.')
         self.retriever = BilingualRetriever(self.papers)
         self.backend = backend
+        self.read_on_open = read_on_open
         self.batch_size, self.max_steps, self.token_budget = batch_size, max_steps, token_budget
         self.reset()
 
@@ -170,13 +185,13 @@ class EvidenceRunner:
         self.last_receipt = receipt
         return value, receipt
 
-    def step(self, action: str):
+    def step(self, action: str, target: str | None = None):
         if action not in V2_ACTIONS or not self.valid_actions()[V2_ACTIONS.index(action)]:
             raise ValueError('Unavailable V2 action.')
         before = self.observe()
         self.last_receipt = None
         try:
-            return self._perform_step(action)
+            return self._perform_step(action, target)
         except (ValueError, RuntimeError) as exc:
             self.final_text = None
             self.terminal_reason = 'action_error'
@@ -186,7 +201,7 @@ class EvidenceRunner:
             event['state_after'] = self.observe()
             return copy.deepcopy(event)
 
-    def _perform_step(self, action: str):
+    def _perform_step(self, action: str, target: str | None = None):
         before = self.observe()
         receipt = None
         if action == 'retrieve_more':
@@ -211,19 +226,42 @@ class EvidenceRunner:
             selected_ids = {p['id'] for p in self.selected}
             opened_ids = {(s['paper_id'], s['section_id']) for s in self.opened}
             candidates = [s for key, s in self.sections.items() if s['paper_id'] in selected_ids and key not in opened_ids]
-            query_terms = set(tokens((self.gap or '') + ' ' + self.query))
-            section = max(candidates, key=lambda s: (len(query_terms & set(tokens(' '.join(s['search_terms']) + ' ' + s['heading']))),
-                                                     s['paper_id'], s['section_id']))
+            if target is not None:
+                matches = [s for s in candidates if s['section_id'] == target]
+                if len(matches) != 1:
+                    raise ValueError('Requested section is unavailable for the retrieved papers.')
+                section = matches[0]
+            else:
+                query_terms = set(tokens((self.gap or '') + ' ' + self.query))
+                section = max(candidates, key=lambda s: (len(query_terms & set(tokens(' '.join(s['search_terms']) + ' ' + s['heading']))),
+                                                         s['paper_id'], s['section_id']))
+            if self.read_on_open:
+                value, receipt = self._model('read_section', READ_PROMPT, {
+                    'question': self.task['survey_instruction'], 'section': copy.deepcopy(section)})
+                summary, evidence = value.get('summary'), value.get('evidence')
+                if (not isinstance(summary, str) or not summary.strip()
+                        or not isinstance(evidence, str) or not evidence.strip()
+                        or type(value.get('supports_question')) is not bool
+                        or normalized_pdf_text(evidence) not in normalized_pdf_text(section['text'])):
+                    raise ValueError('Section reading lacks exact source evidence.')
             self.opened.append(section)
             detail = {'paper_id': section['paper_id'], 'section_id': section['section_id'],
                       'source_url': section['source_url'], 'source_locator': section['source_locator'],
                       'sha256': section['sha256']}
+            if self.read_on_open:
+                detail['reading'] = {'summary': summary, 'evidence': evidence,
+                                     'supports_question': value['supports_question']}
         else:
             payload = {'question': self.task['survey_instruction'], 'papers': copy.deepcopy(self.selected),
                        'opened_sections': copy.deepcopy(self.opened), 'identified_gap': self.gap}
             value, receipt = self._model('write', WRITE_PROMPT, payload)
             text, cited = value.get('text'), value.get('paper_ids')
             selected_ids = {p['id'] for p in self.selected}
+            if isinstance(text, str) and isinstance(cited, list):
+                # Restore bracket formatting only where the model already wrote the exact ID.
+                for pid in cited:
+                    if isinstance(pid, str) and pid in selected_ids:
+                        text = re.sub(r'(?<!\[)' + re.escape(pid) + r'(?!\])', '[' + pid + ']', text)
             if (not isinstance(text, str) or not text.strip() or not isinstance(cited, list)
                     or not cited or any(pid not in selected_ids or f'[{pid}]' not in text for pid in cited)):
                 raise ValueError('Invalid review or citations.')
