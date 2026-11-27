@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-514c4425827049bda3bdbe466e257898",
+  "review_id": "R001",
+  "split": "train",
+  "final_text_sha256": "a99fcbc83ce9fc07d126377b35ef3ad5b9bf4c2143ae8c82fe948cec81e80de2",
+  "blind_input_sha256": "dddcef510b1336dadafe0cb9b40ce5cd6c9aa49a77c59935e41fe87ebfd40469",
+  "request_sha256": "e9c9701419562c299a6f1f53c0195f050dea99f5c7f284111e9c2e72df2caaf6",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.95,
+  "subscores": {
+    "coverage": 0.95,
+    "factuality": 0.95,
+    "citation_support": 0.95,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: The final text fully addresses the survey instruction: it distinguishes 'seeing more information' from 'adapting to new environments', explains ramp metering video vs point detectors and evaluation metrics, provides urban intersection examples for structure/flow changes, and explicitly separates observation scope, control effectiveness, and cross-environment validity without merging rankings. Factuality: All core claims are supported by the provided abstracts; the text correctly notes limitations (e.g., no cross-environment test in 2012.12104v1, no unified metrics in 2010.05772v1, no structure change in 2009.08052v1) and avoids overgeneralization. Citation_support: Each cited paper is used appropriately: [2012.12104v1] for video vs point detectors and case metrics, [2010.05772v1] for universal model across configurations, [2009.08052v1] for flow generalization; no unsupported claims or mismatched citations. Consistency: The text maintains consistent terminology and logical distinctions throughout, with no internal contradictions.",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

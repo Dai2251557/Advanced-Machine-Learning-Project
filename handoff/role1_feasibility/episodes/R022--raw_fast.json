@@ -1,0 +1,886 @@
+{
+  "config_version": 1,
+  "review_id": "R022",
+  "trajectory_id": "episode-cbffb8426e7947c1ba9a0ffe0db003eb",
+  "split": "train",
+  "seed": 0,
+  "execution_kind": "real",
+  "dataset_kind": "arxiv_abstracts",
+  "data_purpose": "formal_experiment",
+  "config": {
+    "config_version": 1,
+    "max_steps": 8,
+    "workflow_tokens_budget": 48000,
+    "retrieval_batch_size": 3,
+    "max_output_tokens": 8192,
+    "output_repair_attempts": 1,
+    "cache_enabled": false,
+    "low_gain_threshold": 0.02,
+    "quality_threshold": 0.75,
+    "max_summary_calls": 3
+  },
+  "retrieval": {
+    "spec": {
+      "method": "bilingual_bm25_v1",
+      "k1": 1.2,
+      "b": 0.75,
+      "title_repetitions": 2,
+      "lexicon_sha256": "c932ff14a9da4878484eebcc35ea18cbbc48746d8263d34331cefcca8c887df8"
+    },
+    "events": [
+      {
+        "step_index": 1,
+        "query_terms": [
+          "adaptation",
+          "policy",
+          "real",
+          "robot",
+          "robotic",
+          "simulated",
+          "simulation",
+          "simulator",
+          "trajectorie",
+          "trajectory",
+          "transfer",
+          "world",
+          "三类",
+          "上验",
+          "不能",
+          "中学",
+          "中完",
+          "为什",
+          "么仿",
+          "了任",
+          "些工",
+          "些结",
+          "人任",
+          "人策",
+          "什么",
+          "从仿",
+          "代替",
+          "以先",
+          "任务",
+          "仿真",
+          "会了",
+          "何减",
+          "作可",
+          "先在",
+          "关性",
+          "准备",
+          "减少",
+          "到真",
+          "功或",
+          "务比",
+          "务表",
+          "务验",
+          "可以",
+          "合机",
+          "哪些",
+          "器人",
+          "在仿",
+          "在真",
+          "备把",
+          "如何",
+          "学会",
+          "完成",
+          "实数",
+          "实轨",
+          "少真",
+          "工作",
+          "并结",
+          "开销",
+          "性不",
+          "成功",
+          "或筛",
+          "或迁",
+          "把机",
+          "指标",
+          "据真",
+          "数据",
+          "替真",
+          "机上",
+          "机任",
+          "机器",
+          "机时",
+          "机训",
+          "标的",
+          "根据",
+          "比较",
+          "测迁",
+          "略从",
+          "略的",
+          "的开",
+          "的相",
+          "相关",
+          "真中",
+          "真实",
+          "真成",
+          "真机",
+          "真移",
+          "移到",
+          "移指",
+          "移表",
+          "策略",
+          "筛选",
+          "类证",
+          "练或",
+          "结合",
+          "结论",
+          "综述",
+          "能代",
+          "表现",
+          "要真",
+          "解释",
+          "训练",
+          "论还",
+          "证了",
+          "证据",
+          "轨迹",
+          "较三",
+          "迁移",
+          "还需",
+          "述如",
+          "迹预",
+          "选策",
+          "释为",
+          "需要",
+          "预测",
+          "验证"
+        ],
+        "selected": [
+          {
+            "paper_id": "2009.12864v1",
+            "score": 31.548276403460005
+          },
+          {
+            "paper_id": "1809.10253v3",
+            "score": 21.674565739399142
+          },
+          {
+            "paper_id": "1809.08626v3",
+            "score": 21.01827391499384
+          }
+        ],
+        "zero_score_fallback": false
+      }
+    ]
+  },
+  "success": true,
+  "terminal_reason": "final_written",
+  "final_text": "# 文献综述\n\n范围：仅依据提供的论文摘要。\n\n## 范围与证据边界\n\n本综述仅依据所给三篇论文的摘要，不引入全文、实验表格、未报告结果或摘要外总结；也未获得任何中间摘要（summaries），因此无法独立核验事实性、统计显著性和引用一致性。按主题相关性，2009.12864v1 与 1809.10253v3 可用于讨论机器人策略的仿真到真机迁移；1809.08626v3 讨论工业机器人预测维护中的无监督迁移学习，不应作为策略迁移或真机任务验证的证据，仅作为“迁移学习不等于策略迁移”的边界对照。以下比较均属摘要级、条件性的综述判断。 [2009.12864v1] [1809.10253v3] [1809.08626v3]\n\n## 可在仿真中先行完成的工作\n\n从摘要看，仿真可先承担策略与技能层面的训练和预筛选。2009.12864v1 提出在仿真中训练 RL 策略，并同时训练概率动力学模型，用于简化算法、超参数、随机化等训练设置以及策略的选择；其目标是避免大量耗时的真实世界 rollout。1809.10253v3 则在仿真中联合学习一组低层技能策略及“技能嵌入”参数化，再学习通过该嵌入调用低层技能的高层策略，从摘要看，这种分解使复杂高层任务能够复用和组合低层技能。由此，综述可把仿真阶段的工作概括为：训练候选策略/技能、学习可组合的技能表示、在仿真内比较训练设置和候选策略。但需注意，2009.12864v1 的迁移度量本身要在固定真实轨迹上评估，因此并非所有筛选都完全不需要真实数据。 [2009.12864v1] [1809.10253v3]\n\n## 基于真实轨迹预测迁移表现\n\n2009.12864v1 代表第二类证据：用真实轨迹上的预测指标来估计迁移表现。摘要称，该方法在策略训练之外训练概率动力学模型，并在固定的一组真实世界轨迹上评估，得到迁移度量；该度量被用于选择训练设置和策略，而无需广泛、耗时的真实世界 rollout。摘要还报告该迁移度量在复杂操作任务的仿真和真实机器人环境中与策略性能高度相关，并能预测训练设置对策略迁移表现的影响。就综述而言，这类证据适合做候选排序和训练设置筛选，但其证据对象是“预测的迁移表现/相关性”，不是对每个候选策略在真实任务上的直接成功验证；摘要未说明轨迹集合覆盖率、任务分布或失败模式。 [2009.12864v1]\n\n## 真机任务表现验证\n\n第三类证据要求在真实机器人上验证任务表现。1809.10253v3 摘要报告在 Sawyer 机器人上仅用关节空间控制，学习、迁移并组合自由空间与接触运动技能，并以很少或几乎不需要在机器人上的时间完成高层任务；同时明确指出低层策略可能无法从仿真完美迁移，且低层技能未在高层任务示例上训练。该文还比较了组合预学习技能的若干技术，并称可用基于学习的方法和高效搜索规划来利用预学习技能完成高层任务。2009.12864v1 摘要也提到真实机器人环境中的策略性能，但未给出任务级成功率和具体验证协议。综述只能谨慎地说：1809.10253v3 提供了真机任务层面的摘要级证据；2009.12864v1 提供了真实性能与迁移度量相关性的摘要级证据，二者不能互相替代。 [1809.10253v3] [2009.12864v1]\n\n## 三类证据的比较\n\n按摘要可区分三类证据：其一，“仿真中学会了任务”，主要证明策略在仿真动力学和仿真任务分布内可学习、可优化，典型如 1809.10253v3 的仿真联合技能学习，以及 2009.12864v1 的仿真训练与筛选；其二，“根据真实轨迹预测迁移表现”，典型如 2009.12864v1 的迁移度量，优势是可用较少真实轨迹对候选策略或训练设置排序，证据形式是预测值与真实性能的相关性；其三，“在真机上验证了任务表现”，典型如 1809.10253v3 在 Sawyer 上的自由空间与接触运动组合，证据形式是真实机器人任务执行。三者回答的问题不同：仿真成功回答“在仿真里是否学会”，迁移预测回答“哪些候选更可能迁移”，真机验证回答“在真实任务上是否完成”。因此综述应把它们视为互补证据链，而不是同一证据的不同强度。 [2009.12864v1] [1809.10253v3]\n\n## 为什么仿真成功或迁移指标相关性不能代替真机任务验证\n\n仅凭摘要也可给出谨慎论证。第一，仿真成功是在仿真器内部测得的任务表现，不能自动外推到真实执行；1809.10253v3 明确承认低层策略可能无法完美从仿真迁移，却仍通过技能组合在真机上完成任务，这说明“低层迁移不完美”与“高层任务真机成功”之间不能由仿真成功直接推出。第二，2009.12864v1 的迁移度量是在固定真实轨迹上评估并与真实性能“高度相关”，但相关性不等于等价性，也不等于对每个策略、每种失败模式或闭环任务分布都给出任务成功率；摘要未报告校准、置信区间或分布外情形。第三，真实任务验证涉及闭环执行、接触变化、组合调用和安全性等，摘要级迁移指标主要服务于候选筛选，不能替代最终真机任务检查。第四，1809.08626v3 说明预测维护中的无监督迁移可跨操作条件减少重训练，但其对象是维护信号与机械状态变化，不是机器人策略任务成功，因而更不能作为策略迁移验证的替代证据。 [2009.12864v1] [1809.10253v3] [1809.08626v3]\n\n## 综述如何减少真机训练或筛选开销\n\n基于所给摘要，可归纳一条节省真机开销的证据链：先在仿真中训练候选策略、学习可组合技能表示并比较训练设置（1809.10253v3；2009.12864v1）；再用少量固定真实轨迹计算迁移度量，对策略和训练设置排序，减少广泛真实 rollout（2009.12864v1）；最后仅对少量候选做真机任务验证，并利用预学习技能组合降低在机器人上的训练时间（1809.10253v3）。这条路径的综述价值在于把昂贵的真机试验集中在最终候选和任务验证上，而不是用仿真成功或迁移相关性替代真机验证。其前提是迁移度量与目标真实任务分布足够匹配；摘要未提供该前提的充分条件，因此应作为待验证假设而非既定结论。 [2009.12864v1] [1809.10253v3]\n\n## 局限与对照文献处理\n\n本综述的局限包括：仅有三篇摘要，且未提供 summaries；无法评估实验设计、样本量、统计相关性的稳健性、任务覆盖和复现细节；2009.12864v1 与 1809.10253v3 的摘要未给出统一的迁移度量或真机成功率定义，不能做定量横向比较；1809.08626v3 与机器人策略仿真到真机迁移主题不一致，只能用于说明“域适应/迁移学习”与“策略任务验证”不是同一证据类别。因而本文所有比较均为摘要级、探索性综述，不构成对任何方法优越性的最终判定。 [2009.12864v1] [1809.10253v3] [1809.08626v3]\n\n## 参考文献\n\n- [2009.12864v1] Predicting Sim-to-Real Transfer with Probabilistic Dynamics Models\n- [1809.10253v3] Scaling simulation-to-real transfer by learning composable robot skills\n- [1809.08626v3] Domain Adaptation for Robot Predictive Maintenance Systems\n",
+  "final_text_ref": "D:\\DQN\\outputs\\decision-feasibility-v1-20261127\\traces\\episode-cbffb8426e7947c1ba9a0ffe0db003eb\\report.md",
+  "total_workflow_tokens": 6253,
+  "step_count": 2,
+  "action_history": {
+    "retrieve_more": {
+      "call_count": 1,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.3028946105869183
+    },
+    "summarize_fast": {
+      "call_count": 0,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.0
+    },
+    "summarize_deep": {
+      "call_count": 0,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.0
+    },
+    "write_fast": {
+      "call_count": 1,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.6971053894130818
+    },
+    "write_deep": {
+      "call_count": 0,
+      "last_verifier_delta": null,
+      "consecutive_low_gain_or_failures": 0,
+      "token_share": 0.0
+    }
+  },
+  "source_papers": [
+    {
+      "id": "2009.12864v1",
+      "title": "Predicting Sim-to-Real Transfer with Probabilistic Dynamics Models",
+      "abstract": "We propose a method to predict the sim-to-real transfer performance of RL policies. Our transfer metric simplifies the selection of training setups (such as algorithm, hyperparameters, randomizations) and policies in simulation, without the need for extensive and time-consuming real-world rollouts. A probabilistic dynamics model is trained alongside the policy and evaluated on a fixed set of real-world trajectories to obtain the transfer metric. Experiments show that the transfer metric is highly correlated with policy performance in both simulated and real-world robotic environments for complex manipulation tasks. We further show that the transfer metric can predict the effect of training setups on policy transfer performance."
+    },
+    {
+      "id": "1809.10253v3",
+      "title": "Scaling simulation-to-real transfer by learning composable robot skills",
+      "abstract": "We present a novel solution to the problem of simulation-to-real transfer, which builds on recent advances in robot skill decomposition. Rather than focusing on minimizing the simulation-reality gap, we learn a set of diverse policies that are parameterized in a way that makes them easily reusable. This diversity and parameterization of low-level skills allows us to find a transferable policy that is able to use combinations and variations of different skills to solve more complex, high-level tasks. In particular, we first use simulation to jointly learn a policy for a set of low-level skills, and a \"skill embedding\" parameterization which can be used to compose them. Later, we learn high-level policies which actuate the low-level policies via this skill embedding parameterization. The high-level policies encode how and when to reuse the low-level skills together to achieve specific high-level tasks. Importantly, our method learns to control a real robot in joint-space to achieve these high-level tasks with little or no on-robot time, despite the fact that the low-level policies may not be perfectly transferable from simulation to real, and that the low-level skills were not trained on any examples of high-level tasks. We illustrate the principles of our method using informative simulation experiments. We then verify its usefulness for real robotics problems by learning, transferring, and composing free-space and contact motion skills on a Sawyer robot using only joint-space control. We experiment with several techniques for composing pre-learned skills, and find that our method allows us to use both learning-based approaches and efficient search-based planning to achieve high-level tasks using only pre-learned skills."
+    },
+    {
+      "id": "1809.08626v3",
+      "title": "Domain Adaptation for Robot Predictive Maintenance Systems",
+      "abstract": "Industrial robots play an increasingly important role in a growing number of fields. For example, robotics is used to increase productivity while reducing costs in various aspects of manufacturing. Since robots are often set up in production lines, the breakdown of a single robot has a negative impact on the entire process, in the worst case bringing the whole line to a halt until the issue is resolved, leading to substantial financial losses due to the unforeseen downtime. Therefore, predictive maintenance systems based on the internal signals of robots have gained attention as an essential component of robotics service offerings. The main shortcoming of existing predictive maintenance algorithms is that the extracted features typically differ significantly from the learnt model when the operation of the robot changes, incurring false alarms. In order to mitigate this problem, predictive maintenance algorithms require the model to be retrained with normal data of the new operation. In this paper, we propose a novel solution based on transfer learning to pass the knowledge of the trained model from one operation to another in order to prevent the need for retraining and to eliminate such false alarms. The deployment of the proposed unsupervised transfer learning algorithm on real-world datasets demonstrates that the algorithm can not only distinguish between operation and mechanical condition change, it further yields a sharper deviation from the trained model in case of a mechanical condition change and thus detects mechanical issues with higher confidence."
+    }
+  ],
+  "transitions": [
+    {
+      "config_version": 1,
+      "review_id": "R022",
+      "trajectory_id": "episode-cbffb8426e7947c1ba9a0ffe0db003eb",
+      "step_index": 1,
+      "state_before": {
+        "config_version": 1,
+        "review_id": "R022",
+        "difficulty": "hard",
+        "retrieved_paper_count": 0,
+        "summary_available": false,
+        "material_revision": 0,
+        "verifier": {
+          "scores": {
+            "coverage": 0.0,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": false,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "checked_material_revision": -1,
+          "issues": []
+        },
+        "step_count": 0,
+        "max_steps": 8,
+        "workflow_tokens_used": 0,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_after": {
+        "config_version": 1,
+        "review_id": "R022",
+        "difficulty": "hard",
+        "retrieved_paper_count": 3,
+        "summary_available": false,
+        "material_revision": 1,
+        "verifier": {
+          "scores": {
+            "coverage": 0.5,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "issues": [
+            "Only two of the three supplied abstracts are relevant to sim-to-real robot policy transfer; 1809.08626v3 concerns predictive-maintenance domain adaptation and should not be used as evidence about robot policy sim-to-real transfer.",
+            "The materials partially cover simulation training and a transfer-prediction metric based on real trajectories, but do not provide a survey-level comparison of the three requested evidence classes: simulation task success, transfer-performance prediction from real trajectories, and real-robot task validation.",
+            "The abstracts do not directly explain why simulation success or correlation of a transfer metric with real performance cannot substitute for real-robot task validation; this must be argued explicitly and cautiously rather than inferred as established fact.",
+            "No summaries were supplied, so factuality, citation support, and consistency cannot be evaluated and must remain invalid."
+          ],
+          "checked_material_revision": 1
+        },
+        "step_count": 1,
+        "max_steps": 8,
+        "workflow_tokens_used": 1894,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 1.0
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_before_ref": "D:\\DQN\\outputs\\decision-feasibility-v1-20261127\\traces\\episode-cbffb8426e7947c1ba9a0ffe0db003eb\\step-001-before.json",
+      "state_after_ref": "D:\\DQN\\outputs\\decision-feasibility-v1-20261127\\traces\\episode-cbffb8426e7947c1ba9a0ffe0db003eb\\step-001-after.json",
+      "action_id": "retrieve_more",
+      "action_mask": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "verifier_before": null,
+      "verifier_after": 0.5,
+      "verifier_delta": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "verifier_tokens": 1894,
+      "total_workflow_tokens": 1894,
+      "success": true,
+      "error": null,
+      "done": false,
+      "terminal_reason": null,
+      "calls": [
+        {
+          "role": "verify",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-27T03:46:26.909071+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Evaluate supplied materials against the survey instruction and original abstracts. Return JSON {\"scores\":{\"coverage\":0.0,\"factuality\":0.0,\"citation_support\":0.0,\"consistency\":0.0},\"valid_scores\":{\"coverage\":true,\"factuality\":false,\"citation_support\":false,\"consistency\":false},\"issues\":[\"specific actionable issue\"]}. Never select a next_action. Each valid score is in [0,1], higher is better: coverage measures how much of the requested topic is supported by retrieved materials; factuality measures summary claims supported by abstracts; citation_support measures correct summary attribution and evidence support; consistency measures internal and cross-paper summary consistency without conflating different settings. Anchors: 0=no support/major errors, 0.5=partial coverage or substantial omissions/errors, 1=complete support within supplied abstracts, no identified errors. With no summaries, evaluate coverage only; all other scores must be 0 and invalid. With summaries, evaluate all four dimensions. Do not treat missing source details as established facts. Scores are workflow diagnostics, not independent final quality judgments.",
+          "payload": {
+            "query": "准备把机器人策略从仿真移到真机时，哪些工作可以先在仿真中完成，哪些结论还需要真实数据？综述如何减少真机训练或筛选策略的开销，并结合机器人任务比较三类证据：仿真中学会了任务、根据真实轨迹预测迁移表现、在真机上验证了任务表现。解释为什么仿真成功或迁移指标的相关性不能代替真机任务验证。",
+            "papers": [
+              {
+                "id": "2009.12864v1",
+                "title": "Predicting Sim-to-Real Transfer with Probabilistic Dynamics Models",
+                "abstract": "We propose a method to predict the sim-to-real transfer performance of RL policies. Our transfer metric simplifies the selection of training setups (such as algorithm, hyperparameters, randomizations) and policies in simulation, without the need for extensive and time-consuming real-world rollouts. A probabilistic dynamics model is trained alongside the policy and evaluated on a fixed set of real-world trajectories to obtain the transfer metric. Experiments show that the transfer metric is highly correlated with policy performance in both simulated and real-world robotic environments for complex manipulation tasks. We further show that the transfer metric can predict the effect of training setups on policy transfer performance."
+              },
+              {
+                "id": "1809.10253v3",
+                "title": "Scaling simulation-to-real transfer by learning composable robot skills",
+                "abstract": "We present a novel solution to the problem of simulation-to-real transfer, which builds on recent advances in robot skill decomposition. Rather than focusing on minimizing the simulation-reality gap, we learn a set of diverse policies that are parameterized in a way that makes them easily reusable. This diversity and parameterization of low-level skills allows us to find a transferable policy that is able to use combinations and variations of different skills to solve more complex, high-level tasks. In particular, we first use simulation to jointly learn a policy for a set of low-level skills, and a \"skill embedding\" parameterization which can be used to compose them. Later, we learn high-level policies which actuate the low-level policies via this skill embedding parameterization. The high-level policies encode how and when to reuse the low-level skills together to achieve specific high-level tasks. Importantly, our method learns to control a real robot in joint-space to achieve these high-level tasks with little or no on-robot time, despite the fact that the low-level policies may not be perfectly transferable from simulation to real, and that the low-level skills were not trained on any examples of high-level tasks. We illustrate the principles of our method using informative simulation experiments. We then verify its usefulness for real robotics problems by learning, transferring, and composing free-space and contact motion skills on a Sawyer robot using only joint-space control. We experiment with several techniques for composing pre-learned skills, and find that our method allows us to use both learning-based approaches and efficient search-based planning to achieve high-level tasks using only pre-learned skills."
+              },
+              {
+                "id": "1809.08626v3",
+                "title": "Domain Adaptation for Robot Predictive Maintenance Systems",
+                "abstract": "Industrial robots play an increasingly important role in a growing number of fields. For example, robotics is used to increase productivity while reducing costs in various aspects of manufacturing. Since robots are often set up in production lines, the breakdown of a single robot has a negative impact on the entire process, in the worst case bringing the whole line to a halt until the issue is resolved, leading to substantial financial losses due to the unforeseen downtime. Therefore, predictive maintenance systems based on the internal signals of robots have gained attention as an essential component of robotics service offerings. The main shortcoming of existing predictive maintenance algorithms is that the extracted features typically differ significantly from the learnt model when the operation of the robot changes, incurring false alarms. In order to mitigate this problem, predictive maintenance algorithms require the model to be retrained with normal data of the new operation. In this paper, we propose a novel solution based on transfer learning to pass the knowledge of the trained model from one operation to another in order to prevent the need for retraining and to eliminate such false alarms. The deployment of the proposed unsupervised transfer learning algorithm on real-world datasets demonstrates that the algorithm can not only distinguish between operation and mechanical condition change, it further yields a sharper deviation from the trained model in case of a mechanical condition change and thus detects mechanical issues with higher confidence."
+              }
+            ],
+            "items": [],
+            "feedback": []
+          },
+          "cache_key": "88f1cc1856c5a2a10b1ddf2615d513c4814d0aa30f0661cb7346f893830ee5fa",
+          "cache_hit": false,
+          "prompt_tokens": 1232,
+          "completion_tokens": 662,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"scores\":{\"coverage\":0.5,\"factuality\":0.0,\"citation_support\":0.0,\"consistency\":0.0},\"valid_scores\":{\"coverage\":true,\"factuality\":false,\"citation_support\":false,\"consistency\":false},\"issues\":[\"Only two of the three supplied abstracts are relevant to sim-to-real robot policy transfer; 1809.08626v3 concerns predictive-maintenance domain adaptation and should not be used as evidence about robot policy sim-to-real transfer.\",\"The materials partially cover simulation training and a transfer-prediction metric based on real trajectories, but do not provide a survey-level comparison of the three requested evidence classes: simulation task success, transfer-performance prediction from real trajectories, and real-robot task validation.\",\"The abstracts do not directly explain why simulation success or correlation of a transfer metric with real performance cannot substitute for real-robot task validation; this must be argued explicitly and cautiously rather than inferred as established fact.\",\"No summaries were supplied, so factuality, citation support, and consistency cannot be evaluated and must remain invalid.\"]}",
+          "output": {
+            "scores": {
+              "coverage": 0.5,
+              "factuality": 0.0,
+              "citation_support": 0.0,
+              "consistency": 0.0
+            },
+            "valid_scores": {
+              "coverage": true,
+              "factuality": false,
+              "citation_support": false,
+              "consistency": false
+            },
+            "issues": [
+              "Only two of the three supplied abstracts are relevant to sim-to-real robot policy transfer; 1809.08626v3 concerns predictive-maintenance domain adaptation and should not be used as evidence about robot policy sim-to-real transfer.",
+              "The materials partially cover simulation training and a transfer-prediction metric based on real trajectories, but do not provide a survey-level comparison of the three requested evidence classes: simulation task success, transfer-performance prediction from real trajectories, and real-robot task validation.",
+              "The abstracts do not directly explain why simulation success or correlation of a transfer metric with real performance cannot substitute for real-robot task validation; this must be argued explicitly and cautiously rather than inferred as established fact.",
+              "No summaries were supplied, so factuality, citation support, and consistency cannot be evaluated and must remain invalid."
+            ]
+          },
+          "elapsed_seconds": 14.781
+        }
+      ],
+      "execution_kind": "real",
+      "next_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "config_version": 1,
+      "review_id": "R022",
+      "trajectory_id": "episode-cbffb8426e7947c1ba9a0ffe0db003eb",
+      "step_index": 2,
+      "state_before": {
+        "config_version": 1,
+        "review_id": "R022",
+        "difficulty": "hard",
+        "retrieved_paper_count": 3,
+        "summary_available": false,
+        "material_revision": 1,
+        "verifier": {
+          "scores": {
+            "coverage": 0.5,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "issues": [
+            "Only two of the three supplied abstracts are relevant to sim-to-real robot policy transfer; 1809.08626v3 concerns predictive-maintenance domain adaptation and should not be used as evidence about robot policy sim-to-real transfer.",
+            "The materials partially cover simulation training and a transfer-prediction metric based on real trajectories, but do not provide a survey-level comparison of the three requested evidence classes: simulation task success, transfer-performance prediction from real trajectories, and real-robot task validation.",
+            "The abstracts do not directly explain why simulation success or correlation of a transfer metric with real performance cannot substitute for real-robot task validation; this must be argued explicitly and cautiously rather than inferred as established fact.",
+            "No summaries were supplied, so factuality, citation support, and consistency cannot be evaluated and must remain invalid."
+          ],
+          "checked_material_revision": 1
+        },
+        "step_count": 1,
+        "max_steps": 8,
+        "workflow_tokens_used": 1894,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 1.0
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": false,
+        "terminal_reason": null
+      },
+      "state_after": {
+        "config_version": 1,
+        "review_id": "R022",
+        "difficulty": "hard",
+        "retrieved_paper_count": 3,
+        "summary_available": false,
+        "material_revision": 1,
+        "verifier": {
+          "scores": {
+            "coverage": 0.5,
+            "factuality": 0.0,
+            "citation_support": 0.0,
+            "consistency": 0.0
+          },
+          "valid_scores": {
+            "coverage": true,
+            "factuality": false,
+            "citation_support": false,
+            "consistency": false
+          },
+          "issues": [
+            "Only two of the three supplied abstracts are relevant to sim-to-real robot policy transfer; 1809.08626v3 concerns predictive-maintenance domain adaptation and should not be used as evidence about robot policy sim-to-real transfer.",
+            "The materials partially cover simulation training and a transfer-prediction metric based on real trajectories, but do not provide a survey-level comparison of the three requested evidence classes: simulation task success, transfer-performance prediction from real trajectories, and real-robot task validation.",
+            "The abstracts do not directly explain why simulation success or correlation of a transfer metric with real performance cannot substitute for real-robot task validation; this must be argued explicitly and cautiously rather than inferred as established fact.",
+            "No summaries were supplied, so factuality, citation support, and consistency cannot be evaluated and must remain invalid."
+          ],
+          "checked_material_revision": 1
+        },
+        "step_count": 2,
+        "max_steps": 8,
+        "workflow_tokens_used": 6253,
+        "workflow_tokens_budget": 48000,
+        "action_history": {
+          "retrieve_more": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.3028946105869183
+          },
+          "summarize_fast": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "summarize_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          },
+          "write_fast": {
+            "call_count": 1,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.6971053894130818
+          },
+          "write_deep": {
+            "call_count": 0,
+            "last_verifier_delta": null,
+            "consecutive_low_gain_or_failures": 0,
+            "token_share": 0.0
+          }
+        },
+        "terminal": true,
+        "terminal_reason": "final_written"
+      },
+      "state_before_ref": "D:\\DQN\\outputs\\decision-feasibility-v1-20261127\\traces\\episode-cbffb8426e7947c1ba9a0ffe0db003eb\\step-002-before.json",
+      "state_after_ref": "D:\\DQN\\outputs\\decision-feasibility-v1-20261127\\traces\\episode-cbffb8426e7947c1ba9a0ffe0db003eb\\step-002-after.json",
+      "action_id": "write_fast",
+      "action_mask": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "verifier_before": 0.5,
+      "verifier_after": 0.5,
+      "verifier_delta": null,
+      "input_tokens": 1214,
+      "output_tokens": 3145,
+      "verifier_tokens": 0,
+      "total_workflow_tokens": 4359,
+      "success": true,
+      "error": null,
+      "done": true,
+      "terminal_reason": "final_written",
+      "calls": [
+        {
+          "role": "write",
+          "model_requested": "deepseek-flash",
+          "model_actual": "deepseek-flash",
+          "started_at": "2026-11-27T03:46:41.700812+00:00",
+          "reasoning_effort": "low",
+          "attempt": 1,
+          "prompt": "Write a Chinese literature review with comparisons, limitations and an explicit abstract-only scope. Use the supplied papers and summaries only. Cover all supplied papers with citations. Return JSON {\"sections\":[{\"heading\":\"text\",\"text\":\"text\",\"paper_ids\":[\"id\"]}]}.",
+          "payload": {
+            "query": "准备把机器人策略从仿真移到真机时，哪些工作可以先在仿真中完成，哪些结论还需要真实数据？综述如何减少真机训练或筛选策略的开销，并结合机器人任务比较三类证据：仿真中学会了任务、根据真实轨迹预测迁移表现、在真机上验证了任务表现。解释为什么仿真成功或迁移指标的相关性不能代替真机任务验证。",
+            "papers": [
+              {
+                "id": "2009.12864v1",
+                "title": "Predicting Sim-to-Real Transfer with Probabilistic Dynamics Models",
+                "abstract": "We propose a method to predict the sim-to-real transfer performance of RL policies. Our transfer metric simplifies the selection of training setups (such as algorithm, hyperparameters, randomizations) and policies in simulation, without the need for extensive and time-consuming real-world rollouts. A probabilistic dynamics model is trained alongside the policy and evaluated on a fixed set of real-world trajectories to obtain the transfer metric. Experiments show that the transfer metric is highly correlated with policy performance in both simulated and real-world robotic environments for complex manipulation tasks. We further show that the transfer metric can predict the effect of training setups on policy transfer performance."
+              },
+              {
+                "id": "1809.10253v3",
+                "title": "Scaling simulation-to-real transfer by learning composable robot skills",
+                "abstract": "We present a novel solution to the problem of simulation-to-real transfer, which builds on recent advances in robot skill decomposition. Rather than focusing on minimizing the simulation-reality gap, we learn a set of diverse policies that are parameterized in a way that makes them easily reusable. This diversity and parameterization of low-level skills allows us to find a transferable policy that is able to use combinations and variations of different skills to solve more complex, high-level tasks. In particular, we first use simulation to jointly learn a policy for a set of low-level skills, and a \"skill embedding\" parameterization which can be used to compose them. Later, we learn high-level policies which actuate the low-level policies via this skill embedding parameterization. The high-level policies encode how and when to reuse the low-level skills together to achieve specific high-level tasks. Importantly, our method learns to control a real robot in joint-space to achieve these high-level tasks with little or no on-robot time, despite the fact that the low-level policies may not be perfectly transferable from simulation to real, and that the low-level skills were not trained on any examples of high-level tasks. We illustrate the principles of our method using informative simulation experiments. We then verify its usefulness for real robotics problems by learning, transferring, and composing free-space and contact motion skills on a Sawyer robot using only joint-space control. We experiment with several techniques for composing pre-learned skills, and find that our method allows us to use both learning-based approaches and efficient search-based planning to achieve high-level tasks using only pre-learned skills."
+              },
+              {
+                "id": "1809.08626v3",
+                "title": "Domain Adaptation for Robot Predictive Maintenance Systems",
+                "abstract": "Industrial robots play an increasingly important role in a growing number of fields. For example, robotics is used to increase productivity while reducing costs in various aspects of manufacturing. Since robots are often set up in production lines, the breakdown of a single robot has a negative impact on the entire process, in the worst case bringing the whole line to a halt until the issue is resolved, leading to substantial financial losses due to the unforeseen downtime. Therefore, predictive maintenance systems based on the internal signals of robots have gained attention as an essential component of robotics service offerings. The main shortcoming of existing predictive maintenance algorithms is that the extracted features typically differ significantly from the learnt model when the operation of the robot changes, incurring false alarms. In order to mitigate this problem, predictive maintenance algorithms require the model to be retrained with normal data of the new operation. In this paper, we propose a novel solution based on transfer learning to pass the knowledge of the trained model from one operation to another in order to prevent the need for retraining and to eliminate such false alarms. The deployment of the proposed unsupervised transfer learning algorithm on real-world datasets demonstrates that the algorithm can not only distinguish between operation and mechanical condition change, it further yields a sharper deviation from the trained model in case of a mechanical condition change and thus detects mechanical issues with higher confidence."
+              }
+            ],
+            "items": [],
+            "feedback": [
+              "Only two of the three supplied abstracts are relevant to sim-to-real robot policy transfer; 1809.08626v3 concerns predictive-maintenance domain adaptation and should not be used as evidence about robot policy sim-to-real transfer.",
+              "The materials partially cover simulation training and a transfer-prediction metric based on real trajectories, but do not provide a survey-level comparison of the three requested evidence classes: simulation task success, transfer-performance prediction from real trajectories, and real-robot task validation.",
+              "The abstracts do not directly explain why simulation success or correlation of a transfer metric with real performance cannot substitute for real-robot task validation; this must be argued explicitly and cautiously rather than inferred as established fact.",
+              "No summaries were supplied, so factuality, citation support, and consistency cannot be evaluated and must remain invalid."
+            ]
+          },
+          "cache_key": "6f2ec6198791a23c3bd4b21ce67b6a4f06678d7342c9cfaae502eb9332462516",
+          "cache_hit": false,
+          "prompt_tokens": 1214,
+          "completion_tokens": 3145,
+          "status": "ok",
+          "finish_reason": "stop",
+          "response_text": "{\"sections\":[{\"heading\":\"范围与证据边界\",\"text\":\"本综述仅依据所给三篇论文的摘要，不引入全文、实验表格、未报告结果或摘要外总结；也未获得任何中间摘要（summaries），因此无法独立核验事实性、统计显著性和引用一致性。按主题相关性，2009.12864v1 与 1809.10253v3 可用于讨论机器人策略的仿真到真机迁移；1809.08626v3 讨论工业机器人预测维护中的无监督迁移学习，不应作为策略迁移或真机任务验证的证据，仅作为“迁移学习不等于策略迁移”的边界对照。以下比较均属摘要级、条件性的综述判断。\",\"paper_ids\":[\"2009.12864v1\",\"1809.10253v3\",\"1809.08626v3\"]},{\"heading\":\"可在仿真中先行完成的工作\",\"text\":\"从摘要看，仿真可先承担策略与技能层面的训练和预筛选。2009.12864v1 提出在仿真中训练 RL 策略，并同时训练概率动力学模型，用于简化算法、超参数、随机化等训练设置以及策略的选择；其目标是避免大量耗时的真实世界 rollout。1809.10253v3 则在仿真中联合学习一组低层技能策略及“技能嵌入”参数化，再学习通过该嵌入调用低层技能的高层策略，从摘要看，这种分解使复杂高层任务能够复用和组合低层技能。由此，综述可把仿真阶段的工作概括为：训练候选策略/技能、学习可组合的技能表示、在仿真内比较训练设置和候选策略。但需注意，2009.12864v1 的迁移度量本身要在固定真实轨迹上评估，因此并非所有筛选都完全不需要真实数据。\",\"paper_ids\":[\"2009.12864v1\",\"1809.10253v3\"]},{\"heading\":\"基于真实轨迹预测迁移表现\",\"text\":\"2009.12864v1 代表第二类证据：用真实轨迹上的预测指标来估计迁移表现。摘要称，该方法在策略训练之外训练概率动力学模型，并在固定的一组真实世界轨迹上评估，得到迁移度量；该度量被用于选择训练设置和策略，而无需广泛、耗时的真实世界 rollout。摘要还报告该迁移度量在复杂操作任务的仿真和真实机器人环境中与策略性能高度相关，并能预测训练设置对策略迁移表现的影响。就综述而言，这类证据适合做候选排序和训练设置筛选，但其证据对象是“预测的迁移表现/相关性”，不是对每个候选策略在真实任务上的直接成功验证；摘要未说明轨迹集合覆盖率、任务分布或失败模式。\",\"paper_ids\":[\"2009.12864v1\"]},{\"heading\":\"真机任务表现验证\",\"text\":\"第三类证据要求在真实机器人上验证任务表现。1809.10253v3 摘要报告在 Sawyer 机器人上仅用关节空间控制，学习、迁移并组合自由空间与接触运动技能，并以很少或几乎不需要在机器人上的时间完成高层任务；同时明确指出低层策略可能无法从仿真完美迁移，且低层技能未在高层任务示例上训练。该文还比较了组合预学习技能的若干技术，并称可用基于学习的方法和高效搜索规划来利用预学习技能完成高层任务。2009.12864v1 摘要也提到真实机器人环境中的策略性能，但未给出任务级成功率和具体验证协议。综述只能谨慎地说：1809.10253v3 提供了真机任务层面的摘要级证据；2009.12864v1 提供了真实性能与迁移度量相关性的摘要级证据，二者不能互相替代。\",\"paper_ids\":[\"1809.10253v3\",\"2009.12864v1\"]},{\"heading\":\"三类证据的比较\",\"text\":\"按摘要可区分三类证据：其一，“仿真中学会了任务”，主要证明策略在仿真动力学和仿真任务分布内可学习、可优化，典型如 1809.10253v3 的仿真联合技能学习，以及 2009.12864v1 的仿真训练与筛选；其二，“根据真实轨迹预测迁移表现”，典型如 2009.12864v1 的迁移度量，优势是可用较少真实轨迹对候选策略或训练设置排序，证据形式是预测值与真实性能的相关性；其三，“在真机上验证了任务表现”，典型如 1809.10253v3 在 Sawyer 上的自由空间与接触运动组合，证据形式是真实机器人任务执行。三者回答的问题不同：仿真成功回答“在仿真里是否学会”，迁移预测回答“哪些候选更可能迁移”，真机验证回答“在真实任务上是否完成”。因此综述应把它们视为互补证据链，而不是同一证据的不同强度。\",\"paper_ids\":[\"2009.12864v1\",\"1809.10253v3\"]},{\"heading\":\"为什么仿真成功或迁移指标相关性不能代替真机任务验证\",\"text\":\"仅凭摘要也可给出谨慎论证。第一，仿真成功是在仿真器内部测得的任务表现，不能自动外推到真实执行；1809.10253v3 明确承认低层策略可能无法完美从仿真迁移，却仍通过技能组合在真机上完成任务，这说明“低层迁移不完美”与“高层任务真机成功”之间不能由仿真成功直接推出。第二，2009.12864v1 的迁移度量是在固定真实轨迹上评估并与真实性能“高度相关”，但相关性不等于等价性，也不等于对每个策略、每种失败模式或闭环任务分布都给出任务成功率；摘要未报告校准、置信区间或分布外情形。第三，真实任务验证涉及闭环执行、接触变化、组合调用和安全性等，摘要级迁移指标主要服务于候选筛选，不能替代最终真机任务检查。第四，1809.08626v3 说明预测维护中的无监督迁移可跨操作条件减少重训练，但其对象是维护信号与机械状态变化，不是机器人策略任务成功，因而更不能作为策略迁移验证的替代证据。\",\"paper_ids\":[\"2009.12864v1\",\"1809.10253v3\",\"1809.08626v3\"]},{\"heading\":\"综述如何减少真机训练或筛选开销\",\"text\":\"基于所给摘要，可归纳一条节省真机开销的证据链：先在仿真中训练候选策略、学习可组合技能表示并比较训练设置（1809.10253v3；2009.12864v1）；再用少量固定真实轨迹计算迁移度量，对策略和训练设置排序，减少广泛真实 rollout（2009.12864v1）；最后仅对少量候选做真机任务验证，并利用预学习技能组合降低在机器人上的训练时间（1809.10253v3）。这条路径的综述价值在于把昂贵的真机试验集中在最终候选和任务验证上，而不是用仿真成功或迁移相关性替代真机验证。其前提是迁移度量与目标真实任务分布足够匹配；摘要未提供该前提的充分条件，因此应作为待验证假设而非既定结论。\",\"paper_ids\":[\"2009.12864v1\",\"1809.10253v3\"]},{\"heading\":\"局限与对照文献处理\",\"text\":\"本综述的局限包括：仅有三篇摘要，且未提供 summaries；无法评估实验设计、样本量、统计相关性的稳健性、任务覆盖和复现细节；2009.12864v1 与 1809.10253v3 的摘要未给出统一的迁移度量或真机成功率定义，不能做定量横向比较；1809.08626v3 与机器人策略仿真到真机迁移主题不一致，只能用于说明“域适应/迁移学习”与“策略任务验证”不是同一证据类别。因而本文所有比较均为摘要级、探索性综述，不构成对任何方法优越性的最终判定。\",\"paper_ids\":[\"2009.12864v1\",\"1809.10253v3\",\"1809.08626v3\"]}]}",
+          "output": {
+            "sections": [
+              {
+                "heading": "范围与证据边界",
+                "text": "本综述仅依据所给三篇论文的摘要，不引入全文、实验表格、未报告结果或摘要外总结；也未获得任何中间摘要（summaries），因此无法独立核验事实性、统计显著性和引用一致性。按主题相关性，2009.12864v1 与 1809.10253v3 可用于讨论机器人策略的仿真到真机迁移；1809.08626v3 讨论工业机器人预测维护中的无监督迁移学习，不应作为策略迁移或真机任务验证的证据，仅作为“迁移学习不等于策略迁移”的边界对照。以下比较均属摘要级、条件性的综述判断。",
+                "paper_ids": [
+                  "2009.12864v1",
+                  "1809.10253v3",
+                  "1809.08626v3"
+                ]
+              },
+              {
+                "heading": "可在仿真中先行完成的工作",
+                "text": "从摘要看，仿真可先承担策略与技能层面的训练和预筛选。2009.12864v1 提出在仿真中训练 RL 策略，并同时训练概率动力学模型，用于简化算法、超参数、随机化等训练设置以及策略的选择；其目标是避免大量耗时的真实世界 rollout。1809.10253v3 则在仿真中联合学习一组低层技能策略及“技能嵌入”参数化，再学习通过该嵌入调用低层技能的高层策略，从摘要看，这种分解使复杂高层任务能够复用和组合低层技能。由此，综述可把仿真阶段的工作概括为：训练候选策略/技能、学习可组合的技能表示、在仿真内比较训练设置和候选策略。但需注意，2009.12864v1 的迁移度量本身要在固定真实轨迹上评估，因此并非所有筛选都完全不需要真实数据。",
+                "paper_ids": [
+                  "2009.12864v1",
+                  "1809.10253v3"
+                ]
+              },
+              {
+                "heading": "基于真实轨迹预测迁移表现",
+                "text": "2009.12864v1 代表第二类证据：用真实轨迹上的预测指标来估计迁移表现。摘要称，该方法在策略训练之外训练概率动力学模型，并在固定的一组真实世界轨迹上评估，得到迁移度量；该度量被用于选择训练设置和策略，而无需广泛、耗时的真实世界 rollout。摘要还报告该迁移度量在复杂操作任务的仿真和真实机器人环境中与策略性能高度相关，并能预测训练设置对策略迁移表现的影响。就综述而言，这类证据适合做候选排序和训练设置筛选，但其证据对象是“预测的迁移表现/相关性”，不是对每个候选策略在真实任务上的直接成功验证；摘要未说明轨迹集合覆盖率、任务分布或失败模式。",
+                "paper_ids": [
+                  "2009.12864v1"
+                ]
+              },
+              {
+                "heading": "真机任务表现验证",
+                "text": "第三类证据要求在真实机器人上验证任务表现。1809.10253v3 摘要报告在 Sawyer 机器人上仅用关节空间控制，学习、迁移并组合自由空间与接触运动技能，并以很少或几乎不需要在机器人上的时间完成高层任务；同时明确指出低层策略可能无法从仿真完美迁移，且低层技能未在高层任务示例上训练。该文还比较了组合预学习技能的若干技术，并称可用基于学习的方法和高效搜索规划来利用预学习技能完成高层任务。2009.12864v1 摘要也提到真实机器人环境中的策略性能，但未给出任务级成功率和具体验证协议。综述只能谨慎地说：1809.10253v3 提供了真机任务层面的摘要级证据；2009.12864v1 提供了真实性能与迁移度量相关性的摘要级证据，二者不能互相替代。",
+                "paper_ids": [
+                  "1809.10253v3",
+                  "2009.12864v1"
+                ]
+              },
+              {
+                "heading": "三类证据的比较",
+                "text": "按摘要可区分三类证据：其一，“仿真中学会了任务”，主要证明策略在仿真动力学和仿真任务分布内可学习、可优化，典型如 1809.10253v3 的仿真联合技能学习，以及 2009.12864v1 的仿真训练与筛选；其二，“根据真实轨迹预测迁移表现”，典型如 2009.12864v1 的迁移度量，优势是可用较少真实轨迹对候选策略或训练设置排序，证据形式是预测值与真实性能的相关性；其三，“在真机上验证了任务表现”，典型如 1809.10253v3 在 Sawyer 上的自由空间与接触运动组合，证据形式是真实机器人任务执行。三者回答的问题不同：仿真成功回答“在仿真里是否学会”，迁移预测回答“哪些候选更可能迁移”，真机验证回答“在真实任务上是否完成”。因此综述应把它们视为互补证据链，而不是同一证据的不同强度。",
+                "paper_ids": [
+                  "2009.12864v1",
+                  "1809.10253v3"
+                ]
+              },
+              {
+                "heading": "为什么仿真成功或迁移指标相关性不能代替真机任务验证",
+                "text": "仅凭摘要也可给出谨慎论证。第一，仿真成功是在仿真器内部测得的任务表现，不能自动外推到真实执行；1809.10253v3 明确承认低层策略可能无法完美从仿真迁移，却仍通过技能组合在真机上完成任务，这说明“低层迁移不完美”与“高层任务真机成功”之间不能由仿真成功直接推出。第二，2009.12864v1 的迁移度量是在固定真实轨迹上评估并与真实性能“高度相关”，但相关性不等于等价性，也不等于对每个策略、每种失败模式或闭环任务分布都给出任务成功率；摘要未报告校准、置信区间或分布外情形。第三，真实任务验证涉及闭环执行、接触变化、组合调用和安全性等，摘要级迁移指标主要服务于候选筛选，不能替代最终真机任务检查。第四，1809.08626v3 说明预测维护中的无监督迁移可跨操作条件减少重训练，但其对象是维护信号与机械状态变化，不是机器人策略任务成功，因而更不能作为策略迁移验证的替代证据。",
+                "paper_ids": [
+                  "2009.12864v1",
+                  "1809.10253v3",
+                  "1809.08626v3"
+                ]
+              },
+              {
+                "heading": "综述如何减少真机训练或筛选开销",
+                "text": "基于所给摘要，可归纳一条节省真机开销的证据链：先在仿真中训练候选策略、学习可组合技能表示并比较训练设置（1809.10253v3；2009.12864v1）；再用少量固定真实轨迹计算迁移度量，对策略和训练设置排序，减少广泛真实 rollout（2009.12864v1）；最后仅对少量候选做真机任务验证，并利用预学习技能组合降低在机器人上的训练时间（1809.10253v3）。这条路径的综述价值在于把昂贵的真机试验集中在最终候选和任务验证上，而不是用仿真成功或迁移相关性替代真机验证。其前提是迁移度量与目标真实任务分布足够匹配；摘要未提供该前提的充分条件，因此应作为待验证假设而非既定结论。",
+                "paper_ids": [
+                  "2009.12864v1",
+                  "1809.10253v3"
+                ]
+              },
+              {
+                "heading": "局限与对照文献处理",
+                "text": "本综述的局限包括：仅有三篇摘要，且未提供 summaries；无法评估实验设计、样本量、统计相关性的稳健性、任务覆盖和复现细节；2009.12864v1 与 1809.10253v3 的摘要未给出统一的迁移度量或真机成功率定义，不能做定量横向比较；1809.08626v3 与机器人策略仿真到真机迁移主题不一致，只能用于说明“域适应/迁移学习”与“策略任务验证”不是同一证据类别。因而本文所有比较均为摘要级、探索性综述，不构成对任何方法优越性的最终判定。",
+                "paper_ids": [
+                  "2009.12864v1",
+                  "1809.10253v3",
+                  "1809.08626v3"
+                ]
+              }
+            ]
+          },
+          "elapsed_seconds": 36.609
+        }
+      ],
+      "execution_kind": "real",
+      "next_mask": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ],
+  "collection_kind": "formal",
+  "public_task": {
+    "review_id": "R022",
+    "survey_instruction": "准备把机器人策略从仿真移到真机时，哪些工作可以先在仿真中完成，哪些结论还需要真实数据？综述如何减少真机训练或筛选策略的开销，并结合机器人任务比较三类证据：仿真中学会了任务、根据真实轨迹预测迁移表现、在真机上验证了任务表现。解释为什么仿真成功或迁移指标的相关性不能代替真机任务验证。",
+    "split": "train",
+    "difficulty": "hard",
+    "corpus_scope": "local_arxiv_ai",
+    "config_version": 1
+  },
+  "source": {
+    "source_id": "arxiv600-review40-v1",
+    "manifest_sha256": "842ecacf33e2acf35d1352a0f8c999282db4817fadd48cff19c3c3ba87e1734e",
+    "task_sha256": "9944b8bc0d4a9663508e716e0260ce70e92b36ba5edeb68a1bf7a209414180b1",
+    "corpus_sha256": "751acf2ed7b74403f8d89a2c8046f570156643c0e9192cd868cda6722096235f",
+    "corpus_size": 600
+  },
+  "policy": "raw_fast",
+  "plan": {
+    "policy": "raw_fast",
+    "preferences_by_step": [
+      "retrieve_more",
+      "write_fast"
+    ],
+    "fallback": "RuleScheduler",
+    "selection": "deterministic"
+  },
+  "plan_sha256": "66d4830b2be8a0f9df00eb80fdab48511b6e2e7cceb3f457f151fed8416e94b2",
+  "config_sha256": "0ce1fc771d0af8bfe57eb0b556a623019a158e2073eabe1d929b3274728eb01e",
+  "final_text_sha256": "8e9479ab2fdd4f64bbaa236d07b8117eb9cbba038372a13cf9cbfcc67080528c",
+  "support": [
+    {
+      "difficulty": "hard",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "retrieve_more",
+      "opportunities": 1,
+      "selected": 1,
+      "known_cost_steps": 1,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 1,
+      "selection_rate": 1.0
+    },
+    {
+      "difficulty": "hard",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "summarize_deep",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "hard",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "summarize_fast",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "hard",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "write_deep",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "hard",
+      "stage": "empty",
+      "verifier_band": "unavailable",
+      "action_id": "write_fast",
+      "opportunities": 0,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": null
+    },
+    {
+      "difficulty": "hard",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "retrieve_more",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "hard",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "summarize_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "hard",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "summarize_fast",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "hard",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "write_deep",
+      "opportunities": 1,
+      "selected": 0,
+      "known_cost_steps": 0,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 0,
+      "selection_rate": 0.0
+    },
+    {
+      "difficulty": "hard",
+      "stage": "raw",
+      "verifier_band": "low",
+      "action_id": "write_fast",
+      "opportunities": 1,
+      "selected": 1,
+      "known_cost_steps": 1,
+      "unknown_cost_steps": 0,
+      "independent_reviews": 1,
+      "selection_rate": 1.0
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-b411a104725d44599f98baeb7653f4ee",
+  "review_id": "R005",
+  "split": "train",
+  "final_text_sha256": "4d656af12bf85e66f11a23be92efd4669924271b087cfd68a9fa6f113c8d0328",
+  "blind_input_sha256": "2152761b81ed0125ca91abd07cc0bc6808e4378856a02a4f0d7aca49a8d6bbe6",
+  "request_sha256": "359079af5fe29794c1530e45bb402c63d02f8354c5276bda758ada3ddbe42875",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.91,
+  "subscores": {
+    "coverage": 0.9,
+    "factuality": 0.95,
+    "citation_support": 0.85,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: 终稿完整回答了题面要求：解释了识别无关特征的原因（降低可解释性和预测质量），说明了回归神经网络示例采用广义回归神经网络和各向异性高斯核，并区分了模拟数据（稳健性和样本量敏感性）与真实数据（与其他方法比较）的验证任务。还讨论了比较和局限性，仅因未深入展开比较细节而略扣分。Factuality: 所有核心事实均与提供的摘要一致，如无关特征的影响、GRNN+各向异性高斯核、模拟/真实数据任务分工；对综述摘要未涉及回归神经网络等细节的说明准确，未捏造结果。Citation_support: 正文论断均有相邻引用，且引用内容与摘要匹配；如[2010.05744v1]支持GRNN和核函数及验证任务，[1905.02845v1]支持特征选择动机，[1808.02632v1]被正确指出与主题无关。但部分段落引用略显冗余，且对无关论文的引用仅用于排除，未影响核心支持。Consistency: 全文术语一致，范围限定清晰，前后结论无矛盾，逻辑连贯。",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-610ba20291674a6ba9f3780bb586c081",
+  "review_id": "R022",
+  "split": "train",
+  "final_text_sha256": "2d7ac4dded3b742ae87497519ade77663282ed315f5efea2b65f12a2758b8c04",
+  "blind_input_sha256": "252a442ab9b8543f1aed2bc4a6845bed2b95c3d9a091b8e6c325411ec7b1ae00",
+  "request_sha256": "48169e88485712aee892959e2db179c4d1f051a69a10214b7c3e877c587e58b6",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.91,
+  "subscores": {
+    "coverage": 0.9,
+    "factuality": 0.95,
+    "citation_support": 0.85,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: The review addresses all required points: what can be done in simulation vs. needs real data, how to reduce real-robot training/screening costs, comparison of three evidence types, and why simulation success or transfer metric correlation cannot replace real-robot validation. It explicitly discusses limitations and evidence boundaries. Minor deduction because the comparison of evidence types is somewhat implicit rather than a structured side-by-side comparison, but all elements are present.\n\nFactuality: All core claims are supported by the provided abstracts. The review correctly distinguishes that 2009.12864v1 requires real trajectories for the transfer metric, that 1809.10253v3 validates on a real Sawyer robot, and that 1809.08626v3 is about predictive maintenance, not policy transfer. No unsupported generalizations or contradictions found.\n\nCitation support: Most claims are appropriately cited with the correct paper IDs. However, some general statements (e.g., '仿真成功和迁移指标相关性可用于筛选和降低开销') are not directly tied to a specific citation in the adjacent text, though they are supported by the overall content of the cited papers. The bibliography matches the cited IDs. No fabricated citations detected.\n\nConsistency: The review maintains consistent terminology and scope throughout. It repeatedly clarifies that 1809.08626v3 is only background, and the conclusions align with the earlier sections. No internal contradictions found.",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

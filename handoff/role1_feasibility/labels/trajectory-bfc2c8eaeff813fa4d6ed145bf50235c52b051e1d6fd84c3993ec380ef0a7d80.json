@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-1f875e27631e475b8e4da4639d6bd2ff",
+  "review_id": "R005",
+  "split": "train",
+  "final_text_sha256": "d046dd674bd051ced9f51886d0ff6672636f3cbe00f5cbe5cfb4aa6c6a1d2470",
+  "blind_input_sha256": "8d701281ea89661693806e1eabac6fd41ce3ddae1f37d270a2508538aa248ee1",
+  "request_sha256": "6a8c4112333d09a61c58a2ea4812d5878e8f62407e7d5c142f5b61ae83dff193",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.95,
+  "subscores": {
+    "coverage": 0.95,
+    "factuality": 0.95,
+    "citation_support": 0.95,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: 终稿完整回答了题面要求：解释了识别无关特征的必要性（降低可解释性和预测质量），说明了回归神经网络采用广义回归神经网络与各向异性高斯核，并区分了模拟数据（鲁棒性和样本量敏感性）与真实数据（与四种方法比较）的验证任务。还额外说明了不相关论文的排除，未遗漏题面要点。Factuality: 所有核心事实均与所附摘要一致，如无关特征的影响、网络与核函数、验证任务类型；未捏造细节，对摘要未提供的信息明确说明证据不足。Citation_support: 正文论断均附有对应ID，且ID与摘要内容匹配：如[1905.02845v1]支持预处理必要性，[2010.05744v1]支持网络核函数和验证任务，[1808.02632v1]正确标记为不相关。Consistency: 全文术语一致，范围限定清晰，前后结论无矛盾，局限性说明与证据边界一致。",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

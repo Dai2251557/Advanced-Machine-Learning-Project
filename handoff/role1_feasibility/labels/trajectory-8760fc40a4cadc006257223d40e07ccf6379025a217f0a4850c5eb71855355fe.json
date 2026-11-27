@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-cbffb8426e7947c1ba9a0ffe0db003eb",
+  "review_id": "R022",
+  "split": "train",
+  "final_text_sha256": "8e9479ab2fdd4f64bbaa236d07b8117eb9cbba038372a13cf9cbfcc67080528c",
+  "blind_input_sha256": "5227332352bccfc627dada0ff1d1f3f901b1796bbf356fc887fd4fb428db9056",
+  "request_sha256": "3178ee3de025279971d3c646023b3a7b27530d5cbbba5169d3c9bce59ad80380",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.95,
+  "subscores": {
+    "coverage": 0.95,
+    "factuality": 0.95,
+    "citation_support": 0.95,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: The review fully addresses all required points: what can be done in simulation, what requires real data, how to reduce real-robot training/screening overhead, comparison of three evidence types, and why simulation success or transfer metric correlation cannot replace real-robot validation. It also explicitly notes limitations and scope. Factuality: All claims are supported by the provided abstracts; the review carefully distinguishes abstract-level evidence and avoids overgeneralization. It correctly notes that 1809.08626v3 is not about policy transfer and uses it only as a boundary case. Citation support: Each cited paper is used appropriately; [2009.12864v1] supports transfer metric and correlation claims, [1809.10253v3] supports skill composition and real-robot validation, and [1809.08626v3] is correctly cited for domain adaptation in predictive maintenance. No unsupported or mismatched citations found. Consistency: The review maintains consistent terminology and logical flow; it clearly separates evidence types and does not contradict itself. The conclusion aligns with the earlier analysis.",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

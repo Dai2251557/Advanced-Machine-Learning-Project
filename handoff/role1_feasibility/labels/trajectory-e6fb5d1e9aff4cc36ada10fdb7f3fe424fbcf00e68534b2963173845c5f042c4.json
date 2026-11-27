@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-98cb84b6b6b34dd1afe44dd100dee89d",
+  "review_id": "R022",
+  "split": "train",
+  "final_text_sha256": "b0a57af17ea1797139b7c9f2019dca91240642401e7276965b690fd5ab32a5ec",
+  "blind_input_sha256": "e0e82cb6b9ee7ae0038317ee09137319aa063547f39b621d6bb03b0bad8c352e",
+  "request_sha256": "3ce79fd7ddc3ac4bb92528c14eb5449efa074b2c80eca02be9c7cbfbda68ff39",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.88,
+  "subscores": {
+    "coverage": 0.85,
+    "factuality": 0.9,
+    "citation_support": 0.85,
+    "consistency": 0.9
+  },
+  "rationale": "Coverage: The review addresses all required points: what can be done in simulation (training setup screening, skill pre-training), what requires real data (transfer metric validation, real task verification), how to reduce real-robot training overhead (transfer metric, composable skills), comparison of three evidence types (simulation success, real-trajectory prediction, real-robot verification), and why simulation success or metric correlation cannot replace real-robot verification. It explicitly excludes the predictive maintenance paper as irrelevant. However, the comparison is limited by the abstracts and lacks quantitative details, so not full marks. Factuality: All claims are supported by the provided abstracts. The review correctly distinguishes between correlation evidence (2009.12864v1) and real-robot verification (1809.10253v3), and appropriately labels the conclusion about not replacing real-robot verification as inferential rather than established. No contradictions with abstracts. Citation support: Each major claim is linked to the correct paper ID. The predictive maintenance paper is cited and correctly identified as irrelevant. The review does not overstate support; it notes limitations. Consistency: The review maintains consistent terminology and scope, clearly separates evidence types, and does not contradict itself. The conclusion aligns with earlier sections.",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-002a697ef47e4e4fbc0194a2fbe22591",
+  "review_id": "R005",
+  "split": "train",
+  "final_text_sha256": "0a0ed35efc95ff3ff45235aa68a2ac2af8235dc54c6ade20655ddc9a3a668963",
+  "blind_input_sha256": "ef3dd03e1cacc7431734c54e61b3fbcb55e25651922f2e9621bd95e6e8e0ffae",
+  "request_sha256": "ff3ba63e70624f71c16c2c162f7264c03773322ee430d7a0f548b1bb45ee6fa6",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.95,
+  "subscores": {
+    "coverage": 0.95,
+    "factuality": 0.95,
+    "citation_support": 0.95,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: 终稿完整回答了题面要求：解释了识别无关特征的必要性（结合1905.02845v1和2010.05744v1），说明了回归神经网络采用广义回归神经网络和各向异性高斯核（2010.05744v1），并区分了模拟数据（稳健性和样本量敏感性）与真实数据（与四种方法比较）的验证任务。还额外讨论了比较、局限和范围外论文。Factuality: 所有核心事实均与摘要一致：1905.02845v1确实提到预处理阶段帮助分类/预测/聚类及原始数据复杂；2010.05744v1明确提到无关特征降低可解释性和预测质量、使用GRNN+各向异性高斯核、模拟数据考察稳健性和样本量敏感性、真实数据与四种方法比较；1808.02632v1是VQA方法，不涉及特征选择。终稿对摘要未提供的信息（如网络细节、数据集名称、量化结果）明确说明未披露，未捏造。Citation_support: 正文引用与摘要匹配正确：1905.02845v1支持预处理必要性和原始数据复杂；2010.05744v1支持无关特征影响、网络与核函数、验证任务分工；1808.02632v1支持其作为范围外对照。所有关键论断均有相应引文，且引文内容确实支撑论断。Consistency: 终稿内部一致：范围声明仅基于摘要，后续论述均遵守；对1808.02632v1的定位前后一致（范围外对照）；结论与局限部分与前面分析一致，无矛盾。",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

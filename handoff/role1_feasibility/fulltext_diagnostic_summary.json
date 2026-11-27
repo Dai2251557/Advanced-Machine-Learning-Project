@@ -1,0 +1,20 @@
+{
+  "kind": "nonformal_single_paper_information_gain_probe",
+  "source_url": "https://arxiv.org/pdf/2008.02646v1",
+  "source_section": "X. DISCUSSION, PDF page 7, lines 600-605",
+  "excerpt_sha256": "14077084b6266697dbebceac6b3fd8c11445ddde888116e637f2815145c188d0",
+  "paper_id": "2008.02646v1",
+  "model": "deepseek-flash",
+  "question": "这篇研究中，哪种具体技术提高了实机训练的样本效率，报告了多大幅度，哪类任务上尤其明显？只根据提供材料回答；若材料未说明，请明确写未说明。",
+  "abstract_only": {
+    "sufficient": false,
+    "answer": "材料未说明哪种具体技术提高了实机训练的样本效率，也未报告提高幅度；仅指出样本效率不足使连续字母任务在实机上不可行，并说明4个任务中3个可在实机学习。",
+    "total_tokens": 483
+  },
+  "abstract_plus_discussion": {
+    "sufficient": true,
+    "answer": "HER（Hindsight Experience Replay）提高了实机训练的样本效率，提升幅度最高可达10倍，并提升了最终性能；这种效率提升在字母表任务上尤其明显，因为随机探索下这些任务较少遇到奖励。",
+    "total_tokens": 576
+  },
+  "formal_v1_judge_score": null
+}

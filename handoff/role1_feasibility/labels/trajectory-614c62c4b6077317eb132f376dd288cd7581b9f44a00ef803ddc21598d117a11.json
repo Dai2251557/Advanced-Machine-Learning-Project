@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-12833abaef4242c4a873080ba2ed00a7",
+  "review_id": "R022",
+  "split": "train",
+  "final_text_sha256": "b6c317d848f88031022108bc9f7177fa94bdea4168e8785afaf7be67eb210fe8",
+  "blind_input_sha256": "b814f2083056007fdc200175230bb38e27a1f8d92551e994983ba52fb5719542",
+  "request_sha256": "02636092dd88214276975a3e2981545bde775e42eee73f5497a4bd0bcc292a5f",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.94,
+  "subscores": {
+    "coverage": 0.95,
+    "factuality": 0.95,
+    "citation_support": 0.9,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: The final text fully addresses the survey instruction: it identifies what can be done in simulation vs. what requires real data, reviews methods to reduce real-robot training/screening overhead, compares three evidence types (A: learned in simulation, B: predicted transfer from real trajectories, C: validated on real robot), and explains why simulation success or transfer correlation cannot replace real-robot validation. All required elements are covered with clear structure and explicit limitations.\n\nFactuality: Core facts and comparisons are supported by the provided abstracts. The text accurately represents each paper's contributions and limitations (e.g., 2008.02646v1: 4 tasks learned in simulation, 3 on real robot; 1809.10253v3: low-level skills may not transfer perfectly; 2009.12864v1: transfer metric correlates with performance but no closed-loop success rate given). No unsupported claims or overgeneralizations are made; the text appropriately qualifies conclusions based on abstract-level evidence.\n\nCitation_support: Most claims are properly cited with adjacent [paper_id] markers that correspond to the correct abstracts. For example, the statement about 2008.02646v1's simulation success and real-robot limitations is directly supported by its abstract. However, some citations are grouped at the end of paragraphs rather than attached to specific claims, making it slightly harder to verify individual assertions. No mismatched or unsupported citations were found.\n\nConsistency: The text is internally consistent in terminology (A/B/C evidence classes), scope (abstract-level only), and conclusions. It consistently maintains that simulation and transfer metrics are screening tools, not substitutes for real-robot validation, and this position is reiterated throughout without contradiction.",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

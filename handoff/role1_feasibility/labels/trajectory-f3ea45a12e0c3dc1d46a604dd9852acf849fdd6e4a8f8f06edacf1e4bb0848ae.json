@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-ed745051523e49f18479fa748108cd02",
+  "review_id": "R005",
+  "split": "train",
+  "final_text_sha256": "1fff898fd68685a6a4cc93d2874c8c9acbdb26e7f0cd4f069c92119973fad655",
+  "blind_input_sha256": "03a11572e68331b843f9b0fb948421dd222fdaf72fea7c43255a77f7f6212cf0",
+  "request_sha256": "bd409d587b1318dd7c73bd55309094652aded6ef73aeb17e60738e07baaba2d8",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.95,
+  "subscores": {
+    "coverage": 0.95,
+    "factuality": 0.95,
+    "citation_support": 0.95,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: 终稿完整回答了题面要求：解释了预处理阶段识别无关特征的原因（引用1905.02845v1和2010.05744v1），说明了回归神经网络采用各向异性高斯核的广义回归神经网络（2010.05744v1），并区分了模拟数据（稳健性和样本量敏感性）与真实数据（与四种方法比较）的验证任务。还额外说明了其他论文的不相关性，并明确证据边界。Factuality: 所有核心事实均来自提供的摘要，未捏造结果；对摘要未提供的信息（如数据集名称、对比方法名称、数值结果）明确说明证据不足，未做过度推广。Citation_support: 正文引用与摘要匹配正确，如[2010.05744v1]支持特征选择方法和验证任务，[1905.02845v1]支持预处理必要性；其他论文的引用也准确对应其摘要内容，无错配或虚构。Consistency: 全文术语一致，范围限定清晰，前后结论无矛盾，逻辑连贯。",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

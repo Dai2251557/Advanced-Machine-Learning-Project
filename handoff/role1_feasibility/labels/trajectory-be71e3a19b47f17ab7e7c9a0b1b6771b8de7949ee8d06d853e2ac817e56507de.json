@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-92cb9f9782204b73874138bfc869cd1c",
+  "review_id": "R001",
+  "split": "train",
+  "final_text_sha256": "4e3a95537e5c410591070d687d0b33b8ad52d83a278f18a6f1754af034c6e564",
+  "blind_input_sha256": "379d5dc621f5b650d2d51e32b370e2a8c690fd5007d586f7180a3966416e8d4e",
+  "request_sha256": "e07fe698d0eea46cdd89cb4eb9c8168e06587d9dd23bc69046d4b176187b9878",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.95,
+  "subscores": {
+    "coverage": 0.95,
+    "factuality": 0.95,
+    "citation_support": 0.95,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: 终稿完整回答了题面要求：区分了观察范围、控制成效与跨环境有效性；结合匝道控制说明了视频与点检测器的观察差异及实验指标；用城市路口实例说明了路口结构或车流改变时的方法与证据；并明确不进行算法排名。Factuality: 所有核心事实、方法与比较均基于提供的摘要，未捏造结果；对摘要未提供的细节（如具体指标数值）明确标注为证据空白，未过度推广。Citation_support: 正文论断与相邻引文匹配，引文均来自冻结库且确实支撑相应论断；无关论文被正确标注并排除。Consistency: 全文术语一致，前后结论无矛盾，逻辑推导清晰，对证据边界和局限性的说明前后呼应。",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

@@ -1,0 +1,273 @@
+{
+  "split": "train",
+  "score_source": "independent_judge",
+  "rows": [
+    {
+      "review_id": "R005",
+      "policy": "raw_fast",
+      "path": "episodes/R005--raw_fast.json",
+      "sha256": "d234edba59429adfd352b2ebc485ef73e715fe3a6fc3ce4c267a303109b8c0b1",
+      "trajectory_id": "episode-1f875e27631e475b8e4da4639d6bd2ff",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 3831,
+      "actions": [
+        "retrieve_more",
+        "write_fast"
+      ],
+      "judge_overall": 0.95,
+      "judge_subscores": {
+        "coverage": 0.95,
+        "factuality": 0.95,
+        "citation_support": 0.95,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R005",
+      "policy": "rule",
+      "path": "episodes/R005--rule.json",
+      "sha256": "25284fde3445a0ec8d1c6cbe1874833455f8b93f12e436cd3a8b911b3153913b",
+      "trajectory_id": "episode-b411a104725d44599f98baeb7653f4ee",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 10174,
+      "actions": [
+        "retrieve_more",
+        "summarize_fast",
+        "write_fast"
+      ],
+      "judge_overall": 0.91,
+      "judge_subscores": {
+        "coverage": 0.9,
+        "factuality": 0.95,
+        "citation_support": 0.85,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R005",
+      "policy": "retrieve_again",
+      "path": "episodes/R005--retrieve_again.json",
+      "sha256": "b671f141810ee93ce3d5f186a1ddc2ca5f5d88471086020640b8c2e39069eccc",
+      "trajectory_id": "episode-ed745051523e49f18479fa748108cd02",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 24954,
+      "actions": [
+        "retrieve_more",
+        "summarize_fast",
+        "retrieve_more",
+        "summarize_deep",
+        "write_fast"
+      ],
+      "judge_overall": 0.95,
+      "judge_subscores": {
+        "coverage": 0.95,
+        "factuality": 0.95,
+        "citation_support": 0.95,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R005",
+      "policy": "deep",
+      "path": "episodes/R005--deep.json",
+      "sha256": "997081864305f5f57bf701d1a421044e96eb8ba44092c4d6e8c56b98ffdac9e2",
+      "trajectory_id": "episode-002a697ef47e4e4fbc0194a2fbe22591",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 12636,
+      "actions": [
+        "retrieve_more",
+        "summarize_deep",
+        "write_deep"
+      ],
+      "judge_overall": 0.95,
+      "judge_subscores": {
+        "coverage": 0.95,
+        "factuality": 0.95,
+        "citation_support": 0.95,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R001",
+      "policy": "raw_fast",
+      "path": "episodes/R001--raw_fast.json",
+      "sha256": "dceb32641e1039e87fe1eca1ccfcdbd0489ae087fe95eea27f195bfe049b2f4e",
+      "trajectory_id": "episode-7ca282cba16140f28ba5453bfd1a0627",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 6124,
+      "actions": [
+        "retrieve_more",
+        "write_fast"
+      ],
+      "judge_overall": 0.95,
+      "judge_subscores": {
+        "coverage": 0.95,
+        "factuality": 0.95,
+        "citation_support": 0.95,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R001",
+      "policy": "rule",
+      "path": "episodes/R001--rule.json",
+      "sha256": "fe51e3d804ca4455f7af7344da8b13b79cf5feb066785dd2ae99b174cba17179",
+      "trajectory_id": "episode-514c4425827049bda3bdbe466e257898",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 14354,
+      "actions": [
+        "retrieve_more",
+        "summarize_fast",
+        "write_fast"
+      ],
+      "judge_overall": 0.95,
+      "judge_subscores": {
+        "coverage": 0.95,
+        "factuality": 0.95,
+        "citation_support": 0.95,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R001",
+      "policy": "retrieve_again",
+      "path": "episodes/R001--retrieve_again.json",
+      "sha256": "3fa6b37db7110619d6d37792ddeeb6f46bc69f96f47ff72286fe1644d9c36194",
+      "trajectory_id": "episode-92cb9f9782204b73874138bfc869cd1c",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 32126,
+      "actions": [
+        "retrieve_more",
+        "summarize_fast",
+        "retrieve_more",
+        "summarize_deep",
+        "write_fast"
+      ],
+      "judge_overall": 0.95,
+      "judge_subscores": {
+        "coverage": 0.95,
+        "factuality": 0.95,
+        "citation_support": 0.95,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R001",
+      "policy": "deep",
+      "path": "episodes/R001--deep.json",
+      "sha256": "fab14e00f326780422809a142b1f79cfb6bacdfd92c73e84815b6e902e464556",
+      "trajectory_id": "episode-71f74c0650294fcb92dc0f91df037442",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 17442,
+      "actions": [
+        "retrieve_more",
+        "summarize_deep",
+        "write_deep"
+      ],
+      "judge_overall": 0.94,
+      "judge_subscores": {
+        "coverage": 0.95,
+        "factuality": 0.95,
+        "citation_support": 0.9,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R022",
+      "policy": "raw_fast",
+      "path": "episodes/R022--raw_fast.json",
+      "sha256": "45987af964f98a626961656f253fc359aaa0b1cbf1366d522770c2dd94650f3e",
+      "trajectory_id": "episode-cbffb8426e7947c1ba9a0ffe0db003eb",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 6253,
+      "actions": [
+        "retrieve_more",
+        "write_fast"
+      ],
+      "judge_overall": 0.95,
+      "judge_subscores": {
+        "coverage": 0.95,
+        "factuality": 0.95,
+        "citation_support": 0.95,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R022",
+      "policy": "rule",
+      "path": "episodes/R022--rule.json",
+      "sha256": "82a827bedf45c70029a8f807b4433b0d8b73eb0a986622b2466d7ecc76e2f320",
+      "trajectory_id": "episode-98cb84b6b6b34dd1afe44dd100dee89d",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 14403,
+      "actions": [
+        "retrieve_more",
+        "summarize_fast",
+        "write_fast"
+      ],
+      "judge_overall": 0.88,
+      "judge_subscores": {
+        "coverage": 0.85,
+        "factuality": 0.9,
+        "citation_support": 0.85,
+        "consistency": 0.9
+      }
+    },
+    {
+      "review_id": "R022",
+      "policy": "retrieve_again",
+      "path": "episodes/R022--retrieve_again.json",
+      "sha256": "04c2b5f4e19cf3e9da0430035a4f863c7cab482fbf166f64e4e16d5fabb5d9a7",
+      "trajectory_id": "episode-12833abaef4242c4a873080ba2ed00a7",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 36924,
+      "actions": [
+        "retrieve_more",
+        "summarize_fast",
+        "retrieve_more",
+        "summarize_deep",
+        "write_fast"
+      ],
+      "judge_overall": 0.94,
+      "judge_subscores": {
+        "coverage": 0.95,
+        "factuality": 0.95,
+        "citation_support": 0.9,
+        "consistency": 0.95
+      }
+    },
+    {
+      "review_id": "R022",
+      "policy": "deep",
+      "path": "episodes/R022--deep.json",
+      "sha256": "406158df97797bfb3b759a93f5d803e460f15f9fe163b640304304ee1bd69d09",
+      "trajectory_id": "episode-610ba20291674a6ba9f3780bb586c081",
+      "success": true,
+      "terminal_reason": "final_written",
+      "total_workflow_tokens": 16988,
+      "actions": [
+        "retrieve_more",
+        "summarize_deep",
+        "write_deep"
+      ],
+      "judge_overall": 0.91,
+      "judge_subscores": {
+        "coverage": 0.9,
+        "factuality": 0.95,
+        "citation_support": 0.85,
+        "consistency": 0.95
+      }
+    }
+  ]
+}

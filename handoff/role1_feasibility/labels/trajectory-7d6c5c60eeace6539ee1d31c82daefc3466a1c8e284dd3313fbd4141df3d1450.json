@@ -1,0 +1,20 @@
+{
+  "source_kind": "independent_judge",
+  "trajectory_id": "episode-7ca282cba16140f28ba5453bfd1a0627",
+  "review_id": "R001",
+  "split": "train",
+  "final_text_sha256": "2c056ba3cea178ba4ec2b577c9d858bcad7275bf5f633d8a2cbbe5219947a5bf",
+  "blind_input_sha256": "64cf41eb205463d41b4107ada1b77fab3cedb68801407096ca03dd6a92be78af",
+  "request_sha256": "5b9f8037e143031c70079d40fc03d879927b15cde59a4f668331880bb32108c6",
+  "prompt_id": "dwb-final-v3-sha256:2110cca9d65b829f33decd71fd69bf862afc000cfedb9bff950f2350d9eaf78a",
+  "model": "deepseek-v4-pro",
+  "overall_score": 0.95,
+  "subscores": {
+    "coverage": 0.95,
+    "factuality": 0.95,
+    "citation_support": 0.95,
+    "consistency": 0.95
+  },
+  "rationale": "Coverage: 终稿完整回答了题面要求：明确区分“看到更多信息”与“适应新环境”不是同一问题；结合匝道控制说明了视频与点检测器的可观察范围及评价指标（主线行程时间、匝道排队、下游流量）；用城市路口实例说明了结构或车流改变时的方法与证据（AttendLight 处理结构变化，GeneraLight 处理车流变化）；并区分了观察范围、控制成效与跨环境有效性，未合并算法排名。Factuality: 所有核心事实均与所附摘要一致，如视频覆盖更大区域、评价指标、AttendLight 的通用模型及限制、GeneraLight 的元学习与流量生成器；结论限定在摘要层面，未捏造结果或过度推广。Citation_support: 正文论断与相邻 [paper_id] 对应关系正确，每个论断均有相应摘要支持；引用 ID 与参考文献表一致，无虚构或错配。Consistency: 内部术语、范围、前后结论一致，逻辑推导清晰，未出现矛盾。",
+  "aggregation": "arithmetic_mean_of_four_round_half_up_2dp"
+}

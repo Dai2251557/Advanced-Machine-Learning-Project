@@ -1,0 +1,29 @@
+{
+  "split": "train",
+  "task_ids": [
+    "R005",
+    "R001",
+    "R022"
+  ],
+  "policies": [
+    "raw_fast",
+    "rule",
+    "retrieve_again",
+    "deep"
+  ],
+  "source_id": "arxiv600-review40-v1",
+  "config": {
+    "config_version": 1,
+    "max_steps": 8,
+    "workflow_tokens_budget": 48000,
+    "retrieval_batch_size": 3,
+    "max_output_tokens": 8192,
+    "output_repair_attempts": 1,
+    "cache_enabled": false,
+    "low_gain_threshold": 0.02,
+    "quality_threshold": 0.75,
+    "max_summary_calls": 3
+  },
+  "judge_after_all_episodes": true,
+  "fulltext_arm": false
+}
