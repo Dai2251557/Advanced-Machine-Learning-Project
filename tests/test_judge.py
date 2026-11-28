@@ -7,6 +7,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import mock_open, patch
 
+from evaluation._sealed import sealed_episodes
 from evaluation.judge import (AGGREGATION, FIXTURE_MODEL, JUDGE_MODEL, PROMPT_ID, RUBRIC_PROMPT, SCORE_KEYS,
                               build_judge_request, finalize_judge_result, prepare_fixture_review, prepare_sealed_test_reviews,
                               prepare_train_review, save_judge_result)
@@ -68,13 +69,13 @@ def train_inputs(success=True):
     return dict(episode=ep, frozen_papers=PAPERS, manifest=m)
 
 
-def batch_inputs():
-    tasks = [task(f"program-test-{i}", "test") for i in range(5)]
+def batch_inputs(count=5, policies=("rule", "dqn")):
+    tasks = [task(f"program-test-{i}", "test") for i in range(count)]
     m = delivery(tasks)
     files = {}
     rows = []
     for i, t in enumerate(tasks):
-        for name in ("rule", "dqn"):
+        for name in policies:
             success = (i, name) != (0, "rule")
             tid = f"hidden-{name}-{i}"
             ep = episode(t, tid, success)
@@ -261,6 +262,33 @@ class FormalBoundaryTests(unittest.TestCase):
         self.assertEqual(formal_shape_only["source_kind"], "independent_judge")
         self.assertEqual(formal_shape_only["subscores"], {k: SCORES[k] for k in SCORE_KEYS})
         self.assertEqual(formal_shape_only["final_text_sha256"], sha(REPORT.encode()))
+
+    def test_three_policy_seal_requires_complete_unique_batch_and_checkpoint_metadata(self):
+        policies = ["rule", "v1", "v2"]
+        args, files, seal = batch_inputs(count=10, policies=policies)
+        ids = {t["review_id"] for t in args["public_tasks"]}
+        # Reader 检查权重摘要的键与格式，不读取权重文件。
+        header = dict(seal, format="frozen-three-v1", policies=policies)
+        weights = {"v1": "a" * 64, "v2": "b" * 64}
+        valid = dict(header, checkpoints_sha256=weights)
+
+        def read_batch(index):
+            files["execution_complete.json"] = json.dumps(index).encode()
+            with patch.object(Path, "read_bytes", lambda path: files[path.name]):
+                return list(sealed_episodes(Path(args["execution_dir"]), ids, seal["test_delivery"]))
+
+        rows = seal["episodes"]
+        self.assertCountEqual([ep["trajectory_id"] for ep in read_batch(valid)],
+                              [f"hidden-{name}-{i}" for i in range(10) for name in policies])
+        for case, invalid in (
+                ("missing trajectory", dict(valid, episodes=rows[:-1])),
+                ("duplicate trajectory", dict(valid, episodes=rows + [rows[-1]])),
+                ("missing metadata", header),
+                ("missing v2", dict(header, checkpoints_sha256={"v1": weights["v1"]})),
+                ("wrong policy key", dict(header, checkpoints_sha256={"v1": weights["v1"], "dqn": weights["v2"]})),
+                ("malformed digest", dict(header, checkpoints_sha256=dict(weights, v2="g" * 64)))):
+            with self.subTest(case=case), self.assertRaises(ValueError):
+                read_batch(invalid)
 
     def test_unsealed_partial_or_wrong_delivery_rejected_before_opening_reports(self):
         args, _, seal = batch_inputs()

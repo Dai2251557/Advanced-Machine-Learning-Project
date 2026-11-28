@@ -8,7 +8,7 @@ from .pipeline import FixedRulePipeline, load_corpus, load_task
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Four-agent fixed-rule literature review baseline")
+    parser = argparse.ArgumentParser(description="Legacy four-agent literature review demo (not the Rule scheduler used in the experiments)")
     parser.add_argument("--backend", choices=("demo", "deepseek"), default="demo")
     parser.add_argument("--corpus", type=Path, required=True)
     task_input = parser.add_mutually_exclusive_group(required=True)

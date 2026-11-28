@@ -1,0 +1,16 @@
+data_source,config,step,category,count,applicable_steps,known_steps,unknown_steps,count_per_known_step_pooled,count_per_known_step_seed_mean,count_per_known_step_seed_sd,count_per_known_step_valid_seeds
+formal_train_runner,base,20000,ineffective,0,180,180,0,0.0,0.0,0.0,3
+formal_train_runner,base,20000,redundant,0,61,0,61,null,null,null,0
+formal_train_runner,base,20000,premature_write,54,90,90,0,0.6,0.6,0.0,3
+formal_train_runner,buffer_small,20000,ineffective,0,180,180,0,0.0,0.0,0.0,3
+formal_train_runner,buffer_small,20000,redundant,0,59,0,59,null,null,null,0
+formal_train_runner,buffer_small,20000,premature_write,54,90,90,0,0.6,0.6,0.0,3
+formal_train_runner,buffer_large,20000,ineffective,0,180,180,0,0.0,0.0,0.0,3
+formal_train_runner,buffer_large,20000,redundant,0,65,0,65,null,null,null,0
+formal_train_runner,buffer_large,20000,premature_write,54,90,90,0,0.6,0.6,0.0,3
+formal_train_runner,target_frequent,20000,ineffective,0,180,180,0,0.0,0.0,0.0,3
+formal_train_runner,target_frequent,20000,redundant,0,55,0,55,null,null,null,0
+formal_train_runner,target_frequent,20000,premature_write,54,90,90,0,0.6,0.6,0.0,3
+formal_train_runner,target_rare,20000,ineffective,0,180,180,0,0.0,0.0,0.0,3
+formal_train_runner,target_rare,20000,redundant,0,55,0,55,null,null,null,0
+formal_train_runner,target_rare,20000,premature_write,54,90,90,0,0.6,0.6,0.0,3

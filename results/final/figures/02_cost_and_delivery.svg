@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+<title id="title">每种策略花多少工作流 token，交付多少终稿？</title>
+<desc id="desc">三种策略各发起 10 题；比较单位成本时只使用记录完整的题，计算交付率时保留全部失败题。 · 独立十题   /   真实工作流与独立盲评</desc>
+<g font-family="Helvetica Neue, PingFang SC, sans-serif">
+<rect x="0.00" y="0.00" width="1440.00" height="810.00" rx="0" fill="#fcfcfb"/>
+<text x="56.00" y="49.00" font-size="18" text-anchor="start" font-weight="400" fill="#52514e">独立十题   /   真实工作流与独立盲评</text>
+<text x="1384.00" y="49.00" font-size="18" text-anchor="end" font-weight="400" fill="#52514e">DQN  /  02</text>
+<text x="56.00" y="108.00" font-size="44" text-anchor="start" font-weight="600" fill="#0b0b0b">每种策略花多少工作流 token，交付多少终稿？</text>
+<text x="56.00" y="149.00" font-size="23" text-anchor="start" font-weight="400" fill="#52514e">三种策略各发起 10 题；比较单位成本时只使用记录完整的题，计算交付率时保留全部失败题。</text>
+<line x1="56.00" y1="174.00" x2="1384.00" y2="174.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="204.00" y="225.00" font-size="26" text-anchor="start" font-weight="600" fill="#0b0b0b">A   已知成本题的平均工作流 token</text>
+<text x="903.00" y="225.00" font-size="26" text-anchor="start" font-weight="600" fill="#0b0b0b">B   终稿交付率</text>
+<line x1="204.00" y1="281.00" x2="204.00" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="204.00" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">0</text>
+<line x1="314.00" y1="281.00" x2="314.00" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="314.00" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">5,000</text>
+<line x1="424.00" y1="281.00" x2="424.00" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="424.00" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">10,000</text>
+<line x1="534.00" y1="281.00" x2="534.00" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="534.00" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">15,000</text>
+<line x1="644.00" y1="281.00" x2="644.00" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="644.00" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">20,000</text>
+<line x1="903.00" y1="281.00" x2="903.00" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="903.00" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">0%</text>
+<line x1="974.50" y1="281.00" x2="974.50" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="974.50" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">25%</text>
+<line x1="1046.00" y1="281.00" x2="1046.00" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="1046.00" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">50%</text>
+<line x1="1117.50" y1="281.00" x2="1117.50" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="1117.50" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">75%</text>
+<line x1="1189.00" y1="281.00" x2="1189.00" y2="638.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="1189.00" y="668.00" font-size="17" text-anchor="middle" font-weight="400" fill="#52514e">100%</text>
+<line x1="56.00" y1="340.00" x2="78.00" y2="340.00" stroke="#2a78d6" stroke-width="4" />
+<text x="86.00" y="347.00" font-size="26" text-anchor="start" font-weight="600" fill="#0b0b0b">Rule</text>
+<rect x="204.00" y="333.00" width="418.26" height="15.00" rx="3" fill="#2a78d6"/>
+<text x="802.00" y="348.00" font-size="29" text-anchor="end" font-weight="600" fill="#0b0b0b">19,012</text>
+<text x="802.00" y="376.00" font-size="18" text-anchor="end" font-weight="400" fill="#52514e">已知 10/10 题</text>
+<rect x="903.00" y="333.00" width="286.00" height="15.00" rx="3" fill="#2a78d6"/>
+<text x="1384.00" y="348.00" font-size="29" text-anchor="end" font-weight="600" fill="#0b0b0b">100%</text>
+<text x="1384.00" y="376.00" font-size="18" text-anchor="end" font-weight="400" fill="#52514e">交付 10/10 题</text>
+<rect x="204.00" y="322.00" width="440.00" height="40.00" fill="none" pointer-events="all" tabindex="0"><title>Rule：完整成本 10/10 题，均值 19,011.60 token</title></rect>
+<rect x="903.00" y="322.00" width="286.00" height="40.00" fill="none" pointer-events="all" tabindex="0"><title>Rule：交付 10/10 题</title></rect>
+<line x1="56.00" y1="458.00" x2="78.00" y2="458.00" stroke="#eb6834" stroke-width="4" />
+<text x="86.00" y="465.00" font-size="26" text-anchor="start" font-weight="600" fill="#0b0b0b">v1</text>
+<rect x="204.00" y="451.00" width="245.09" height="15.00" rx="3" fill="#eb6834"/>
+<text x="802.00" y="466.00" font-size="29" text-anchor="end" font-weight="600" fill="#0b0b0b">11,140</text>
+<text x="802.00" y="494.00" font-size="18" text-anchor="end" font-weight="400" fill="#52514e">已知 10/10 题</text>
+<rect x="903.00" y="451.00" width="286.00" height="15.00" rx="3" fill="#eb6834"/>
+<text x="1384.00" y="466.00" font-size="29" text-anchor="end" font-weight="600" fill="#0b0b0b">100%</text>
+<text x="1384.00" y="494.00" font-size="18" text-anchor="end" font-weight="400" fill="#52514e">交付 10/10 题</text>
+<rect x="204.00" y="440.00" width="440.00" height="40.00" fill="none" pointer-events="all" tabindex="0"><title>v1：完整成本 10/10 题，均值 11,140.50 token</title></rect>
+<rect x="903.00" y="440.00" width="286.00" height="40.00" fill="none" pointer-events="all" tabindex="0"><title>v1：交付 10/10 题</title></rect>
+<line x1="56.00" y1="576.00" x2="78.00" y2="576.00" stroke="#1baf7a" stroke-width="4" />
+<text x="86.00" y="583.00" font-size="26" text-anchor="start" font-weight="600" fill="#0b0b0b">v2</text>
+<rect x="204.00" y="569.00" width="126.95" height="15.00" rx="3" fill="#1baf7a"/>
+<text x="802.00" y="584.00" font-size="29" text-anchor="end" font-weight="600" fill="#0b0b0b">5,770</text>
+<text x="802.00" y="612.00" font-size="18" text-anchor="end" font-weight="400" fill="#52514e">已知 10/10 题</text>
+<rect x="903.00" y="569.00" width="286.00" height="15.00" rx="3" fill="#1baf7a"/>
+<text x="1384.00" y="584.00" font-size="29" text-anchor="end" font-weight="600" fill="#0b0b0b">100%</text>
+<text x="1384.00" y="612.00" font-size="18" text-anchor="end" font-weight="400" fill="#52514e">交付 10/10 题</text>
+<rect x="204.00" y="558.00" width="440.00" height="40.00" fill="none" pointer-events="all" tabindex="0"><title>v2：完整成本 10/10 题，均值 5,770.50 token</title></rect>
+<rect x="903.00" y="558.00" width="286.00" height="40.00" fill="none" pointer-events="all" tabindex="0"><title>v2：交付 10/10 题</title></rect>
+<text x="56.00" y="726.00" font-size="19" text-anchor="start" font-weight="400" fill="#52514e">成本不含 Judge token；失败但用量完整的题仍计成本。不同策略已知成本题可能不同，不能把未知用量当作零。</text>
+<line x1="56.00" y1="752.00" x2="1384.00" y2="752.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="787.00" font-size="19" text-anchor="start" font-weight="400" fill="#52514e">数据：report/overview.csv   ·   左：工作流 token 总和 ÷ 成本完整的题数；右：有终稿题数 ÷ 该策略全部 10 道题。</text>
+</g><metadata>Source CSV (relative to this SVG): ../report/overview.csv</metadata></svg>

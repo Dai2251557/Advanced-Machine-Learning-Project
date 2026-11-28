@@ -1,0 +1,5 @@
+policy,dispatched,n_labeled,prompt_tokens,reported_prompt_tokens,unknown_prompt_tokens_calls,completion_tokens,reported_completion_tokens,unknown_completion_tokens_calls,total_tokens,reported_total_tokens,unknown_total_tokens_calls
+rule,10,10,35135,35135,0,3265,3265,0,38400,38400,0
+v1,10,10,27268,27268,0,2464,2464,0,29732,29732,0
+v2,10,10,27645,27645,0,2710,2710,0,30355,30355,0
+all,30,30,90048,90048,0,8439,8439,0,98487,98487,0

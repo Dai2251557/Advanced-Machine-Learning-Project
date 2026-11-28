@@ -5,6 +5,8 @@ import hashlib
 import json
 import platform
 import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
+from multiprocessing import get_context
 from dataclasses import asdict, replace
 from pathlib import Path
 from statistics import fmean, stdev
@@ -12,9 +14,11 @@ from statistics import fmean, stdev
 import torch
 
 from core.schema import ACTIONS, CONFIG_VERSION
+from evaluation.mismatch import MISMATCH_RULES, summarize_mismatch
 from experiments.collect import PLANS, dry_run, json_sha256
 from rl.calibration import evaluate_holdout, fit_calibration, validate_calibration_inputs
 from rl.dqn import TrainConfig, train
+from rl.state_encoder import DIFFICULTIES
 from rl.synthetic_env import SyntheticEnv
 
 
@@ -38,8 +42,10 @@ def _inputs_sha256(episodes, labels, manifest, holdout):
     return json_sha256({'episodes': episodes, 'labels': labels, 'manifest': manifest, 'holdout': holdout})
 
 
-def prepare(bundle=None, fixture_calibration=False):
+def prepare(bundle=None, fixture_calibration=False, *, calibration_version='v1'):
     if bundle is None and not fixture_calibration:
+        if calibration_version != 'v1':
+            raise ValueError('A calibrated run requires training episodes')
         return SyntheticEnv, ['easy','medium','hard'], {'data_source':'analytic_fixture'}
     if bundle is None:
         eps = [dry_run(p,review_id=f'fixture-{i}',difficulty=d) for i,d in enumerate(('easy','hard','medium')) for p in PLANS]
@@ -47,10 +53,12 @@ def prepare(bundle=None, fixture_calibration=False):
     else:
         eps, labels = bundle['episodes'], bundle['labels']
         manifest, holdout, mode = bundle['manifest'], bundle['holdout_review_ids'], 'formal'
-    report = evaluate_holdout(eps,labels,mode=mode,manifest=manifest,holdout_review_ids=holdout)
+    report = evaluate_holdout(eps,labels,mode=mode,manifest=manifest,holdout_review_ids=holdout,
+                              calibration_version=calibration_version)
     fitting = [ep for ep in eps if ep['review_id'] not in holdout]
     tids = {ep['trajectory_id'] for ep in fitting}
-    model = fit_calibration(fitting,[x for x in labels if x['trajectory_id'] in tids],mode=mode,manifest=manifest)
+    model = fit_calibration(fitting,[x for x in labels if x['trajectory_id'] in tids],mode=mode,manifest=manifest,
+                            calibration_version=calibration_version)
     difficulties = [e['public_task']['difficulty'] for e in {ep['review_id']:ep for ep in eps if ep['review_id'] in holdout}.values()]
     meta = {'data_source':model.source, 'fit':model.manifest(), 'holdout':report,
             'inputs_sha256':_inputs_sha256(eps,labels,manifest,holdout)}
@@ -74,7 +82,7 @@ def metrics(episodes):
             'mean_known_episode_tokens':fmean(known) if known else None, 'known_cost_episodes':len(known),
             'unknown_cost_steps':usage.count(None), 'steps':len(steps), 'actions':actions,
             'low_support_steps':sum(bool((t.get('simulation_support') or {}).get('low_support')) for t in steps),
-            'mismatch_status':'awaiting_frozen_role3_classifier'}
+            'mismatch':summarize_mismatch(episodes)}
 
 
 def evaluate(agent, env_factory, difficulties):
@@ -162,6 +170,10 @@ def main(argv=None):
     inputs.add_argument('--fixture-calibration',action='store_true')
     inputs.add_argument('--training-bundle',type=Path)
     p.add_argument('--threshold',type=float,help='正式实验须提供训练内预先登记的回报门槛')
+    p.add_argument('--eval-per-difficulty',type=int,help='每个难度的固定仿真验证局数（各配置与种子共用）')
+    p.add_argument('--eval-interval',type=int,help='两次固定仿真评估间的环境步数；full 默认 500')
+    p.add_argument('--calibration-version',choices=('v1','v2'),default='v1')
+    p.add_argument('--workers',type=int,default=1,help='并行的独立配置/种子数；每个进程用一个 PyTorch 计算线程')
     p.add_argument('--output',type=Path,required=True,help='必须是不存在的新目录')
     args = p.parse_args(argv)
     import math
@@ -170,26 +182,45 @@ def main(argv=None):
     threshold = .5 if args.threshold is None else args.threshold
     if not math.isfinite(threshold) or len(set(args.seeds)) != len(args.seeds):
         p.error('Expected finite threshold and distinct seeds')
+    if args.workers < 1:
+        p.error('--workers must be positive')
     torch.set_num_threads(1)
     bundle = json.loads(args.training_bundle.read_text(encoding='utf-8')) if args.training_bundle else None
-    factory, difficulties, meta = prepare(bundle,args.fixture_calibration)
+    interval = args.eval_interval if args.eval_interval is not None else (500 if args.size=='full' else 40)
+    if interval < 1:
+        p.error('--eval-interval must be positive')
+    factory, difficulties, meta = prepare(bundle,args.fixture_calibration,calibration_version=args.calibration_version)
+    if args.eval_per_difficulty is not None:
+        if args.eval_per_difficulty < 1:
+            p.error('--eval-per-difficulty must be positive')
+        difficulties = list(DIFFICULTIES) * args.eval_per_difficulty
     configs = grid(args.size)
     meta.update(config_version=CONFIG_VERSION,python=platform.python_version(),torch=str(torch.__version__),
                 config_grid={k:asdict(v) for k,v in configs.items()},seeds=args.seeds,size=args.size,
-                selected=args.config,validation_difficulties=difficulties,threshold=threshold,
-                eval_interval=500 if args.size=='full' else 40,reward_config=asdict(factory().reward_config))
+                selected=args.config,validation_difficulties=difficulties,threshold=threshold,mismatch_rules=MISMATCH_RULES,
+                eval_interval=interval,workers=args.workers,reward_config=asdict(factory().reward_config))
     args.output.mkdir(parents=True,exist_ok=False)
     write_json(args.output/'experiment.json',meta)
+    names = [n for n in configs if args.config in ('all',n)]
+    jobs = [(args.output,n,configs[n],seed,factory,difficulties,meta) for n in names for seed in args.seeds]
+    options = {'interval':interval,'threshold':threshold}
+    by_run = {}
+    def record(result):
+        name, seed = result['name'], result['seed']
+        by_run[name,seed] = result
+        print(f"{name} seed={seed} steps={configs[name].steps} seconds={result['elapsed_seconds']:.2f}",flush=True)
+    if args.workers == 1:
+        for job in jobs:
+            record(run_one(*job,**options))
+    else:
+        with ProcessPoolExecutor(max_workers=min(args.workers,len(jobs)),mp_context=get_context('spawn'),
+                                 initializer=torch.set_num_threads,initargs=(1,)) as pool:
+            futures = [pool.submit(run_one,*job,**options) for job in jobs]
+            for future in as_completed(futures):
+                record(future.result())
     comparison = {}
-    for name, cfg in configs.items():
-        if args.config not in ('all', name):
-            continue
-        results = []
-        for seed in args.seeds:
-            result = run_one(args.output, name, cfg, seed, factory, difficulties, meta,
-                             interval=meta['eval_interval'], threshold=threshold)
-            results.append(result)
-            print(f"{name} seed={seed} steps={cfg.steps} seconds={result['elapsed_seconds']:.2f}")
+    for name in names:
+        results = [by_run[name,seed] for seed in args.seeds]
         last = [r['evaluations'][-1]['mean_return'] for r in results]
         comparison[name] = {'seeds': args.seeds, 'last_mean_return': fmean(last),
                             'last_return_sd': stdev(last) if len(last) > 1 else None,

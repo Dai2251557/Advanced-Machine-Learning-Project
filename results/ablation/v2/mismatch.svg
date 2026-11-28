@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+<title id="title">末次验证中，每局有几步可确认错配？</title>
+<desc id="desc">训练第 20,000 步 · 点为种子均值，横线为种子范围。右侧列出 3 个种子合计的计数和分母。 · 离线 DQN   /   训练内模拟验证   /   训练轨迹标定的模拟器   ·   非真实 API 评测</desc>
+<g font-family="Helvetica Neue, PingFang SC, sans-serif">
+<rect x="0.00" y="0.00" width="1440.00" height="810.00" rx="0" fill="#fcfcfb"/>
+<text x="56.00" y="49.00" font-size="18" text-anchor="start" font-weight="400" fill="#52514e">离线 DQN   /   训练内模拟验证   /   训练轨迹标定的模拟器   ·   非真实 API 评测</text>
+<text x="1384.00" y="49.00" font-size="18" text-anchor="end" font-weight="400" fill="#52514e">DQN  /  02</text>
+<text x="56.00" y="108.00" font-size="44" text-anchor="start" font-weight="600" fill="#0b0b0b">末次验证中，每局有几步可确认错配？</text>
+<text x="56.00" y="149.00" font-size="23" text-anchor="start" font-weight="400" fill="#52514e">训练第 20,000 步 · 点为种子均值，横线为种子范围。右侧列出 3 个种子合计的计数和分母。</text>
+<line x1="56.00" y1="174.00" x2="1384.00" y2="174.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="233.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">配置</text>
+<text x="255.00" y="233.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">已确认错配步 / 局</text>
+<text x="865.00" y="233.00" font-size="21" text-anchor="end" font-weight="600" fill="#0b0b0b">错配步 / 局数</text>
+<text x="1050.00" y="233.00" font-size="21" text-anchor="end" font-weight="600" fill="#0b0b0b">可判步</text>
+<text x="1200.00" y="233.00" font-size="21" text-anchor="end" font-weight="600" fill="#0b0b0b">未知步</text>
+<text x="1384.00" y="233.00" font-size="21" text-anchor="end" font-weight="600" fill="#0b0b0b">动作总步</text>
+<line x1="255.00" y1="257.00" x2="255.00" y2="642.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="255.00" y="674.00" font-size="18" text-anchor="middle" font-weight="400" fill="#52514e">0</text>
+<line x1="362.50" y1="257.00" x2="362.50" y2="642.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="362.50" y="674.00" font-size="18" text-anchor="middle" font-weight="400" fill="#52514e">0.25</text>
+<line x1="470.00" y1="257.00" x2="470.00" y2="642.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="470.00" y="674.00" font-size="18" text-anchor="middle" font-weight="400" fill="#52514e">0.5</text>
+<line x1="577.50" y1="257.00" x2="577.50" y2="642.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="577.50" y="674.00" font-size="18" text-anchor="middle" font-weight="400" fill="#52514e">0.75</text>
+<line x1="685.00" y1="257.00" x2="685.00" y2="642.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="685.00" y="674.00" font-size="18" text-anchor="middle" font-weight="400" fill="#52514e">1</text>
+<text x="56.00" y="300.00" font-size="24" text-anchor="start" font-weight="600" fill="#0b0b0b">共享基准</text>
+<line x1="513.00" y1="292.00" x2="513.00" y2="292.00" stroke="#2a78d6" stroke-width="3" />
+<line x1="513.00" y1="285.00" x2="513.00" y2="299.00" stroke="#2a78d6" stroke-width="2" />
+<line x1="513.00" y1="285.00" x2="513.00" y2="299.00" stroke="#2a78d6" stroke-width="2" />
+<circle cx="513.00" cy="292.00" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="513.00" y="280.00" font-size="18" text-anchor="middle" font-weight="400" fill="#0b0b0b">0.60</text>
+<text x="865.00" y="300.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">54 / 90</text>
+<text x="1050.00" y="300.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">144</text>
+<text x="1200.00" y="300.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">36</text>
+<text x="1384.00" y="300.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">180</text>
+<text x="56.00" y="377.00" font-size="24" text-anchor="start" font-weight="400" fill="#0b0b0b">小回放池</text>
+<line x1="513.00" y1="369.00" x2="513.00" y2="369.00" stroke="#2a78d6" stroke-width="3" />
+<line x1="513.00" y1="362.00" x2="513.00" y2="376.00" stroke="#2a78d6" stroke-width="2" />
+<line x1="513.00" y1="362.00" x2="513.00" y2="376.00" stroke="#2a78d6" stroke-width="2" />
+<circle cx="513.00" cy="369.00" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="513.00" y="357.00" font-size="18" text-anchor="middle" font-weight="400" fill="#0b0b0b">0.60</text>
+<text x="865.00" y="377.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">54 / 90</text>
+<text x="1050.00" y="377.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">144</text>
+<text x="1200.00" y="377.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">36</text>
+<text x="1384.00" y="377.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">180</text>
+<text x="56.00" y="454.00" font-size="24" text-anchor="start" font-weight="400" fill="#0b0b0b">大回放池</text>
+<line x1="513.00" y1="446.00" x2="513.00" y2="446.00" stroke="#2a78d6" stroke-width="3" />
+<line x1="513.00" y1="439.00" x2="513.00" y2="453.00" stroke="#2a78d6" stroke-width="2" />
+<line x1="513.00" y1="439.00" x2="513.00" y2="453.00" stroke="#2a78d6" stroke-width="2" />
+<circle cx="513.00" cy="446.00" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="513.00" y="434.00" font-size="18" text-anchor="middle" font-weight="400" fill="#0b0b0b">0.60</text>
+<text x="865.00" y="454.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">54 / 90</text>
+<text x="1050.00" y="454.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">144</text>
+<text x="1200.00" y="454.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">36</text>
+<text x="1384.00" y="454.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">180</text>
+<text x="56.00" y="531.00" font-size="24" text-anchor="start" font-weight="400" fill="#0b0b0b">频繁同步</text>
+<line x1="513.00" y1="523.00" x2="513.00" y2="523.00" stroke="#2a78d6" stroke-width="3" />
+<line x1="513.00" y1="516.00" x2="513.00" y2="530.00" stroke="#2a78d6" stroke-width="2" />
+<line x1="513.00" y1="516.00" x2="513.00" y2="530.00" stroke="#2a78d6" stroke-width="2" />
+<circle cx="513.00" cy="523.00" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="513.00" y="511.00" font-size="18" text-anchor="middle" font-weight="400" fill="#0b0b0b">0.60</text>
+<text x="865.00" y="531.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">54 / 90</text>
+<text x="1050.00" y="531.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">144</text>
+<text x="1200.00" y="531.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">36</text>
+<text x="1384.00" y="531.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">180</text>
+<text x="56.00" y="608.00" font-size="24" text-anchor="start" font-weight="400" fill="#0b0b0b">稀疏同步</text>
+<line x1="513.00" y1="600.00" x2="513.00" y2="600.00" stroke="#2a78d6" stroke-width="3" />
+<line x1="513.00" y1="593.00" x2="513.00" y2="607.00" stroke="#2a78d6" stroke-width="2" />
+<line x1="513.00" y1="593.00" x2="513.00" y2="607.00" stroke="#2a78d6" stroke-width="2" />
+<circle cx="513.00" cy="600.00" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="513.00" y="588.00" font-size="18" text-anchor="middle" font-weight="400" fill="#0b0b0b">0.60</text>
+<text x="865.00" y="608.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">54 / 90</text>
+<text x="1050.00" y="608.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">144</text>
+<text x="1200.00" y="608.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">36</text>
+<text x="1384.00" y="608.00" font-size="23" text-anchor="end" font-weight="400" fill="#0b0b0b">180</text>
+<line x1="56.00" y1="752.00" x2="1384.00" y2="752.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="787.00" font-size="19" text-anchor="start" font-weight="400" fill="#52514e">分母含全部验证局；未知不等于无错配。多类错配可重叠，总数按步去重；分类计数与分母见 mismatch_categories.csv。</text>
+</g></svg>

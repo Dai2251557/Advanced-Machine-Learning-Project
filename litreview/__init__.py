@@ -1,1 +1,1 @@
-"""A fixed-rule literature review baseline, ready for scheduler experiments."""
+"""Legacy four-agent literature review demo and shared execution utilities."""

@@ -1,0 +1,11 @@
+field,definition
+missing,CSV 空白=未观测或无分母，不是0。工作流失败、无终稿、Judge失败均不补质量分。
+overview,n_tasks=每策略全部10题；交付率=final_written数/10，与是否有Judge真分独立。
+mean_common_*,三方比较用mean_common_*：质量均值只取三方同题均有分，成本均值只取三方同题均有成本，见对应n_common列。其余mean_*为各自有效子集的描述性均值，不可直接相减。
+pairwise,每个指标用A、B同题均有效的分母和逐题A−B原量纲差，不是各自均值之差。成本少为胜，可含未交付题；不是质量优势。utility的成对分母与同λ三方主表一致。
+utility,U=独立v3总分−λ×workflow_tokens/48000。λ=0只需真分；λ>0还需完整工作流成本。主表只取in_common=True即三策略同题全有效；不生成带失败惩罚的伪质量。
+workflow_tokens,逐调用prompt+completion（含verifier、失败与修复），任一分量缺失则总数未知。reported_workflow_tokens是已报告分量的小计，不用来估算效用。
+calls,logged_calls含缓存命中；api_calls=非缓存事件。repair_calls是attempt>1的事件，failed_calls是status!=ok；两者可重叠，与策略动作/失败步数不同。
+actions,selection_rate=选中步数/该动作mask可用步数。token_share=归该动作的完整工作流成本/该策略全部成本，分母缺失时为空。reported_token_share仅指已报告分量。
+mismatch,evaluation.mismatch.summarize_mismatch，按步去重。分类可能重叠；每局=已确认错配步/全部10局；unknown不是无错配。premature_write是过程代理，不是Judge质量。
+judge,Judge使用独立账本，不计入工作流或效用。judge_per_task每轨迹一行；未发请求与已发但无usage分别标记。

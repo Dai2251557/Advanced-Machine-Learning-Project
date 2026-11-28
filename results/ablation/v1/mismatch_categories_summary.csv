@@ -1,0 +1,16 @@
+data_source,config,step,category,count,applicable_steps,known_steps,unknown_steps,count_per_known_step_pooled,count_per_known_step_seed_mean,count_per_known_step_seed_sd,count_per_known_step_valid_seeds
+formal_train_runner,base,20000,ineffective,27,271,271,0,0.0996309963099631,0.09715457574980774,0.06784127759953078,3
+formal_train_runner,base,20000,redundant,0,59,54,5,0.0,0.0,0.0,3
+formal_train_runner,base,20000,premature_write,46,90,90,0,0.5111111111111111,0.5111111111111111,0.10183501544346309,3
+formal_train_runner,buffer_small,20000,ineffective,3,239,239,0,0.012552301255230125,0.012048192771084336,0.020868082018902136,3
+formal_train_runner,buffer_small,20000,redundant,0,21,11,10,0.0,0.0,0.0,3
+formal_train_runner,buffer_small,20000,premature_write,52,90,90,0,0.5777777777777777,0.5777777777777778,0.01924500897298752,3
+formal_train_runner,buffer_large,20000,ineffective,24,285,285,0,0.08421052631578947,0.07570332480818415,0.06999079989664518,3
+formal_train_runner,buffer_large,20000,redundant,4,64,60,4,0.06666666666666667,0.031746031746031744,0.0549857399228215,3
+formal_train_runner,buffer_large,20000,premature_write,34,90,90,0,0.37777777777777777,0.37777777777777777,0.09622504486493764,3
+formal_train_runner,target_frequent,20000,ineffective,7,248,248,0,0.028225806451612902,0.02737386326916863,0.024210854554807877,3
+formal_train_runner,target_frequent,20000,redundant,0,51,21,30,0.0,0.0,0.0,3
+formal_train_runner,target_frequent,20000,premature_write,44,90,90,0,0.4888888888888889,0.48888888888888893,0.0838870492807861,3
+formal_train_runner,target_rare,20000,ineffective,21,257,257,0,0.08171206225680934,0.07454819277108433,0.09947457314595179,3
+formal_train_runner,target_rare,20000,redundant,0,52,35,17,0.0,0.0,0.0,3
+formal_train_runner,target_rare,20000,premature_write,48,90,90,0,0.5333333333333333,0.5333333333333333,0.033333333333333326,3

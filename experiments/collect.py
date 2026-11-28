@@ -55,6 +55,15 @@ PLANS = {
     'retrieve_again': ('retrieve_more', 'summarize_fast', 'retrieve_more', 'summarize_deep', 'write_fast'),
     'revise': ('retrieve_more', 'summarize_deep', 'summarize_fast', 'write_deep'),
 }
+# 配对专用计划显式可选，不改变已有 all / DQN 夹具的采样组成。
+REGISTERED_PLANS = {
+    **PLANS,
+    'raw_retrieve_fast': ('retrieve_more', 'retrieve_more', 'summarize_fast', 'write_fast'),
+    'revise_fast_deep': ('retrieve_more', 'summarize_fast', 'summarize_deep', 'write_fast'),
+    'R-Sd-Wf': ('retrieve_more', 'summarize_deep', 'write_fast'),
+    'R-R-Sd-Wf': ('retrieve_more', 'retrieve_more', 'summarize_deep', 'write_fast'),
+    'R-R-R-Sd-Wd': ('retrieve_more', 'retrieve_more', 'retrieve_more', 'summarize_deep', 'write_deep'),
+}
 
 
 def _require(condition, message):
@@ -151,8 +160,8 @@ def _source(task, kind, purpose, index, mode, manifest):
 
 
 def sampling_plan(policy):
-    _require(policy in PLANS, 'unknown sampling policy')
-    return {'policy': policy, 'preferences_by_step': list(PLANS[policy]), 'fallback': 'RuleScheduler',
+    _require(policy in REGISTERED_PLANS, 'unknown sampling policy')
+    return {'policy': policy, 'preferences_by_step': list(REGISTERED_PLANS[policy]), 'fallback': 'RuleScheduler',
             'selection': 'deterministic'}
 
 
@@ -165,9 +174,7 @@ def _choose(rule, plan, state, mask):
     return rule.select_action(state, mask)
 
 
-@_wire
-def collect_episode(runner, task, policy='rule', *, mode='formal', manifest=None, seed=0):
-    """Preflight sources/backend before reset or any call; return a JSON-ready episode."""
+def collection_inputs(runner, task, mode, manifest):
     task = _task(task)
     _require(isinstance(runner, Runner), 'a configured shared Runner is required')
     if mode == 'formal':
@@ -176,6 +183,23 @@ def collect_episode(runner, task, policy='rule', *, mode='formal', manifest=None
         _require(isinstance(runner.executor.backend, MockBackend) and runner.executor.backend.name == 'mock',
                  'fixture mode requires an explicit mock backend')
     source = _source(task, runner.dataset_kind, runner.data_purpose, paper_index(runner.papers), mode, manifest)
+    return task, source
+
+
+def finish_collection(runner, task, policy, plan, source, steps, mode, manifest):
+    episode = runner.result()
+    episode.update(transitions=steps, collection_kind=mode, public_task=task.to_dict(), source=source,
+                   policy=policy, plan=plan, plan_sha256=json_sha256(plan), config_sha256=json_sha256(episode['config']),
+                   final_text_sha256=final_text_sha256(episode['final_text']) if episode['success'] else None)
+    episode['support'] = support_report([episode])
+    validate_episode(episode, mode=mode, manifest=manifest)
+    return episode
+
+
+@_wire
+def collect_episode(runner, task, policy='rule', *, mode='formal', manifest=None, seed=0):
+    """Preflight sources/backend before reset or any call; return a JSON-ready episode."""
+    task, source = collection_inputs(runner, task, mode, manifest)
     plan = sampling_plan(policy)
     rule = RuleScheduler(runner.config)
     rule.reset(seed=seed)
@@ -186,13 +210,7 @@ def collect_episode(runner, task, policy='rule', *, mode='formal', manifest=None
         step = step_with_masks(runner, action)
         steps.append(step)
         state = step['state_after']
-    episode = runner.result()
-    episode.update(transitions=steps, collection_kind=mode, public_task=task.to_dict(), source=source,
-                   policy=policy, plan=plan, plan_sha256=json_sha256(plan), config_sha256=json_sha256(episode['config']),
-                   final_text_sha256=final_text_sha256(episode['final_text']) if episode['success'] else None)
-    episode['support'] = support_report([episode])
-    validate_episode(episode, mode=mode, manifest=manifest)
-    return episode
+    return finish_collection(runner, task, policy, plan, source, steps, mode, manifest)
 
 
 def dry_run(policy='rule', *, review_id='fixture-001', seed=0, difficulty='medium', config=None, backend=None):
@@ -481,6 +499,7 @@ def validate_collection(episodes, labels=(), *, mode='formal', manifest=None):
     """Fail closed; return joined independent labels only (no mutation, no missing-score imputation)."""
     by_id, joined, label_ids, tasks = {}, {}, set(), {}
     for ep in episodes:
+        _require('shared_prefix' not in ep, 'shared-prefix arms are paired observations, not independent episodes')
         validate_episode(ep, mode=mode, manifest=manifest)
         tid, rid = ep['trajectory_id'], ep['review_id']
         _require(tid not in by_id, 'duplicate trajectory_id')
@@ -511,7 +530,7 @@ def validate_collection(episodes, labels=(), *, mode='formal', manifest=None):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description='Offline synthetic collection only; no live CLI.')
-    parser.add_argument('--policy', choices=[*PLANS, 'all'], default='rule')
+    parser.add_argument('--policy', choices=[*REGISTERED_PLANS, 'all'], default='rule')
     parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--output', type=Path, help='optional NEW JSON file; never overwrites existing results')
     args = parser.parse_args(argv)
