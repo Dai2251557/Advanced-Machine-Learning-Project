@@ -3,38 +3,17 @@ import json
 import unittest
 from unittest.mock import patch
 
-from agents.executor import MockBackend
 from core.runner import Runner
 from core.schema import ACTIONS, ReviewTask, RunnerConfig
-from evaluation.judge import (JUDGE_MODEL, PROMPT_ID, build_judge_request, finalize_judge_result,
-                              prepare_train_review)
-from experiments.collect import (PLANS, collect_episode, dry_run, json_sha256, paper_index,
-                                 support_report, validate_collection)
+from evaluation.judge import JUDGE_MODEL, build_judge_request, finalize_judge_result, prepare_train_review
+from experiments.collect import PLANS, collect_episode, dry_run, support_report, validate_collection
 from litreview.clients import DeepSeekBackend
-
-
-class Metered(MockBackend):
-    def complete(self, role, instruction, payload):
-        c = super().complete(role, instruction, payload)
-        c.prompt_tokens, c.completion_tokens = 12, 8
-        return c
+from tests.formal_fixture import Metered, formal_inputs
 
 
 def fixture_label(ep, score=.7):
     return {**{k:ep[k] for k in ('review_id','trajectory_id','split','final_text_sha256')},
             'source_kind':'synthetic_fixture', 'model':'fixture', 'prompt_id':'fixture', 'overall_score':score}
-
-
-def formal_inputs():
-    task = ReviewTask('R', 'topic', split='train')
-    papers = [{'id': 'A', 'title': 'Topic', 'abstract': 'A hypothetical paper.'}]
-    corpus = {'papers': papers, 'purpose': 'formal_experiment', 'dataset_kind': 'arxiv_abstracts'}
-    runner = Runner(corpus, DeepSeekBackend(api_key='fixture', model='deepseek-flash'))
-    manifest = {'config_version': 1, 'source_id': 'fixture-manifest', 'dataset_kind': 'arxiv_abstracts',
-                'data_purpose': 'formal_experiment', 'papers': paper_index(papers),
-                'tasks': {'R': {'split': 'train', 'task_sha256': json_sha256(task.to_dict())}},
-                'judge': {'model': JUDGE_MODEL, 'prompt_id': PROMPT_ID}}
-    return runner, corpus, task, manifest
 
 
 class CollectionTests(unittest.TestCase):

@@ -1,0 +1,288 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+<title id="title">逐题比较：三种策略的总体分与覆盖度</title>
+<desc id="desc">同一行是同一道题，题号顺序固定；左右分别读数，不按得分重新排序。 · 独立十题   /   真实工作流与独立盲评</desc>
+<g font-family="Helvetica Neue, PingFang SC, sans-serif">
+<rect x="0.00" y="0.00" width="1440.00" height="810.00" rx="0" fill="#fcfcfb"/>
+<text x="56.00" y="49.00" font-size="18" text-anchor="start" font-weight="400" fill="#52514e">独立十题   /   真实工作流与独立盲评</text>
+<text x="1384.00" y="49.00" font-size="18" text-anchor="end" font-weight="400" fill="#52514e">DQN  /  01</text>
+<text x="56.00" y="108.00" font-size="44" text-anchor="start" font-weight="600" fill="#0b0b0b">逐题比较：三种策略的总体分与覆盖度</text>
+<text x="56.00" y="149.00" font-size="23" text-anchor="start" font-weight="400" fill="#52514e">同一行是同一道题，题号顺序固定；左右分别读数，不按得分重新排序。</text>
+<line x1="56.00" y1="174.00" x2="1384.00" y2="174.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="263.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">题号</text>
+<text x="205.00" y="216.00" font-size="25" text-anchor="start" font-weight="600" fill="#0b0b0b">A   Judge 总体分</text>
+<line x1="205.00" y1="256.00" x2="227.00" y2="256.00" stroke="#2a78d6" stroke-width="4" />
+<text x="235.00" y="263.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">Rule</text>
+<rect x="205.00" y="297.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="297.00" width="65.10" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="307.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.70</text>
+<rect x="203.00" y="288.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T001 · Rule · overall_score：0.70</title></rect>
+<rect x="205.00" y="337.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="337.00" width="82.77" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="347.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.89</text>
+<rect x="203.00" y="328.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T002 · Rule · overall_score：0.89</title></rect>
+<rect x="205.00" y="377.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="377.00" width="84.63" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="387.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.91</text>
+<rect x="203.00" y="368.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T003 · Rule · overall_score：0.91</title></rect>
+<rect x="205.00" y="417.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="417.00" width="81.84" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="427.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.88</text>
+<rect x="203.00" y="408.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T004 · Rule · overall_score：0.88</title></rect>
+<rect x="205.00" y="457.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="457.00" width="81.84" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="467.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.88</text>
+<rect x="203.00" y="448.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T005 · Rule · overall_score：0.88</title></rect>
+<rect x="205.00" y="497.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="497.00" width="84.63" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="507.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.91</text>
+<rect x="203.00" y="488.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T006 · Rule · overall_score：0.91</title></rect>
+<rect x="205.00" y="537.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="537.00" width="65.10" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="547.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.70</text>
+<rect x="203.00" y="528.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T007 · Rule · overall_score：0.70</title></rect>
+<rect x="205.00" y="577.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="577.00" width="65.10" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="587.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.70</text>
+<rect x="203.00" y="568.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T008 · Rule · overall_score：0.70</title></rect>
+<rect x="205.00" y="617.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="617.00" width="84.63" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="627.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.91</text>
+<rect x="203.00" y="608.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T009 · Rule · overall_score：0.91</title></rect>
+<rect x="205.00" y="657.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="205.00" y="657.00" width="88.35" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="358.00" y="667.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.95</text>
+<rect x="203.00" y="648.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T010 · Rule · overall_score：0.95</title></rect>
+<line x1="386.00" y1="256.00" x2="408.00" y2="256.00" stroke="#eb6834" stroke-width="4" />
+<text x="416.00" y="263.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">v1</text>
+<rect x="386.00" y="297.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="297.00" width="60.45" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="307.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.65</text>
+<rect x="384.00" y="288.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T001 · v1 · overall_score：0.65</title></rect>
+<rect x="386.00" y="337.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="337.00" width="84.63" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="347.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.91</text>
+<rect x="384.00" y="328.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T002 · v1 · overall_score：0.91</title></rect>
+<rect x="386.00" y="377.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="377.00" width="60.45" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="387.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.65</text>
+<rect x="384.00" y="368.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T003 · v1 · overall_score：0.65</title></rect>
+<rect x="386.00" y="417.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="417.00" width="79.05" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="427.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.85</text>
+<rect x="384.00" y="408.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T004 · v1 · overall_score：0.85</title></rect>
+<rect x="386.00" y="457.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="457.00" width="51.15" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="467.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.55</text>
+<rect x="384.00" y="448.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T005 · v1 · overall_score：0.55</title></rect>
+<rect x="386.00" y="497.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="497.00" width="84.63" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="507.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.91</text>
+<rect x="384.00" y="488.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T006 · v1 · overall_score：0.91</title></rect>
+<rect x="386.00" y="537.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="537.00" width="65.10" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="547.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.70</text>
+<rect x="384.00" y="528.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T007 · v1 · overall_score：0.70</title></rect>
+<rect x="386.00" y="577.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="577.00" width="60.45" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="587.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.65</text>
+<rect x="384.00" y="568.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T008 · v1 · overall_score：0.65</title></rect>
+<rect x="386.00" y="617.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="617.00" width="82.77" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="627.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.89</text>
+<rect x="384.00" y="608.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T009 · v1 · overall_score：0.89</title></rect>
+<rect x="386.00" y="657.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="386.00" y="657.00" width="88.35" height="6.00" rx="2" fill="#eb6834"/>
+<text x="539.00" y="667.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.95</text>
+<rect x="384.00" y="648.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T010 · v1 · overall_score：0.95</title></rect>
+<line x1="567.00" y1="256.00" x2="589.00" y2="256.00" stroke="#1baf7a" stroke-width="4" />
+<text x="597.00" y="263.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">v2</text>
+<rect x="567.00" y="297.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="297.00" width="65.10" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="307.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.70</text>
+<rect x="565.00" y="288.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T001 · v2 · overall_score：0.70</title></rect>
+<rect x="567.00" y="337.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="337.00" width="86.49" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="347.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.93</text>
+<rect x="565.00" y="328.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T002 · v2 · overall_score：0.93</title></rect>
+<rect x="567.00" y="377.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="377.00" width="65.10" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="387.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.70</text>
+<rect x="565.00" y="368.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T003 · v2 · overall_score：0.70</title></rect>
+<rect x="567.00" y="417.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="417.00" width="79.05" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="427.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.85</text>
+<rect x="565.00" y="408.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T004 · v2 · overall_score：0.85</title></rect>
+<rect x="567.00" y="457.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="457.00" width="65.10" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="467.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.70</text>
+<rect x="565.00" y="448.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T005 · v2 · overall_score：0.70</title></rect>
+<rect x="567.00" y="497.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="497.00" width="65.10" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="507.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.70</text>
+<rect x="565.00" y="488.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T006 · v2 · overall_score：0.70</title></rect>
+<rect x="567.00" y="537.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="537.00" width="58.59" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="547.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.63</text>
+<rect x="565.00" y="528.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T007 · v2 · overall_score：0.63</title></rect>
+<rect x="567.00" y="577.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="577.00" width="60.45" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="587.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.65</text>
+<rect x="565.00" y="568.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T008 · v2 · overall_score：0.65</title></rect>
+<rect x="567.00" y="617.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="617.00" width="79.98" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="627.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.86</text>
+<rect x="565.00" y="608.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T009 · v2 · overall_score：0.86</title></rect>
+<rect x="567.00" y="657.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="567.00" y="657.00" width="87.42" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="720.00" y="667.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.94</text>
+<rect x="565.00" y="648.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T010 · v2 · overall_score：0.94</title></rect>
+<text x="819.00" y="216.00" font-size="25" text-anchor="start" font-weight="600" fill="#0b0b0b">B   Coverage：题面要求覆盖度</text>
+<line x1="819.00" y1="256.00" x2="841.00" y2="256.00" stroke="#2a78d6" stroke-width="4" />
+<text x="849.00" y="263.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">Rule</text>
+<rect x="819.00" y="297.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="297.00" width="18.60" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="307.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="817.00" y="288.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T001 · Rule · coverage：0.20</title></rect>
+<rect x="819.00" y="337.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="337.00" width="79.05" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="347.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.85</text>
+<rect x="817.00" y="328.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T002 · Rule · coverage：0.85</title></rect>
+<rect x="819.00" y="377.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="377.00" width="83.70" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="387.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.90</text>
+<rect x="817.00" y="368.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T003 · Rule · coverage：0.90</title></rect>
+<rect x="819.00" y="417.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="417.00" width="79.05" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="427.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.85</text>
+<rect x="817.00" y="408.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T004 · Rule · coverage：0.85</title></rect>
+<rect x="819.00" y="457.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="457.00" width="79.05" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="467.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.85</text>
+<rect x="817.00" y="448.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T005 · Rule · coverage：0.85</title></rect>
+<rect x="819.00" y="497.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="497.00" width="79.05" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="507.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.85</text>
+<rect x="817.00" y="488.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T006 · Rule · coverage：0.85</title></rect>
+<rect x="819.00" y="537.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="537.00" width="18.60" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="547.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="817.00" y="528.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T007 · Rule · coverage：0.20</title></rect>
+<rect x="819.00" y="577.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="577.00" width="18.60" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="587.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="817.00" y="568.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T008 · Rule · coverage：0.20</title></rect>
+<rect x="819.00" y="617.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="617.00" width="79.05" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="627.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.85</text>
+<rect x="817.00" y="608.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T009 · Rule · coverage：0.85</title></rect>
+<rect x="819.00" y="657.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="819.00" y="657.00" width="88.35" height="6.00" rx="2" fill="#2a78d6"/>
+<text x="972.00" y="667.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.95</text>
+<rect x="817.00" y="648.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T010 · Rule · coverage：0.95</title></rect>
+<line x1="1000.00" y1="256.00" x2="1022.00" y2="256.00" stroke="#eb6834" stroke-width="4" />
+<text x="1030.00" y="263.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">v1</text>
+<rect x="1000.00" y="297.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<text x="1153.00" y="307.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.00</text>
+<rect x="998.00" y="288.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T001 · v1 · coverage：0.00</title></rect>
+<rect x="1000.00" y="337.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1000.00" y="337.00" width="83.70" height="6.00" rx="2" fill="#eb6834"/>
+<text x="1153.00" y="347.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.90</text>
+<rect x="998.00" y="328.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T002 · v1 · coverage：0.90</title></rect>
+<rect x="1000.00" y="377.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1000.00" y="377.00" width="18.60" height="6.00" rx="2" fill="#eb6834"/>
+<text x="1153.00" y="387.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="998.00" y="368.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T003 · v1 · coverage：0.20</title></rect>
+<rect x="1000.00" y="417.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1000.00" y="417.00" width="69.75" height="6.00" rx="2" fill="#eb6834"/>
+<text x="1153.00" y="427.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.75</text>
+<rect x="998.00" y="408.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T004 · v1 · coverage：0.75</title></rect>
+<rect x="1000.00" y="457.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1000.00" y="457.00" width="18.60" height="6.00" rx="2" fill="#eb6834"/>
+<text x="1153.00" y="467.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="998.00" y="448.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T005 · v1 · coverage：0.20</title></rect>
+<rect x="1000.00" y="497.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1000.00" y="497.00" width="79.05" height="6.00" rx="2" fill="#eb6834"/>
+<text x="1153.00" y="507.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.85</text>
+<rect x="998.00" y="488.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T006 · v1 · coverage：0.85</title></rect>
+<rect x="1000.00" y="537.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1000.00" y="537.00" width="18.60" height="6.00" rx="2" fill="#eb6834"/>
+<text x="1153.00" y="547.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="998.00" y="528.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T007 · v1 · coverage：0.20</title></rect>
+<rect x="1000.00" y="577.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1000.00" y="577.00" width="18.60" height="6.00" rx="2" fill="#eb6834"/>
+<text x="1153.00" y="587.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="998.00" y="568.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T008 · v1 · coverage：0.20</title></rect>
+<rect x="1000.00" y="617.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1000.00" y="617.00" width="79.05" height="6.00" rx="2" fill="#eb6834"/>
+<text x="1153.00" y="627.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.85</text>
+<rect x="998.00" y="608.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T009 · v1 · coverage：0.85</title></rect>
+<rect x="1000.00" y="657.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1000.00" y="657.00" width="88.35" height="6.00" rx="2" fill="#eb6834"/>
+<text x="1153.00" y="667.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.95</text>
+<rect x="998.00" y="648.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T010 · v1 · coverage：0.95</title></rect>
+<line x1="1181.00" y1="256.00" x2="1203.00" y2="256.00" stroke="#1baf7a" stroke-width="4" />
+<text x="1211.00" y="263.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">v2</text>
+<rect x="1181.00" y="297.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="297.00" width="18.60" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="307.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="1179.00" y="288.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T001 · v2 · coverage：0.20</title></rect>
+<rect x="1181.00" y="337.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="337.00" width="83.70" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="347.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.90</text>
+<rect x="1179.00" y="328.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T002 · v2 · coverage：0.90</title></rect>
+<rect x="1181.00" y="377.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="377.00" width="18.60" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="387.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="1179.00" y="368.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T003 · v2 · coverage：0.20</title></rect>
+<rect x="1181.00" y="417.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="417.00" width="69.75" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="427.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.75</text>
+<rect x="1179.00" y="408.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T004 · v2 · coverage：0.75</title></rect>
+<rect x="1181.00" y="457.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="457.00" width="18.60" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="467.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="1179.00" y="448.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T005 · v2 · coverage：0.20</title></rect>
+<rect x="1181.00" y="497.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="497.00" width="18.60" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="507.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="1179.00" y="488.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T006 · v2 · coverage：0.20</title></rect>
+<rect x="1181.00" y="537.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="537.00" width="18.60" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="547.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="1179.00" y="528.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T007 · v2 · coverage：0.20</title></rect>
+<rect x="1181.00" y="577.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="577.00" width="18.60" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="587.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.20</text>
+<rect x="1179.00" y="568.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T008 · v2 · coverage：0.20</title></rect>
+<rect x="1181.00" y="617.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="617.00" width="69.75" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="627.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.75</text>
+<rect x="1179.00" y="608.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T009 · v2 · coverage：0.75</title></rect>
+<rect x="1181.00" y="657.00" width="93.00" height="6.00" rx="2" fill="#e1e0d9"/>
+<rect x="1181.00" y="657.00" width="88.35" height="6.00" rx="2" fill="#1baf7a"/>
+<text x="1334.00" y="667.00" font-size="21" text-anchor="end" font-weight="400" fill="#0b0b0b">0.95</text>
+<rect x="1179.00" y="648.00" width="159.00" height="29.00" fill="none" pointer-events="all" tabindex="0"><title>T010 · v2 · coverage：0.95</title></rect>
+<line x1="56.00" y1="283.00" x2="1384.00" y2="283.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="307.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T001</text>
+<line x1="56.00" y1="323.00" x2="1384.00" y2="323.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="347.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T002</text>
+<line x1="56.00" y1="363.00" x2="1384.00" y2="363.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="387.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T003</text>
+<line x1="56.00" y1="403.00" x2="1384.00" y2="403.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="427.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T004</text>
+<line x1="56.00" y1="443.00" x2="1384.00" y2="443.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="467.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T005</text>
+<line x1="56.00" y1="483.00" x2="1384.00" y2="483.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="507.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T006</text>
+<line x1="56.00" y1="523.00" x2="1384.00" y2="523.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="547.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T007</text>
+<line x1="56.00" y1="563.00" x2="1384.00" y2="563.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="587.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T008</text>
+<line x1="56.00" y1="603.00" x2="1384.00" y2="603.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="627.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T009</text>
+<line x1="56.00" y1="643.00" x2="1384.00" y2="643.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="667.00" font-size="21" text-anchor="start" font-weight="600" fill="#0b0b0b">T010</text>
+<text x="56.00" y="724.00" font-size="20" text-anchor="start" font-weight="400" fill="#52514e">失败＝未交付终稿；NA＝交付后无有效评分。各小条量程均为 0–1，数值按原始评分保留两位小数。</text>
+<line x1="56.00" y1="752.00" x2="1384.00" y2="752.00" stroke="#e1e0d9" stroke-width="1" />
+<text x="56.00" y="787.00" font-size="19" text-anchor="start" font-weight="400" fill="#52514e">数据：report/per_task.csv   ·   总体分为四项评分的等权平均；Coverage 只评公开题面要求是否被回答，不按引文数量计分。</text>
+</g><metadata>Source CSV (relative to this SVG): ../report/per_task.csv</metadata></svg>

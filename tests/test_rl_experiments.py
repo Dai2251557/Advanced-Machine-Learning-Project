@@ -20,7 +20,8 @@ from experiments.collect import json_sha256
 from experiments.frozen import execute_pairs
 from rl.dqn import TrainConfig
 from rl.synthetic_env import SyntheticEnv
-from utils.data_release import ROOT, load_manifest, read_json
+from tests.formal_fixture import synthetic_training_pair
+from utils.data_release import read_json
 
 
 class FormalRetrievalTests(unittest.TestCase):
@@ -28,8 +29,8 @@ class FormalRetrievalTests(unittest.TestCase):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
         self.root = Path(tmp.name)
-        eps = [read_json(ROOT / 'handoff/role1_train_probes' / f'{rid}-collection.json') for rid in ('R005', 'R001')]
-        self.bundle = {'episodes': eps, 'labels': [], 'manifest': load_manifest('train'), 'holdout_review_ids': ['R001']}
+        eps, manifest = synthetic_training_pair()
+        self.bundle = {'episodes': eps, 'labels': [], 'manifest': manifest, 'holdout_review_ids': [eps[1]['review_id']]}
         self.input = self.save('bundle.json', self.bundle)
         self.out = self.root / 'training'
         self.args = ['--training-bundle', str(self.input), '--threshold', '0', '--output', str(self.out),
@@ -66,8 +67,9 @@ class FormalRetrievalTests(unittest.TestCase):
         old = self.save('old-policy.json', policy)
         copied = self.root / 'bound-policy.json'
         digest = hashlib.sha256(old.read_bytes()).hexdigest()
+        changed_split = {**self.bundle, 'holdout_review_ids': [self.bundle['episodes'][0]['review_id']]}
         for wrong_exp, wrong_inputs in ((self.out / 'experiment.json', self.input),
-                                        (exp, self.save('rearranged.json', {**self.bundle, 'holdout_review_ids': ['R005']}))):
+                                        (exp, self.save('rearranged.json', changed_split))):
             with self.subTest(wrong_exp=wrong_exp, wrong_inputs=wrong_inputs), self.assertRaises(ValueError):
                 bind_legacy_checkpoint(old, wrong_exp, wrong_inputs, copied)
             self.assertFalse(copied.exists())

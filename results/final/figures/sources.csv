@@ -1,0 +1,6 @@
+figure_stem,input_csv_relative_to_figures
+01_quality_by_task,../report/per_task.csv
+02_cost_and_delivery,../report/overview.csv
+03_utility_by_lambda,../report/utility_summary.csv
+04_v2_early_ablation,../early/early.csv
+04_v2_early_ablation,../early/early_summary.csv

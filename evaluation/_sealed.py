@@ -1,4 +1,4 @@
-"""只读 frozen.execute_pairs 已经完整发布的批次，不运行或重放 Runner。"""
+"""只读已经完整发布的冻结批次，不运行 Runner，不发起评分请求。"""
 
 import hashlib
 import json
@@ -11,19 +11,28 @@ def sealed_episodes(directory, review_ids, delivery):
     if (complete["mode"] != "formal" or complete["all_episodes_complete"] is not True or
             complete["test_delivery"] != delivery):
         raise ValueError("测试尚未全部封存或不是同一正式交付")
+    policies = ('rule', 'dqn')
+    if 'format' in complete:
+        policies = ('rule', 'v1', 'v2')
+        weights = complete.get('checkpoints_sha256')
+        if (complete['format'] != 'frozen-three-v1' or len(review_ids) != 10 or
+                complete.get('policies') != list(policies) or not isinstance(weights, dict) or
+                set(weights) != {'v1','v2'} or not all(isinstance(v, str) and re.fullmatch(r'[a-f0-9]{64}', v)
+                                                       for v in weights.values())):
+            raise ValueError('三策略终评必须绑定十道题、固定策略名和两份冻结权重')
     pairs = set()
     tids = set()
     paths = set()
     for row in complete["episodes"]:
         rid, policy, tid, name = (row[k] for k in ("review_id", "policy", "trajectory_id", "trace"))
-        if (rid not in review_ids or policy not in ("rule", "dqn") or (rid, policy) in pairs or
+        if (rid not in review_ids or policy not in policies or (rid, policy) in pairs or
                 not isinstance(tid, str) or not tid.strip() or tid in tids or name in paths or
-                not re.fullmatch(r"[0-9]{3,}-(rule|dqn)\.json", name) or not name.endswith(f"-{policy}.json")):
+                not isinstance(name, str) or not re.fullmatch(rf"[0-9]{{3,}}-{re.escape(policy)}\.json", name)):
             raise ValueError("封存索引中的配对、轨迹或文件名无效")
         pairs.add((rid, policy))
         tids.add(tid)
         paths.add(name)
-    if pairs != {(rid, policy) for rid in review_ids for policy in ("rule", "dqn")}:
+    if pairs != {(rid, policy) for rid in review_ids for policy in policies}:
         raise ValueError("缺少封存任务的配对轨迹")
     for row in complete["episodes"]:
         raw = (directory / row["trace"]).read_bytes()

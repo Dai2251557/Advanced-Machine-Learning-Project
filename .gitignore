@@ -6,3 +6,6 @@ __pycache__/
 !.env.example
 outputs/
 /.local-data/
+/.agy-coplan.*/
+/CLAUDE.md
+.DS_Store
